@@ -452,7 +452,6 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-API/appsettings.json
 
 
 #----------------------------------------------------------------
@@ -482,3 +481,4 @@ API/appsettings.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+API/appsettings.json
