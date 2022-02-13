@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "../../styles/LecHomePage.scss";
-import "../../styleVar/colorPalette.scss";
-
 import TableDetails from "./TableDetails";
 
 export default function LecHomePage() {
@@ -26,9 +24,9 @@ export default function LecHomePage() {
               setBtn("lec");
             }}
             style={{
-              background: btn == "lec" ? "#5a189a" : "#ffffff",
-              border: btn == "lec" ? "none" : "solid grey 2px",
-              color: btn == "lec" ? "white" : "grey",
+              background: btn === "lec" ? "#5a189a" : "#ffffff",
+              border: btn === "lec" ? "none" : "solid grey 2px",
+              color: btn === "lec" ? "white" : "grey",
             }}
           >
             Lecture Halls
@@ -38,9 +36,9 @@ export default function LecHomePage() {
               setBtn("lab");
             }}
             style={{
-              background: btn == "lab" ? "#5a189a" : "#ffffff",
-              border: btn == "lab" ? "none" : "solid grey 2px",
-              color: btn == "lab" ? "white" : "grey",
+              background: btn === "lab" ? "#5a189a" : "#ffffff",
+              border: btn === "lab" ? "none" : "solid grey 2px",
+              color: btn === "lab" ? "white" : "grey",
             }}
           >
             Labs
