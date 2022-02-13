@@ -13,7 +13,7 @@ export default function LecHomePage() {
         </h2>
         <h3 className="user">
           <a href="#">user</a>
-          <i className="fa-solid fa-user"></i>
+          <i className="fas fa-solid fa-user"></i>
         </h3>
       </div>
       <div className="container">
