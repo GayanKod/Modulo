@@ -1,0 +1,80 @@
+@import "../styleVar/colorPalette.scss";
+
+.nav {
+  background-color: $P3;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(252, 247, 255);
+  padding: 50px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.container {
+  margin: 80px;
+}
+
+.page-title {
+  padding-left: 50px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  color: $O;
+}
+
+.buttons {
+  margin: 50px;
+  padding: 0px 200px 0px 200px;
+
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  button {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    background-color: $P3;
+    width: 300px;
+    height: 45px;
+    border-radius: 30px;
+    border: none;
+  }
+}
+
+.table-container {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  font-weight: 500;
+
+  tbody {
+    color: #717171;
+    tr:hover {
+      background: $O;
+      color: white;
+    }
+  }
+
+  tr {
+    height: 3em;
+    text-align: center;
+
+    th,
+    td {
+      border-bottom: solid grey 1px;
+    }
+  }
+}

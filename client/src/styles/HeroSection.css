@@ -1,0 +1,59 @@
+.hero-section {
+  position: absolute;
+  top: 35%;
+  left: 10%;
+  margin-left: 20px;
+}
+
+.hero-section-title {
+  font-family: 'Foco', sans-serif;
+  display: inline-block;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 55px;
+  color: #3c096c;
+  padding-top: 5px;
+}
+
+.hero-section-title.Edu,
+.hero-section-title.Env {
+  color: #ff5c55;
+}
+
+.hero-image-wrapper {
+  position: absolute;
+  position: absolute;
+  left: 575px;
+  top: 150px;
+}
+
+.hero-image {
+  width: 777px;
+  height: 554px;
+}
+
+.login-btn-wrapper {
+  position: absolute;
+  left: 10%;
+  margin-left: 25px;
+  top: 520px;
+}
+
+.login-btn {
+  background: #3c096c;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font: "Foco", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: inherit;
+  width: 120px;
+  border-radius: 30px;
+}
+
+.login-btn:hover {
+  background-color: #ff5c55;
+}
+/*# sourceMappingURL=HeroSection.css.map */
