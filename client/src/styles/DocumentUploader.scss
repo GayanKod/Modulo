@@ -1,0 +1,72 @@
+@import "../styleVar/colorPalette.scss";
+.DocumentUploader {
+  .DocumentManager-title {
+    text-align: center;
+    margin-top: 20px;
+    .main-title {
+      color: $O;
+    }
+    .sub-title {
+      color: $P6;
+    }
+    h1,
+    h2 {
+      display: inline;
+    }
+  }
+  .FileSelector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .Fileselector-container {
+      width: 75%;
+      height: 200px;
+      position: relative;
+      margin: 25px;
+      border: 2px dotted #746e6e;
+      padding: 35px 20px;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(157, 78, 221, 0.2);
+
+      .choose-file-input {
+        font-size: 18px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: none;
+        text-transform: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      .choose-file-label {
+        background-color: $P6;
+        height: 40px;
+        width: 225px;
+        border-radius: 15px;
+        border: none;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .drag-file-text {
+        color: #746e6e;
+        margin: 10px;
+      }
+    }
+  }
+}
