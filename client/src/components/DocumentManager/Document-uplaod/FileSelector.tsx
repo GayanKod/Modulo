@@ -1,7 +1,18 @@
 import { type } from "os";
 import React, { useState } from "react";
 
-function FileSelector() {
+type FileSelectorProps = {
+  docs: {
+    name: string;
+    size: string;
+    type: string;
+    date: string;
+    description: string;
+  }[];
+  // setDocs: () => void;
+};
+
+function FileSelector(props: FileSelectorProps) {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFilePicked, setIsFilePicked] = useState(false);
 
@@ -10,7 +21,7 @@ function FileSelector() {
     if (!event.target.files) return;
     setSelectedFile(event.target.files[0]!);
   };
-
+  // const uploadHandler = () => {};
   return (
     <div className="FileSelector">
       <div className="Fileselector-container">
@@ -27,7 +38,24 @@ function FileSelector() {
         <p className="drag-file-text">or drag file in here</p>
       </div>
 
-      <label>File Name: {selectedFile?.name}</label>
+      <div className="fileDetailForm">
+        <form>
+          <label className="fileNameText" htmlFor="filename">
+            File Name:
+          </label>
+          <input
+            className="fileNameInput"
+            id="filename"
+            type="text"
+            value={selectedFile?.name}
+          />
+
+          <label htmlFor="descriptionbox">Description:</label>
+          <input type="text" id="descriptionbox" />
+
+          <button>Upload</button>
+        </form>
+      </div>
     </div>
   );
 }

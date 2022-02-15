@@ -6,10 +6,11 @@ import DocumentUploader from "./components/DocumentManager/Document-uplaod/Docum
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Router>
         <Routes>
-          <Route path="/" element={<HeroSection />} />
+          {/* <Route path="/" element={<HeroSection />} /> */}
+          <Route path="/" element={<DocumentUploader />} />
         </Routes>
       </Router>
     </>
