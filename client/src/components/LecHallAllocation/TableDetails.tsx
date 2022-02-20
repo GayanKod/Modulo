@@ -11,6 +11,9 @@ function TableDetails({ btn }: Props) {
       <td>{item.name}</td>
       <td>{item.capacity}</td>
       <td>{item.location}</td>
+      <td>
+        <i className="fa fa-info-circle"></i>
+      </td>
     </tr>
   ));
   const labs = LabDetails.map((item) => (
