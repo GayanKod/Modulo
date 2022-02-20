@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "../../styles/LecHomePage.scss";
-import TableDetails from "./TableDetails";
+import "../styles/LecHomePage.scss";
+import TableDetails from "./LecHallAllocation/TableDetails";
 
 export default function LecHomePage() {
   const [btn, setBtn] = useState("lec");
