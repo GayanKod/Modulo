@@ -75,6 +75,10 @@ table {
     th,
     td {
       border-bottom: solid grey 1px;
+
+      a {
+        color: inherit;
+      }
     }
   }
 }

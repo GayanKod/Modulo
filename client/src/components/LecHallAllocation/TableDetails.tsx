@@ -4,6 +4,12 @@ interface Props {
   btn: string;
 }
 
+// const infoIcon = () => (
+//   <a>
+//     <i className="fa fa-info-circle"></i>
+//   </a>
+// );
+
 function TableDetails({ btn }: Props) {
   const lecHalls = HallDetails.map((item) => (
     <tr key={item.id}>
@@ -12,7 +18,9 @@ function TableDetails({ btn }: Props) {
       <td>{item.capacity}</td>
       <td>{item.location}</td>
       <td>
-        <i className="fa fa-info-circle"></i>
+        <a href="#">
+          <i className="fa fa-info-circle"></i>
+        </a>
       </td>
     </tr>
   ));
@@ -22,6 +30,11 @@ function TableDetails({ btn }: Props) {
       <td>{item.name}</td>
       <td>{item.capacity}</td>
       <td>{item.location}</td>
+      <td>
+        <a href="#">
+          <i className="fa fa-info-circle"></i>
+        </a>
+      </td>
     </tr>
   ));
 
