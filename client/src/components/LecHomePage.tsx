@@ -25,8 +25,8 @@ export default function LecHomePage() {
             }}
             style={{
               background: btn === "lec" ? "#5a189a" : "#ffffff",
-              border: btn === "lec" ? "none" : "solid grey 2px",
-              color: btn === "lec" ? "white" : "grey",
+              border: btn === "lec" ? "none" : "solid #c77dff 3px",
+              color: btn === "lec" ? "white" : "#c77dff",
             }}
           >
             Lecture Halls
@@ -37,8 +37,8 @@ export default function LecHomePage() {
             }}
             style={{
               background: btn === "lab" ? "#5a189a" : "#ffffff",
-              border: btn === "lab" ? "none" : "solid grey 2px",
-              color: btn === "lab" ? "white" : "grey",
+              border: btn === "lab" ? "none" : "solid #c77dff 3px",
+              color: btn === "lab" ? "white" : "#c77dff",
             }}
           >
             Labs
