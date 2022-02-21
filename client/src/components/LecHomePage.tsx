@@ -4,7 +4,6 @@ import TableDetails from "./LecHallAllocation/TableDetails";
 import Navbar2 from "./Navbar2";
 import PageTitle from "./PageTitle";
 import Select from "react-select";
-import { colors } from "react-select/dist/declarations/src/theme";
 
 export default function LecHomePage() {
   const options = [
@@ -21,15 +20,6 @@ export default function LecHomePage() {
       backgroundColor: state.isSelected ? "#7b2cbf" : "white",
     }),
   };
-
-  // ={(theme) => ({
-  //   ...theme,
-  //   colors: {
-  //     ...theme.colors,
-  //     primary25: 'hotpink',
-  //     primary: 'black',
-  //   },
-  // })
 
   return (
     <>
@@ -68,7 +58,4 @@ export default function LecHomePage() {
       </div>
     </>
   );
-}
-function value(value: any): void {
-  throw new Error("Function not implemented.");
 }

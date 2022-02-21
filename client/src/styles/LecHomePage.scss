@@ -1,4 +1,5 @@
 @import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 .nav {
   background-color: $P3;
@@ -39,7 +40,7 @@
   .select {
     width: 200px;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .css-1s2u09g-control,
@@ -85,7 +86,7 @@ table {
     th,
     td {
       border-bottom: solid grey 1px;
-      color: #2e2e2e;
+      color: #6d6d6d;
 
       a {
         color: grey;
