@@ -3,9 +3,8 @@ import "../styles/LecHomePage.scss";
 import TableDetails from "./LecHallAllocation/TableDetails";
 import Navbar2 from "./Navbar2";
 import PageTitle from "./PageTitle";
-
-import React, { Component } from "react";
 import Select from "react-select";
+import { colors } from "react-select/dist/declarations/src/theme";
 
 export default function LecHomePage() {
   const options = [
@@ -14,6 +13,23 @@ export default function LecHomePage() {
   ];
   const [selected, setSelected] = useState(options[0]);
   const title = "Lecture Hall and Lab Allocation";
+
+  const customStyles = {
+    option: (provided: any, state: { isSelected: any }) => ({
+      ...provided,
+      color: state.isSelected ? "white" : "#7b2cbf",
+      backgroundColor: state.isSelected ? "#7b2cbf" : "white",
+    }),
+  };
+
+  // ={(theme) => ({
+  //   ...theme,
+  //   colors: {
+  //     ...theme.colors,
+  //     primary25: 'hotpink',
+  //     primary: 'black',
+  //   },
+  // })
 
   return (
     <>
@@ -30,31 +46,8 @@ export default function LecHomePage() {
                 setSelected(e);
               }
             }}
+            styles={customStyles}
           />
-          {/* <button
-            onClick={() => {
-              setBtn("lec");
-            }}
-            style={{
-              background: btn === "lec" ? "#5a189a" : "#ffffff",
-              border: btn === "lec" ? "none" : "solid #c77dff 3px",
-              color: btn === "lec" ? "white" : "#c77dff",
-            }}
-          >
-            Lecture Halls
-          </button> */}
-          {/* <button
-            onClick={() => {
-              setBtn("lab");
-            }}
-            style={{
-              background: btn === "lab" ? "#5a189a" : "#ffffff",
-              border: btn === "lab" ? "none" : "solid #c77dff 3px",
-              color: btn === "lab" ? "white" : "#c77dff",
-            }}
-          >
-            Labs
-          </button> */}
         </div>
         <div className="table-container">
           <table>

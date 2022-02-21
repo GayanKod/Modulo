@@ -20,25 +20,26 @@
 }
 
 .page-title {
-  padding-left: 50px;
+  padding-left: 150px;
+  margin-bottom: 50px;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bold;
   font-size: 36px;
   color: $O;
 }
 
 .filter {
-  margin: 0px 140px 0px 200px;
-  height: 100px;
+  margin: 0px 0px 0px 150px;
+  height: 80px;
   display: flex;
-  justify-content: right;
+  justify-content: left;
   align-items: center;
   color: $P5;
 
   .select {
     width: 200px;
     font-weight: 600;
-    // height: 30px;
+    font-size: 13px;
   }
 
   .css-1s2u09g-control,
@@ -61,17 +62,6 @@
   padding: 10px;
   display: flex;
   justify-content: center;
-}
-
-.css-9gakcf-option,
-.css-yt9ioa-option {
-  background-color: transparent;
-  color: $P5;
-
-  &:hover {
-    background-color: #eed1ff;
-    color: $P5;
-  }
 }
 
 table {
