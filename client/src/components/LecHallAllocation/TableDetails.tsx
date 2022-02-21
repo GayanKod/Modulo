@@ -1,16 +1,10 @@
 import { HallDetails, LabDetails } from "./Details";
 
 interface Props {
-  btn: string;
+  selected: string;
 }
 
-// const infoIcon = () => (
-//   <a>
-//     <i className="fa fa-info-circle"></i>
-//   </a>
-// );
-
-function TableDetails({ btn }: Props) {
+function TableDetails({ selected }: Props) {
   const lecHalls = HallDetails.map((item) => (
     <tr key={item.id}>
       <td>{item.id}</td>
@@ -21,6 +15,7 @@ function TableDetails({ btn }: Props) {
         <a href="#">
           <i className="fa fa-info-circle"></i>
         </a>
+        <button>Book</button>
       </td>
     </tr>
   ));
@@ -34,11 +29,12 @@ function TableDetails({ btn }: Props) {
         <a href="#">
           <i className="fa fa-info-circle"></i>
         </a>
+        <button>Book</button>
       </td>
     </tr>
   ));
 
-  switch (btn) {
+  switch (selected) {
     case "lec":
       return <>{lecHalls}</>;
 

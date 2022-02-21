@@ -4,8 +4,15 @@ import TableDetails from "./LecHallAllocation/TableDetails";
 import Navbar2 from "./Navbar2";
 import PageTitle from "./PageTitle";
 
+import React, { Component } from "react";
+import Select from "react-select";
+
 export default function LecHomePage() {
-  const [btn, setBtn] = useState("lec");
+  const options = [
+    { value: "lec", label: "Lecture Halls" },
+    { value: "lab", label: "Labs" },
+  ];
+  const [selected, setSelected] = useState(options[0].value);
   const title = "Lecture Hall and Lab Allocation";
 
   return (
@@ -13,8 +20,18 @@ export default function LecHomePage() {
       <Navbar2 />
       <div className="container">
         <PageTitle title={title} />
-        <div className="buttons">
-          <button
+        <div className="filter">
+          <Select
+            className="select"
+            options={options}
+            placeholder={selected}
+            onChange={(e) => {
+              if (e) {
+                setSelected(e?.value);
+              }
+            }}
+          />
+          {/* <button
             onClick={() => {
               setBtn("lec");
             }}
@@ -25,8 +42,8 @@ export default function LecHomePage() {
             }}
           >
             Lecture Halls
-          </button>
-          <button
+          </button> */}
+          {/* <button
             onClick={() => {
               setBtn("lab");
             }}
@@ -37,7 +54,7 @@ export default function LecHomePage() {
             }}
           >
             Labs
-          </button>
+          </button> */}
         </div>
         <div className="table-container">
           <table>
@@ -51,11 +68,14 @@ export default function LecHomePage() {
               </tr>
             </thead>
             <tbody>
-              <TableDetails btn={btn} />
+              <TableDetails selected={selected} />
             </tbody>
           </table>
         </div>
       </div>
     </>
   );
+}
+function value(value: any): void {
+  throw new Error("Function not implemented.");
 }

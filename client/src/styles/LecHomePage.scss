@@ -27,27 +27,33 @@
   color: $O;
 }
 
-.buttons {
-  margin: 50px;
-  padding: 0px 200px 0px 200px;
-
+.filter {
+  margin: 0px 140px 0px 200px;
   height: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: right;
   align-items: center;
+  color: $P5;
 
-  button {
-    color: white;
-    font-size: 16px;
+  .select {
+    width: 200px;
     font-weight: 600;
-    width: 300px;
-    height: 45px;
-    border-radius: 30px;
-    border: none;
+    // height: 30px;
+  }
 
+  .css-1s2u09g-control,
+  .css-1pahdxg-control {
+    box-shadow: none;
+    border: solid $P5 2px;
     &:hover {
-      cursor: pointer;
+      border: solid $P5 2px;
     }
+  }
+
+  .css-14el2xx-placeholder,
+  .css-tlfecz-indicatorContainer,
+  .css-qc6sy-singleValue {
+    color: $P5;
   }
 }
 
@@ -57,10 +63,17 @@
   justify-content: center;
 }
 
+.css-9gakcf-option:hover,
+.css-yt9ioa-option:hover {
+  background-color: #eed1ff;
+  color: $P5;
+}
+
 table {
   width: 80%;
   border-collapse: collapse;
   font-weight: 500;
+  font-family: "Poppins", sans-serif;
 
   tbody {
     color: #717171;
@@ -77,10 +90,37 @@ table {
     th,
     td {
       border-bottom: solid grey 1px;
+      color: #2e2e2e;
 
       a {
-        color: inherit;
+        color: grey;
+
+        &:active {
+          color: #2e2e2e;
+        }
       }
+    }
+  }
+
+  button {
+    margin: 10px;
+    height: 30px;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: solid $P5 2px;
+    border-radius: 5px;
+    color: $P5;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $P5;
+      color: white;
+    }
+
+    &:active {
+      background-color: $P4;
+      border: none;
+      color: white;
     }
   }
 }
