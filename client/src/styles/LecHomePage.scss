@@ -2,7 +2,7 @@
 
 .nav {
   background-color: $P3;
-  height: 100px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .container {
-  margin: 80px;
+  margin: 60px;
 }
 
 .page-title {
@@ -40,8 +40,6 @@
     color: white;
     font-size: 16px;
     font-weight: 600;
-
-    background-color: $P3;
     width: 300px;
     height: 45px;
     border-radius: 30px;
@@ -54,7 +52,7 @@
 }
 
 .table-container {
-  padding: 50px;
+  padding: 10px;
   display: flex;
   justify-content: center;
 }

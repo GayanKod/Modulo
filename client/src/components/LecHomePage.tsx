@@ -1,23 +1,18 @@
 import { useState } from "react";
 import "../styles/LecHomePage.scss";
 import TableDetails from "./LecHallAllocation/TableDetails";
+import Navbar2 from "./Navbar2";
+import PageTitle from "./PageTitle";
 
 export default function LecHomePage() {
   const [btn, setBtn] = useState("lec");
+  const title = "Lecture Hall and Lab Allocation";
 
   return (
     <>
-      <div className="nav">
-        <h2 className="logo">
-          <a href="/">modulo</a>
-        </h2>
-        <h3 className="user">
-          <a href="#">user</a>
-          <i className="fas fa-solid fa-user"></i>
-        </h3>
-      </div>
+      <Navbar2 />
       <div className="container">
-        <h1 className="page-title">Lecture Hall and Lab Allocation</h1>
+        <PageTitle title={title} />
         <div className="buttons">
           <button
             onClick={() => {
