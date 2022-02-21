@@ -63,10 +63,15 @@
   justify-content: center;
 }
 
-.css-9gakcf-option:hover,
-.css-yt9ioa-option:hover {
-  background-color: #eed1ff;
+.css-9gakcf-option,
+.css-yt9ioa-option {
+  background-color: transparent;
   color: $P5;
+
+  &:hover {
+    background-color: #eed1ff;
+    color: $P5;
+  }
 }
 
 table {

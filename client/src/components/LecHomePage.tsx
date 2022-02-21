@@ -12,7 +12,7 @@ export default function LecHomePage() {
     { value: "lec", label: "Lecture Halls" },
     { value: "lab", label: "Labs" },
   ];
-  const [selected, setSelected] = useState(options[0].value);
+  const [selected, setSelected] = useState(options[0]);
   const title = "Lecture Hall and Lab Allocation";
 
   return (
@@ -24,10 +24,10 @@ export default function LecHomePage() {
           <Select
             className="select"
             options={options}
-            placeholder={selected}
+            placeholder={selected.label}
             onChange={(e) => {
               if (e) {
-                setSelected(e?.value);
+                setSelected(e);
               }
             }}
           />
@@ -68,7 +68,7 @@ export default function LecHomePage() {
               </tr>
             </thead>
             <tbody>
-              <TableDetails selected={selected} />
+              <TableDetails selected={selected.value} />
             </tbody>
           </table>
         </div>
