@@ -1,0 +1,23 @@
+@import '../styleVar/colorPalette.scss';
+
+.header-wrapper{
+    margin: 12%;
+    margin-bottom: 0;
+    font-family: Foco;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+.header-title{
+    color: $P3;
+    display: inline-block;
+}
+
+.header-divider{
+    width: 20vh;
+    height: 1vh;
+    border-top: 2px solid $P3;
+    display: inline-block;
+    margin-left: 10px;
+}
