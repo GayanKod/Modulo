@@ -1,0 +1,122 @@
+@import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.nav {
+  background-color: $P3;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(252, 247, 255);
+  padding: 50px;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.container {
+  margin: 60px;
+}
+
+.page-title {
+  padding-left: 150px;
+  margin-bottom: 50px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  color: $O;
+}
+
+.filter {
+  margin: 0px 0px 0px 150px;
+  height: 80px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: $P5;
+
+  .select {
+    width: 200px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .css-1s2u09g-control,
+  .css-1pahdxg-control {
+    box-shadow: none;
+    border: solid $P5 2px;
+    &:hover {
+      border: solid $P5 2px;
+    }
+  }
+
+  .css-14el2xx-placeholder,
+  .css-tlfecz-indicatorContainer,
+  .css-qc6sy-singleValue {
+    color: $P5;
+  }
+}
+
+.table-container {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  font-weight: 500;
+  font-family: "Poppins", sans-serif;
+
+  tbody {
+    color: #717171;
+    tr:hover {
+      background: #eed1ff;
+      color: rgb(44, 44, 44);
+    }
+  }
+
+  tr {
+    height: 3em;
+    text-align: center;
+
+    th,
+    td {
+      border-bottom: solid grey 1px;
+      color: #6d6d6d;
+
+      a {
+        color: grey;
+
+        &:active {
+          color: #2e2e2e;
+        }
+      }
+    }
+  }
+
+  button {
+    margin: 10px;
+    height: 30px;
+    padding: 5px 20px 5px 20px;
+    background-color: rgba(255, 255, 255, 0);
+    border: solid $P5 2px;
+    border-radius: 5px;
+    color: $P5;
+    font-weight: 600;
+
+    &:hover {
+      background-color: $P5;
+      color: white;
+    }
+
+    &:active {
+      background-color: $P4;
+      border: none;
+      color: white;
+    }
+  }
+}
