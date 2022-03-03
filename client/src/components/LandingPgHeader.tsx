@@ -1,7 +1,11 @@
 import React from 'react';
 import "../styles/LandingPgHeader.scss";
 
-function LandingPgHeader(props){
+type LandingHeaderProps = {
+    title:String;
+}
+
+function LandingPgHeader(props:LandingHeaderProps){
 
     return(
             <div className="header-wrapper">

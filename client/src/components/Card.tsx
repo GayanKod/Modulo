@@ -1,18 +1,18 @@
 import React from 'react';
 import "../styles/Card.scss";
 
-function Card(props){
+type CardProps = { 
+    title:String;
+    desc:String;
+    key:number;
+}
 
+function Card(props:CardProps){
     
 
     return(
         <>
-            <div className="card-container" style={
-                {
-                    width: props.width,
-                    height: props.height
-                }
-            }>
+            <div className="card-container">
                 <div className="card-title">{props.title}</div>
                 <div className="card-desc">{props.desc}</div>
             </div>
