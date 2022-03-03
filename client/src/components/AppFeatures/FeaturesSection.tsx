@@ -12,7 +12,7 @@ function FeaturesSection(){
             <div className="features-card-container">
                 {FeaturesDetails.map((item,index)=>{
                     return(
-                        <Card className="features-card" key={index} desc={item.desc} title={item.title}/>
+                        <Card key={index} desc={item.desc} title={item.title}/>
                     );
                 })} 
             </div>
