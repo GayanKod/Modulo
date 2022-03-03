@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/LecHomePage.scss";
-import TableDetails from "./LecHallAllocation/TableDetails";
-import Navbar2 from "./Navbar2";
-import PageTitle from "./PageTitle";
+import TableDetails from "../components/LecHallAllocation/TableDetails";
+import Navbar2 from "../components/Navbar2";
+import PageTitle from "../components/PageTitle";
 import Select from "react-select";
 
 export default function LecHomePage() {
