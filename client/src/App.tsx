@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
-import LecHomePage from "./components/LecHomePage";
+import LecHomePage from "./pages/LecHomePage";
 
 function App() {
   return (
