@@ -26,28 +26,32 @@ export default function LecHomePage() {
       <Navbar2 />
       <div className="container">
         <PageTitle title={title} />
-        <div className="filter">
-          <Select
-            className="select"
-            options={options}
-            placeholder={selected.label}
-            onChange={(e) => {
-              if (e) {
-                setSelected(e);
-              }
-            }}
-            styles={customStyles}
-          />
-        </div>
+
         <div className="table-container">
-          <table>
+          <div className="filter">
+            <Select
+              className="select"
+              options={options}
+              placeholder={selected.label}
+              onChange={(e) => {
+                if (e) {
+                  setSelected(e);
+                }
+              }}
+              styles={customStyles}
+            />
+          </div>
+
+          <table aria-label="collapsible table">
             <thead>
               <tr>
-                <th>Hall ID</th>
+                <th className="hidden"></th>
+                <th className="hide">Hall ID</th>
                 <th>Hall Name</th>
-                <th>Hall capacity</th>
-                <th>Hall Location</th>
+                <th className="hide">Hall capacity</th>
+                <th className="hide">Hall Location</th>
                 <th> </th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

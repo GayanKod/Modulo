@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 .nav {
+  width: 100%;
   background-color: $P3;
   height: 60px;
   display: flex;
@@ -17,11 +18,13 @@
 }
 
 .container {
-  margin: 60px;
+  padding-top: 50px;
+  font-family: "Poppins", sans-serif;
 }
 
 .page-title {
-  padding-left: 150px;
+  width: 80%;
+  margin: auto;
   margin-bottom: 50px;
   font-style: normal;
   font-weight: bold;
@@ -30,12 +33,12 @@
 }
 
 .filter {
-  margin: 0px 0px 0px 150px;
   height: 80px;
   display: flex;
   justify-content: left;
   align-items: center;
   color: $P5;
+  position: sticky;
 
   .select {
     width: 200px;
@@ -46,55 +49,54 @@
   .css-1s2u09g-control,
   .css-1pahdxg-control {
     box-shadow: none;
-    border: solid $P5 2px;
+    border: solid $P6 2px;
     &:hover {
-      border: solid $P5 2px;
+      border: solid $P6 2px;
     }
   }
 
   .css-14el2xx-placeholder,
   .css-tlfecz-indicatorContainer,
   .css-qc6sy-singleValue {
-    color: $P5;
+    color: $P6;
   }
 }
 
 .table-container {
-  padding: 10px;
+  width: 80%;
+  margin: auto;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
 table {
-  width: 80%;
+  // width: 100%;
   border-collapse: collapse;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
 
   tbody {
     color: #717171;
-    tr:hover {
-      background: #eed1ff;
-      color: rgb(44, 44, 44);
-    }
+    // tr:hover {
+    //   background: #eed1ff;
+    //   color: rgb(44, 44, 44);
+    // }
   }
 
   tr {
     height: 3em;
     text-align: center;
 
-    th,
+    th {
+      color: #717171;
+      border-bottom: solid grey 1px;
+      font-weight: 500;
+    }
+
     td {
       border-bottom: solid grey 1px;
-      color: #6d6d6d;
-
-      a {
-        color: grey;
-
-        &:active {
-          color: #2e2e2e;
-        }
-      }
+      color: grey;
+      font-weight: 400;
     }
   }
 
@@ -102,7 +104,7 @@ table {
     margin: 10px;
     height: 30px;
     padding: 5px 20px 5px 20px;
-    background-color: rgba(255, 255, 255, 0);
+    background: none;
     border: solid $P5 2px;
     border-radius: 5px;
     color: $P5;
@@ -115,8 +117,54 @@ table {
 
     &:active {
       background-color: $P4;
-      border: none;
       color: white;
     }
+  }
+}
+
+.expand {
+  border: none;
+  color: inherit;
+  padding: none;
+  border-radius: 50px;
+  &:hover {
+    background-color: #5353531a;
+    color: #535353;
+  }
+}
+
+.details {
+  display: flexbox;
+  width: 100%;
+}
+
+.info {
+  font-size: 15px;
+  border: none;
+  display: inline-block;
+  &:hover {
+    background: none;
+    color: $P5;
+    cursor: pointer;
+  }
+  &:active {
+    color: $P6;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .hide {
+    display: none;
+  }
+
+  .page-title {
+    font-size: 30px;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .hidden {
+    display: none;
   }
 }
