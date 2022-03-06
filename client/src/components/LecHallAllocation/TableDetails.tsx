@@ -77,7 +77,7 @@ function Row({ item }: Props) {
                 backgroundColor: "#e8e8e8",
               }}
             >
-              Hall Details
+              {item.name}
             </h3>
             <table className="details">
               <thead>

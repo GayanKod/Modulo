@@ -50,7 +50,7 @@ export default function LecHomePage() {
                 <th>Hall Name</th>
                 <th className="hide">Hall capacity</th>
                 <th className="hide">Hall Location</th>
-                <th> </th>
+                <th>Check Availability</th>
                 <th></th>
               </tr>
             </thead>
