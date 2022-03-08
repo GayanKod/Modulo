@@ -5,6 +5,7 @@ function Timeline(){
         <>
         <h1>Timeline</h1>
         <TimelineItem/>
+        <TimelineContainer/>
         </>
         
     );
