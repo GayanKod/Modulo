@@ -42,7 +42,7 @@ export default function LecHomePage() {
             />
           </div>
 
-          <table aria-label="collapsible table">
+          <table className="hall-details">
             <thead>
               <tr>
                 <th className="hidden"></th>
@@ -50,7 +50,7 @@ export default function LecHomePage() {
                 <th>Hall Name</th>
                 <th className="hide">Hall capacity</th>
                 <th className="hide">Hall Location</th>
-                <th>Check Availability</th>
+                <th>More Details</th>
                 <th></th>
               </tr>
             </thead>

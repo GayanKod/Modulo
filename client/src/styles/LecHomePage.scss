@@ -1,6 +1,27 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #59189a81;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #59189a;
+  border-radius: 30px;
+}
+
+/* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: $P3;
+// }
+
 .nav {
   width: 100%;
   background-color: $P3;
@@ -18,7 +39,7 @@
 }
 
 .container {
-  padding-top: 50px;
+  padding: 50px 0 100px 0;
   font-family: "Poppins", sans-serif;
 }
 
@@ -30,6 +51,7 @@
   font-weight: bold;
   font-size: 36px;
   color: $O;
+  position: static;
 }
 
 .filter {
@@ -69,23 +91,38 @@
   flex-direction: column;
 }
 
-table {
-  // width: 100%;
+.hall-details {
   border-collapse: collapse;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
+  border-bottom: #535353 1px solid;
 
   tbody {
     color: #717171;
-    // tr:hover {
-    //   background: #eed1ff;
-    //   color: rgb(44, 44, 44);
-    // }
+    // display: block;
+    height: 400px;
+    overflow: auto;
+  }
+
+  .details-table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    tbody {
+      height: auto;
+    }
+  }
+
+  tr:nth-child(even) {
+    background-color: #f1f1f1;
   }
 
   tr {
     height: 3em;
     text-align: center;
+    // display: table;
+    width: 100%;
+    table-layout: fixed; /* even columns width , fix width of table too*/
 
     th {
       color: #717171;
@@ -99,30 +136,30 @@ table {
       font-weight: 400;
     }
   }
+}
 
-  button {
-    margin: 10px;
-    height: 30px;
-    padding: 5px 20px 5px 20px;
-    background: none;
-    border: solid $P5 2px;
-    border-radius: 5px;
-    color: $P5;
-    font-weight: 600;
+button {
+  margin: 10px;
+  height: 30px;
+  padding: 5px 20px 5px 20px;
+  background: none;
+  border: solid $P5 2px;
+  border-radius: 5px;
+  color: $P5;
+  font-weight: 600;
 
-    &:hover {
-      background-color: $P5;
-      color: white;
-    }
+  &:hover {
+    background-color: $P5;
+    color: white;
+  }
 
-    &:active {
-      background-color: $P4;
-      color: white;
-    }
+  &:active {
+    background-color: $P4;
+    color: white;
   }
 }
 
-.expand {
+.expand-button {
   border: none;
   color: inherit;
   padding: none;
@@ -133,12 +170,7 @@ table {
   }
 }
 
-.details {
-  display: flexbox;
-  width: 100%;
-}
-
-.info {
+.info-button {
   font-size: 15px;
   border: none;
   display: inline-block;
@@ -152,6 +184,12 @@ table {
   }
 }
 
+@media only screen and (min-width: 950px) {
+  .hidden {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 950px) {
   .hide {
     display: none;
@@ -159,12 +197,5 @@ table {
 
   .page-title {
     font-size: 30px;
-    text-align: center;
-  }
-}
-
-@media only screen and (min-width: 950px) {
-  .hidden {
-    display: none;
   }
 }

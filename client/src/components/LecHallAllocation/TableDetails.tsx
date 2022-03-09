@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HallDetails, LabDetails } from "./Details";
-import Collapse from "@mui/material/Collapse";
-import { Box, Typography } from "@mui/material";
+
 import { Item } from "./Models";
+
+import { Link } from "react-router-dom";
+import TimeTable from "./TimeTable";
 
 interface Props {
   selected?: string;
@@ -15,6 +17,21 @@ let width = window.innerWidth;
 function Row({ item }: Props) {
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState<number[]>([]);
+
+  // useEffect(() => {
+  //   function handleResize() {
+  //     if (width > 950) {
+  //       setOpen(false);
+  //     } else if (open == false) {
+  //       setOpen(false);
+  //     }
+  //   }
+  //   window.addEventListener("resize", handleResize);
+  // }, []);
+
+  const hiddenTable = {
+    borderBottom: "none",
+  };
 
   const toggleShown = (id) => {
     const shownState = shown.slice();
@@ -40,7 +57,7 @@ function Row({ item }: Props) {
         <td className="hide">{item.id}</td>
         <td className="hidden">
           <button
-            className="hidden expand"
+            className="hidden expand-button"
             onClick={() => {
               toggleShown(item.id);
               setOpen(!open);
@@ -57,19 +74,20 @@ function Row({ item }: Props) {
         <td className="hide">{item.capacity}</td>
         <td className="hide">{item.location}</td>
         <td>
-          <button className="info">
-            <i className="fa fa-info-circle"></i>
-          </button>
+          <TimeTable />
         </td>
         <td>
-          <button>Book</button>
+          <Link to={"/lec-hall-allocation/booking"}>
+            <button>Book</button>
+          </Link>
         </td>
       </tr>
 
       {shown.includes(item.id) && (
         <tr className="hidden" style={{ backgroundColor: "#f8f8f8" }}>
-          <td colSpan={12}>
+          <td className="hidden" colSpan={12} style={{ paddingBottom: "20px" }}>
             <h3
+              className="hidden"
               style={{
                 color: "#555555",
                 textAlign: "left",
@@ -79,7 +97,7 @@ function Row({ item }: Props) {
             >
               {item.name}
             </h3>
-            <table className="details">
+            <table className="details-table hidden " style={hiddenTable}>
               <thead>
                 <tr>
                   <th>Hall Id</th>
@@ -89,9 +107,9 @@ function Row({ item }: Props) {
               </thead>
               <tbody>
                 <tr>
-                  <td>{item.id}</td>
-                  <td>{item.capacity}</td>
-                  <td>{item.location}</td>
+                  <td style={hiddenTable}>{item.id}</td>
+                  <td style={hiddenTable}>{item.capacity}</td>
+                  <td style={hiddenTable}>{item.location}</td>
                 </tr>
               </tbody>
             </table>
