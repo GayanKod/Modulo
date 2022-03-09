@@ -1,10 +1,10 @@
 import { type } from "os";
 import React, { useState } from "react";
-import "../../../styles/DocumentUploader.scss";
-import FileSelector from "./FileSelector";
-import RecentUpload from "./RecentUpload";
+import "../styles/DocumentUploader.scss";
+import FileSelector from "../components/DocumentManager/Document-uplaod/FileSelector";
+import RecentUpload from "../components/DocumentManager/Document-uplaod/RecentUpload";
 
-function DocumentUploader() {
+function DocumentUpload() {
   const [documents, setDocuments] = useState([
     {
       name: "Hypothesis_Testing.pdf",
@@ -42,4 +42,4 @@ function DocumentUploader() {
   );
 }
 
-export default DocumentUploader;
+export default DocumentUpload;
