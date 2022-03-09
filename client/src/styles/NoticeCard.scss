@@ -1,0 +1,89 @@
+@import "../styleVar/colorPalette.scss";
+
+
+
+.notice{
+    width: 600px;
+    height: 180px;
+    display: flex;
+    color: black; 
+    margin: 0 auto;
+    margin-top: 4vh;
+  
+  }
+  
+  .notice .content{
+    //display:block;
+    display:table-row;
+    flex: 100%;
+    height: 100%;
+    //display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 0.1px solid grey;
+    padding: 20px;
+    border-radius: 0px;
+    border-left-width: 20px;
+    border-left-color:#c77dff ;
+    padding-bottom: 10px;
+
+  }
+  
+
+   .notice .title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 3px;
+    padding: 3px;
+
+   }
+
+
+  .notice .p{
+    font-size: 14px;
+    color: black;
+    margin-top:6px;
+    padding-top:8px;
+    
+
+}
+
+
+  
+  .span .button{
+    background: $P3;
+    align-items: right;
+    color: #fff;
+    border: none;
+    padding: 20px;
+    padding-left: 30px;
+    padding-top: 5px;
+    font: "Foco", sans-serif;
+    font: size 17px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: inherit;
+    margin-right: 2vh;
+    width: 100px;
+    border-radius:10px;
+    display:grid;
+    align-items: center;
+    
+  }
+
+  
+
+button:focus,
+button:hover {
+  background-color: $P6 ;
+  color:white; 
+}
+
+.content .buttons {
+
+    align-items: right;
+
+
+
+}
