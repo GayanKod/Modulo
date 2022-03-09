@@ -87,7 +87,7 @@
         border-radius: 15px;
         box-sizing: border-box;
       }
-      button {
+      .uploadButton {
         width: 100%;
         width: 100%;
         padding: 12px 20px;
@@ -100,6 +100,14 @@
         box-sizing: border-box;
         font-size: 18px;
         border-radius: 15px;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $P4;
+        }
+        &:active {
+          transform: translateY(4px);
+        }
       }
     }
   }
@@ -115,13 +123,14 @@
       //background-color: darkorange;
       border-spacing: 15px;
       margin: 0;
-      caption {
+      .RecentUploadCaption {
         text-align: left;
         margin-bottom: 10px;
+        padding-left: 10px;
       }
       th {
         text-align: left;
-        padding: 5px 0 5px 0;
+        padding: 0 10px 0 10px;
         color: $O;
       }
       td {
@@ -133,6 +142,13 @@
       }
       .tableHeaders {
         outline: none;
+      }
+      .DeleteButton {
+        border: none;
+
+        &:hover {
+          color: $O;
+        }
       }
     }
   }

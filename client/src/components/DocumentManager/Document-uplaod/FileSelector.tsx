@@ -1,7 +1,11 @@
 import { type } from "os";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { setSyntheticLeadingComments } from "typescript";
+import { domainToASCII } from "url";
 
 type FileSelectorProps = {
+  // docs: File;
+  // setDocs: Dispatch<SetStateAction<File>>;
   docs: {
     name: string;
     size: string;
@@ -9,19 +13,50 @@ type FileSelectorProps = {
     date: string;
     description: string;
   }[];
-  // setDocs: () => void;
+  setDocs: Dispatch<
+    SetStateAction<
+      {
+        name: string;
+        size: string;
+        type: string;
+        date: string;
+        description: string;
+      }[]
+    >
+  >;
 };
 
 function FileSelector(props: FileSelectorProps) {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFilePicked, setIsFilePicked] = useState(false);
+  const [description, setDescription] = useState<string | null>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsFilePicked(true);
     if (!event.target.files) return;
     setSelectedFile(event.target.files[0]!);
   };
-  // const uploadHandler = () => {};
+
+  const descriptionHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value);
+  };
+
+  const uploadHandler = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+    if (selectedFile != null) {
+      props.setDocs([
+        ...props.docs,
+        {
+          name: selectedFile?.name as string,
+          size: selectedFile?.size as unknown as string,
+          type: selectedFile?.type as string,
+          date: selectedFile?.lastModified as unknown as string,
+          description: description as string,
+        },
+      ]);
+    }
+  };
+
   return (
     <div className="FileSelector">
       <div className="Fileselector-container">
@@ -39,7 +74,7 @@ function FileSelector(props: FileSelectorProps) {
       </div>
 
       <div className="fileDetailForm">
-        <form>
+        <form onSubmit={uploadHandler}>
           <label className="fileNameText" htmlFor="filename">
             File Name:
           </label>
@@ -51,9 +86,13 @@ function FileSelector(props: FileSelectorProps) {
           />
 
           <label htmlFor="descriptionbox">Description:</label>
-          <input type="text" id="descriptionbox" />
+          <input
+            type="text"
+            id="descriptionbox"
+            onChange={descriptionHandler}
+          />
 
-          <button>Upload</button>
+          <button className="uploadButton">Upload</button>
         </form>
       </div>
     </div>

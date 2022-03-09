@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type RecentUploadProps = {
   docs: {
@@ -10,12 +10,29 @@ type RecentUploadProps = {
     date: string;
     description: string;
   }[];
+  setDocs: Dispatch<
+    SetStateAction<
+      {
+        name: string;
+        size: string;
+        type: string;
+        date: string;
+        description: string;
+      }[]
+    >
+  >;
 };
+
 function RecentUpload(props: RecentUploadProps) {
+  // const deleteHandler = (event: React.MouseEvent<HTMLElement>) => {
+  //   {
+  //     props.setDocs(props.docs.filter((d)=> d != ));
+  //   }
+  // };
   return (
     <div className="RecentUpload">
       <table className="RecentUploadTable">
-        <caption>Recent Uploads</caption>
+        <caption className="RecentUploadCaption">Recent Uploads</caption>
         <tr className="tableHeaders">
           <th>Type</th>
           <th>Document Name</th>
@@ -32,7 +49,9 @@ function RecentUpload(props: RecentUploadProps) {
             <td>{item.date}</td>
             <td>{item.description}</td>
             <td>
-              <FontAwesomeIcon icon={faTrashCan} />
+              <button className="DeleteButton">
+                <FontAwesomeIcon icon={faTrashCan} />
+              </button>
             </td>
           </tr>
         ))}
