@@ -1,0 +1,29 @@
+@import "../styleVar/colorPalette.scss";
+
+.NoticeBoard{
+  
+ 
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 90vh;
+        font: "Foco", sans-serif;
+        padding: 20px;
+      
+}
+
+.header{
+    font-size: 15px;
+    font-weight: 50px;
+    color: black;
+   
+}
+
+.NoticeBoard-title{
+    font-size: 15px;
+    font-weight: 20px;
+    color: orangered;
+    align-items: left;
+
+}
