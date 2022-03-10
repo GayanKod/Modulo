@@ -1,5 +1,6 @@
-import { orange, purple } from "@material-ui/core/colors";
+
 import React, { useState } from "react";
+import "../../styles/NoticeDropdown.scss";
 
 
 
@@ -12,18 +13,14 @@ const Dropdown: React.FunctionComponent = () => {
   };
 
   return(
-    <div className="list-choice">
-      <div className="list-choice-title">Month</div>
-            <div className="list-choice-objects">
-    <label>
-      <input type="radio" name="month"/>                         <span>January</span>
-    </label>
-    <label>
-      <input type="radio" name="month"/>                         <span>February</span>
-    </label>
-   
-  </div>
+          <div className="select">
+              <select>
+                      <option value="1">Order by:</option>
+                      <option value="2">Recently Added</option>
+                      <option value="3">All</option>
+              </select>
 </div>
+
 
 
   );

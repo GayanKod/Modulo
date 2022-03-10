@@ -5,8 +5,9 @@
     background: $P3;
 	color: #fff;
 	border: none;
+  
 	padding: 10px;
-	font: "Foco", sans-serif;
+
     font-size:  13px;
     font-weight: 200;
 	cursor: pointer;
@@ -27,6 +28,15 @@
     
   }
 
+
+  .NoticeInput{
+
+    border-color: purple;
+
+
+
+
+  }
   .header .inputContainer {
     font-weight: 500;
     color: white;

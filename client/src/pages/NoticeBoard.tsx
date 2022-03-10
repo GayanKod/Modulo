@@ -17,10 +17,11 @@ function NoticeBoard(){
                         
             </div>
 
-            {/* <div className="Dropdown">
+            <br></br>
+            <div className="Dropdown">
                   <Dropdown/>
             </div>
-     */}
+     
          <>
             <div>
             <NoticeInput />
