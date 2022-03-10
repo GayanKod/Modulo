@@ -1,4 +1,5 @@
 @import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
 .NoticeBoard{
   
@@ -8,12 +9,13 @@
         flex-direction: column;
         width: 100vw;
         height: 90vh;
-       
+        font-family: "Poppins", sans-serif;
         padding: 20px;
       
 }
 
 .header{
+    font-family: "Poppins", sans-serif;
     font-size: 15px;
     font-weight: 50px;
     color: black;
@@ -21,9 +23,13 @@
 }
 
 .NoticeBoard-title{
+    font-family: "Poppins", sans-serif;
     font-size: 15px;
-    font-weight: 20px;
-    color: orangered;
+    font-weight: 15px;
+    color: #ff5c55;
     align-items: left;
+    position:relative;
+
+    
 
 }

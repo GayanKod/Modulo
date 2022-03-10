@@ -18,10 +18,15 @@ function NoticeBoard(){
             </div>
 
             <br></br>
+
             <div className="Dropdown">
+               <p>Order by:</p>
                   <Dropdown/>
+               
             </div>
-     
+
+            <br></br>
+   
          <>
             <div>
             <NoticeInput />

@@ -63,6 +63,12 @@ const NoticeInput :FC = () => {
        <div className="header">
          <br>
          </br>
+         <div className="InputTitle">
+         <p>New Notice</p>
+         </div>
+
+         <hr></hr>
+         <br></br>
          <div>
             <p>Notice Title:</p>
             <div className="inputContainer">

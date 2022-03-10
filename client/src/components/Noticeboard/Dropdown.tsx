@@ -15,7 +15,6 @@ const Dropdown: React.FunctionComponent = () => {
   return(
           <div className="select">
               <select>
-                      <option value="1">Order by:</option>
                       <option value="2">Recently Added</option>
                       <option value="3">All</option>
               </select>
