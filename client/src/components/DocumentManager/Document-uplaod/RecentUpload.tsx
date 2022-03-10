@@ -24,11 +24,6 @@ type RecentUploadProps = {
 };
 
 function RecentUpload(props: RecentUploadProps) {
-  // const deleteHandler = (event: React.MouseEvent<HTMLElement>) => {
-  //   {
-  //     props.setDocs(props.docs.filter((d)=> d != ));
-  //   }
-  // };
   return (
     <div className="RecentUpload">
       <table className="RecentUploadTable">

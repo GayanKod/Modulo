@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import LandingPage from "./pages/Landing";
 import LecHomePage from "./pages/LecHomePage";
 import DocumentUpload from "./pages/DocumentUpload";
+import DocumentDownload from "./pages/DocumentDownload";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           {/* <Route path="/" element={<HeroSection />} /> */}
           <Route path="/" element={<DocumentUpload />} />
+          {/* <Route path="/" element={<DocumentDownload />} /> */}
           {/* <Route path="/" element={<LandingPage />} />
           <Route path="/lec-hall-allocation" element={<LecHomePage />} /> */}
         </Routes>

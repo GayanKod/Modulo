@@ -4,8 +4,6 @@ import { setSyntheticLeadingComments } from "typescript";
 import { domainToASCII } from "url";
 
 type FileSelectorProps = {
-  // docs: File;
-  // setDocs: Dispatch<SetStateAction<File>>;
   docs: {
     name: string;
     size: string;
