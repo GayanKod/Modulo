@@ -1,26 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction, useState } from "react";
+import { Documents } from "./Documents";
 
 type RecentUploadProps = {
-  docs: {
-    name: string;
-    size: string;
-    type: string;
-    date: string;
-    description: string;
-  }[];
-  setDocs: Dispatch<
-    SetStateAction<
-      {
-        name: string;
-        size: string;
-        type: string;
-        date: string;
-        description: string;
-      }[]
-    >
-  >;
+  docs: Documents[];
+  setDocs: Dispatch<SetStateAction<Documents[]>>;
 };
 
 function RecentUpload(props: RecentUploadProps) {

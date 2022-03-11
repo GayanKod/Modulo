@@ -2,29 +2,14 @@ import { type } from "os";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { setSyntheticLeadingComments } from "typescript";
 import { domainToASCII } from "url";
+import { Documents } from "./Documents";
 
-type FileSelectorProps = {
-  docs: {
-    name: string;
-    size: string;
-    type: string;
-    date: string;
-    description: string;
-  }[];
-  setDocs: Dispatch<
-    SetStateAction<
-      {
-        name: string;
-        size: string;
-        type: string;
-        date: string;
-        description: string;
-      }[]
-    >
-  >;
-};
+interface FileSelectorProps {
+  docs: Documents[];
+  setDocs: Dispatch<SetStateAction<Documents[]>>;
+}
 
-function FileSelector(props: FileSelectorProps) {
+function FileSelector(props: FileSelectorProps): JSX.Element {
   const [selectedFile, setSelectedFile] = useState<File>();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [description, setDescription] = useState<string | null>();

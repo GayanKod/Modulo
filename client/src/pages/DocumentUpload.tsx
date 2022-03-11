@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import "../styles/DocumentUploader.scss";
 import FileSelector from "../components/DocumentManager/Document-uplaod/FileSelector";
 import RecentUpload from "../components/DocumentManager/Document-uplaod/RecentUpload";
-import PageTitle from "../components/PageTitle";
 import DocumentUploadTitle from "../components/DocumentManager/Document-uplaod/DocumentUploadTitle";
+import Navbar2 from "../components/Navbar2";
 
 function DocumentUpload() {
   const [documents, setDocuments] = useState([
@@ -32,12 +32,15 @@ function DocumentUpload() {
   ]);
 
   return (
-    <div className="DocumentUploader">
-      <DocumentUploadTitle />
-      <FileSelector docs={documents} setDocs={setDocuments} />
-      <br />
-      <RecentUpload docs={documents} setDocs={setDocuments} />
-    </div>
+    <>
+      <Navbar2 />
+      <div className="DocumentUploader">
+        <DocumentUploadTitle />
+        <FileSelector docs={documents} setDocs={setDocuments} />
+        <br />
+        <RecentUpload docs={documents} setDocs={setDocuments} />
+      </div>
+    </>
   );
 }
 
