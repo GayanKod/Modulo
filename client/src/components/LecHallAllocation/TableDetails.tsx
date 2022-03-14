@@ -7,33 +7,40 @@ import { Link } from "react-router-dom";
 import TimeTable from "./TimeTable";
 
 interface Props {
-  selected?: string;
+  selected: string;
   open?: boolean;
   item?: Item;
 }
 
-let width = window.innerWidth;
+function TableDetails({ selected }: Props) {
+  const lecHalls = HallDetails.map((item) => (
+    <Row item={item} selected={selected} />
+  ));
+  const labs = LabDetails.map((item) => (
+    <Row item={item} selected={selected} />
+  ));
 
-function Row({ item }: Props) {
+  switch (selected) {
+    case "lec":
+      return <>{lecHalls}</>;
+
+    case "lab":
+      return <>{labs}</>;
+    default:
+      return <></>;
+  }
+}
+
+function Row({ item, selected }: Props) {
+  console.log("Row");
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState<number[]>([]);
-
-  // useEffect(() => {
-  //   function handleResize() {
-  //     if (width > 950) {
-  //       setOpen(false);
-  //     } else if (open == false) {
-  //       setOpen(false);
-  //     }
-  //   }
-  //   window.addEventListener("resize", handleResize);
-  // }, []);
 
   const hiddenTable = {
     borderBottom: "none",
   };
 
-  const toggleShown = (id) => {
+  const toggleShown = (id: number) => {
     const shownState = shown.slice();
     const index = shownState.indexOf(id);
 
@@ -47,6 +54,7 @@ function Row({ item }: Props) {
       setShown(shownState);
     }
   };
+
   if (!item || !shown) {
     return <></>;
   }
@@ -74,12 +82,12 @@ function Row({ item }: Props) {
         <td className="hide">{item.capacity}</td>
         <td className="hide">{item.location}</td>
         <td>
-          <TimeTable />
+          <TimeTable selected={selected} id={item.id} />
         </td>
         <td>
-          <Link to={"/lec-hall-allocation/booking"}>
-            <button>Book</button>
-          </Link>
+          {/* <Link to={"/lec-hall-allocation/booking"}> */}
+          <button className="book-button">Book</button>
+          {/* </Link> */}
         </td>
       </tr>
 
@@ -97,42 +105,32 @@ function Row({ item }: Props) {
             >
               {item.name}
             </h3>
-            <table className="details-table hidden " style={hiddenTable}>
-              <thead>
-                <tr>
-                  <th>Hall Id</th>
-                  <th>Capacity</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style={hiddenTable}>{item.id}</td>
-                  <td style={hiddenTable}>{item.capacity}</td>
-                  <td style={hiddenTable}>{item.location}</td>
-                </tr>
-              </tbody>
+            <table className="details-table hidden" style={hiddenTable}>
+              <div className="thead">
+                <thead>
+                  <tr>
+                    <th>Hall Id</th>
+                    <th>Capacity</th>
+                    <th>Location</th>
+                  </tr>
+                </thead>
+              </div>
+
+              <div className="tbody">
+                <tbody>
+                  <tr>
+                    <td style={hiddenTable}>{item.id}</td>
+                    <td style={hiddenTable}>{item.capacity}</td>
+                    <td style={hiddenTable}>{item.location}</td>
+                  </tr>
+                </tbody>
+              </div>
             </table>
           </td>
         </tr>
       )}
     </>
   );
-}
-
-function TableDetails({ selected }: Props) {
-  const lecHalls = HallDetails.map((item) => <Row item={item} />);
-  const labs = LabDetails.map((item) => <Row item={item} />);
-
-  switch (selected) {
-    case "lec":
-      return <>{lecHalls}</>;
-
-    case "lab":
-      return <>{labs}</>;
-    default:
-      return <></>;
-  }
 }
 
 export default TableDetails;

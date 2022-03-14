@@ -4,3 +4,8 @@ export interface Item {
   capacity: number;
   location: string;
 }
+
+export interface Options {
+  value: string;
+  label: string;
+}
