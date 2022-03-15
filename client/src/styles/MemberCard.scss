@@ -1,0 +1,136 @@
+.mcard-container{
+    position: relative;
+    display: inline-block;
+}
+
+.mcard-team{
+    position: relative;
+    margin :0% 0% 0% 5%;
+    text-align: center;
+    max-width: 240px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.mcard-team{
+    .mcard-team-img{
+        width: 100%;
+        height: auto;
+    }
+} 
+
+.mcard-team{
+    .mcard-team-img{
+        img{
+            width:100%;
+        }
+    }
+} 
+
+.mcard-team{
+    .mcard-team-social {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, .5);
+        transition: all .3s;
+        font-size: 0;
+        z-index: 1;
+        opacity: 0;
+      }
+} 
+  
+.mcard-team:hover{
+    .mcard-team-social {
+        opacity: 1;
+    }
+} 
+  
+.mcard-team{
+    .mcard-team-social{
+        a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+            padding: 11px 0 10px 0;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 16px;
+            text-align: center;
+            color: #ffffff;
+            transition: all .5s;
+            margin-top: 100px;
+        }
+    } 
+}
+  
+.mcard-team {
+    .mcard-team-social{
+        a.mcard-social-tw {
+            background: #00acee;
+        }
+
+        a.mcard-social-fb {
+            background: #3b5998;
+        }
+
+        a.mcard-social-li {
+            background: #0e76a8;
+        }
+
+        a.mcard-social-in {
+            background: #3f729b;
+        }
+
+        a.mcard-social-gh {
+            background: #000;
+        }
+
+        a:last-child {
+            margin-right: 0;
+        }
+
+        a{
+            margin-top: 0;
+        }
+
+        a:hover {
+            color: #222222;
+            background: #ffffff;
+        }
+    }
+    
+    .mcard-team-content{
+        padding: 20px;
+
+        h2{
+            margin: 0 0 5px 0;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        h3{
+            margin: 0 0 15px 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        p{
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+    }
+}
+
+  
+  
