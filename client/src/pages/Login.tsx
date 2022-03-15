@@ -26,15 +26,15 @@ const Login = () => {
                             <p  className="login-up">Password</p>
                             <input type="password" className="login-password"/>
                         </div>
+                        <div className="login-PagebtnWrapper">
+                            <button type='submit' className="login-Pagebtn">Login</button>
+                        </div>
                     </form>
                 </div>
                 <a className="login-forgotpw" href="#">forgot password?</a>
             </div>
             <div className="login-container-loginImg">
                 <img src={loginImg} alt="login" />
-            </div>
-            <div className="login-PagebtnWrapper">
-                <button className="login-Pagebtn">Login</button>
             </div>
         </div>
     </>
