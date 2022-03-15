@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "../styles/HeroSection.scss";
 import heroImg from "../assets/img/heroImg.png";
 
@@ -16,7 +17,7 @@ function HeroSection(){
             <img src={heroImg} alt="hero-section" className="hero-image" />
         </div>
         <div className="login-btn-wrapper">
-            <button className="login-btn">Login</button>
+            <Link to="/login"><button className="login-btn">Login</button></Link>
         </div>
         </>
     );
