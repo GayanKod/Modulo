@@ -33,7 +33,9 @@ function DocumentUpload() {
 
   return (
     <>
-      <Navbar2 />
+      <div>
+        <Navbar2 />
+      </div>
       <div className="DocumentUploader">
         <DocumentUploadTitle />
         <FileSelector docs={documents} setDocs={setDocuments} />

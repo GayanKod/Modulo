@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { setSyntheticLeadingComments } from "typescript";
 import { domainToASCII } from "url";
 import { Documents } from "./Documents";
+import FileInputContainer from "./FileInputContainer";
 
 interface FileSelectorProps {
   docs: Documents[];
@@ -37,24 +38,18 @@ function FileSelector(props: FileSelectorProps): JSX.Element {
           description: description as string,
         },
       ]);
+    } else {
+      alert("Please select a file to upload");
     }
   };
 
   return (
     <div className="FileSelector">
-      <div className="Fileselector-container">
-        <input
-          className="choose-file-input"
-          type="file"
-          id="myfile"
-          name="myfile"
-          onChange={handleChange}
-        />
-        <label className="choose-file-label" htmlFor="file">
-          Select a file
-        </label>
-        <p className="drag-file-text">or drag file in here</p>
-      </div>
+      <FileInputContainer
+        handleChange={handleChange}
+        isFilePicked={isFilePicked}
+        selectedFile={selectedFile}
+      />
 
       <div className="fileDetailForm">
         <form onSubmit={uploadHandler}>

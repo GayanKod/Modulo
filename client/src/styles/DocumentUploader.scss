@@ -1,7 +1,11 @@
 @import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
 .DocumentUploader {
   display: flex;
   flex-direction: column;
+  font-family: poppins;
+
   .DocumentManager-title {
     text-align: center;
     margin-top: 20px;
@@ -34,6 +38,11 @@
       align-items: center;
       justify-content: center;
       background-color: rgb(157, 78, 221, 0.2);
+
+      .pdf-image {
+        height: 100px;
+        width: 75px;
+      }
 
       .choose-file-input {
         font-size: 18px;
@@ -86,6 +95,11 @@
         background-color: #c4c4c4;
         border-radius: 15px;
         box-sizing: border-box;
+        font-family: poppins;
+
+        &:active {
+          border: 1px solid red;
+        }
       }
       .uploadButton {
         width: 100%;
@@ -98,6 +112,7 @@
         color: white;
         border-radius: 4px;
         box-sizing: border-box;
+        font-family: poppins;
         font-size: 18px;
         border-radius: 15px;
 
@@ -123,31 +138,38 @@
       //background-color: darkorange;
       border-spacing: 15px;
       margin: 0;
+      font-size: 15px;
       .RecentUploadCaption {
+        font-size: large;
         text-align: left;
         margin-bottom: 10px;
         padding-left: 10px;
       }
-      th {
-        text-align: left;
-        padding: 0 10px 0 10px;
-        color: $O;
-      }
-      td {
-        padding: 20px 10px;
-      }
-      tr {
-        outline: 1px solid #746e6e;
-        border-radius: 5px;
-      }
-      .tableHeaders {
-        outline: none;
-      }
-      .DeleteButton {
-        border: none;
 
-        &:hover {
+      thead {
+        th {
+          text-align: left;
+          padding: 0 10px 0 10px;
           color: $O;
+        }
+        .tableHeaders {
+          outline: none;
+        }
+      }
+      tbody {
+        td {
+          padding: 20px 10px;
+        }
+        tr {
+          outline: 1px solid #746e6e;
+          border-radius: 5px;
+        }
+        .DeleteButton {
+          border: none;
+          background: none;
+          &:hover {
+            color: $O;
+          }
         }
       }
     }
