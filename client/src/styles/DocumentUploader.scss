@@ -101,27 +101,32 @@
           border: 1px solid red;
         }
       }
-      .uploadButton {
-        width: 100%;
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: none;
-        background-color: $P6;
-        color: white;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-family: poppins;
-        font-size: 18px;
-        border-radius: 15px;
+      .buttons {
+        display: flex;
+        //background-color: burlywood;
+        justify-content: space-between;
+        .uploadButton,
+        .cancelButton {
+          width: 40%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: none;
+          background-color: $P6;
+          color: white;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: poppins;
+          font-size: 18px;
+          border-radius: 15px;
 
-        &:hover {
-          cursor: pointer;
-          background-color: $P4;
-        }
-        &:active {
-          transform: translateY(4px);
+          &:hover {
+            cursor: pointer;
+            background-color: $P4;
+          }
+          &:active {
+            transform: translateY(4px);
+          }
         }
       }
     }

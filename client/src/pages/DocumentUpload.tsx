@@ -11,22 +11,22 @@ function DocumentUpload() {
     {
       name: "Hypothesis_Testing.pdf",
       size: "15MB",
-      type: "PDF",
-      date: "2022-01-19",
+      type: "pdf",
+      date: "01/19/2021",
       description: "wgduegfierhgolrgj",
     },
     {
       name: "Boolean_Algebra.pdf",
       size: "9MB",
-      type: "PDF",
-      date: "2021-10-11",
+      type: "pdf",
+      date: "10/11/2021",
       description: "wgduegfierhgobhjg uhihrg ghirhgorh",
     },
     {
       name: "ProjectProposalTemplate.ppt",
       size: "10MB",
       type: "ppt",
-      date: "2021-05-05",
+      date: "02/05/2022",
       description: "wgduegfierhgolrgj bjug gugiug huiggiuh gugugu huuihihljl",
     },
   ]);

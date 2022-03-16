@@ -31,16 +31,21 @@ function FileSelector(props: FileSelectorProps): JSX.Element {
       props.setDocs([
         ...props.docs,
         {
-          name: selectedFile?.name as string,
-          size: selectedFile?.size as unknown as string,
-          type: selectedFile?.type as string,
-          date: selectedFile?.lastModified as unknown as string,
+          name: selectedFile?.name.split(".").slice(0, -1).join(".") as string,
+          size: (Math.round(selectedFile?.size / 1024) +
+            "KB") as unknown as string,
+          type: selectedFile?.name.split(".").pop() as string,
+          date: new Date().toLocaleDateString(),
           description: description as string,
         },
       ]);
     } else {
       alert("Please select a file to upload");
     }
+  };
+
+  const cancelSelection = () => {
+    window.location.reload();
   };
 
   return (
@@ -69,8 +74,12 @@ function FileSelector(props: FileSelectorProps): JSX.Element {
             id="descriptionbox"
             onChange={descriptionHandler}
           />
-
-          <button className="uploadButton">Upload</button>
+          <div className="buttons">
+            <button className="uploadButton">Upload</button>
+            <button className="cancelButton" onClick={cancelSelection}>
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
