@@ -1,10 +1,12 @@
 import TimelineContainer from "../components/Timeline/TimelineContainer";
-import TimelineItem from "../components/Timeline/TimelineItem";
+import Navbar2 from "../components/Navbar2";
+import PageTitle from "../components/PageTitle";
+import "../styles/TimelinePage.scss";
 function Timeline(){
     return(
         <>
-        <h1>Timeline</h1>
-        <TimelineItem/>
+        <Navbar2/>
+        <PageTitle title="Activity Timeline"/>
         <TimelineContainer/>
         </>
         

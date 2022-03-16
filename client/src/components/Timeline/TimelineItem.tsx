@@ -1,19 +1,25 @@
-import timelineEvents from "./data";
-function TimelineItem(){
-    return(
-        <>
-        <h1>Timelineitem</h1>
-        <div className="timeline-item">
-                {timelineEvents.map(event =>(
-                    <div className="content-holder">
-                         <h2 className="event-name">{event.eventName} </h2>
-                         <h3 className="event-starting-date">
-                             {event.startingDate}
-                         </h3>
+import "../../styles/Timeline.scss";
+const TimelineItem = ({data}:{[key:string]:any}) => (
+    <div className="timeline-item">
+        <div className="timeline-item-content">
+
+            {/* <span className="tag" style={{ background: data.category.color }}>
+                {data.category.tag}
+            </span> */}
+            
+            <div className="event">
+                        <h2 className="event-name" >
+                            {data.eventName}
+                        </h2>
+                        <div className="Date">
+                            <time className="event-starting-date">{data.startingDate}</time>
+                             {data.endingDate && 
+                             <time className="event-starting-date"> - {data.startingDate}</time>}
+                        </div>
                     </div>
-                ))}
+            <span className="circle" />
         </div>
-        </>
-    );
-}
+    </div>
+);
+
 export default TimelineItem;
