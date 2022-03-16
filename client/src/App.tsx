@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
 import LecHomePage from "./pages/LecHomePage";
 import LoginPage from "./pages/Login";
-import AdminPanelDashboard from "./pages/AdminPanelDashboard";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/admin-panel/dashboard" element={<AdminPanelDashboard />} />
+          <Route path="/admin-panel" element={<AdminPanel/>} />
         </Routes>
       </Router>
     </>
