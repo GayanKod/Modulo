@@ -1,13 +1,21 @@
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from "react";
 import PDFImg from "../../../assets/img/PDFImg.png";
 
 interface FileInputContainerprops {
-  isFilePicked: boolean;
   selectedFile: File | undefined;
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  setSelectedFile: React.Dispatch<React.SetStateAction<File | undefined>>;
 }
 
 function FileInputContainer(props: FileInputContainerprops) {
-  switch (props.isFilePicked) {
+  const [isFilePicked, setIsFilePicked] = useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsFilePicked(true);
+    if (!event.target.files) return;
+    props.setSelectedFile(event.target.files[0]!);
+  };
+
+  switch (isFilePicked) {
     case true:
       return (
         <>
@@ -27,7 +35,7 @@ function FileInputContainer(props: FileInputContainerprops) {
               type="file"
               id="myfile"
               name="myfile"
-              onChange={props.handleChange}
+              onChange={handleChange}
             />
             <label className="choose-file-label" htmlFor="file">
               Select a file

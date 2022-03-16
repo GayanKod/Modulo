@@ -108,6 +108,7 @@
         .uploadButton,
         .cancelButton {
           width: 40%;
+          height: 40px;
           padding: 12px 20px;
           margin: 8px 0;
           display: inline-block;
@@ -117,8 +118,11 @@
           border-radius: 4px;
           box-sizing: border-box;
           font-family: poppins;
-          font-size: 18px;
+          font-size: 15px;
           border-radius: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
           &:hover {
             cursor: pointer;

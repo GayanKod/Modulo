@@ -9,21 +9,21 @@ import Navbar2 from "../components/Navbar2";
 function DocumentUpload() {
   const [documents, setDocuments] = useState([
     {
-      name: "Hypothesis_Testing.pdf",
+      name: "Hypothesis_Testing",
       size: "15MB",
       type: "pdf",
       date: "01/19/2021",
       description: "wgduegfierhgolrgj",
     },
     {
-      name: "Boolean_Algebra.pdf",
+      name: "Boolean_Algebra",
       size: "9MB",
       type: "pdf",
       date: "10/11/2021",
       description: "wgduegfierhgobhjg uhihrg ghirhgorh",
     },
     {
-      name: "ProjectProposalTemplate.ppt",
+      name: "ProjectProposalTemplate",
       size: "10MB",
       type: "ppt",
       date: "02/05/2022",
