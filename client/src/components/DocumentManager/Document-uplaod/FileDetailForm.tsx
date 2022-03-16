@@ -5,10 +5,12 @@ interface FileDetailFormProps {
   selectedFile: File | undefined;
   docs: Documents[];
   setDocs: Dispatch<SetStateAction<Documents[]>>;
+  setIsFilePicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function FileDetailForm(props: FileDetailFormProps) {
-  const [description, setDescription] = useState<string | null>();
+  const [description, setDescription] = useState<string>();
+  const [isFileUploaded, setIsFileUploaded] = useState(false);
 
   const uploadHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -27,6 +29,9 @@ function FileDetailForm(props: FileDetailFormProps) {
           description: description as string,
         },
       ]);
+      setIsFileUploaded(true);
+      props.setIsFilePicked(false);
+      alert("File has been successfully uploaded!");
     } else {
       alert("Please select a file to upload");
     }
@@ -49,11 +54,16 @@ function FileDetailForm(props: FileDetailFormProps) {
           className="fileNameInput"
           id="filename"
           type="text"
-          value={props.selectedFile?.name}
+          value={isFileUploaded ? "" : props.selectedFile?.name}
         />
 
         <label htmlFor="descriptionbox">Description:</label>
-        <input type="text" id="descriptionbox" onChange={descriptionHandler} />
+        <input
+          type="text"
+          id="descriptionbox"
+          onChange={descriptionHandler}
+          value={isFileUploaded ? "" : description}
+        />
         <div className="buttons">
           <button className="uploadButton">Upload</button>
           <button className="cancelButton" onClick={cancelSelection}>

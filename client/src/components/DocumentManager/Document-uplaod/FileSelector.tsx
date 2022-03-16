@@ -13,18 +13,21 @@ interface FileSelectorProps {
 
 function FileSelector(props: FileSelectorProps): JSX.Element {
   const [selectedFile, setSelectedFile] = useState<File>();
-
+  const [isFilePicked, setIsFilePicked] = useState(false);
   return (
     <div className="FileSelector">
       <FileInputContainer
         selectedFile={selectedFile}
         setSelectedFile={setSelectedFile}
+        isFilePicked={isFilePicked}
+        setIsFilePicked={setIsFilePicked}
       />
 
       <FileDetailForm
         selectedFile={selectedFile}
         docs={props.docs}
         setDocs={props.setDocs}
+        setIsFilePicked={setIsFilePicked}
       />
     </div>
   );

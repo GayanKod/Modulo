@@ -4,18 +4,18 @@ import PDFImg from "../../../assets/img/PDFImg.png";
 interface FileInputContainerprops {
   selectedFile: File | undefined;
   setSelectedFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+  isFilePicked: boolean;
+  setIsFilePicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function FileInputContainer(props: FileInputContainerprops) {
-  const [isFilePicked, setIsFilePicked] = useState(false);
-
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsFilePicked(true);
+    props.setIsFilePicked(true);
     if (!event.target.files) return;
     props.setSelectedFile(event.target.files[0]!);
   };
 
-  switch (isFilePicked) {
+  switch (props.isFilePicked) {
     case true:
       return (
         <>
