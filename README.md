@@ -4,7 +4,7 @@
 ## Table of contents
 * [Modulo](#modulo)
 * [Branching convension](#branching-convension)
-* [Technologies](#technology-(Tech Stack))
+* [Technologies](#technology-(Tech-Stack))
 * [Folder Structure](#folder/file-structure)
 * [Development](#development)
 
@@ -15,16 +15,16 @@ Hence, we are proposing an Education Institution Management System which is able
 
 In this project we hope to devlop following features:
 
- *User/Role Management 
- *Lecturer/ lecture halls and lab allocation 
- *Document Manager 
- *Timeline Overview and Analytics 
- *Notice Board 
- *SMS Notification 
- *Feedback/ Complaint/Suggestions section 
- *GPA Calculator 
- *Requisition Manager 
- *Counseling Chat Application 
+ * User/Role Management 
+ * Lecturer/ lecture halls and lab allocation 
+ * Document Manager 
+ * Timeline Overview and Analytics 
+ * Notice Board 
+ * SMS Notification 
+ * Feedback/ Complaint/Suggestions section 
+ * GPA Calculator 
+ * Requisition Manager 
+ * Counseling Chat Application 
 
 
 ## Branching convension
