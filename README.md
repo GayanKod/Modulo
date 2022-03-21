@@ -3,11 +3,12 @@
 ## Table of contents
 * [Modulo](#modulo)
 * [Branching convension](#branching-convension)
-* [Technologies](#technologies)
+* [Technologies](#Technology-(Tech Stack))
 * [Folder Structure](#folder-structure)
 * [Development](#development)
 
 ## Modulo
+![Algorithm schema](./client/src/assets/img/LogoModulo.png)
 
 ## Branching convension
 
@@ -62,4 +63,4 @@ Follow the follwing steps to begin development.
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
