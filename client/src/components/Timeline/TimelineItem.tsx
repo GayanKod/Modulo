@@ -9,10 +9,12 @@ const TimelineItem = ({data}:{[key:string]:any}) => (
                         <div className="date">
                             <time className="event-starting-date">{data.startingDate}</time>
                              {data.endingDate && 
-                             <time className="event-starting-date"> - {data.startingDate}</time>}
+                             <time className="event-starting-date"> - {data.endingDate}</time>}
                         </div>
                     </div>
-            <span className="circle" />
+            <span className="circle"  style={{ 
+    //   backgroundImage: `url("https://via.placeholder.com/500")` 
+    }}/>
         </div>
     </div>
 );
