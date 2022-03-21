@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
+import TimelinePage from "./pages/Timeline";
 import LecHomePage from "./pages/LecHomePage";
 import LoginPage from "./pages/Login";
 
@@ -8,7 +9,8 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route  path="/" element={<LandingPage />}/>
+          <Route  path="/timeline" element={<TimelinePage/>}/>
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
