@@ -6,6 +6,7 @@ import PageTitle from "../components/PageTitle";
 import Select from "react-select";
 import Filter from "../components/LecHallAllocation/Filter";
 import { Options } from "../components/LecHallAllocation/Models";
+import Navbar2 from "../components/Navbar2";
 
 export default function LecHomePage() {
   let options = [
@@ -17,6 +18,7 @@ export default function LecHomePage() {
 
   return (
     <>
+      <Navbar2 />
       <div className="container">
         <PageTitle title="Lecture Hall and Lab Allocation" />
 

@@ -4,8 +4,10 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { fontSize, height } from "@mui/system";
+import { fontSize, height, textAlign } from "@mui/system";
 import { useState } from "react";
+import { cursorTo } from "readline";
+import { isConstructorDeclaration } from "typescript";
 import { HallDetails, LabDetails } from "./Details";
 import Filter from "./Filter";
 import { Item, Options } from "./Models";
@@ -18,7 +20,7 @@ type TimeTableProps = {
 function Schedule() {
   return (
     <table className="timetable">
-      <thead>
+      <thead style={{}}>
         <tr>
           <th>08:00</th>
           <th>09:00</th>
@@ -56,48 +58,6 @@ function Schedule() {
 export default function TimeTable(props: TimeTableProps) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-  const [selectedHall, setSelectedHall] = useState<Options>();
-
-  let HallOptions: Array<Options> = [];
-  let LabOptions: Array<Options> = [];
-
-  let options: Options[] = [];
-
-  let selectOptions = () => {
-    for (let i = 0; i < HallDetails.length; i++) {
-      return HallOptions.push({
-        value: HallDetails[i].id.toString(),
-        label: HallDetails[i].name,
-      });
-    }
-    for (let i = 0; i < LabDetails.length; i++) {
-      LabOptions.push({
-        value: LabDetails[i].id.toString(),
-        label: LabDetails[i].name,
-      });
-    }
-    switch (props.selected) {
-      case "lec": {
-        setSelectedHall(
-          HallOptions.find((item) => parseInt(item.value) === props.id)
-        );
-        console.log(selectedHall);
-        options = HallOptions;
-        break;
-      }
-      case "lab": {
-        setSelectedHall(
-          LabOptions.find((item) => parseInt(item.value) === props.id)
-        );
-        options = LabOptions;
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
-  const date = new Date();
 
   const days = [
     "Sunday",
@@ -125,7 +85,7 @@ export default function TimeTable(props: TimeTableProps) {
   ];
 
   const nth = () => {
-    switch (date.getDate() / 10) {
+    switch (date / 10) {
       case 1:
         return "st";
       case 2:
@@ -137,29 +97,151 @@ export default function TimeTable(props: TimeTableProps) {
     }
   };
 
+  const [count, setCount] = useState(0);
+
+  let day = new Date();
+  const [date, setDate] = useState(day.getDate());
+  const [month, setMonth] = useState(day.getMonth() + 1);
+  const [year, setYear] = useState(day.getFullYear());
+
+  const addDate = () => {
+    switch (month) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8: {
+        if (date == 31) {
+          setDate(1);
+          setMonth(month + 1);
+        } else {
+          setDate(date + 1);
+          console.log(date);
+          console.log("date added");
+        }
+
+        break;
+      }
+      case 2: {
+        if (year % 4 == 0 && date == 29) {
+          setDate(1);
+          setMonth(month + 1);
+        } else if (year % 4 != 0 && date == 28) {
+          setDate(1);
+          setMonth(month + 1);
+        } else {
+          setDate(1);
+          console.log(date);
+          console.log("date added");
+        }
+
+        break;
+      }
+      case 4:
+      case 6:
+      case 9:
+      case 11: {
+        if (date == 30) {
+          setDate(1);
+          setMonth(month + 1);
+          console.log(date);
+        } else {
+          setDate(date + 1);
+          console.log("date added");
+        }
+        console.log("adding count");
+
+        console.log(count);
+
+        break;
+      }
+      case 12: {
+        if (date == 31) {
+          setDate(1);
+          setMonth(1);
+          setYear(year + 1);
+        } else {
+          setDate(date + 1);
+        }
+
+        break;
+      }
+      default:
+        setDate(date + 1);
+    }
+    setCount(count + 1);
+  };
+
+  function subtractDate() {
+    if (count > 0) {
+      switch (month) {
+        case 1: {
+          if (date == 1) {
+            setDate(31);
+            setMonth(12);
+            setYear(year - 1);
+          } else {
+            setDate(date - 1);
+          }
+
+          break;
+        }
+        case 2:
+        case 4:
+        case 6:
+        case 8:
+        case 9:
+        case 11: {
+          if (date == 1) {
+            setDate(31);
+            setMonth(month - 1);
+          } else {
+            setDate(date - 1);
+          }
+
+          break;
+        }
+        case 3: {
+          if (year % 4 == 0 && date == 1) {
+            setDate(29);
+            setMonth(2);
+          } else if (year % 4 != 0 && date == 1) {
+            setDate(28);
+            setMonth(month - 1);
+          } else {
+            setDate(date - 1);
+          }
+
+          break;
+        }
+        case 5:
+        case 7:
+        case 10:
+        case 12: {
+          if (date == 1) {
+            setDate(30);
+
+            setMonth(month - 1);
+          } else {
+            setDate(date - 1);
+          }
+          break;
+        }
+        default:
+          setDate(date - 1);
+      }
+    } else return;
+
+    setCount(count - 1);
+  }
+
   if (props.id) {
     return (
       <>
-        <button
-          className="info-button"
-          onClick={() => {
-            console.log("Time Table");
-            setOpen(true);
-          }}
-        >
+        <button className="info-button" onClick={() => setOpen(true)}>
           <i className="fa fa-info-circle"></i>
         </button>
-        <Dialog
-          sx={{
-            width: "100vw",
-            margin: "auto",
-            height: "100vh",
-          }}
-          open={open}
-          onClose={handleClose}
-          fullWidth
-          maxWidth="md"
-        >
+        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
           <div className="popup">
             <DialogTitle
               className="page-title"
@@ -175,19 +257,32 @@ export default function TimeTable(props: TimeTableProps) {
             <DialogContent>
               <DialogContentText style={{ textAlign: "center" }}>
                 <div className="date">
-                  <i
-                    className="fas fa-arrow-left"
-                    style={{ marginRight: "30px" }}
-                  ></i>
-                  <h4>
-                    {days[date.getDay()]}, {date.getDate()}
-                    <sup>{nth()}</sup> of {months[date.getMonth()]},
-                    {date.getFullYear()}
-                  </h4>
-                  <i
-                    className="fas fa-arrow-right"
-                    style={{ marginLeft: "30px" }}
-                  ></i>
+                  <button
+                    disabled={count == 0 ? true : false}
+                    className="date-arrow"
+                    onClick={subtractDate}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i
+                      className="fa fa-arrow-left"
+                      style={{ marginRight: "30px" }}
+                    ></i>
+                  </button>
+
+                  <p id="date" style={{ display: "inline", padding: "5px" }}>
+                    {days[day.getDay()]}, {date} {nth()} of {months[month - 1]},
+                    {year}
+                  </p>
+                  <button
+                    className="date-arrow"
+                    onClick={addDate}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <i
+                      className="fa fa-arrow-right"
+                      style={{ marginLeft: "30px" }}
+                    ></i>
+                  </button>
                 </div>
                 {/* <Filter
                   options={options}
@@ -204,9 +299,49 @@ export default function TimeTable(props: TimeTableProps) {
             </div> */}
                 <Schedule />
               </DialogContentText>
+              <div
+                className="colors"
+                style={{ marginTop: "40px", marginLeft: "20px" }}
+              >
+                <p>
+                  <i className="fas fa-square" style={{ color: "#5a189a" }}></i>
+                  <span
+                    style={{
+                      margin: "10px",
+                      color: "grey",
+                      fontSize: "12px",
+                    }}
+                  >
+                    BOOKED
+                  </span>
+                </p>
+                <p>
+                  <i className="far fa-square" style={{ color: "grey" }}></i>
+                  <span
+                    style={{
+                      margin: "10px",
+                      color: "grey",
+                      fontSize: "12px",
+                    }}
+                  >
+                    AVAILABLE
+                  </span>
+                </p>
+              </div>
             </DialogContent>
             <DialogActions>
               <button className="book-button" onClick={handleClose}>
+                Select another hall
+              </button>
+              <button
+                className="book-button"
+                style={{
+                  backgroundColor: "#7b2cbf",
+                  color: "white",
+                  cursor: "pointer",
+                }}
+                onClick={handleClose}
+              >
                 Book
               </button>
             </DialogActions>

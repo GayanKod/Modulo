@@ -165,7 +165,7 @@
 }
 
 .date {
-  margin: 20px;
+  margin-bottom: 40px;
   font-size: 20px;
 
   i,
@@ -257,9 +257,22 @@
   }
 }
 
+.date-arrow {
+  color: rgb(82, 82, 82);
+  border: none;
+  background-color: transparent;
+  padding: 5px;
+  &:active {
+    background-color: none;
+    color: black;
+  }
+  &:disabled {
+    color: rgb(165, 165, 165);
+  }
+}
+
 .popup {
-  margin: 10px;
-  // font-family: "Poppins", sans-serif;
+  margin: 30px;
 }
 
 @media only screen and (min-width: 950px) {
