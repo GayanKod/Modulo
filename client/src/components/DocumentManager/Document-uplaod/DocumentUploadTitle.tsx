@@ -1,8 +1,8 @@
 function PageTitle() {
   return (
     <div className="DocumentManager-title">
-      <h1 className="main-title">Document Manager - </h1>
-      <h2 className="sub-title">Upload section</h2>
+      <h1 className="DocumentManager-title-main">Document Manager - </h1>
+      <h2 className="DocumentManager-title-sub">Upload section</h2>
     </div>
   );
 }

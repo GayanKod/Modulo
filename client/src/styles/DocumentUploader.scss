@@ -4,15 +4,15 @@
 .DocumentUploader {
   display: flex;
   flex-direction: column;
-  font-family: poppins;
 
   .DocumentManager-title {
     text-align: center;
     margin-top: 20px;
-    .main-title {
+
+    .DocumentManager-title-main {
       color: $O;
     }
-    .sub-title {
+    .DocumentManager-title-sub {
       color: $P6;
     }
     h1,
@@ -44,7 +44,7 @@
         width: 75px;
       }
 
-      .choose-file-input {
+      .Fileselector-container-choose-file-input {
         font-size: 18px;
         display: block;
         width: 100%;
@@ -62,7 +62,7 @@
           outline: none;
         }
       }
-      .choose-file-label {
+      .Fileselector-container-choose-file-label {
         background-color: $P6;
         height: 40px;
         width: 225px;
@@ -73,8 +73,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $P4;
+        }
       }
-      .drag-file-text {
+      .Fileselector-container-drag-file-text {
         color: #746e6e;
         margin: 10px;
       }
@@ -101,12 +106,12 @@
           border: 1px solid red;
         }
       }
-      .buttons {
+      .fileDetailForm-buttons {
         display: flex;
         //background-color: burlywood;
         justify-content: space-between;
-        .uploadButton,
-        .cancelButton {
+        .fileDetailForm-buttons-uploadButton,
+        .fileDetailForm-buttons-cancelButton {
           width: 40%;
           height: 40px;
           padding: 12px 20px;
@@ -142,13 +147,13 @@
     justify-content: center;
     align-items: center;
 
-    .RecentUploadTable {
+    .RecentUpload-table {
       width: 75%;
       //background-color: darkorange;
       border-spacing: 15px;
       margin: 0;
       font-size: 15px;
-      .RecentUploadCaption {
+      .RecentUpload-table-caption {
         font-size: large;
         text-align: left;
         margin-bottom: 10px;
@@ -161,7 +166,7 @@
           padding: 0 10px 0 10px;
           color: $O;
         }
-        .tableHeaders {
+        .RecentUpload-table-headers {
           outline: none;
         }
       }
@@ -173,7 +178,7 @@
           outline: 1px solid #746e6e;
           border-radius: 5px;
         }
-        .DeleteButton {
+        .RecentUpload-table-deleteButton {
           border: none;
           background: none;
           &:hover {

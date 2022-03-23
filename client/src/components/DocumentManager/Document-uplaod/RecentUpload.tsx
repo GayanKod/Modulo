@@ -10,10 +10,10 @@ interface RecentUploadProps {
 function RecentUpload(props: RecentUploadProps) {
   return (
     <div className="RecentUpload">
-      <table className="RecentUploadTable">
-        <caption className="RecentUploadCaption">Recent Uploads</caption>
+      <table className="RecentUpload-table">
+        <caption className="RecentUpload-table-caption">Recent Uploads</caption>
         <thead>
-          <tr className="tableHeaders">
+          <tr className="RecentUpload-table-headers">
             <th>Type</th>
             <th>Document Name</th>
             <th>Document size</th>
@@ -31,7 +31,7 @@ function RecentUpload(props: RecentUploadProps) {
               <td>{item.date}</td>
               <td>{item.description}</td>
               <td>
-                <button className="DeleteButton">
+                <button className="RecentUpload-table-deleteButton">
                   <DeleteIcon />
                 </button>
               </td>

@@ -22,8 +22,8 @@ function FileDetailForm(props: FileDetailFormProps) {
             .split(".")
             .slice(0, -1)
             .join(".") as string,
-          size: (Math.round(props.selectedFile?.size / 1024) +
-            "KB") as unknown as string,
+          size: (Math.round(props.selectedFile?.size / (1024 * 1024)) +
+            "MB") as unknown as string,
           type: props.selectedFile?.name.split(".").pop() as string,
           date: new Date().toLocaleDateString(),
           description: description as string,
@@ -46,12 +46,12 @@ function FileDetailForm(props: FileDetailFormProps) {
   };
   return (
     <div className="fileDetailForm">
-      <form onSubmit={uploadHandler}>
-        <label className="fileNameText" htmlFor="filename">
+      <form>
+        <label className="fileDetailForm-fileNameText" htmlFor="filename">
           File Name:
         </label>
         <input
-          className="fileNameInput"
+          className="fileDetailForm-fileNameInput"
           id="filename"
           type="text"
           value={isFileUploaded ? "" : props.selectedFile?.name}
@@ -64,9 +64,17 @@ function FileDetailForm(props: FileDetailFormProps) {
           onChange={descriptionHandler}
           value={isFileUploaded ? "" : description}
         />
-        <div className="buttons">
-          <button className="uploadButton">Upload</button>
-          <button className="cancelButton" onClick={cancelSelection}>
+        <div className="fileDetailForm-buttons">
+          <button
+            className="fileDetailForm-buttons-uploadButton"
+            onClick={uploadHandler}
+          >
+            Upload
+          </button>
+          <button
+            className="fileDetailForm-buttons-cancelButton"
+            onClick={cancelSelection}
+          >
             Cancel
           </button>
         </div>

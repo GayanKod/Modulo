@@ -12,37 +12,32 @@ function DocumentUpload() {
       name: "Hypothesis_Testing",
       size: "15MB",
       type: "pdf",
-      date: "01/19/2021",
-      description: "wgduegfierhgolrgj",
+      date: "1/19/2021",
+      description: "Questions from Hypothesis testing",
     },
     {
       name: "Boolean_Algebra",
       size: "9MB",
       type: "pdf",
       date: "10/11/2021",
-      description: "wgduegfierhgobhjg uhihrg ghirhgorh",
+      description: "Student note",
     },
     {
       name: "ProjectProposalTemplate",
       size: "10MB",
       type: "ppt",
-      date: "02/05/2022",
-      description: "wgduegfierhgolrgj bjug gugiug huiggiuh gugugu huuihihljl",
+      date: "2/05/2022",
+      description: "Template for hardware project proposal",
     },
   ]);
 
   return (
-    <>
-      <div>
-        <Navbar2 />
-      </div>
-      <div className="DocumentUploader">
-        <DocumentUploadTitle />
-        <FileSelector docs={documents} setDocs={setDocuments} />
-        <br />
-        <RecentUpload docs={documents} setDocs={setDocuments} />
-      </div>
-    </>
+    <div className="DocumentUploader">
+      <DocumentUploadTitle />
+      <FileSelector docs={documents} setDocs={setDocuments} />
+      <br />
+      <RecentUpload docs={documents} setDocs={setDocuments} />
+    </div>
   );
 }
 

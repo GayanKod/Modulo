@@ -31,16 +31,21 @@ function FileInputContainer(props: FileInputContainerprops) {
         <>
           <div className="Fileselector-container">
             <input
-              className="choose-file-input"
+              className="Fileselector-container-choose-file-input"
               type="file"
               id="myfile"
               name="myfile"
               onChange={handleChange}
             />
-            <label className="choose-file-label" htmlFor="file">
+            <label
+              className="Fileselector-container-choose-file-label"
+              htmlFor="file"
+            >
               Select a file
             </label>
-            <p className="drag-file-text">or drag file in here</p>
+            <p className="Fileselector-container-drag-file-text">
+              or drag file in here
+            </p>
           </div>
         </>
       );
