@@ -19,7 +19,7 @@ export default function LecHomePage() {
   return (
     <>
       <Navbar2 />
-      <div className="container">
+      <div className="lechall-container">
         <PageTitle title="Lecture Hall and Lab Allocation" />
 
         <div className="table-container">

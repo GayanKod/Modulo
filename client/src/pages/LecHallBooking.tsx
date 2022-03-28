@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import { timeStamp } from "console";
 import { useParams } from "react-router-dom";
 import {
@@ -27,11 +28,12 @@ function LecHallBooking() {
       <div className="lechall-container">
         <PageTitle title={"Lecture Hall and Lab Allocation - Booking"} />
         <div className="booking-form">
-          <div className="hall-name">
-            <label>
-              Hall
-              {/* {props.selected == "lec" ? "Hall" : "Lab"} */}
-              <select>
+          <Grid container spacing={1} sx={{ width: "100%", margin: "auto" }}>
+            <Grid item xs={4} md={2}>
+              <label>Hall</label>
+            </Grid>
+            <Grid item xs={8} md={6}>
+              <select className="list">
                 {(selected as string) == "lec"
                   ? HallDetails.map((item) => (
                       <option
@@ -56,26 +58,41 @@ function LecHallBooking() {
                       </option>
                     ))}
               </select>
-            </label>
-          </div>
-          <div className="form-date">
-            <label>
-              Date
+            </Grid>
+
+            <Grid item xs={4} md={1}>
+              <label>Date</label>
+            </Grid>
+            <Grid item xs={8} md={3}>
               <input type="date" />
-            </label>
-          </div>
-          <div className="duration">
-            <label>
-              From
+            </Grid>
+            <Grid item xs={12} md={2}>
+              <label>Duration</label>
+            </Grid>
+            <Grid item xs={2} md={1}>
+              <label>From</label>
+            </Grid>
+            <Grid item xs={4} md={2}>
               <input type="time" />
-            </label>
-            <label>
-              To
+            </Grid>
+            <Grid item xs={2} md={1}>
+              <label>To</label>
+            </Grid>
+            <Grid item xs={4} md={2}>
               <input type="time" />
-            </label>
-          </div>
+            </Grid>
+          </Grid>
+
+          {/* <div className="hall-name"> */}
+
+          {/* </div> */}
+          {/* <div className="form-date"> */}
+
+          {/* </div> */}
+          {/* <div className="duration"> */}
         </div>
       </div>
+      {/* </div> */}
     </>
   );
 }

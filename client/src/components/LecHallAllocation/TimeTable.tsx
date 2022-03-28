@@ -6,6 +6,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { fontSize, height, textAlign } from "@mui/system";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { cursorTo } from "readline";
 import { isConstructorDeclaration } from "typescript";
 import { HallDetails, LabDetails } from "./Details";
@@ -333,17 +334,22 @@ export default function TimeTable(props: TimeTableProps) {
               <button className="book-button" onClick={handleClose}>
                 Select another hall
               </button>
-              <button
-                className="book-button"
-                style={{
-                  backgroundColor: "#7b2cbf",
-                  color: "white",
-                  cursor: "pointer",
-                }}
-                onClick={handleClose}
+              <Link
+                to={`/lec-hall-allocation/booking/${props.selected}/${props.id}`}
               >
-                Book
-              </button>
+                {" "}
+                <button
+                  className="book-button"
+                  style={{
+                    backgroundColor: "#7b2cbf",
+                    color: "white",
+
+                    cursor: "pointer",
+                  }}
+                >
+                  Book
+                </button>
+              </Link>
             </DialogActions>
           </div>
         </Dialog>

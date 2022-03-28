@@ -5,7 +5,6 @@ import { Item } from "./Models";
 
 import { Link } from "react-router-dom";
 import TimeTable from "./TimeTable";
-import LecHallBooking from "../../pages/LecHallBooking";
 
 interface Props {
   selected: string;
