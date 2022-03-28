@@ -5,6 +5,7 @@ import { Item } from "./Models";
 
 import { Link } from "react-router-dom";
 import TimeTable from "./TimeTable";
+import LecHallBooking from "../../pages/LecHallBooking";
 
 interface Props {
   selected: string;
@@ -85,9 +86,9 @@ function Row({ item, selected }: Props) {
           <TimeTable selected={selected} id={item.id} />
         </td>
         <td>
-          {/* <Link to={"/lec-hall-allocation/booking"}> */}
-          <button className="book-button">Book</button>
-          {/* </Link> */}
+          <Link to={`/lec-hall-allocation/booking/${selected}/${item.id}`}>
+            <button className="book-button">Book</button>
+          </Link>
         </td>
       </tr>
 

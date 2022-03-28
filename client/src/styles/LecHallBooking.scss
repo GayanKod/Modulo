@@ -1,0 +1,25 @@
+@import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.booking-form {
+  width: 80%;
+  margin: auto;
+
+  select,
+  input,
+  label {
+    height: 3em;
+    border-radius: 30px;
+    color: grey;
+
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+  }
+
+  input,
+  select {
+    border: solid grey 1px;
+  }
+}

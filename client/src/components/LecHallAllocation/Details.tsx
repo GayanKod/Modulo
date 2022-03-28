@@ -97,19 +97,19 @@ export const HallDetails = [
   },
   {
     id: 2,
-    name: "Lecture Hall 1",
+    name: "Lecture Hall 2",
     capacity: 100,
     location: "1st Floor",
   },
   {
     id: 3,
-    name: "Lecture Hall 1",
+    name: "Lecture Hall 3",
     capacity: 100,
     location: "1st Floor",
   },
   {
     id: 4,
-    name: "Lecture Hall 1",
+    name: "Lecture Hall 4",
     capacity: 100,
     location: "1st Floor",
   },
