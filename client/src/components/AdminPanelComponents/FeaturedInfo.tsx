@@ -6,24 +6,24 @@ const FeaturedInfo = () => {
     <div className="featuredAP">
       <div className="featuredAP-Item">
         <span className="featuredAP-Title">Super Admins</span>
-        <div className="featuredAP-MoneyContainer">
-          <span className="featuredAP-Money">02</span>
+        <div className="featuredAP-CountContainer">
+          <span className="featuredAP-Count">02</span>
         </div>
-        <span className="featuredAP-Sub">Total registered super admins</span>
+        <span className="featuredAP-Des">Total registered super admins</span>
       </div>
       <div className="featuredAP-Item">
         <span className="featuredAP-Title">Degrees</span>
-        <div className="featuredAP-MoneyContainer">
-          <span className="featuredAP-Money">03</span>
+        <div className="featuredAP-CountContainer">
+          <span className="featuredAP-Count">03</span>
         </div>
-        <span className="featuredAP-Sub">Total degrees offer</span>
+        <span className="featuredAP-Des">Total degrees offer</span>
       </div>
       <div className="featuredAP-Item">
         <span className="featuredAP-Title">Subscribers</span>
-        <div className="featuredAP-MoneyContainer">
-          <span className="featuredAP-Money">2,225</span>
+        <div className="featuredAP-CountContainer">
+          <span className="featuredAP-Count">2,225</span>
         </div>
-        <span className="featuredAP-Sub">Total no. of registered students</span>
+        <span className="featuredAP-Des">Total no. of registered students</span>
       </div>
     </div>
   )
