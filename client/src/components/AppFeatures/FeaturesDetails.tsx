@@ -12,11 +12,11 @@ export const FeaturesDetails=[
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     },
     {
-        title: "User Role Management System",
+        title: "E-Notice Board Feature",
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     },
     {
-        title: "User Role Management System",
+        title: "Activity Timeline Generator",
         desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
     }
 ]
