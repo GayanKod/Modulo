@@ -23,6 +23,9 @@
     color: $P5;
     cursor: pointer;
   }
+  .adminpanel-topbar-logo{
+    width:140px;
+  }
   
   .adminpanel-topRight{
       display: flex;
@@ -60,4 +63,5 @@
 
   .adminpanel-institute-name{
       color: $O;
+      font-weight: 600;
   }

@@ -1,10 +1,11 @@
 import React from 'react'
-import "../../styles/AdminPanel.scss";
+
+import "../../styles/AdminPanelHome.scss";
 import NavbarAP from '../../components/AdminPanelComponents/NavbarAP';
 import SidebarAP from '../../components/AdminPanelComponents/SidebarAP';
-import HomeAP from '../AdminPanel/HomeAP';
+import HomeAP from './HomeAP';
 
-const AdminPanel = () => {
+const AdminPanelHome = () => {
   return (
     <>
         <NavbarAP />
@@ -16,4 +17,4 @@ const AdminPanel = () => {
   )
 }
 
-export default AdminPanel;
+export default AdminPanelHome;
