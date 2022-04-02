@@ -23,7 +23,7 @@ const SidebarAP = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link">
+            <Link to="/admin-panel" className="link">
             <li className="sidebarListItem active">
               <LineStyle className="sidebarIcon" />
               Home
@@ -38,7 +38,7 @@ const SidebarAP = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
+            <Link to="/admin-panel/users" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Users
@@ -64,10 +64,6 @@ const SidebarAP = () => {
           <h3 className="sidebarTitle">Notifications</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Mail
-            </li>
-            <li className="sidebarListItem">
               <DynamicFeed className="sidebarIcon" />
               Feedback
             </li>
@@ -77,7 +73,7 @@ const SidebarAP = () => {
             </li>
           </ul>
         </div>
-        <div className="sidebarMenu">
+        {/* <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
             <li className="sidebarListItem">
@@ -93,7 +89,7 @@ const SidebarAP = () => {
               Reports
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </div>
   )
