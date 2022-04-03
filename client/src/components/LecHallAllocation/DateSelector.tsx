@@ -1,30 +1,6 @@
-// import { Typography } from "@mui/material";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { fontSize, height, textAlign } from "@mui/system";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { cursorTo } from "readline";
-import { isConstructorDeclaration } from "typescript";
-import ColorCode from "./ColorCode";
-import DateSelector from "./DateSelector";
-import { HallDetails, LabDetails } from "./Details";
-import Filter from "./Filter";
-import { Item, Options } from "./Models";
-import Schedule from "./Schedule";
 
-type TimeTableProps = {
-  selected: string;
-  id: number;
-};
-
-export default function TimeTable(props: TimeTableProps) {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-
+export default function DateSelector() {
   const days = [
     "Sunday",
     "Monday",
@@ -51,9 +27,14 @@ export default function TimeTable(props: TimeTableProps) {
   ];
 
   const nth = () => {
-    switch (date / 10) {
-      case 1:
+    switch (date % 10) {
+      case 1: {
+        if (date == 11) {
+          return "th";
+        }
         return "st";
+      }
+
       case 2:
         return "nd";
       case 3:
@@ -85,7 +66,6 @@ export default function TimeTable(props: TimeTableProps) {
           console.log(date);
           console.log("date added");
         }
-
         break;
       }
       case 2: {
@@ -201,55 +181,27 @@ export default function TimeTable(props: TimeTableProps) {
     setCount(count - 1);
   }
 
-  if (props.id) {
-    return (
-      <>
-        <button className="info-button" onClick={() => setOpen(true)}>
-          <i className="fa fa-info-circle"></i>
-        </button>
-        <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-          <div className="popup">
-            <DialogTitle
-              className="page-title"
-              style={{
-                marginBottom: "20px",
-                color: "#ff5c55",
-                fontSize: "26px",
-                fontWeight: "bold",
-              }}
-            >
-              Available Time Slots
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText style={{ textAlign: "center" }}>
-                <DateSelector />
-                <Schedule />
-              </DialogContentText>
-              <ColorCode />
-            </DialogContent>
-            <DialogActions>
-              <button className="book-button" onClick={handleClose}>
-                Select another hall
-              </button>
-              <Link
-                to={`/lec-hall-allocation/booking/${props.selected}/${props.id}`}
-              >
-                <button
-                  className="book-button"
-                  style={{
-                    backgroundColor: "#7b2cbf",
-                    color: "white",
+  return (
+    <div className="date">
+      <button
+        disabled={count == 0 ? true : false}
+        className="date-arrow"
+        onClick={subtractDate}
+        style={{ cursor: "pointer" }}
+      >
+        <i className="fa fa-arrow-left" style={{ marginRight: "30px" }}></i>
+      </button>
 
-                    cursor: "pointer",
-                  }}
-                >
-                  Book
-                </button>
-              </Link>
-            </DialogActions>
-          </div>
-        </Dialog>
-      </>
-    );
-  } else return <></>;
+      <p id="date" style={{ display: "inline", padding: "5px" }}>
+        {days[day.getDay()]}, {date} {nth()} of {months[month - 1]},{year}
+      </p>
+      <button
+        className="date-arrow"
+        onClick={addDate}
+        style={{ cursor: "pointer" }}
+      >
+        <i className="fa fa-arrow-right" style={{ marginLeft: "30px" }}></i>
+      </button>
+    </div>
+  );
 }

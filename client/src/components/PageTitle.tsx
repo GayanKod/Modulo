@@ -6,7 +6,10 @@ interface Props {
 
 function PageTitle({ title }: Props) {
   return (
-    <h1 style={{ fontWeight: "bold" }} className="page-title">
+    <h1
+      style={{ fontWeight: "bold", textAlign: "center" }}
+      className="page-title"
+    >
       {title}
     </h1>
   );
