@@ -99,8 +99,11 @@ const NoticeInput :FC = () => {
         </div>
         <br></br>
         
-   
-         <button onClick={addNotice}>+ Add Notice</button>
+
+         <div className="AddButton">
+              <button onClick={addNotice}>+ Add Notice</button>
+         </div>
+        
          </div>
          <div className="noticeList">
           {noticeList.map((notice: INotice, key:number) => {

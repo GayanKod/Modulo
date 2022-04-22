@@ -1,6 +1,9 @@
 import React, {useState}  from 'react';
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import MessageOutlinedIcon from "@material-ui/icons/MessageOutlined";
 
 
 
@@ -24,9 +27,6 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
       <div className="content">
           <div className="title">
             {notice.noticeTitle}
-               
-                  
-             
             
             </div>
 
@@ -41,7 +41,8 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                   <button onClick={() => {
                 deleteNotice(notice.noticeTitle);
                 }}
-                >Delete Notice</button> 
+                >
+                  <DeleteOutlineIcon />       &nbsp;Delete Notice </button> 
 
                 </span>
                 
@@ -52,7 +53,8 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                         <button onClick={() => {
                       editNotice(notice.noticeTitle);
                 }}
-                >Edit Notice</button> 
+                >
+                <EditOutlinedIcon />       &nbsp;Edit Notice </button> 
 
                 </span>
 
@@ -63,16 +65,11 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                         <button onClick={() => {
                       sendSMS(notice.noticeTitle);
                 }}
-                >Send SMS</button> 
+                >
+                  <MessageOutlinedIcon />       &nbsp;Send SMS </button> 
 
                 </span>
-
-          
-
           </div>
-        
-
-
       </div>
 
       

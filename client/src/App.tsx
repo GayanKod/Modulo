@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/lec-hall-allocation" element={<LecHomePage />} /> */}
+          <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/noticeboard" element={<NoticeBoard />} />
         </Routes>
       </Router>
