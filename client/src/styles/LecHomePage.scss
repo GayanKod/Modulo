@@ -28,8 +28,7 @@
   align-items: center;
   color: rgb(252, 247, 255);
   padding: 50px;
-
-  a {
+  * a {
     color: inherit;
     text-decoration: none;
   }
@@ -145,10 +144,14 @@
   width: 100%;
   margin: auto;
   display: table;
+  font-size: 0.9em;
   tr {
     border-bottom: 1px solid grey;
 
     text-align: center;
+    th {
+      font-weight: 500;
+    }
   }
   tbody {
     td {
@@ -157,16 +160,16 @@
         // background-color: rgb(95, 1, 150);
         border-left: 1px solid grey;
       }
-      &:not(:nth-child(11)) {
-        border-right: 1px solid grey;
-      }
+      border-right: 1px solid grey;
     }
   }
 }
 
 .date {
-  margin-bottom: 40px;
-  font-size: 20px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  color: #949494;
+  font-weight: 500;
 
   i,
   h4 {
@@ -178,11 +181,11 @@
   padding-top: 10px;
   cursor: pointer;
   margin: 10px;
-  height: 30px;
+  height: 40px;
   padding: 5px 20px 5px 20px;
   background: none;
   border: solid $P5 2px;
-  border-radius: 30px;
+  border-radius: 10px;
   color: $P5;
   font-weight: 600;
 
@@ -202,7 +205,7 @@
   height: 30px;
   padding: 5px 20px 5px 20px;
   background: none;
-  border: solid $P5 2px;
+  // border: solid $P5 2px;
   border-radius: 5px;
   color: $P5;
   font-weight: 600;
@@ -231,8 +234,7 @@
   height: 30px;
   padding: 5px 20px 5px 20px;
   background: none;
-  border: solid $P5 2px;
-  border-radius: 5px;
+
   color: $P5;
   font-weight: 600;
 

@@ -5,39 +5,43 @@ import "../../styles/LecHallBooking.scss";
 import "../../styles/LecHomePage.scss";
 import { TimeSlotCell } from "./Models";
 
-function TimeSlot({ item }: TimeSlotCell) {
+type ScheduleProps = {
+  id: string;
+};
+
+function TimeSlot({ item, id }: TimeSlotCell) {
   const [selectedSlot, setSelectedSlot] = useState<number[]>([]);
   const [picked, setPicked] = useState(false);
 
   return (
     <>
       <td
+        className={id == "disable" ? "" : "cell"}
         key={item}
         style={{ backgroundColor: picked ? "#7b2cbf" : "white" }}
         onClick={() => {
-          console.log(picked);
-          setPicked(!picked);
-          if (picked) {
-            const pickedState = selectedSlot.slice();
-            const index = pickedState.indexOf(item);
+          if (id != "disable") {
+            setPicked(!picked);
+            if (picked) {
+              const pickedState = selectedSlot.slice();
+              const index = pickedState.indexOf(item);
 
-            setSelectedSlot(pickedState);
-
-            if (index >= 0) {
-              pickedState.splice(index, 1);
               setSelectedSlot(pickedState);
-            } else pickedState.push(item);
-            setSelectedSlot(pickedState);
-          }
 
-          console.log(selectedSlot);
+              if (index >= 0) {
+                pickedState.splice(index, 1);
+                setSelectedSlot(pickedState);
+              } else pickedState.push(item);
+              setSelectedSlot(pickedState);
+            }
+          }
         }}
       ></td>
     </>
   );
 }
 
-export default function Schedule() {
+export default function Schedule(props: ScheduleProps) {
   const cells = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
 
   return (
@@ -60,7 +64,7 @@ export default function Schedule() {
       <tbody>
         <tr>
           {cells.map((item) => (
-            <TimeSlot item={item} />
+            <TimeSlot item={item} id={props.id} />
           ))}
         </tr>
       </tbody>

@@ -86,7 +86,9 @@ function Row({ item, selected }: Props) {
         </td>
         <td>
           <Link to={`/lec-hall-allocation/booking/${selected}/${item.id}`}>
-            <button className="book-button">Book</button>
+            <button className="book-button" style={{ height: "30px" }}>
+              Book
+            </button>
           </Link>
         </td>
       </tr>

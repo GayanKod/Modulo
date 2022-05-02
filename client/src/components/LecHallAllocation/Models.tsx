@@ -14,4 +14,5 @@ export interface Options {
 
 export interface TimeSlotCell {
   item: number;
+  id: string;
 }
