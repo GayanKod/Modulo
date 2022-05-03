@@ -1,12 +1,15 @@
+import GirlImg from "../../../../src/assets/img/SearchbarGirl.png";
+
 function DocumentSearch() {
   return (
     <div className="DocumentSearch">
       <input
         type="text"
-        className="searchbar"
+        className="DocumentSearch-searchbar"
         placeholder="Search documents"
       ></input>
-      <button type="submit" className="searchbutton">
+
+      <button type="submit" className="DocumentSearch-searchbutton">
         Search
       </button>
     </div>

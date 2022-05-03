@@ -15,7 +15,8 @@ function App() {
           <Route path="/" element={<HeroSection />} />
           <Route path="/" element={<LandingPage />} />
           <Route path="/document-upload" element={<DocumentUpload />} />
-          {/* <Route path="/lec-hall-allocation" element={<LecHomePage />} /> */}
+          <Route path="/document-download" element={<DocumentDownload />} />
+          <Route path="/lec-hall-allocation" element={<LecHomePage />} />
         </Routes>
       </Router>
     </>
