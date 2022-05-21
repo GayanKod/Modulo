@@ -2,18 +2,18 @@ export const MenuItems = [
 
     {
         title : 'Admin Panel',
-        url : '#',
+        url : '/admin-panel',
         cName : 'nav-links',
         id:'adminPanel'
     },
     {
         title : 'Features',
-        url : '#',
+        url : '#Features',
         cName : 'nav-links'
     },
     {
         title : 'Our Team',
-        url : '#',
+        url : '#Our-Team',
         cName : 'nav-links'
     },
     {

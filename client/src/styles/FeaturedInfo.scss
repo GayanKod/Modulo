@@ -1,0 +1,35 @@
+.featuredAP {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .featuredAP-Item {
+    flex: 1;
+    margin: 0px 20px;
+    padding: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  }
+  
+  .featuredAP-Title{
+      font-size: 20px;
+  }
+  
+  .featuredAP-CountContainer{
+      margin: 10px 0px;
+      display: flex;
+      align-items: center;
+  }
+  
+  .featuredAP-Count{
+      font-size: 30px;
+      font-weight: 600;
+  }
+  
+  .featuredAP-Des{
+      font-size: 15px;
+      color: gray;
+  }

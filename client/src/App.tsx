@@ -6,6 +6,10 @@ import LecHomePage from "./pages/LecHomePage";
 import DocumentUpload from "./pages/DocumentUpload";
 import DocumentDownload from "./pages/DocumentDownload";
 import LoginPage from "./pages/Login";
+import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
+import AdminPanelUsers from "./pages/AdminPanel/AdminPanelUsers";
+import AdminPanelUser from "./pages/AdminPanel/AdminPanelUser";
+import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
 
 function App() {
   return (
@@ -26,6 +30,10 @@ function App() {
             element={<LecHallBooking />}
           />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin-panel" element={<AdminPanelHome/>} />
+          <Route path="/admin-panel/users" element={<AdminPanelUsers/>} />
+          <Route path="/admin-panel/users/:userId" element={<AdminPanelUser/>} />
+          <Route path="/admin-panel/users/newUser" element={<AdminPanelNewUser/>} />
         </Routes>
       </Router>
     </>
