@@ -29,7 +29,7 @@ export default function DateSelector() {
   const nth = () => {
     switch (date % 10) {
       case 1: {
-        if (date == 11) {
+        if (date === 11) {
           return "th";
         }
         return "st";
@@ -58,7 +58,7 @@ export default function DateSelector() {
       case 5:
       case 7:
       case 8: {
-        if (date == 31) {
+        if (date === 31) {
           setDate(1);
           setMonth(month + 1);
         } else {
@@ -69,10 +69,10 @@ export default function DateSelector() {
         break;
       }
       case 2: {
-        if (year % 4 == 0 && date == 29) {
+        if (year % 4 === 0 && date === 29) {
           setDate(1);
           setMonth(month + 1);
-        } else if (year % 4 != 0 && date == 28) {
+        } else if (year % 4 !== 0 && date === 28) {
           setDate(1);
           setMonth(month + 1);
         } else {
@@ -87,7 +87,7 @@ export default function DateSelector() {
       case 6:
       case 9:
       case 11: {
-        if (date == 30) {
+        if (date === 30) {
           setDate(1);
           setMonth(month + 1);
           console.log(date);
@@ -102,7 +102,7 @@ export default function DateSelector() {
         break;
       }
       case 12: {
-        if (date == 31) {
+        if (date === 31) {
           setDate(1);
           setMonth(1);
           setYear(year + 1);
@@ -122,7 +122,7 @@ export default function DateSelector() {
     if (count > 0) {
       switch (month) {
         case 1: {
-          if (date == 1) {
+          if (date === 1) {
             setDate(31);
             setMonth(12);
             setYear(year - 1);
@@ -138,7 +138,7 @@ export default function DateSelector() {
         case 8:
         case 9:
         case 11: {
-          if (date == 1) {
+          if (date === 1) {
             setDate(31);
             setMonth(month - 1);
           } else {
@@ -148,10 +148,10 @@ export default function DateSelector() {
           break;
         }
         case 3: {
-          if (year % 4 == 0 && date == 1) {
+          if (year % 4 === 0 && date === 1) {
             setDate(29);
             setMonth(2);
-          } else if (year % 4 != 0 && date == 1) {
+          } else if (year % 4 !== 0 && date === 1) {
             setDate(28);
             setMonth(month - 1);
           } else {
@@ -164,7 +164,7 @@ export default function DateSelector() {
         case 7:
         case 10:
         case 12: {
-          if (date == 1) {
+          if (date === 1) {
             setDate(30);
 
             setMonth(month - 1);
@@ -184,7 +184,7 @@ export default function DateSelector() {
   return (
     <div className="date">
       <button
-        disabled={count == 0 ? true : false}
+        disabled={count === 0 ? true : false}
         className="date-arrow"
         onClick={subtractDate}
         style={{ cursor: "pointer" }}
