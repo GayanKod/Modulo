@@ -8,82 +8,71 @@ namespace API.Controllers
     [ApiController]
     public class AdminController : ControllerBase
     {
-        private static List<Admin> admins = new List<Admin>
+        private readonly DataContext _context;
+        public AdminController(DataContext dataContext)
         {
-                new Admin
-                {
-                    AdminID = "A001",
-                    AdminName ="Gayan",
-                    DOB="1999/5/9",
-                    Gender ="Male",
-                    StreetNo="3/13",
-                    Street="Rathu Palliya Rd",
-                    Town="Panadura",
-                    AdminType="SA"
-                },
-                new Admin
-                {
-                    AdminID = "A002",
-                    AdminName ="Dinidu",
-                    DOB="1999/12/10",
-                    Gender ="Male",
-                    StreetNo="89",
-                    Street="Galle Rd",
-                    Town="Colombo",
-                    AdminType="SA"
-                }
-        };
+            _context = dataContext;
+        }
 
+        [Route("get-admins")]
         [HttpGet]
         public async Task<ActionResult<List<Admin>>> GetAdmins()
         {
-            return Ok(admins);
+            return Ok(await _context.Admins.ToListAsync());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("get-admins/{id}")]
         public async Task<ActionResult<Admin>> GetAdmin(String id)
         {
-            var admin = admins.Find(ad => ad.AdminID == id);
+            var admin = await _context.Admins.FindAsync(id);
             if(admin == null)
                 return BadRequest("Admin Not Found!");
             return Ok(admin);
         }
 
+        [Route("add-admin")]
         [HttpPost]
         public async Task<ActionResult<List<Admin>>> AddAdmin(Admin admin)
         {
-            admins.Add(admin);
-            return Ok(admins);
+            _context.Admins.Add(admin);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Admins.ToListAsync());
         }
 
+        [Route("update-admin")]
         [HttpPut]
         public async Task<ActionResult<List<Admin>>> UpdateAdmin(Admin req)
         {
-            var admin = admins.Find(ad => ad.AdminID == req.AdminID);
-            if (admin == null)
+            var dbadmin = await _context.Admins.FindAsync(req.AdminID);
+            if (dbadmin == null)
                 return BadRequest("Admin Not Found!");
             
-            admin.AdminID = req.AdminID;
-            admin.AdminName = req.AdminName;
-            admin.Gender = req.Gender;
-            admin.DOB = req.DOB;
-            admin.StreetNo = req.StreetNo;
-            admin.Street = req.Street;
-            admin.Town = req.Town;
-            admin.AdminType = req.AdminType;
+            dbadmin.AdminID = req.AdminID;
+            dbadmin.AdminName = req.AdminName;
+            dbadmin.Gender = req.Gender;
+            dbadmin.DOB = req.DOB;
+            dbadmin.StreetNo = req.StreetNo;
+            dbadmin.Street = req.Street;
+            dbadmin.Town = req.Town;
+            dbadmin.AdminType = req.AdminType;
 
-            return Ok(admins);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Admins.ToListAsync());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete-admin/{id}")]
         public async Task<ActionResult<List<Admin>>> DeleteAdmin(String id)
         {
-            var admin = admins.Find(ad => ad.AdminID == id);
-            if (admin == null)
+            var dbadmin = await _context.Admins.FindAsync(id);
+            if (dbadmin == null)
                 return BadRequest("Admin Not Found!");
 
-            admins.Remove(admin);
-            return Ok(admins);
+            _context.Admins.Remove(dbadmin);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Admins.ToListAsync());
         }
 
     }
