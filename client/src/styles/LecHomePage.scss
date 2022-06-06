@@ -113,10 +113,6 @@
     }
   }
 
-  // tr:not(.hidden):nth-of-type(even) {
-  //   background-color: #f1f1f1;
-  // }
-
   tr {
     height: 3em;
     text-align: center;
@@ -205,11 +201,11 @@
   height: 30px;
   padding: 5px 20px 5px 20px;
   background: none;
-  // border: solid $P5 2px;
+
   border-radius: 5px;
   color: $P5;
   font-weight: 600;
-  // unique
+
   border: none;
   color: inherit;
   padding: none;

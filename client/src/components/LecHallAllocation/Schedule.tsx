@@ -1,5 +1,5 @@
 import { traceDeprecation } from "process";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isClassStaticBlockDeclaration } from "typescript";
 import "../../styles/LecHallBooking.scss";
 import "../../styles/LecHomePage.scss";
@@ -12,6 +12,11 @@ type ScheduleProps = {
 function TimeSlot({ item, id }: TimeSlotCell) {
   const [selectedSlot, setSelectedSlot] = useState<number[]>([]);
   const [picked, setPicked] = useState(false);
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log(selectedSlot);
+  });
 
   return (
     <>
