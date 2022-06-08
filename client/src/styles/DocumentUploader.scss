@@ -1,0 +1,191 @@
+@import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.DocumentUploader {
+  display: flex;
+  flex-direction: column;
+
+  .DocumentManager-title {
+    text-align: center;
+    margin-top: 20px;
+
+    .DocumentManager-title-main {
+      color: $O;
+    }
+    .DocumentManager-title-sub {
+      color: $P6;
+    }
+    h1,
+    h2 {
+      display: inline;
+    }
+  }
+  .FileSelector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .Fileselector-container {
+      width: 75%;
+      height: 200px;
+      position: relative;
+      margin: 25px;
+      border: 2px dashed #746e6e;
+      padding: 35px 20px;
+      border-radius: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(157, 78, 221, 0.2);
+
+      .pdf-image {
+        height: 100px;
+        width: 75px;
+      }
+
+      .Fileselector-container-choose-file-input {
+        font-size: 18px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: none;
+        text-transform: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+
+        &:focus {
+          outline: none;
+        }
+      }
+      .Fileselector-container-choose-file-label {
+        background-color: $P6;
+        height: 40px;
+        width: 225px;
+        border-radius: 15px;
+        border: none;
+        color: white;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+          background-color: $P4;
+        }
+      }
+      .Fileselector-container-drag-file-text {
+        color: #746e6e;
+        margin: 10px;
+      }
+    }
+    .fileDetailForm {
+      width: 75%;
+      height: 225px;
+      display: flex;
+      justify-content: center;
+      font-size: 15px;
+      // background-color: aquamarine;
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #c4c4c4;
+        background-color: #c4c4c4;
+        border-radius: 15px;
+        box-sizing: border-box;
+        font-family: poppins;
+
+        &:active {
+          border: 1px solid red;
+        }
+      }
+      .fileDetailForm-buttons {
+        display: flex;
+        //background-color: burlywood;
+        justify-content: space-between;
+        .fileDetailForm-buttons-uploadButton,
+        .fileDetailForm-buttons-cancelButton {
+          width: 40%;
+          height: 40px;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: none;
+          background-color: $P6;
+          color: white;
+          border-radius: 4px;
+          box-sizing: border-box;
+          font-family: poppins;
+          font-size: 15px;
+          border-radius: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &:hover {
+            cursor: pointer;
+            background-color: $P4;
+          }
+          &:active {
+            transform: translateY(4px);
+          }
+        }
+      }
+    }
+  }
+  .RecentUpload {
+    //background-color: chartreuse;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .RecentUpload-table {
+      width: 75%;
+      //background-color: darkorange;
+      border-spacing: 15px;
+      margin: 0;
+      font-size: 15px;
+      .RecentUpload-table-caption {
+        font-size: large;
+        text-align: left;
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+
+      thead {
+        th {
+          text-align: left;
+          padding: 0 10px 0 10px;
+          color: $O;
+        }
+        .RecentUpload-table-headers {
+          outline: none;
+        }
+      }
+      tbody {
+        td {
+          padding: 20px 10px;
+        }
+        tr {
+          outline: 1px solid #746e6e;
+          border-radius: 5px;
+        }
+        .RecentUpload-table-deleteButton {
+          border: none;
+          background: none;
+          &:hover {
+            color: $O;
+          }
+        }
+      }
+    }
+  }
+}
