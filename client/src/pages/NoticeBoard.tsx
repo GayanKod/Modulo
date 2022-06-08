@@ -11,9 +11,17 @@ function NoticeBoard(){
      <div>
             <Navbar2 />
             <div className="NoticeBoard">
-                  <span className ="NoticeBoard-title">   
-                                  <h1>Notice Board</h1>
-                                  <p>Order by:</p><Dropdown/>
+                  <span className ="NoticeBoard-title">  
+                 
+                   <div id='leftbox'>
+                   <h1>Notice Board</h1>
+                   </div>
+
+                   <div id='rightbox'>
+                   <p>Order by:</p><Dropdown/>
+                   </div>
+                        
+                                  
                   </span>
                   <br></br>
                   <div>

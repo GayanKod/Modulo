@@ -33,6 +33,19 @@
         color: #ff5c55;
       
 }
+#leftbox {
+    float:left; 
+    width:50%;
+    height:70px;
+
+}
+
+#rightbox{
+    float:right;
+    width:50%;
+    height:80px;
+}
+
 
 .header{
     font-family: "Poppins", sans-serif;
@@ -43,3 +56,6 @@
    
 }
 
+.NoticeBoard-title .h1{
+    align-items:flex-start;
+}

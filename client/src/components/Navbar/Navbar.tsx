@@ -1,6 +1,8 @@
 import React, {useState}  from 'react';
+import {Link} from "react-router-dom";
 import { MenuItems } from './MenuItems';
 import '../../styles/Navbar.scss';
+import ModuloLogo from "../../assets/img/LogoModulo.png"
 
 function Navbar(){
 
@@ -9,7 +11,9 @@ function Navbar(){
     return(
         <header>
             <nav className="NavbarItems">
-                <h1 className="navbar-logo">Modulo</h1>
+                <h1 className="navbar-logo">
+                    <Link to="/"><img src={ModuloLogo} alt="logo" className="navbar-logo-modulo"/></Link>
+                </h1>
                 <div className="menu-icon" onClick={()=> isClicked(!clicked)}>
                     <i className={ clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
                 </div>
