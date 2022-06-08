@@ -22,10 +22,10 @@ import "../styles/LecHomePage.scss";
 
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
-  const { selected } = useParams<{ selected: string }>();
-  const defaultSelectValue = HallDetails.find(
-    (item) => item.id === parseInt(id as string)
-  );
+  // const { selected } = useParams<{ selected: string }>();
+  // const defaultSelectValue = HallDetails.find(
+  //   (item) => item.id === parseInt(id as string)
+  // );
 
   return (
     <>

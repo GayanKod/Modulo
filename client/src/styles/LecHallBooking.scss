@@ -27,12 +27,12 @@
 }
 
 .booking-details {
-  width: 30%;
+  width: 500px;
   margin: auto;
   padding: 30px;
   border-radius: 20px;
 
-  background-color: #e9e9e9;
+  background-color: #ebdcf8;
 
   h3 {
     text-align: center;
@@ -89,5 +89,21 @@
     &:active {
       background-color: $P3;
     }
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  // .hidden {
+  //   display: none !important;
+  // }
+}
+
+@media only screen and (max-width: 950px) {
+  .hide {
+    display: none;
+  }
+
+  .page-title {
+    font-size: 30px;
   }
 }

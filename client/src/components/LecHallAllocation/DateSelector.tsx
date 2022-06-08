@@ -27,20 +27,24 @@ export default function DateSelector() {
   ];
 
   const nth = () => {
-    switch (date % 10) {
-      case 1: {
-        if (date == 11) {
-          return "th";
+    if (date / 10 === 1) {
+      return "th";
+    } else {
+      switch (date % 10) {
+        case 1: {
+          if (date == 11) {
+            return "th";
+          }
+          return "st";
         }
-        return "st";
-      }
 
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
+        case 2:
+          return "nd";
+        case 3:
+          return "rd";
+        default:
+          return "th";
+      }
     }
   };
 

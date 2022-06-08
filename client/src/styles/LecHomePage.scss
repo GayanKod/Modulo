@@ -100,7 +100,7 @@
     overflow: auto;
     color: #2c2c2c;
     tr:nth-child(even) {
-      background-color: #e9e9e9;
+      background-color: #e9e9e948;
     }
   }
 
@@ -141,10 +141,11 @@
   margin: auto;
   display: table;
   font-size: 0.9em;
+
   tr {
     border-bottom: 1px solid grey;
-
     text-align: center;
+
     th {
       font-weight: 500;
     }
