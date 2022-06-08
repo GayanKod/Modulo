@@ -9,7 +9,7 @@ function FeaturesSection(){
     return(
         <>
             <LandingPgHeader title="Features"/>
-            <div className="features-card-container">
+            <div className="features-card-container" id="Features">
                 {FeaturesDetails.map((item,index)=>{
                     return(
                         <Card key={index} desc={item.desc} title={item.title}/>
