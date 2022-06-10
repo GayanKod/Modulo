@@ -1,5 +1,7 @@
 global using API.DocumentData;
 global using Microsoft.EntityFrameworkCore;
+using API.Logic;
+using Azure.Storage.Blobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,11 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddScoped(options =>
+{
+    return new BlobServiceClient(builder.Configuration.GetConnectionString("AzureConnection"));
+});
+builder.Services.AddScoped<IFileManagerLogic, FileManagerLogic>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
