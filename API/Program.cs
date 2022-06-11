@@ -1,5 +1,6 @@
 global using API.Data;
 global using Microsoft.EntityFrameworkCore;
+global using API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
