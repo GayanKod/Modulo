@@ -10,6 +10,8 @@ const NoticeInput :FC = () => {
     const [notice, setNotice] =useState<string>("");
     const [description, setDescription] =useState<string>("");
     const [noticeList, setNoticeList] =useState<INotice[]>([]);
+    const [edit, setEdit] =useState<boolean>(false);
+    // const [editNotice, setEditNotice]=useState<string>("");
    
   
    

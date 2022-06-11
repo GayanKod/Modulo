@@ -11,6 +11,8 @@ import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
 import AdminPanelUsers from "./pages/AdminPanel/AdminPanelUsers";
 import AdminPanelUser from "./pages/AdminPanel/AdminPanelUser";
 import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
+import NoticeboardStudent from "./pages/NoticeboardStudent";
+import NoticeboardStaff from "./pages/NoticeboardStaff";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
           <Route  path="/timeline" element={<TimelinePage/>}/>
           <Route path="/lec-hall-allocation" element={<LecHomePage />} /> */}
           <Route path="/noticeboard" element={<NoticeBoard />} />
+          <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
+          <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
+          
           {/* <Route
             path="/lec-hall-allocation/booking"
             element={<LecHallBooking />}

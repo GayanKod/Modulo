@@ -1,4 +1,5 @@
 import React, {useState}  from 'react';
+import { render } from 'react-dom';
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
@@ -7,12 +8,15 @@ import MessageOutlinedIcon from "@material-ui/icons/MessageOutlined";
 
 
 
+
 interface Props {
 
   notice: INotice;
+  
   deleteNotice(noticeTitleToDelete: string): void;
   editNotice(noticeToEdit: string): void;
   sendSMS(noticeToSendSMS: string): void;
+ 
 
 }
 
@@ -20,14 +24,23 @@ interface Props {
 
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
+  
+
+  
+  
     return (
-     
+    
     <div className="notice">
 
       <div className="content">
           <div className="title">
             {notice.noticeTitle}
-            
+            &nbsp;&nbsp;&nbsp;
+          <div className="date">
+          
+            {notice.date}
+          </div>
+          
             </div>
 
           <hr></hr>
