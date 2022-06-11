@@ -1,14 +1,22 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface Item {
-  id: number;
-  name: string;
+  Id: number;
+  FloorNumber: number;
+  BuildingNumber: number;
   capacity: number;
-  location: string;
+  labType?: string;
+  resources?: {
+    Id: number;
+    ResourceName: string;
+    Quantity: number;
+  }[];
+
+  classRoomType: number;
 }
 
 export interface Options {
-  value: string;
+  value: number;
   label: string;
 }
 

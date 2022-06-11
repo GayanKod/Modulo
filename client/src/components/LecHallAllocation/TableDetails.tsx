@@ -1,30 +1,33 @@
 import { useEffect, useState } from "react";
-import { HallDetails, LabDetails } from "./Details";
+import { ClassRooms } from "./Details";
 
 import { Item } from "./Models";
 
 import { Link } from "react-router-dom";
 import TimeTable from "./TimeTable";
+import Resources from "./Resources";
 
 interface Props {
-  selected: string;
-  open?: boolean;
+  selected: number;
+  // open?: boolean;
   item?: Item;
 }
 
 function TableDetails({ selected }: Props) {
-  const lecHalls = HallDetails.map((item) => (
+  const isHall = (c: any) => c.classRoomType == 0;
+  const isLab = (c: any) => c.classRoomType == 1;
+  const lecHalls = ClassRooms.filter(isHall).map((item) => (
     <Row item={item} selected={selected} />
   ));
-  const labs = LabDetails.map((item) => (
+  const labs = ClassRooms.filter(isLab).map((item) => (
     <Row item={item} selected={selected} />
   ));
 
   switch (selected) {
-    case "lec":
+    case 0:
       return <>{lecHalls}</>;
 
-    case "lab":
+    case 1:
       return <>{labs}</>;
     default:
       return <></>;
@@ -61,13 +64,13 @@ function Row({ item, selected }: Props) {
 
   return (
     <>
-      <tr key={item.id}>
-        <td className="hide">{item.id}</td>
+      <tr key={item.Id}>
+        <td className="hide">{item.Id}</td>
         <td className="hidden">
           <button
             className="hidden expand-button"
             onClick={() => {
-              toggleShown(item.id);
+              toggleShown(item.Id);
               setOpen(!open);
             }}
           >
@@ -78,14 +81,22 @@ function Row({ item, selected }: Props) {
             )}
           </button>
         </td>
-        <td>{item.name}</td>
+        <td>{`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.Id}`}</td>
+        <td hidden={selected == 0}>{item.labType}</td>
         <td className="hide">{item.capacity}</td>
-        <td className="hide">{item.location}</td>
-        <td>
-          <TimeTable selected={selected} id={item.id} />
+        <td className="hide">{`Building: ${item.BuildingNumber}, Floor: ${item.FloorNumber}`}</td>
+        <td hidden={selected == 0}>
+          <Resources id={item.Id} />
         </td>
         <td>
-          <Link to={`/lec-hall-allocation/booking/${selected}/${item.id}`}>
+          <TimeTable selected={selected} id={item.Id} />
+        </td>
+        <td>
+          <Link
+            to={`/lec-hall-allocation/booking/${
+              selected == 0 ? "Lecture-halls" : "Labs" //chnage to selected if needed
+            }/${item.Id}`}
+          >
             <button className="book-button" style={{ height: "30px" }}>
               Book
             </button>
@@ -93,7 +104,7 @@ function Row({ item, selected }: Props) {
         </td>
       </tr>
 
-      {shown.includes(item.id) && (
+      {shown.includes(item.Id) && (
         <tr className="hidden" style={{ backgroundColor: "#f8f8f8" }}>
           <td className="hidden" colSpan={12} style={{ paddingBottom: "20px" }}>
             <h3
@@ -105,7 +116,7 @@ function Row({ item, selected }: Props) {
                 backgroundColor: "#e8e8e8",
               }}
             >
-              {item.name}
+              {`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.Id}`}
             </h3>
             <table className="details-table hidden" style={hiddenTable}>
               <div className="thead">
@@ -114,6 +125,7 @@ function Row({ item, selected }: Props) {
                     <th>Hall Id</th>
                     <th>Capacity</th>
                     <th>Location</th>
+                    <th>Resources</th>
                   </tr>
                 </thead>
               </div>
@@ -121,9 +133,11 @@ function Row({ item, selected }: Props) {
               <div className="tbody">
                 <tbody>
                   <tr>
-                    <td style={hiddenTable}>{item.id}</td>
+                    <td style={hiddenTable}>{item.Id}</td>
                     <td style={hiddenTable}>{item.capacity}</td>
-                    <td style={hiddenTable}>{item.location}</td>
+                    <td
+                      style={hiddenTable}
+                    >{`Building: ${item.BuildingNumber}, Floor: ${item.FloorNumber}`}</td>
                   </tr>
                 </tbody>
               </div>

@@ -5,10 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import BookingDetails from "../components/LecHallAllocation/BookingDetails";
 import ColorCode from "../components/LecHallAllocation/ColorCode";
 import DateSelector from "../components/LecHallAllocation/DateSelector";
-import {
-  HallDetails,
-  LabDetails,
-} from "../components/LecHallAllocation/Details";
+
 import Schedule from "../components/LecHallAllocation/Schedule";
 
 import Navbar2 from "../components/Navbar2";
@@ -16,12 +13,9 @@ import PageTitle from "../components/PageTitle";
 import "../styles/LecHallBooking.scss";
 import "../styles/LecHomePage.scss";
 
-// type BookingProps = {
-//   selected: string;
-// };
-
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
+  const { selected } = useParams<{ selected: string }>();
   // const { selected } = useParams<{ selected: string }>();
   // const defaultSelectValue = HallDetails.find(
   //   (item) => item.id === parseInt(id as string)
@@ -35,7 +29,7 @@ function LecHallBooking() {
         <PageTitle title={"Lecture Hall and Lab Allocation - Booking"} />
 
         <div className="booking-details">
-          <BookingDetails id={id} />
+          <BookingDetails selected={selected as string} id={id as string} />
         </div>
 
         <hr

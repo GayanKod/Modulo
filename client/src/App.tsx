@@ -13,9 +13,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/document-upload" element={<DocumentUpload />} />
-          <Route path="/document-download" element={<DocumentDownload />} />
-          <Route  path="/timeline" element={<TimelinePage/>}/>
+          {/* <Route path="/document-upload" element={<DocumentUpload />} /> */}
+          {/* <Route path="/document-download" element={<DocumentDownload />} /> */}
+          <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route
             path="/lec-hall-allocation/booking"

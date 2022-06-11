@@ -5,13 +5,12 @@ import PageTitle from "../components/PageTitle";
 // import Filter from "../components/LecHallAllocation/Filter";
 import Select from "react-select";
 import Filter from "../components/LecHallAllocation/Filter";
-import { Options } from "../components/LecHallAllocation/Models";
 import Navbar2 from "../components/Navbar2";
 
 export default function LecHomePage() {
   let options = [
-    { value: "lec", label: "Lecture Halls" },
-    { value: "lab", label: "Labs" },
+    { value: 0, label: "Lecture Halls" },
+    { value: 1, label: "Labs" },
   ];
 
   const [selected, setSelected] = useState(options[0]);
@@ -34,9 +33,11 @@ export default function LecHomePage() {
                 <th className="hidden"></th>
                 <th className="hide">Hall ID</th>
                 <th>Hall Name</th>
+                <th hidden={selected.value == 0}>Lab Type</th>
                 <th className="hide">Hall capacity</th>
                 <th className="hide">Hall Location</th>
-                <th>Availability</th>
+                <th hidden={selected.value == 0}>Resources</th>
+                <th>Availabiliy</th>
                 <th></th>
               </tr>
             </thead>

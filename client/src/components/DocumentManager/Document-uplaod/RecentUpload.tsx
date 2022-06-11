@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Documents } from "./Documents";
-import DeleteIcon from "@material-ui/icons/Delete";
+// import DeleteIcon from "@material-ui/icons/Delete";
 
 interface RecentUploadProps {
   docs: Documents[];
@@ -32,7 +32,7 @@ function RecentUpload(props: RecentUploadProps) {
               <td>{item.description}</td>
               <td>
                 <button className="RecentUpload-table-deleteButton">
-                  <DeleteIcon />
+                  {/* <DeleteIcon /> */}
                 </button>
               </td>
             </tr>

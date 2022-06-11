@@ -14,7 +14,7 @@ import DateSelector from "./DateSelector";
 import Schedule from "./Schedule";
 
 type TimeTableProps = {
-  selected: string;
+  selected: number;
   id: number;
 };
 
