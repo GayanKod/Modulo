@@ -2,14 +2,21 @@
 {
     public class Admin
     {
-        public String AdminID { get; set; }
-        public String AdminName { get; set; }
-        public String DOB { get; set; }
-        public String Gender { get; set; }
-        public String StreetNo { get; set; }
-        public String Street { get; set; }
-        public String Town { get; set; }
-        public String AdminType { get; set; }
+        public string AdminID { get; set; }
+        public string AdminName { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public DateTime DOB { get; set; }
+        public string Gender { get; set; }
+        public string? StreetNo { get; set; }
+        public string? Street { get; set; }
+        public string? Town { get; set; }
+        public string AdminType { get; set; }
+        public byte[] PasswordHash { get; set; } = new byte[32];
+        public byte[] PasswordSalt { get; set; } = new byte[32];
+        public string? VerificationToken { get; set; }
+        public DateTime? VerifiedAt { get; set; }
+        public string? PasswordResetToken { get; set; }
+        public DateTime? ResetTokenExpires { get; set; }
 
     }
 }
