@@ -1,6 +1,5 @@
 import React, {FC, ChangeEvent, useState} from 'react';
 import {INotice} from "./interface";
-
 import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
 
