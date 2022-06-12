@@ -2,8 +2,8 @@ import Dropdown from '../components/Noticeboard/Dropdown';
 import "../styles/NoticeBoard.scss";
 import "../styles/StudentNoticesStyles.scss";
 import Navbar2 from '../components/Navbar2';
-import NoticeContainer from "../components/Noticeboard/Noticebox";
-
+import NoticeContainer from "../components/Noticeboard/NoticeBox";
+import NoticeItem from '../components/Noticeboard/NoticeItem';
 
 function NoticeboardStudent(){
 
@@ -40,7 +40,7 @@ function NoticeboardStudent(){
                     <span className='btn4'>
                     <button>Accomplishments</button> 
                     </span> 
-
+         
                     <div>
                     <NoticeContainer/>
                 </div>                       

@@ -1,6 +1,7 @@
 import React, {FC, ChangeEvent, useState} from 'react';
 import NoticeCard from "../components/Noticeboard/NoticeCard";
 import Dropdown from '../components/Noticeboard/Dropdown';
+import DropdownV2 from '../components/Noticeboard/DropdownV2';
 import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
 
@@ -19,8 +20,11 @@ function NoticeboardStaff(){
   
                      <div id='rightbox'>
                      <p>Order by:</p><Dropdown/>
+                     <br></br>
+                     <p>Display by:</p><DropdownV2/>
                      </div>
-                          
+
+               
                                     
                     </span>
                     <br></br>
