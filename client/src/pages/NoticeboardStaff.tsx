@@ -4,6 +4,7 @@ import Dropdown from '../components/Noticeboard/Dropdown';
 import DropdownV2 from '../components/Noticeboard/DropdownV2';
 import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
+import NoticeContainer from '../components/Noticeboard/NoticeBox';
 
 
 function NoticeboardStaff(){
@@ -24,10 +25,16 @@ function NoticeboardStaff(){
                      <p>Display by:</p><DropdownV2/>
                      </div>
 
-               
                                     
                     </span>
                     <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div>
+                    <NoticeContainer/>
+                </div>
                       
            </div>
        </div>    

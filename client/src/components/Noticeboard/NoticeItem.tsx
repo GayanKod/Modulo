@@ -1,21 +1,26 @@
 // import "../styles/StudentNoticesStyles.scss";
+import "../../styles/NoticeCard.scss";
 
 function NoticeItem({ data }: { [key: string]: any; }) {
     return (
-        <div className="notice-item">
-            <div className="notice-item-content">
+        <div className="notice">
+            <div className="content">
 
-                <div className="notice-title">
+                <div className="title">
                     {data.noticeTitle}
                 </div>
 
+                <span className="date">
+                    {data.dateTime}
+                </span>
+                <hr></hr>
+                <br></br>
 
                 <div className="description">
                     {data.description}
                 </div>
             </div>
         </div>
-
     );
 }
 

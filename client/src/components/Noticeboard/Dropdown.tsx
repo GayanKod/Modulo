@@ -1,8 +1,5 @@
-
 import React, { useState } from "react";
 import "../../styles/NoticeDropdown.scss";
-
-
 
 const Dropdown: React.FunctionComponent = () => {
   const [selectedOption, setSelectedOption] = useState<String>();
@@ -19,11 +16,10 @@ const Dropdown: React.FunctionComponent = () => {
                       <option value="3">All</option>
               </select>
 </div>
-
-
-
   );
-  };
+};
+
+export default Dropdown;
 
 
 
@@ -45,7 +41,7 @@ const Dropdown: React.FunctionComponent = () => {
 //   );
 //};
 
-export default Dropdown;
+
 
 
 // Just some styles

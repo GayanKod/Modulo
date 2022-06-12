@@ -40,7 +40,11 @@ function NoticeboardStudent(){
                     <span className='btn4'>
                     <button>Accomplishments</button> 
                     </span> 
-         
+                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br>
+
                     <div>
                     <NoticeContainer/>
                 </div>                       
