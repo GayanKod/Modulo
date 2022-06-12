@@ -1,9 +1,8 @@
-import React, {FC, ChangeEvent, useState} from 'react';
-import NoticeCard from "../components/Noticeboard/NoticeCard";
 import Dropdown from '../components/Noticeboard/Dropdown';
 import "../styles/NoticeBoard.scss";
 import "../styles/StudentNoticesStyles.scss";
 import Navbar2 from '../components/Navbar2';
+import NoticeContainer from "../components/Noticeboard/Noticebox";
 
 
 function NoticeboardStudent(){
@@ -30,22 +29,24 @@ function NoticeboardStudent(){
             
 
             <div className="buttons1">
-                    <span className='btn4'>
-                    <button>Accouncements</button> 
-                    </span>
+            
+        
+                     <span className='btn3'>
+                     <button>Accouncements</button> 
+                     </span>
                     
-                    &nbsp;&nbsp;&nbsp;
-
+                     &nbsp;&nbsp;&nbsp;
 
                     <span className='btn4'>
                     <button>Accomplishments</button> 
-                    </span>                      
+                    </span> 
+
+                    <div>
+                    <NoticeContainer/>
+                </div>                       
               </div>
             </div>
-                 
-        </div>   
-       
-     
+         </div>
          
      );
 
