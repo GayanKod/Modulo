@@ -31,7 +31,7 @@ function NoticeBoard(){
                     
          </div>
                   <div>
-                  <Footer/>
+                  {/* <Footer/> */}
                   </div> 
      </div> 
      

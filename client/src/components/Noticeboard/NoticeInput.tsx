@@ -61,16 +61,17 @@ const NoticeInput :FC = () => {
      return  (
        <div className="NoticeInput">
         
-       <div className="header">
-         <br>
-         </br>
-         <div className="InputTitle">
-         <p>New Notice</p>
-         </div>
+            <div className="header">
+            <br>
+            </br>
+            <div className="InputTitle">
+            <p>New Notice</p>
+            </div>
 
-         <hr></hr>
-         <br></br>
-         <div>
+                <hr></hr>
+                <br></br>
+
+            <div>
             <p>Notice Title:</p>
             <div className="inputContainer">
             <input 
@@ -79,8 +80,7 @@ const NoticeInput :FC = () => {
             value={notice}
             onChange={handleChange}/>
             </div>
-
-         </div>
+            </div>
          
         <br></br>
 
@@ -92,11 +92,8 @@ const NoticeInput :FC = () => {
             name="description" 
             value={description}
             onChange={handleChange}/>
-    
        
          </div>
-
-        
         </div>
         <br></br>
         
@@ -115,6 +112,4 @@ const NoticeInput :FC = () => {
      );
    };
    
-
-
 export default NoticeInput;

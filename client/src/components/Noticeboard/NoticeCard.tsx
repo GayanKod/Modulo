@@ -2,6 +2,7 @@ import React, {useState}  from 'react';
 import { render } from 'react-dom';
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
+import { Link } from "react-router-dom";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
@@ -52,30 +53,27 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                 
                 &nbsp;&nbsp;&nbsp;
 
-
+                <Link to ="/noticeboard-edit">
                 <span className='btn2'>
                         {/* <button onClick={() => {
                       editNotice(notice.noticeTitle);
                 }}> */}
-                <button><EditOutlinedIcon />       &nbsp;Edit Notice </button> 
-
-                </span>
+                <button>
+                  <EditOutlinedIcon />       &nbsp;Edit Notice </button>
+                </span>   
+                </Link>
 
                 &nbsp;&nbsp;&nbsp;
 
-
+                <Link to ="/Noticeboard/EditNotice">
                 <span className='btn3'>
                         {/* <button onClick={() => {
                       sendSMS(notice.noticeTitle);
                 }}> */}
                   <button><MessageOutlinedIcon />       &nbsp;Send SMS </button> 
-
-                </span>
+                </span></Link>
           </div>
-      </div>
-
-      
-      
+      </div>     
     </div>
     );
 };

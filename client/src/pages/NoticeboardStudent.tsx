@@ -11,6 +11,7 @@ import Footer from '../components/Footer/Footer';
 function NoticeboardStudent(){
 
     return  (
+      <div>
        <div>
               <Navbar2 />
             <div className="NoticeBoard">
@@ -51,11 +52,18 @@ function NoticeboardStudent(){
                            <NoticeContainer/>
                      
                  
-                </div>                       
+                           <br></br>
+                </div> 
+                <br></br>                      
               </div>
-            </div>
-            
+              <br></br>
+              
+             </div>  
+             <br></br>
+             
          </div>
+         {/* <Footer/> */}
+      </div>
 
 
          

@@ -34,8 +34,9 @@ function NoticeboardStaff(){
                     <br></br>
                     <div>
                     <NoticeContainer/>
+                    <br></br>
                 </div>
-                      
+                    
            </div>
                   
        </div>    

@@ -13,6 +13,7 @@ import AdminPanelUser from "./pages/AdminPanel/AdminPanelUser";
 import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
+import NoticeForm from "./pages/NoticeEditForm";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/noticeboard" element={<NoticeBoard />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
           <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
+          <Route path="/noticeboard-edit" element={<NoticeForm />} />
           
           {/* <Route
             path="/lec-hall-allocation/booking"
