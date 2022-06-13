@@ -1,6 +1,7 @@
 global using API.Data;
 global using Microsoft.EntityFrameworkCore;
-global using API.Models;
+global using API.Models.Entities;
+global using API.Models.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
