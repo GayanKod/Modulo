@@ -36,6 +36,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<Document>>> Add(Document document)
         {
+           
            _context.Documents.Add(document);
             await _context.SaveChangesAsync();
            return Ok(await _context.Documents.ToListAsync());

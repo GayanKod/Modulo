@@ -8,7 +8,7 @@
         public string Description { get; set; } = string.Empty ;
         public int TotalPages { get; set; }
         public int DocumentSize { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.Now;
         public string DocumentURL { get; set; } = string.Empty ;
         public int UserId { get; set; } 
         

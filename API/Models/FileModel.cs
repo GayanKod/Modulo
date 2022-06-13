@@ -2,6 +2,7 @@
 {
     public class FileModel
     {
-        public IFormFile MyFile { get; set; }
+        public IFormFile MyFile { get; set; } 
+        
     }
 }
