@@ -114,11 +114,11 @@ namespace API.Controllers
 
 
             //return Ok($"Welcome Back, {user.Email}! :)");
-            string token = CreateToken(admin);
+            string token = CreateJWTToken(admin);
             return Ok(token);
         }
 
-        private string CreateToken(Admin user)
+        private string CreateJWTToken(Admin user)
         {
             List<Claim> claims = new List<Claim>
             {
