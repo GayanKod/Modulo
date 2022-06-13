@@ -43,17 +43,18 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult<List<Admin>>> UpdateAdmin(Admin req)
         {
-            var dbadmin = await _context.Admins.FindAsync(req.AdminID);
+            var dbadmin = await _context.Admins.FindAsync(req.Id);
             if (dbadmin == null)
                 return BadRequest("Admin Not Found!");
             
-            dbadmin.AdminID = req.AdminID;
+            dbadmin.Id = req.Id;
             dbadmin.AdminName = req.AdminName;
             dbadmin.Gender = req.Gender;
             dbadmin.DOB = req.DOB;
             dbadmin.StreetNo = req.StreetNo;
             dbadmin.Street = req.Street;
             dbadmin.Town = req.Town;
+            dbadmin.MobileNumber = req.MobileNumber;
             dbadmin.AdminType = req.AdminType;
 
             await _context.SaveChangesAsync();
@@ -62,7 +63,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("delete-admin/{id}")]
-        public async Task<ActionResult<List<Admin>>> DeleteAdmin(String id)
+        public async Task<ActionResult<List<Admin>>> DeleteAdmin(int id)
         {
             var dbadmin = await _context.Admins.FindAsync(id);
             if (dbadmin == null)
