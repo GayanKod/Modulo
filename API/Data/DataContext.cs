@@ -1,4 +1,4 @@
-﻿using API.Models;
+﻿using API.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -11,5 +11,6 @@ namespace API.Data
         }
 
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Institute> Institutes { get; set; }
     }
 }
