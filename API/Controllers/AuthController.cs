@@ -35,15 +35,62 @@ namespace API.Controllers
             var admin = new Admin
             {
                 Email = request.Email,
+                AdminName = request.AdminFName + " " + request.AdminLName,
+                DOB = request.DOB,
+                Gender = request.Gender,
+                StreetNo = request.StreetNo,
+                Street = request.Street,
+                Town = request.Town,
+                MobileNumber = request.MobileNumber,
+                AdminType = "Super Admin",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 VerificationToken = CreateRandomToken()
             };
 
+            var institute = new Institute
+            {
+                InstituteName = request.InstituteName,
+                ContactNumber = request.InstituteContactNo,
+                Passcode = CreateRandomPasscode()
+            };
+
             _context.Admins.Add(admin);
+            _context.Institutes.Add(institute);
             await _context.SaveChangesAsync();
-            return Ok("User successfully Registered!");
+
+            var adminInst = new AdminInstituteDTO
+            {
+                AdminId =  await _context.Admins.Where(a => a.Email == request.Email).Select(x => x.Id).FirstAsync(),
+                InstituteId = await _context.Institutes.Where(i => i.ContactNumber == request.InstituteContactNo).Select(x => x.Id).FirstAsync()
+            };
+
+            await AddAdminInstitute(adminInst);
+            return Ok("Institute successfully Registered!");
         }
+
+        [HttpPost("AddAdminInstitute")]
+        public async Task<ActionResult<Admin>> AddAdminInstitute(AdminInstituteDTO req)
+        {
+            var admin = await _context.Admins
+                .Where(a => a.Id == req.AdminId)
+                .Include(a => a.Institutes)
+                .FirstOrDefaultAsync();
+            if (admin == null)
+                return NotFound();
+            
+
+            var institute = await _context.Institutes.FindAsync(req.InstituteId);
+            if (institute == null)
+                return NotFound();
+
+
+            admin.Institutes.Add(institute);
+            await _context.SaveChangesAsync();
+
+            return admin;
+        }
+
 
 
         [HttpPost("login")]
@@ -176,5 +223,11 @@ namespace API.Controllers
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
+
+        private string CreateRandomPasscode()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(12));
+        }
+
     }
 }
