@@ -4,11 +4,25 @@
     padding: 20px;
     margin: 100px;
     border-radius: 10px;
-    box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.4);
+    box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.3);
     display: flex;
+    .img{
+        width: 350px;
+        height: auto;
+        padding-left: 30px;
+        margin-top: -10px;
+    }
 }
+ label{
+     font-size: 20px;
+     color: $P4;
+ }
 
-.img{
-    height: 400px;
-    width: 400px;
-}
+ input{
+     padding: 3px;
+     background-color: $P8;
+     border-style: none;
+     border-radius: 5px;
+     width: 30vw;
+ }
+
