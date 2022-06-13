@@ -2,10 +2,9 @@ import React, {useState}  from 'react';
 import { render } from 'react-dom';
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
-import MessageOutlinedIcon from "@material-ui/icons/MessageOutlined";
-
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 
 interface Props {
 
@@ -55,11 +54,10 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 
 
                 <span className='btn2'>
-                        <button onClick={() => {
+                        {/* <button onClick={() => {
                       editNotice(notice.noticeTitle);
-                }}
-                >
-                <EditOutlinedIcon />       &nbsp;Edit Notice </button> 
+                }}> */}
+                <button><EditOutlinedIcon />       &nbsp;Edit Notice </button> 
 
                 </span>
 
@@ -67,11 +65,10 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 
 
                 <span className='btn3'>
-                        <button onClick={() => {
+                        {/* <button onClick={() => {
                       sendSMS(notice.noticeTitle);
-                }}
-                >
-                  <MessageOutlinedIcon />       &nbsp;Send SMS </button> 
+                }}> */}
+                  <button><MessageOutlinedIcon />       &nbsp;Send SMS </button> 
 
                 </span>
           </div>

@@ -4,6 +4,7 @@ import NoticeInput from '../components/Noticeboard/NoticeInput';
 import Dropdown from '../components/Noticeboard/Dropdown';
 import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
+import Footer from '../components/Footer/Footer';
 
 function NoticeBoard(){
 
@@ -26,9 +27,15 @@ function NoticeBoard(){
                   <br></br>
                   <div>
                   <NoticeInput />
-                  </div>     
+                  </div>  
+                    
          </div>
-     </div>    
+                  <div>
+                  <Footer/>
+                  </div> 
+     </div> 
+     
+     
        
 );
 }

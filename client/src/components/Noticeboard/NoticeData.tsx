@@ -12,6 +12,13 @@ export const NoticeData= [
         description: "Every student must fill the google form on Covid-19 Vaccination details which is sent through batch representatives on or before the 7th of February 2022.",
         noticeType: "student",
     },
+
+    {
+        noticeTitle: "Internship Details Form",
+        dateTime: "On March 10th, 12.00 AM",
+        description: "Every student must fill the google form on their Internship details which is sent through batch representatives on or before the 20th of March 2022.",
+        noticeType: "student",
+    },
     {
         noticeTitle: "Project Evaluations",
         dateTime: "On Feb 6th, 10.00 AM",
@@ -30,7 +37,6 @@ export const NoticeData= [
         description: "This is to notify that all the exam time tables of batch 19, and batch 18 have been updated. Please find the updated time tables on the web site.",
         noticeType: "staff",
     },
- 
 
 ];
 
