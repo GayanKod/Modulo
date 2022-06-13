@@ -39,13 +39,26 @@ namespace AzureBlobTest.Controllers
             return await _fileManagerLogic.Allblobs();
         }
 
+        [HttpGet]
+        [Route("download")]
+
+        public async Task<IActionResult> Download(string fileName)
+        {
+            var doc = await _fileManagerLogic.Download(fileName);
+            //return File(doc, "application/octect-stream");
+            return new FileContentResult(doc, "application/octect-stream")
+            {
+                FileDownloadName = fileName
+            };
+        }
+
         [HttpDelete]
         [Route("delete")]
 
         public async Task<IActionResult> Delete(string fileName)
         {
               await _fileManagerLogic.Delete(fileName);
-            
+
             return Ok("Document deleted succesfully");
             
         }
