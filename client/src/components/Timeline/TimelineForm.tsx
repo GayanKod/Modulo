@@ -31,14 +31,19 @@ function TimelineForm() {
         <div className="form-content">
           <h1>Form</h1>
           <form className="wrapper" onSubmit={onSubmit}>
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Event Title</label>
             <br />
             <input type="text" id="title" value={title} onChange={onChange} />
             <br />
             <br />
-            <label htmlFor="body">Body</label>
+            <label htmlFor="date">Start Date</label>
             <br />
-            <input type="text" id="body" value={body} onChange={onChange} />
+            <input type="date" id="sdate" value={body} onChange={onChange} />
+            <br />
+            <br />
+            <label htmlFor="date">End Date</label>
+            <br />
+            <input type="date" id="edate" value={body} onChange={onChange} />
             <br />
             <br />
             <button type="submit">Add an event</button>
