@@ -5,7 +5,7 @@ import DropdownV2 from '../components/Noticeboard/DropdownV2';
 import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
 import NoticeContainer from '../components/Noticeboard/NoticeBox';
-
+import Footer from '../components/Footer/Footer';
 
 function NoticeboardStaff(){
 
@@ -38,7 +38,9 @@ function NoticeboardStaff(){
                 </div>
                     
            </div>
-                  
+               <div>
+               <Footer/>
+               </div>
        </div>    
        
   );

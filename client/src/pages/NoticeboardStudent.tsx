@@ -1,6 +1,4 @@
 import Dropdown from '../components/Noticeboard/Dropdown';
-import {INotice} from "../components/Noticeboard/interface";
-import NoticeData from '../components/Noticeboard/NoticeData';
 import "../styles/NoticeBoard.scss";
 import "../styles/StudentNoticesStyles.scss";
 import Navbar2 from '../components/Navbar2';
@@ -13,56 +11,49 @@ function NoticeboardStudent(){
     return  (
       <div>
        <div>
-              <Navbar2 />
+            <Navbar2 />
             <div className="NoticeBoard">
-
                     <span className ="NoticeBoard-title">  
                    
                      <div id='leftbox'>
                      <h1>Notice Board</h1>
                      </div>
-  
                      <div id='rightbox'>
                      <p>Order by:</p><Dropdown/>
                      </div>
                      </span>
          
             <div className="buttons1">
-               <div className='btn3'>
+                   <span className='btn3'>
                      <button>
-                        <h2>Accouncements</h2>
+                        Accouncements
                      </button> 
-                     </div>
+                     </span>
                     
                      &nbsp;&nbsp;&nbsp;
 
-                    <div className='btn4'>
+                    <span className='btn4'>
                     <button>
-                        <h2>Accomplishments</h2>
+                        Accomplishments
                     </button> 
-                    </div> 
+                    </span> 
 
                     <br></br><br></br><br></br>
                     <br></br><br></br><br></br>
                     <br></br><br></br><br></br>
                     <br></br><br></br><br></br>
 
-                    <div>
-                     
-                           <NoticeContainer/>
-                     
-                 
+                    <div>        
+                           <NoticeContainer/>    
                            <br></br>
-                </div> 
+                 </div> 
                 <br></br>                      
-              </div>
-              <br></br>
-              
+               </div>
+              <br></br>   
              </div>  
-             <br></br>
-             
+            <br></br>  
          </div>
-         {/* <Footer/> */}
+         <Footer/>
       </div>
 
 

@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+// import "../../styles/NoticeCard.scss";
+
 
 const defaultFormData = {
   title: "",
@@ -39,7 +42,10 @@ export default function App() {
         <input type="text" id="description" value={description} onChange={onChange} />
         <br />
         <br />
+        <Link to ="/noticeboard">
         <button type="submit">Update Notice</button>
+        </Link>
+        
       </form>
     </>
   );

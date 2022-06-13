@@ -12,8 +12,6 @@ const NoticeInput :FC = () => {
     const [edit, setEdit] =useState<boolean>(false);
     // const [editNotice, setEditNotice]=useState<string>("");
    
-  
-   
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
      
      if(event.target.name==="notice"){

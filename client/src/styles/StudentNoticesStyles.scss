@@ -11,11 +11,11 @@
     font-weight: 500;
     cursor: pointer; 
     outline: inherit;
-    position: absolute;
+    position:relative;
     width: 448px;
-    height: 219px;
-    left: 380px;
-    top: 200px;
+    height: 200px;
+    // left: 380px;
+    top: 100px;
     border: none;
     background: #3C096C;
     mix-blend-mode: darken;
@@ -35,13 +35,14 @@
         
         cursor: pointer; 
         border: none;
-        padding-right: 40px;
-        padding-bottom: 20px;
-        position: absolute;
+        // padding-right: 40px;
+        // padding-bottom: 20px;
+        position: relative;
+        align-items: center;
         width: 448px;
         height: 219px;
-        left: 860px;
-        top: 200px;
+        // left: 860px;
+        // top: 40px;
 
         background: #3C096C;
         mix-blend-mode: darken;
@@ -52,7 +53,7 @@
 }
 
 .notice-item .notice-item-content{
-    top: 400px;
+    top: 50px;
 }
 // .span .btn3{
 //     background: $P3;
