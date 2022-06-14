@@ -1,3 +1,5 @@
+import internal from "stream";
+
 export interface Documents {
   name: string;
   size: string;
