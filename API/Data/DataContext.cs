@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 
 
-
 namespace API.Data
 {
     public class DataContext : DbContext
