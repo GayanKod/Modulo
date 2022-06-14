@@ -1,9 +1,7 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-
-
-.NoticeBoard .buttons1 .btn3{
+.buttons .btn3{
 
     font-family: "Poppins", sans-serif;    
     font-size: 17px;
@@ -11,9 +9,9 @@
     font-weight: 500;
     cursor: pointer; 
     outline: inherit;
-    position:relative;
-    width: 448px;
-    height: 200px;
+    position: static;
+    width: 748px;
+    height: 100px;
     // left: 380px;
     top: 100px;
     border: none;
@@ -22,11 +20,12 @@
     border: 1px solid #3C096C;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    
 
 }
 
 
-.NoticeBoard .buttons1 .btn4{
+.buttons .btn4{
 
         font-family: "Poppins", sans-serif;    
         font-size: 17px;
@@ -37,12 +36,12 @@
         border: none;
         // padding-right: 40px;
         // padding-bottom: 20px;
-        position: relative;
+        position: static;
         align-items: center;
-        width: 448px;
-        height: 219px;
+        width: 748px;
+        height: 100px;
         // left: 860px;
-        // top: 40px;
+        top: 200px;
 
         background: #3C096C;
         mix-blend-mode: darken;
@@ -53,7 +52,7 @@
 }
 
 .notice-item .notice-item-content{
-    top: 50px;
+    top: 10px;
 }
 // .span .btn3{
 //     background: $P3;

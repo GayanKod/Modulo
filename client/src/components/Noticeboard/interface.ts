@@ -2,8 +2,8 @@ export interface INotice{
     
     noticeTitle: string;
     description: string;
-    noticeType: string;
-    dateTime:String;
+    // noticeType: string;
+    // dateTime:String;
 
     // date: Date;
     

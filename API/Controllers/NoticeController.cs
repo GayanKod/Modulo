@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
-using API.Models;
+using API.Models.Entities;
 
 namespace API.Controllers
 {
@@ -28,18 +28,18 @@ namespace API.Controllers
            return Ok(await _context.Notices.ToListAsync());
         }
 
-        [HttpGet("notice")]
+        [HttpGet("{id}")]
        
-        public async Task<IActionResult> GetNoticesByNoticeType(string NoticeType)
+        public async Task<ActionResult<Notice>> Get(int id)
         {
-           var notice= await _context.Notices.FirstOrDefaultAsync(x => x.NoticeType == NoticeType);
-           if(NoticeType is null){
-               return NotFound();
+           var notice= await _context.Notices.FindAsync(id);
+           if(notice == null){
+               return BadRequest("Notice not found");
            }
            
-           return Ok(NoticeType);
+           return Ok(notice);
         }
-
+        
         [HttpPost]
 
         public async Task<ActionResult<List<Notice>>> Add(Notice notice)

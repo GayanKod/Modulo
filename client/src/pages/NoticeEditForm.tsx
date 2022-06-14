@@ -1,11 +1,13 @@
 import { useState } from "react";
+import {FC} from 'react';
 import { Link } from "react-router-dom";
+import {}
 // import "../../styles/NoticeCard.scss";
 
 
 const defaultFormData = {
-  title: "",
-  description: "",
+  title: "string",
+  description: "string",
 };
 
 export default function App() {

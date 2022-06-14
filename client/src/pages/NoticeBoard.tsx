@@ -8,8 +8,9 @@ import Footer from '../components/Footer/Footer';
 function NoticeBoard(){
 
   return  (
-     <div>
-            <Navbar2 />
+     <div>  
+            <div><Navbar2 /></div>
+            
             <div className="NoticeBoard">
                   <span className ="NoticeBoard-title">  
                  

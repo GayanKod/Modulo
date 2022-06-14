@@ -21,26 +21,27 @@ function NoticeboardStudent(){
                      <p>Order by:</p><Dropdown/>
                      </div>
                      </span>
+                     <br></br><br></br>
          
-            <div className="buttons1">
-                   <span className='btn3'>
+            <div className="buttons">
+                   <div className='btn3'>
                      <button>
-                        Accouncements
+                        <h2>Accouncements</h2>
                      </button> 
-                     </span>
+                     </div>
                     
                      &nbsp;&nbsp;&nbsp;
 
-                    <span className='btn4'>
+                    <div className='btn4'>
                     <button>
-                        Accomplishments
+                        <h2>Accomplishments</h2>
                     </button> 
-                    </span> 
+                    </div> 
 
+                    <br></br>
+                    {/* <br></br><br></br><br></br>
                     <br></br><br></br><br></br>
-                    <br></br><br></br><br></br>
-                    <br></br><br></br><br></br>
-                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br> */}
 
                     <div>        
                            <NoticeContainer/>    
