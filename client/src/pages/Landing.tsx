@@ -1,6 +1,8 @@
 import Navbar from "../components/Navbar/Navbar";
 import HeroSection from "../components/HeroSection";
-import FeaturesSection from "../components/FeaturesSection";
+import FeaturesSection from "../components/AppFeatures/FeaturesSection";
+import OurTeamSection from "../components/OurTeam/OurTeamSection";
+import Footer from "../components/Footer/Footer";
 
 function Landing(){
 
@@ -9,6 +11,8 @@ function Landing(){
             <Navbar />
             <HeroSection />
             <FeaturesSection/>
+            <OurTeamSection/>
+            <Footer/>
         </>
     );
 }

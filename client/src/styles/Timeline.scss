@@ -1,0 +1,175 @@
+@import "../styleVar/colorPalette.scss";
+* {
+	box-sizing: border-box;
+}
+//Timeline items holder
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 50px 0;
+}
+
+//timeline center line
+.timeline-container::after {
+    background-color:$P6;
+    content: '';
+    position: absolute;
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 100%;
+}
+
+//timeline item
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    position: relative;
+    margin: 10px 0;
+    width: 50%;
+}
+
+
+.timeline-item:nth-child(even) {
+    align-self: flex-end;
+    justify-content: flex-start;
+    padding-left: 50px;
+    padding-right: 0;
+}
+
+.timeline-item-content {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 1px;
+    background-color:$P4;
+    align-items: flex-end;
+    padding: 15px;
+    position: relative;
+    width: 250px;
+    height: 140px;
+    max-width: 70%;
+    text-align: center;
+}
+
+.timeline-item-content::after {
+    content: ' ';
+    background-color:$P4;
+    // box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: -7.5px;
+    top: calc(30% - 7.5px);
+    transform: rotate(45deg);
+    width: 15px;
+    height: 15px;
+}
+
+.timeline-item:nth-child(even) .timeline-item-content {
+    text-align: center;
+    align-items:center;
+}
+
+.timeline-item:nth-child(even) .timeline-item-content::after {
+    right: auto;
+    left: -7.5px;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item-content time {
+    color:rgb(255, 92, 85);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.timeline-item-content .circle {
+    background-color: #fff;
+    background-image: url('https://cdn.iconscout.com/icon/free/png-256/rocket-launch-startup-business-mission-space-marketing-4-5432.png');
+    // background: url('bgimage.jpg') no-repeat;
+    background-size: 100%;
+    border: 3px solid $P5;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(30% - 10px);
+    right: -75px;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+    
+}
+
+.timeline-item:nth-child(even) .timeline-item-content .circle {
+    right: auto;
+    left: -75px;
+}
+
+.event-name{
+    font-size: 20px;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    align-self: center;
+}
+.date{
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    align-self: center;
+}
+
+
+@media only screen and (max-width: 1023px) {
+    .timeline-item-content {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .timeline-item-content,
+    .timeline-item:nth-child(even) .timeline-item-content {
+        padding: 15px 10px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .timeline-item-content .tag {
+        width: calc(100% - 10px);
+        text-align: center;
+    }
+
+    .timeline-item-content time {
+        margin-top: 20px;
+    }
+
+    .timeline-item-content a {
+        text-decoration: underline;
+    }
+
+    .timeline-item-content a::after {
+        display: none;
+    }
+}
+
+// footer {
+//     background-color: #222;
+//     color: #fff;
+//     font-size: 14px;
+//     bottom: 0;
+//     position: fixed;
+//     left: 0;
+//     right: 0;
+//     text-align: center;
+//     z-index: 999;
+// }
+
+// footer p {
+//     margin: 10px 0;
+// }
+
+// footer i {
+//     color: red;
+// }
+
+// footer a {
+//     color: #3c97bf;
+//     text-decoration: none;
+// }
