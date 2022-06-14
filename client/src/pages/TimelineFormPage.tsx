@@ -6,7 +6,7 @@ function TimelineFormPage(){
     return(
         <>
         <Navbar2/>
-        <PageTitle title="Activity Timeline"/>
+        <PageTitle title="Timeline Construction"/>
         <TimelineForm/>
         <Footer/>
         </>

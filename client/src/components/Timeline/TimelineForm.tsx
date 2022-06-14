@@ -4,12 +4,14 @@ import FormImage from "../../assets/img/TimelineFormImage.png";
 
 const defaultFormData = {
   title: "",
-  body: "",
+  description: "",
+  sdate:"",
+  edate:""
 };
 
 function TimelineForm() {
   const [formData, setFormData] = useState(defaultFormData);
-  const { title, body } = formData;
+  const { title, description, sdate, edate } = formData;
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevState) => ({
@@ -34,14 +36,19 @@ function TimelineForm() {
           <input type="text" id="title" value={title} onChange={onChange} />
           <br />
           <br />
+          <label htmlFor="title">Description</label>
+          <br />
+          <input type="text" id="description" value={description} onChange={onChange} />
+          <br />
+          <br />
           <label htmlFor="date">Start Date</label>
           <br />
-          <input type="date" id="sdate" value={body} onChange={onChange} />
+          <input type="date" id="sdate" value={sdate} onChange={onChange} />
           <br />
           <br />
           <label htmlFor="date">End Date</label>
           <br />
-          <input type="date" id="edate" value={body} onChange={onChange} />
+          <input type="date" id="edate" value={edate} onChange={onChange} />
           <br />
           <br />
           <button type="submit">Add event</button>
