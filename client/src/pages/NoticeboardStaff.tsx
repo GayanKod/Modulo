@@ -1,5 +1,4 @@
 import React, {FC, ChangeEvent, useState} from 'react';
-import NoticeCard from "../components/Noticeboard/NoticeCard";
 import Dropdown from '../components/Noticeboard/Dropdown';
 import DropdownV2 from '../components/Noticeboard/DropdownV2';
 import "../styles/NoticeBoard.scss";

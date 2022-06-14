@@ -4,21 +4,30 @@ import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
 
 
+
+
 const NoticeInput :FC = () => {
 
     const [notice, setNotice] =useState<string>("");
     const [description, setDescription] =useState<string>("");
     const [noticeList, setNoticeList] =useState<INotice[]>([]);
     const [edit, setEdit] =useState<boolean>(false);
-    // const [editNotice, setEditNotice]=useState<string>("");
-   
+    const [error, setError] = React.useState('');
+    const [value, setValue] = useState({});
+ 
+
+
+
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
      
      if(event.target.name==="notice"){
        setNotice(event.target.value);
      }
+     else if (event.target.value=="null"){
+        setError('Title is required');
+     }
      else {
-       setDescription(event.target.value);
+        setDescription(event.target.value);
      }
     
     };
@@ -75,8 +84,12 @@ const NoticeInput :FC = () => {
             <input 
             type="text" 
             name="notice" 
+            // placeholder="Notice Title" required
             value={notice}
-            onChange={handleChange}/>
+            onChange={handleChange}
+           
+            />
+           
             </div>
             </div>
          
@@ -88,6 +101,7 @@ const NoticeInput :FC = () => {
             <input 
             type="text" 
             name="description" 
+            // placeholder="Description" required
             value={description}
             onChange={handleChange}/>
        
@@ -97,6 +111,7 @@ const NoticeInput :FC = () => {
         
 
          <div className="AddButton">
+            
               <button onClick={addNotice}>+ Add Notice</button>
          </div>
         

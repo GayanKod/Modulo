@@ -3,7 +3,6 @@ import "../styles/NoticeBoard.scss";
 import "../styles/StudentNoticesStyles.scss";
 import Navbar2 from '../components/Navbar2';
 import NoticeContainer from "../components/Noticeboard/NoticeBox";
-import NoticeItem from '../components/Noticeboard/NoticeItem';
 import Footer from '../components/Footer/Footer';
 
 function NoticeboardStudent(){
