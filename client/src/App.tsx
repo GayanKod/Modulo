@@ -21,16 +21,16 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/document-upload" element={<DocumentUpload />} />
+          <Route path="/document-upload" element={<DocumentUpload />} />
           <Route path="/document-download" element={<DocumentDownload />} />
           <Route  path="/timeline" element={<TimelinePage/>}/>
-          <Route path="/lec-hall-allocation" element={<LecHomePage />} /> */}
+          <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/noticeboard" element={<NoticeBoard />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
           <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
           <Route path="/noticeboard-edit" element={<NoticeForm />} />
           
-          {/* <Route
+          <Route
             path="/lec-hall-allocation/booking"
             element={<LecHallBooking />}
           />
@@ -42,7 +42,7 @@ function App() {
           <Route path="/admin-panel" element={<AdminPanelHome/>} />
           <Route path="/admin-panel/users" element={<AdminPanelUsers/>} />
           <Route path="/admin-panel/users/:userId" element={<AdminPanelUser/>} />
-          <Route path="/admin-panel/users/newUser" element={<AdminPanelNewUser/>} /> */}
+          <Route path="/admin-panel/users/newUser" element={<AdminPanelNewUser/>} />
         </Routes>
       </Router>
     </>
