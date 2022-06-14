@@ -36,7 +36,7 @@ const NoticeInput :FC = () => {
        const newNotice ={noticeTitle: notice, description: description };
         setNoticeList([...noticeList, newNotice]);
         setNotice("");
-        setDescription("");
+        setDescription(""); 
      
      };
    
