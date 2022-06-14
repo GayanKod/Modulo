@@ -6,8 +6,12 @@
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.3);
     display: flex;
+    .wrapper{
+        width: 280px;
+    }
     .img{
-        width: 40vmax;
+        width: 350px;
+        height: auto;
         padding-left: 30px;
         margin-top: -10px;
     }
@@ -15,7 +19,7 @@
  label{
      font-size: 20px;
      color: $P4;
-     font-weight: bold;
+     
  }
 
  input{
@@ -23,10 +27,25 @@
      background-color: $P8;
      border-style: none;
      border-radius: 5px;
-     width: 30vw;
+     width: 100%;
 
      
  }
  input:focus{
+    background-color: rgb(255, 122, 120);
+}
+
+button{
+    border: none;
+    color: white;
+    background-color: $P4;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
+    font-weight: bold;
+}
+
+button:focus{
     background-color: rgb(255, 122, 120);
 }

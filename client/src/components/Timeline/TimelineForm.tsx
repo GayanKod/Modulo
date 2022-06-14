@@ -28,27 +28,24 @@ function TimelineForm() {
   return (
     <>
       <div className="form-container">
-        <div className="form-content">
-          <h1>Form</h1>
-          <form className="wrapper" onSubmit={onSubmit}>
-            <label htmlFor="title">Event Title</label>
-            <br />
-            <input type="text" id="title" value={title} onChange={onChange} />
-            <br />
-            <br />
-            <label htmlFor="date">Start Date</label>
-            <br />
-            <input type="date" id="sdate" value={body} onChange={onChange} />
-            <br />
-            <br />
-            <label htmlFor="date">End Date</label>
-            <br />
-            <input type="date" id="edate" value={body} onChange={onChange} />
-            <br />
-            <br />
-            <button type="submit">Add an event</button>
-          </form>
-        </div>
+        <form className="wrapper" onSubmit={onSubmit}>
+          <label htmlFor="title">Event Title</label>
+          <br />
+          <input type="text" id="title" value={title} onChange={onChange} />
+          <br />
+          <br />
+          <label htmlFor="date">Start Date</label>
+          <br />
+          <input type="date" id="sdate" value={body} onChange={onChange} />
+          <br />
+          <br />
+          <label htmlFor="date">End Date</label>
+          <br />
+          <input type="date" id="edate" value={body} onChange={onChange} />
+          <br />
+          <br />
+          <button type="submit">Add event</button>
+        </form>
         <img className="img" src={FormImage} alt="formimage" />
       </div>
     </>
