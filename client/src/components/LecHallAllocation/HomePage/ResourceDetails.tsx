@@ -1,6 +1,6 @@
 import { Tab, TableBody, TableCell, TableRow } from "@mui/material";
-import { ClassRooms } from "./Details";
-import { Item } from "./Models";
+import { ClassRooms } from "../Details";
+import { Item } from "../Models";
 
 type ResourceProps = {
   id: number;

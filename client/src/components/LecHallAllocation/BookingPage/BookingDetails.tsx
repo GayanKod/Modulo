@@ -1,4 +1,4 @@
-import { ClassRooms } from "./Details";
+import { ClassRooms } from "../Details";
 
 type BookingProps = {
   id: string;

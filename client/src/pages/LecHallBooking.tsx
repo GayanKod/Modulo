@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import { timeStamp } from "console";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import BookingDetails from "../components/LecHallAllocation/BookingDetails";
+import BookingDetails from "../components/LecHallAllocation/BookingPage/BookingDetails";
 import ColorCode from "../components/LecHallAllocation/ColorCode";
 import DateSelector from "../components/LecHallAllocation/DateSelector";
 

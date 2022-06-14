@@ -14,7 +14,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ClassRooms } from "./Details";
+import { ClassRooms } from "../Details";
 import ResourceItem from "./ResourceDetails";
 import ResourceDetails from "./ResourceDetails";
 

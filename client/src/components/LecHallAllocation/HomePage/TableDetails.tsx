@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { ClassRooms } from "./Details";
+import { ClassRooms } from "../Details";
 
-import { Item } from "./Models";
+import { Item } from "../Models";
 
 import { Link } from "react-router-dom";
-import TimeTable from "./TimeTable";
+
+import axios from "axios";
 import Resources from "./Resources";
+import TimeTable from "../TimeTable";
 
 interface Props {
   selected: number;
@@ -14,14 +16,32 @@ interface Props {
 }
 
 function TableDetails({ selected }: Props) {
+  const [classRooms, setClassRooms] = useState<Item[] | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const isHall = (c: any) => c.classRoomType == 0;
   const isLab = (c: any) => c.classRoomType == 1;
-  const lecHalls = ClassRooms.filter(isHall).map((item) => (
-    <Row item={item} selected={selected} />
-  ));
-  const labs = ClassRooms.filter(isLab).map((item) => (
-    <Row item={item} selected={selected} />
-  ));
+
+  useEffect(() => {
+    axios
+      .get("https://localhost:7285/api/ClassRoom")
+      .then((response) => {
+        setClassRooms(response.data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <h3>Loading...</h3>;
+
+  if (classRooms == null) return <h3>No Items Yet.</h3>;
+
+  const lecHalls = classRooms
+    .filter(isHall)
+    .map((item) => <Row item={item} selected={selected} />);
+  const labs = classRooms
+    .filter(isLab)
+    .map((item) => <Row item={item} selected={selected} />);
 
   switch (selected) {
     case 0:
@@ -85,7 +105,7 @@ function Row({ item, selected }: Props) {
         <td hidden={selected == 0}>{item.labType}</td>
         <td className="hide">{item.capacity}</td>
         <td className="hide">{`Building: ${item.BuildingNumber}, Floor: ${item.FloorNumber}`}</td>
-        <td hidden={selected == 0}>
+        <td>
           <Resources id={item.Id} />
         </td>
         <td>

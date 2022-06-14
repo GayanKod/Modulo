@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Select from "react-select";
-import { Options } from "./Models";
+import { Options } from "../Models";
 
 type FilterProps = {
   options: Options[];
