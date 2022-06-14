@@ -8,10 +8,8 @@ namespace API.Models
 
         public String Name { get; set; }
 
-        public int Quantity { get; set; }
+        public string Description { get; set; }
 
-        [JsonIgnore]
-
-        public List<ClassRoom> ClassRooms { get; set; }
+        public List<ClassRoom_Resource> ClassRoom_Resources { get; set; }
     }
 }

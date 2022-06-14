@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/LecHomePage.scss";
-// import TableDetails from "../components/LecHallAllocation/HomPage/TableDetails";
+import TableDetails from "../components/LecHallAllocation/HomePage/TableDetails";
 import PageTitle from "../components/PageTitle";
 // import Filter from "../components/LecHallAllocation/Filter";
 import Select from "react-select";
 import Filter from "../components/LecHallAllocation/HomePage/Filter";
 import Navbar2 from "../components/Navbar2";
-import TableDetails from "../components/LecHallAllocation/HomePage/TableDetails";
 
 export default function LecHomePage() {
   let options = [
@@ -37,7 +36,7 @@ export default function LecHomePage() {
                 <th hidden={selected.value == 0}>Lab Type</th>
                 <th className="hide">Hall capacity</th>
                 <th className="hide">Hall Location</th>
-                <th hidden={selected.value == 0}>Resources</th>
+                <th>Resources</th>
                 <th>Availabiliy</th>
                 <th></th>
               </tr>

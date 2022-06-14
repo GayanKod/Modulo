@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 import Resources from "./Resources";
-import TimeTable from "../TimeTable";
+import TimeTable from "./TimeTable";
 
 interface Props {
   selected: number;

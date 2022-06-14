@@ -42,7 +42,7 @@ function LecHallBooking() {
         <div className="schedule">
           <h3 style={{ marginBottom: "40px" }}>Pick your time slot</h3>
           <DateSelector />
-          <Schedule id={id as string} />
+          <Schedule id="" />
           <div className="colorcode">
             <ColorCode />
           </div>
@@ -59,7 +59,6 @@ function LecHallBooking() {
             style={{
               backgroundColor: "#7b2cbf",
               color: "white",
-
               cursor: "pointer",
             }}
           >

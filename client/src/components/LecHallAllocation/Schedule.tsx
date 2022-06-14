@@ -9,13 +9,14 @@ type ScheduleProps = {
   id: string;
 };
 
+export const bookings = [];
+
 function TimeSlot({ item, id }: TimeSlotCell) {
   const [selectedSlot, setSelectedSlot] = useState<number[]>([]);
   const [picked, setPicked] = useState(false);
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log(selectedSlot);
   });
 
   return (
@@ -26,7 +27,14 @@ function TimeSlot({ item, id }: TimeSlotCell) {
         style={{ backgroundColor: picked ? "#7b2cbf" : "white" }}
         onClick={() => {
           if (id != "disable") {
+            if (bookings.indexOf(item as never) < 0) {
+              bookings.push(item as never);
+            } else bookings.splice(bookings.indexOf(item as never), 1);
+
+            console.log(bookings);
+
             setPicked(!picked);
+
             if (picked) {
               const pickedState = selectedSlot.slice();
               const index = pickedState.indexOf(item);
@@ -37,7 +45,10 @@ function TimeSlot({ item, id }: TimeSlotCell) {
                 pickedState.splice(index, 1);
                 setSelectedSlot(pickedState);
               } else pickedState.push(item);
+
               setSelectedSlot(pickedState);
+
+              // console.log(selectedSlot);
             }
           }
         }}
@@ -69,7 +80,7 @@ export default function Schedule(props: ScheduleProps) {
       <tbody>
         <tr>
           {cells.map((item) => (
-            <TimeSlot item={item} id={props.id} />
+            <TimeSlot key={item} item={item} id={props.id} />
           ))}
         </tr>
       </tbody>

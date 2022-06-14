@@ -8,10 +8,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import ColorCode from "./ColorCode";
-import DateSelector from "./DateSelector";
+import ColorCode from "../ColorCode";
+import DateSelector from "../DateSelector";
 
-import Schedule from "./Schedule";
+import Schedule from "../Schedule";
 
 type TimeTableProps = {
   selected: number;

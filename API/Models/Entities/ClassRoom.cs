@@ -1,4 +1,5 @@
-﻿using API.Models;
+﻿using System.Text.Json.Serialization;
+using API.Models;
 
 namespace API
 {
@@ -12,9 +13,9 @@ namespace API
         public int AdminId { get; set; }
         public int ClassRoomType { get; set; }
 
-        public List<BookingDetails> Bookings { get; set; }
 
-        public List<Resource> Resources { get; set; }
+        public List<BookingDetails> Bookings { get; set; }
+        public List<ClassRoom_Resource> ClassRoom_Resources { get; set; }
 
 
 
