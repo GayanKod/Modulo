@@ -8,23 +8,23 @@ function DocumentDownload() {
   const [documents, setDocuments] = useState([
     {
       name: "Hypothesis_Testing",
-      size: "15MB",
+      size: 15,
       type: "pdf",
-      date: "1/19/2021",
+      date: 8 / 6 / 2021,
       description: "Questions from Hypothesis testing",
     },
     {
       name: "Boolean_Algebra",
-      size: "9MB",
+      size: 9,
       type: "pdf",
-      date: "10/11/2021",
+      date: 10 / 11 / 2021,
       description: "Student note",
     },
     {
       name: "ProjectProposalTemplate",
-      size: "10MB",
+      size: 10,
       type: "ppt",
-      date: "2/05/2022",
+      date: 2 / 5 / 2022,
       description: "Template for hardware project proposal",
     },
   ]);

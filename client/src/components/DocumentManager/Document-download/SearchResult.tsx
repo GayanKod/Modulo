@@ -1,9 +1,10 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Documents } from "../Document-uplaod/Documents";
 import girlImage from "../../../assets/img/SearchbarGirl.png";
+import { Files } from "./Files";
 interface SearchResultProps {
-  docs: Documents[];
-  setDocs: Dispatch<SetStateAction<Documents[]>>;
+  docs: Files[];
+  setDocs: Dispatch<SetStateAction<Files[]>>;
   search: string;
   isEntered: boolean;
 }

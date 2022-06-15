@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Documents } from "./Documents";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
 
 interface RecentUploadProps {
   docs: Documents[];
@@ -8,6 +9,18 @@ interface RecentUploadProps {
 }
 
 function RecentUpload(props: RecentUploadProps) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get("https://localhost:5000/api/Document")
+      .then((response) => props.setDocs(response.data))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <h2>Loading ...</h2>;
+  if (props.docs == null) return <h2>No uploads yet</h2>;
+
   return (
     <div className="RecentUpload">
       <table className="RecentUpload-table">
@@ -25,9 +38,9 @@ function RecentUpload(props: RecentUploadProps) {
         <tbody>
           {props.docs.map((item, index) => (
             <tr>
-              <td>{item.type}</td>
-              <td key={index}>{item.name}</td>
-              <td>{item.size}</td>
+              <td>{item.documentType}</td>
+              <td key={index}>{item.documentName}</td>
+              <td>{item.documentSize}</td>
               <td>{item.date}</td>
               <td>{item.description}</td>
               <td>

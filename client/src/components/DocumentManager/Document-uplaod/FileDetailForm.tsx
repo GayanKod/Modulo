@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Documents } from "./Documents";
 
@@ -15,20 +16,17 @@ function FileDetailForm(props: FileDetailFormProps) {
   const uploadHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (props.selectedFile != null) {
-      props.setDocs([
-        ...props.docs,
-        {
-          name: props.selectedFile?.name
-            .split(".")
-            .slice(0, -1)
-            .join(".") as string,
-          size: (Math.round(props.selectedFile?.size / (1024 * 1024)) +
-            "MB") as unknown as string,
-          type: props.selectedFile?.name.split(".").pop() as string,
-          date: new Date().toLocaleDateString(),
-          description: description as string,
-        },
-      ]);
+      axios
+        .post("https://localhost:5000/api/File/upload", {
+          MyFile: props.selectedFile,
+          DocumentName: props.selectedFile?.name,
+          DocumentType: props.selectedFile?.name.split(".").pop(),
+          Description: description,
+          DocumentSize: props.selectedFile?.size,
+          UserId: 65,
+        })
+        .catch((error) => console.log(error));
+
       setIsFileUploaded(true);
       props.setIsFilePicked(false);
       alert("File has been successfully uploaded!");

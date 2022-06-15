@@ -1,12 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { useLinkClickHandler } from "react-router-dom";
-import GirlImg from "../../../../src/assets/img/SearchbarGirl.png";
 import { Documents } from "../Document-uplaod/Documents";
+import { Files } from "./Files";
 import SearchResult from "./SearchResult";
 
 interface DocumentSearchProps {
-  docs: Documents[];
-  setDocs: Dispatch<SetStateAction<Documents[]>>;
+  docs: Files[];
+  setDocs: Dispatch<SetStateAction<Files[]>>;
 }
 function DocumentSearch(props: DocumentSearchProps) {
   const [input, setInput] = useState("");

@@ -1,9 +1,11 @@
-import internal from "stream";
-
 export interface Documents {
-  name: string;
-  size: string;
-  type: string;
-  date: string;
-  description: string;
+  documentId?: number;
+  documentName?: string;
+  documentType?: string;
+  description?: string;
+  totalPages?: number;
+  documentSize?: number;
+  date?: Date;
+  documentURL?: string;
+  userId?: number;
 }
