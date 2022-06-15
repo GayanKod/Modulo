@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "../../styles/TimelineForm.scss";
 import FormImage from "../../assets/img/TimelineFormImage.png";
+import Dropdown from "./Dropdown";
+
 
 const defaultFormData = {
   title: "",
@@ -29,6 +31,7 @@ function TimelineForm() {
 
   return (
     <>
+    <Dropdown/>
       <div className="form-container">
         <form className="wrapper" onSubmit={onSubmit}>
           <label htmlFor="title">Event Title</label>
