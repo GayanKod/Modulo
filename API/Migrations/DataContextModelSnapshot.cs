@@ -135,6 +135,10 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Batch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -143,6 +147,10 @@ namespace API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EventTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semester")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

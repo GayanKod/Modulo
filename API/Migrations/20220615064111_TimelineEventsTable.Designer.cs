@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220615044209_TimelineEventsTable")]
+    [Migration("20220615064111_TimelineEventsTable")]
     partial class TimelineEventsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,6 +137,10 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("Batch")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -145,6 +149,10 @@ namespace API.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EventTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semester")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
