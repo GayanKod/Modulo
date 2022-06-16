@@ -1,10 +1,8 @@
 const cookie = require('js-cookie');
 
 
-//import { GoogleLogout } from 'react-google-login';
-
 // Set in Cookie
-export const setCookie = (key:any, value:any) => {
+export const setCookie = (key:string, value:string) => {
     if (String(window) !== 'undefiend') {
         cookie.set(key, value, {
             // 1 Day
@@ -13,7 +11,7 @@ export const setCookie = (key:any, value:any) => {
     }
 }
 // remove from cookie
-export const removeCookie = (key:any) => {
+export const removeCookie = (key:string) => {
     if (String(window) !== 'undefined') {
         cookie.remove(key, {
             expires: 1
@@ -24,21 +22,21 @@ export const removeCookie = (key:any) => {
 
 // Get from cookie such as stored token
 // Will be useful when we need to make request to server with token
-export const getCookie = (key:any) => {
+export const getCookie = (key:string) => {
     if (String(window) !== 'undefined') {
         return cookie.get(key);
     }
 };
 
 // Set in localstorage
-export const setLocalStorage = (key:any, value:any) => {
+export const setLocalStorage = (key:string, value:string) => {
     if (String(window) !== 'undefined') {
         localStorage.setItem(key, JSON.stringify(value));
     }
 };
 
 // Remove from localstorage
-export const removeLocalStorage = (key:any) => {
+export const removeLocalStorage = (key:string) => {
     if (String(window) !== 'undefined') {
         localStorage.removeItem(key);
     }
