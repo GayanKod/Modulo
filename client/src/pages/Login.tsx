@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, Navigate } from 'react-router-dom';
 
+
 const Login = (history:any) => {
 
     let time = new Date().getHours();
@@ -15,7 +16,7 @@ const Login = (history:any) => {
     const [formData, setFormData] = useState({
         email: '',
         password1: '',
-        textChange: 'Sign In'
+        textChange: 'Login'
       });
       const { email, password1, textChange } = formData;
       const handleChange = (text:any) => (e:any) => {
@@ -41,9 +42,9 @@ const Login = (history:any) => {
                   textChange: 'Submitted'
                 });
                 isAuth()
-                  ? history.push('/')
+                  ? history.push('/admin-panel')
                   : history.push('/login');
-                toast.success(`Welcome back!`);
+                toast.success("Welcome back!");
               });
             })
             .catch(err => {
@@ -69,7 +70,7 @@ const Login = (history:any) => {
         <Navbar />
 
         <div className="login-container">
-            {isAuth() ? <Navigate to='/home' /> : null}
+            {isAuth() ? <Navigate to='/admin-panel' /> : null}
             <ToastContainer />
             <div className="login-container-content">
                 <p className="login-hello">Hello,</p>
