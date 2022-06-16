@@ -141,6 +141,37 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
+
+            modelBuilder.Entity("API.Models.Notice", b =>
+            {
+                b.Property<int>("NoticeID")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int");
+
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoticeID"), 1L, 1);
+
+                b.Property<string>("Description")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("NoticeTitle")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("NoticeType")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<DateTime>("PublishedDate")
+                    .HasColumnType("datetime2");
+
+                b.Property<int>("UserID")
+                    .HasColumnType("int");
+
+                b.HasKey("NoticeID");
+
+                b.ToTable("Notices");
+            });
 #pragma warning restore 612, 618
         }
     }
