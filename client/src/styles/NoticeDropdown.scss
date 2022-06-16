@@ -1,77 +1,77 @@
-@import "../styleVar/colorPalette.scss";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+// @import "../styleVar/colorPalette.scss";
+// @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-:root {
+// :root {
     
-    --color1: #fa8e8b;
-    --color2:  #ff5c55;
-  }
+//     --color1: #fa8e8b;
+//     --color2:  #ff5c55;
+//   }
   
-  select {
-    /* Reset Select */
-    appearance: none;
-    outline: 0;
-    border: 0;
-    box-shadow: none;
-    /* Personalize */
-    flex: 1;
-    padding: 0 1em;
-    color: #fff;
-    background-color: var(--color2);
-    background-image: none;
-    cursor: pointer;
-    font-family: "Poppins", sans-serif;
-    font-size: 15px;
-  }
-  /* Remove IE arrow */
-  select::-ms-expand {
-    display: none;
-  }
-  /* Custom Select wrapper */
-  .select {
-    position: relative;
-    display: flex;
-    width: 20em;
-    height: 3em;
-    border-radius: .40em;
-    overflow: hidden;
+//   select {
+//     /* Reset Select */
+//     appearance: none;
+//     outline: 0;
+//     border: 0;
+//     box-shadow: none;
+//     /* Personalize */
+//     flex: 1;
+//     padding: 0 1em;
+//     color: #fff;
+//     background-color: var(--color2);
+//     background-image: none;
+//     cursor: pointer;
+//     font-family: "Poppins", sans-serif;
+//     font-size: 15px;
+//   }
+//   /* Remove IE arrow */
+//   select::-ms-expand {
+//     display: none;
+//   }
+//   /* Custom Select wrapper */
+//   .select {
+//     position: relative;
+//     display: flex;
+//     width: 20em;
+//     height: 3em;
+//     border-radius: .40em;
+//     overflow: hidden;
    
-  }
-  /* Arrow */
-  .select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1em;
-    background-color: #ff5c55 ;
-    transition: .25s all ease;
-    pointer-events: none;
-  }
-  /* Transition */
-  .select:hover::after {
-    color: purple;
-  }
+//   }
+//   /* Arrow */
+//   .select::after {
+//     content: '\25BC';
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     padding: 1em;
+//     background-color: #ff5c55 ;
+//     transition: .25s all ease;
+//     pointer-events: none;
+//   }
+//   /* Transition */
+//   .select:hover::after {
+//     color: purple;
+//   }
   
-  /* Other styles*/
-  body {
-    // color: #fff;
-    background: var(--background-gradient);
-  }
-  h1 {
-    margin: 0 0 0.25em;
-  }
-  p{
-    color:black;
-  }
-  a {
-    font-weight: bold;
-    font-family: "Poppins", sans-serif;
-    color: var(--color1);
-    text-decoration: none;
-    padding: .25em;
-    border-radius: .30em;
-    // background: white;
-  }
+//   /* Other styles*/
+//   body {
+//     // color: #fff;
+//     background: var(--background-gradient);
+//   }
+//   h1 {
+//     margin: 0 0 0.25em;
+//   }
+//   p{
+//     color:black;
+//   }
+//   a {
+//     font-weight: bold;
+//     font-family: "Poppins", sans-serif;
+//     color: var(--color1);
+//     text-decoration: none;
+//     padding: .25em;
+//     border-radius: .30em;
+//     // background: white;
+//   }
   
  
