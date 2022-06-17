@@ -79,7 +79,7 @@ const Login = (history:any) => {
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
                         <div className="login-formblock">
-                            <p className="login-up">Username</p>
+                            <p className="login-up">E-mail</p>
                             <input 
                                 type="text"
                                 className="login-username"
