@@ -16,16 +16,17 @@ function FileDetailForm(props: FileDetailFormProps) {
   const uploadHandler = (event: React.SyntheticEvent) => {
     var formdata = new FormData();
     formdata.append("myfile", props.selectedFile!);
-    formdata.append("filename", props.selectedFile?.name!);
-    formdata.append("descriptionbox", description!);
+    formdata.append("documentname", props.selectedFile?.name!);
+    formdata.append("description", description!);
 
-    const confing = {
+    const config = {
       headers: { "content-type": "multipart/form-data" },
     };
+
     event.preventDefault();
     if (props.selectedFile != null) {
       axios
-        .post("https://localhost:5000/api/File/upload", formdata, confing)
+        .post("https://localhost:5000/api/File/upload", formdata, config)
         .then((response) => console.log(response))
         .catch((error) => console.log(error.response.data.errors));
 

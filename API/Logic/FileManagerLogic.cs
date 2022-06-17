@@ -19,6 +19,7 @@ namespace API.Logic
 
         public BlobClient GetBlobClient(string fileName)
         {
+           
             var blobContainer = _blobServiceClient.GetBlobContainerClient(containerName);
             return blobContainer.GetBlobClient(fileName);
         }
@@ -33,6 +34,7 @@ namespace API.Logic
             document.DocumentURL= blobClient.Uri.ToString();
             //document.DocumentType= blobClient.GetType().ToString();
             //document.DocumentName= blobClient.Name;
+           
             _context.Documents.Add(document);
             await _context.SaveChangesAsync();
         }

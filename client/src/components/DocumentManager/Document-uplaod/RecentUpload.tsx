@@ -38,8 +38,8 @@ function RecentUpload(props: RecentUploadProps) {
         <tbody>
           {props.docs.map((item, index) => (
             <tr>
-              <td>{item.documentType}</td>
-              <td key={index}>{item.documentName}</td>
+              <td>{item.documentName?.split(".").pop()}</td>
+              <td key={index}>{item.documentName?.split(".")[0]}</td>
               <td>{item.documentSize}</td>
               <td>{item.date}</td>
               <td>{item.description}</td>
