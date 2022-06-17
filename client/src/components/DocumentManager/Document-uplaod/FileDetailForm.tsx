@@ -14,18 +14,20 @@ function FileDetailForm(props: FileDetailFormProps) {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
 
   const uploadHandler = (event: React.SyntheticEvent) => {
+    var formdata = new FormData();
+    formdata.append("myfile", props.selectedFile!);
+    formdata.append("filename", props.selectedFile?.name!);
+    formdata.append("descriptionbox", description!);
+
+    const confing = {
+      headers: { "content-type": "multipart/form-data" },
+    };
     event.preventDefault();
     if (props.selectedFile != null) {
       axios
-        .post("https://localhost:5000/api/File/upload", {
-          MyFile: props.selectedFile,
-          DocumentName: props.selectedFile?.name,
-          DocumentType: props.selectedFile?.name.split(".").pop(),
-          Description: description,
-          DocumentSize: props.selectedFile?.size,
-          UserId: 65,
-        })
-        .catch((error) => console.log(error));
+        .post("https://localhost:5000/api/File/upload", formdata, confing)
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error.response.data.errors));
 
       setIsFileUploaded(true);
       props.setIsFilePicked(false);
@@ -62,6 +64,7 @@ function FileDetailForm(props: FileDetailFormProps) {
           onChange={descriptionHandler}
           value={isFileUploaded ? "" : description}
         />
+
         <div className="fileDetailForm-buttons">
           <button
             className="fileDetailForm-buttons-uploadButton"

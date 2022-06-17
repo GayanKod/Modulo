@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/DocumentUploader.scss";
 import FileSelector from "../components/DocumentManager/Document-uplaod/FileSelector";
 import RecentUpload from "../components/DocumentManager/Document-uplaod/RecentUpload";
 import DocumentUploadTitle from "../components/DocumentManager/Document-uplaod/DocumentUploadTitle";
 import Navbar2 from "../components/Navbar2";
 import { Documents } from "../components/DocumentManager/Document-uplaod/Documents";
-import axios from "axios";
 
 function DocumentUpload() {
   const [documents, setDocuments] = useState<Documents[]>([]);

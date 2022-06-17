@@ -45,7 +45,6 @@ namespace AzureBlobTest.Controllers
         public async Task<IActionResult> Download(string fileName)
         {
             var doc = await _fileManagerLogic.Download(fileName);
-            //return File(doc, "application/octect-stream");
             return new FileContentResult(doc, "application/octect-stream")
             {
                 FileDownloadName = fileName

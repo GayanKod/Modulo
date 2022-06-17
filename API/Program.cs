@@ -1,4 +1,4 @@
-global using API.DocumentData;
+global using API.Data;
 global using Microsoft.EntityFrameworkCore;
 using API.Logic;
 using Azure.Storage.Blobs;
@@ -26,7 +26,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
                       builder =>
                       {
-                          builder.WithOrigins("http://localhost:3000");
+                          builder.WithOrigins("Client_URL")
+                          .AllowAnyHeader()
+                            .AllowAnyMethod()
+                               .AllowCredentials();
                       });
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

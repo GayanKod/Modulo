@@ -12,5 +12,6 @@
         public string DocumentURL { get; set; } = string.Empty ;
         public int UserId { get; set; } 
         
+        
     }
 }

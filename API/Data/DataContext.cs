@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace API.DocumentData
+namespace API.Data
 {
     public class DataContext : DbContext
     {
