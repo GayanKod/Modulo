@@ -6,7 +6,7 @@ import loginImg from '../assets/img/login.png'
 import { authenticate, isAuth } from '../helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
 const Login = (history:any) => {
@@ -15,10 +15,9 @@ const Login = (history:any) => {
 
     const [formData, setFormData] = useState({
         email: '',
-        password1: '',
-        textChange: 'Login'
+        password1: ''
       });
-      const { email, password1, textChange } = formData;
+      const { email, password1 } = formData;
       const handleChange = (text:any) => (e:any) => {
         setFormData({ ...formData, [text]: e.target.value });
       };
@@ -27,7 +26,6 @@ const Login = (history:any) => {
         console.log('https://localhost:5000/api/Auth/login');
         e.preventDefault();
         if (email && password1) {
-          setFormData({ ...formData, textChange: 'Submitting' });
           axios
             .post(`https://localhost:5000/api/Auth/login`, {
               email,
@@ -38,8 +36,7 @@ const Login = (history:any) => {
                 setFormData({
                   ...formData,
                   email: '',
-                  password1: '',
-                  textChange: 'Submitted'
+                  password1: ''
                 });
                 isAuth()
                   ? history.push('/admin-panel')
@@ -51,8 +48,7 @@ const Login = (history:any) => {
               setFormData({
                 ...formData,
                 email: '',
-                password1: '',
-                textChange: 'Sign In'
+                password1: ''
               });
               console.log(err.response);
               toast.error(err.response.data);
@@ -79,7 +75,7 @@ const Login = (history:any) => {
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
                         <div className="login-formblock">
-                            <p className="login-up">Username</p>
+                            <p className="login-up">E-mail</p>
                             <input 
                                 type="text"
                                 className="login-username"
@@ -101,7 +97,7 @@ const Login = (history:any) => {
                         </div>
                     </form>
                 </div>
-                <a className="login-forgotpw" href="#">forgot password?</a>
+                <a className="login-forgotpw" href="/login/forgotpw">forgot password?</a>
             </div>
             <div className="login-container-loginImg">
                 <img src={loginImg} alt="login" />

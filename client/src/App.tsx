@@ -14,6 +14,7 @@ import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
 import NoticeForm from "./pages/NoticeEditForm";
+import RegistrationPage from "./pages/Registration";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             element={<LecHallBooking />}
           />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/admin-panel" element={<AdminPanelHome/>} />
           <Route path="/admin-panel/users" element={<AdminPanelUsers/>} />
           <Route path="/admin-panel/users/:userId" element={<AdminPanelUser/>} />
