@@ -1,0 +1,208 @@
+@import "../styleVar/colorPalette.scss";
+
+/* Change autocomplete styles in WebKit */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+
+  border: none;
+    border-bottom: 2px solid $P5;
+    -webkit-text-fill-color: $P4;
+    width: 100%;
+    font-size:16px;
+}
+
+
+.registration-container{
+    position: absolute;
+    // left: 20%;
+    // right: 20%;
+    // top: 15%;
+    // bottom: 10%;
+    width: 1182px;
+    height: 960px;
+    left: 10%;
+    top: 15%;
+
+    background: #FFFFFF;
+    /* Shadow 2 */
+
+    box-shadow: -8px 5px 60px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.registration-container-content{
+
+    display:flexbox;
+
+    position: absolute;
+    width: 599px;
+    height: 960px;
+    left: 400px;
+    // position: absolute;
+    // width: 599px;
+    // height: 580px;
+    // left: 0;
+    border-radius: 30px 0px 0px 30px;
+
+    .registration-hello{
+        position: absolute;
+        width: 322px;
+        height: 86px;
+        left: 0px;
+        top: 68px;
+
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+
+        color: $P3;
+    }
+
+    .registration-greeting{
+        position: absolute;
+        width: 322px;
+        height: 86px;
+        left: 0px;
+        top: 100px;
+
+        font-style: bold;
+        font-weight: 800;
+        font-size: 24px;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+
+        color: $P3;
+    }
+
+    .registration-title{
+        position: absolute;
+        height: 54px;
+        left: 35%;
+        top: 180px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 36px;
+        display: flex;
+        align-items: center;
+
+        color: $P4;
+    }
+}
+
+.registration-container-loginImg{
+    position: absolute;
+    width: 300px;
+    height: 960px;
+
+    background: radial-gradient(50% 50% at 50% 50%, #711DC4 0%, #5B189B 100%);
+    border-radius: 30px 0px 0px 30px;
+
+    img{
+        position: absolute;
+        width: 300px;
+        border-radius: 30px 0px 0px 30px;
+    }
+
+}
+
+.registration-form{
+    position: absolute;
+    width: 720px;
+    height: 60px;
+    left: 0px;
+    top: 260px;
+
+    .registration-up{
+        color: $P5;
+    }
+
+    .registration-gender-select{
+        border: none;
+        border-bottom: 2px solid $P5;
+        color: $P4;
+        width: 46.5%;
+        font-size:14px;
+    }
+
+    .formblock-tbl{
+        width: 100%;
+
+        .formblock-tbl-td{
+            padding: 0px 30px 0px 0px;
+        }
+
+        .formblock-tbl-td.email{
+            width: 0%;
+        }
+    }
+
+
+
+    .registration-input{
+        border: none;
+        border-bottom: 2px solid $P5;
+        color: $P4;
+        width: 100%;
+        font-size:16px;
+    }
+
+    .registration-input.email{
+        width:310px;
+    }
+
+    .registration-formblock{
+        margin : 20px;
+    }
+}
+
+.registration-forgotpw{
+    position: absolute;
+    width: 358px;
+    height: 60px;
+    left: 320px;
+    top: 410px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    display: flex;
+    color: $P5;
+
+}
+
+.registration-PagebtnWrapper{
+    position: absolute;
+    width: 150px;
+    height: 58px;
+    right:0px;
+    top: 550px;
+
+    .registration-Pagebtn{
+        background: $P3;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        font-size:18px;
+        font-weight: 600;
+        cursor: pointer;
+        outline: inherit;
+        width: 120px;
+        border-radius:10px;
+    }
+
+    .registration-Pagebtn:hover{
+        background-color:$O;
+    }
+}
