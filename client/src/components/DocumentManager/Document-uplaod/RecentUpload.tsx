@@ -21,6 +21,17 @@ function RecentUpload(props: RecentUploadProps) {
   if (loading) return <h2>Loading ...</h2>;
   if (props.docs == null) return <h2>No uploads yet</h2>;
 
+  const deleteHandler = (docname: string | undefined) => {
+    if (window.confirm("Are you sure you want to delete?")) {
+      axios
+        .delete("https://localhost:5000/api/File/delete", {
+          params: { fileName: docname },
+        })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error.response.data.errors));
+    }
+  };
+
   return (
     <div className="RecentUpload">
       <table className="RecentUpload-table">
@@ -36,15 +47,18 @@ function RecentUpload(props: RecentUploadProps) {
           </tr>
         </thead>
         <tbody>
-          {props.docs.map((item, index) => (
-            <tr>
+          {props.docs.map((item) => (
+            <tr key={item.documentId}>
               <td>{item.documentName?.split(".").pop()}</td>
-              <td key={index}>{item.documentName?.split(".")[0]}</td>
+              <td>{item.documentName?.split(".")[0]}</td>
               <td>{item.documentSize}</td>
               <td>{item.date}</td>
               <td>{item.description}</td>
               <td>
-                <button className="RecentUpload-table-deleteButton">
+                <button
+                  className="RecentUpload-table-deleteButton"
+                  onClick={() => deleteHandler(item.documentName)}
+                >
                   <DeleteIcon />
                 </button>
               </td>
