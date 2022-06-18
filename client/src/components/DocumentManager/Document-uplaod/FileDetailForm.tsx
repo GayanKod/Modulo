@@ -33,6 +33,7 @@ function FileDetailForm(props: FileDetailFormProps) {
       setIsFileUploaded(true);
       props.setIsFilePicked(false);
       alert("File has been successfully uploaded!");
+      window.location.reload();
     } else {
       alert("Please select a file to upload");
     }

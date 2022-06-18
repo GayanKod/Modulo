@@ -12,7 +12,7 @@ function RecentUpload(props: RecentUploadProps) {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     axios
-      .get("https://localhost:5000/api/Document")
+      .get("https://localhost:5000/api/File/get-all")
       .then((response) => props.setDocs(response.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));

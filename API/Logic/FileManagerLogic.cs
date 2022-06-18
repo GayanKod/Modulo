@@ -1,5 +1,6 @@
 ﻿using API.Models;
 using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace API.Logic
@@ -38,6 +39,12 @@ namespace API.Logic
             _context.Documents.Add(document);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Document>> Get()
+        {
+            return await _context.Documents.ToListAsync();
+        }
+
         public async Task<IEnumerable<string>> Allblobs()
         {
             var blobContainer = _blobServiceClient.GetBlobContainerClient(containerName);

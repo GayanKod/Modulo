@@ -34,9 +34,10 @@ namespace AzureBlobTest.Controllers
 
         [HttpGet]
         [Route("get-all")]
-        public async Task<IEnumerable<string>> Allblobs()
+        public async Task<ActionResult<List<Document>>> GetFiles()
         {
-            return await _fileManagerLogic.Allblobs();
+             var docs = await _fileManagerLogic.Get();
+            return Ok(docs);
         }
 
         [HttpGet]
