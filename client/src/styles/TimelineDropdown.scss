@@ -1,0 +1,17 @@
+@import "../styleVar/colorPalette.scss";
+.dropdown-container{
+    display: flex;
+    align-items: center;
+  justify-content: center;
+
+  #batch,#level,#semester{
+    font-size: 16px;
+    background-color: $O;
+    padding: 5px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 25%;
+  }
+}
+

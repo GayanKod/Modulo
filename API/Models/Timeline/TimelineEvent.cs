@@ -9,6 +9,7 @@ namespace API.Models.Timeline
     {
         public int Id { get; set; }
         public string Batch { get; set; }
+        public string Level { get; set; }
         public string Semester { get; set; }
         public string EventTitle {get; set;}
         public string Description {get;set;}

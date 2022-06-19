@@ -1,57 +1,43 @@
-import { useState } from "react";
+
 import "../../styles/TimelineForm.scss";
 import FormImage from "../../assets/img/TimelineFormImage.png";
 import Dropdown from "./Dropdown";
+import { useForm } from "react-hook-form";
 
-
-const defaultFormData = {
-  title: "",
-  description: "",
-  sdate:"",
-  edate:""
-};
 
 function TimelineForm() {
-  const [formData, setFormData] = useState(defaultFormData);
-  const { title, description, sdate, edate } = formData;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
-
-    setFormData(defaultFormData);
-  };
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+  
 
   return (
     <>
     <Dropdown/>
       <div className="form-container">
-        <form className="wrapper" onSubmit={onSubmit}>
+        <form className="wrapper" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="title">Event Title</label>
           <br />
-          <input type="text" id="title" value={title} onChange={onChange} />
+          <input type="text" {...register("title", { required: true, maxLength: 30 })} id="title"  />
+          {errors.title && <p style={{color: "red"}}>Required</p>}
           <br />
           <br />
-          <label htmlFor="title">Description</label>
+          <label htmlFor="description" >Description</label>
           <br />
-          <input type="text" id="description" value={description} onChange={onChange} />
+          <input type="text" {...register("description", { required: true, maxLength: 100 })} id="description" />
+          {errors.description && <p style={{color: "red"}}>Required</p>}
           <br />
           <br />
           <label htmlFor="date">Start Date</label>
           <br />
-          <input type="date" id="sdate" value={sdate} onChange={onChange} />
+          <input type="date" {...register("sdate", { required: true})} id="sdate"  />
+          {errors.sdate && <p style={{color: "red"}}>Required</p>}
           <br />
           <br />
           <label htmlFor="date">End Date</label>
           <br />
-          <input type="date" id="edate" value={edate} onChange={onChange} />
+          <input type="date" id="edate"  />
           <br />
           <br />
           <button type="submit">Add event</button>

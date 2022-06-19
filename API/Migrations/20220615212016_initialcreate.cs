@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class bugfixed : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,25 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TimelineEvents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Batch = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Level = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Semester = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimelineEvents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AdminInstitute",
                 columns: table => new
                 {
@@ -85,6 +104,9 @@ namespace API.Migrations
         {
             migrationBuilder.DropTable(
                 name: "AdminInstitute");
+
+            migrationBuilder.DropTable(
+                name: "TimelineEvents");
 
             migrationBuilder.DropTable(
                 name: "Admins");
