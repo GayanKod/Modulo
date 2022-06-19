@@ -8,13 +8,14 @@ import DocumentUpload from "./pages/DocumentUpload";
 import DocumentDownload from "./pages/DocumentDownload";
 import LoginPage from "./pages/Login";
 import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
-import AdminPanelUsers from "./pages/AdminPanel/AdminPanelUsers";
-import AdminPanelUser from "./pages/AdminPanel/AdminPanelUser";
-import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
+import AdminPanelAdmins from "./pages/AdminPanel/Admins/AdminPanelAdmins";
+import AdminPanelAdmin from "./pages/AdminPanel/Admins/AdminPanelAdmin";
+import AdminPanelNewAdmin from "./pages/AdminPanel/Admins/AdminPanelNewAdmin";
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
 import NoticeForm from "./pages/NoticeEditForm";
 import RegistrationPage from "./pages/Registration";
+import UserDD from "./components/UserProfileDropdown";
 
 function App() {
   return (
@@ -42,9 +43,10 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/admin-panel" element={<AdminPanelHome/>} />
-          <Route path="/admin-panel/users" element={<AdminPanelUsers/>} />
-          <Route path="/admin-panel/users/:userId" element={<AdminPanelUser/>} />
-          <Route path="/admin-panel/users/newUser" element={<AdminPanelNewUser/>} />
+          <Route path="/admin-panel/admins" element={<AdminPanelAdmins/>} />
+          <Route path="/admin-panel/admins/:userId" element={<AdminPanelAdmin/>} />
+          <Route path="/admin-panel/admins/newadmin" element={<AdminPanelNewAdmin/>} />
+          <Route path="/ad" element={<UserDD />} />
         </Routes>
       </Router>
     </>
