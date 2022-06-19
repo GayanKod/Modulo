@@ -7,14 +7,14 @@ import {
     Publish,
   } from "@mui/icons-material";
   import { Link } from "react-router-dom";
-  import "../../styles/User.scss";
+  import "../../../styles/User.scss";
   
   export default function User() {
     return (
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit User</h1>
-          <Link to="/admin-panel/users/newUser">
+          <Link to="/admin-panel/admins/newadmin">
             <button className="userAddButton">Add user</button>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/NewUserAP.scss";
+import "../../../styles/NewUserAP.scss";
 
 const NewUserAP = () => {
   return (
