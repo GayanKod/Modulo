@@ -8,5 +8,7 @@
         public int capacity { get; set; } = 0;
         public String? LabType { get; set; } = "";
         public int ClassRoomType { get; set; } = 0;
+
+        public int AdminId { get; set; } = 1;
     }
 }

@@ -19,8 +19,20 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<Resource>>> Get()
         {
-            return await _context.Resources.ToListAsync();
+            return await _context.Resources.Include(r => r.ClassRoom_Resources).ToListAsync();
         }
+
+        [HttpGet("{id}")]
+
+        public async Task<ActionResult<List<Resource>>> GetResourcebyId(int id)
+        {
+            var resource = await _context.Resources.Where(r => r.Id == id).Include(r => r.ClassRoom_Resources).ToListAsync();
+            if (resource == null) return NotFound();
+
+            return Ok(resource);
+
+        }
+
 
         [HttpPost]
 

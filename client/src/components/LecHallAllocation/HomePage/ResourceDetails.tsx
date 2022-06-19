@@ -1,48 +1,53 @@
-import { Tab, TableBody, TableCell, TableRow } from "@mui/material";
-import { ClassRooms } from "../Details";
-import { Item } from "../Models";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { isTemplateExpression } from "typescript";
+import agent from "../../../api/agent";
+import { Resource } from "../Models";
 
-type ResourceProps = {
+type ResourceDetailsProps = {
   id: number;
+  quantity: number;
 };
 
-function ResourceDetails(props: ResourceProps) {
-  //WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // const isLab = (c: number) => ClassRooms[c].classRoomType == 1;
+function ResourceDetails(props: ResourceDetailsProps) {
+  const [item, setItem] = useState<Resource[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // const resourceItems = ClassRooms[props.id].resources.map((r) => (
-  //   <TableRow>
-  //     <TableCell>{props.id}</TableCell>
+  useEffect(() => {
+    agent.Resources.details(props.id)
+      .then((resource) => {
+        setItem(resource);
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setLoading(false));
+  }, []);
 
-  //     <TableCell>{r.ResourceName}</TableCell>
-  //     <TableCell>{r.Quantity}</TableCell>
-  //   </TableRow>
-  // ));
+  if (loading)
+    return (
+      <tr>
+        <td style={{ textAlign: "center" }}>Loading...</td>
+      </tr>
+    );
 
-  // // const item = ClassRooms[props.id].resources.map((item) => (
-  // //   <TableRow key={item.Id}>
-  // //     <TableCell>{item.ResourceName}</TableCell>
-  // //     <TableCell>{item.Quantity}</TableCell>
-  // //   </TableRow>
-  // // ));
-  // if (isLab(props.id))
-  //   return <TableBody>{resourceItems}</TableBody>;
-  // else return <></>;
+  // if (item == null) {
+  //   return (
+  //     <tr>
+  //       <td>No Resources are in use.</td>
+  //     </tr>
+  //   );
+  // }
 
-  const classRoom = ClassRooms.find((i) => i.Id == props.id);
-
-  if (!classRoom) {
-    return <></>;
+  if (item) {
+    console.log(item[0].name);
+    return (
+      <tr>
+        <td>{item[0].name}</td>
+        <td>{item[0].description}</td>
+        <td>{props.quantity}</td>
+      </tr>
+    );
   }
-
-  const resorceItems = classRoom.resources.map((item) => (
-    <TableRow>
-      <TableCell>{item.ResourceName}</TableCell>
-      <TableCell>{item.Quantity}</TableCell>
-    </TableRow>
-  ));
-
-  return <TableBody>{resorceItems}</TableBody>;
+  return <></>;
 }
 
 export default ResourceDetails;

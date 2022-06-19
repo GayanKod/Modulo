@@ -32,7 +32,9 @@ namespace API.Controllers
 
         public async Task<ActionResult<ClassRoom>> Get(int id)
         {
-            var classRoom = await _context.ClassRooms.FindAsync(id);
+            var classRoom = await _context.ClassRooms.Where(c => c.Id == id)
+                                .Include(c => c.Bookings)
+                                .Include(c => c.ClassRoom_Resources).ToListAsync();
 
             if (classRoom == null)
                 return BadRequest("Not Found");
@@ -46,7 +48,7 @@ namespace API.Controllers
         {
             _context.ClassRooms.Add(classRoom);
             await _context.SaveChangesAsync();
-            return Ok(await _context.ClassRooms.ToListAsync());
+            return Ok(await _context.ClassRooms.Include(c => c.ClassRoom_Resources).Include(c => c.Bookings).ToListAsync());
         }
 
         [HttpPut]
