@@ -1,21 +1,6 @@
 @import "../styleVar/colorPalette.scss";
 
-.adminpanel-topbar {
-    width: 100%;
-    height: 50px;
-    background-color: white;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-  }
-  
-  .adminpanel-topbarWrapper {
-    height: 100%;
-    padding: 0px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+
   
   .adminpanel-logo {
     font-weight: bold;
@@ -23,45 +8,19 @@
     color: $P5;
     cursor: pointer;
   }
+
   .adminpanel-topbar-logo{
     width:140px;
   }
   
-  .adminpanel-topRight{
-      display: flex;
-      align-items: center;
-  }
   
-  .adminpanel-topbarIconContainer {
-    position: relative;
-    cursor: pointer;
-    margin-right: 10px;
-    color: #555;
-  }
-  
-  .adminpanel-topIconBadge{
-      width: 15px;
-      height: 15px;
-      position: absolute;
-      top: -5px;
-      right: 0px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-  }
-  
-  .adminpanel-topAvatar{
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-  }
-
-  .adminpanel-institute-name{
+  .adminpanel-navbar-Iname{
+      display: table;
       color: $O;
       font-weight: 600;
+      margin:auto;
+  }
+
+  .admin-panel-navbar{
+    background-color:#fff;
   }
