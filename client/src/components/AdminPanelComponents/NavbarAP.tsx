@@ -42,7 +42,7 @@ const NavbarAP = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Container className="admin-panel-navbar"  maxWidth="xl">
         <Toolbar disableGutters>
         <div className="adminpanel-topLeft">
