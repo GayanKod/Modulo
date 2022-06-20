@@ -21,7 +21,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<BookingDetails>>> Get()
         {
-            var bookings = await _context.BookingDetails.ToListAsync();
+            var bookings = await _context.BookingDetails.Include(b=>b.ClassRoom).ToListAsync();
             if (bookings == null)
             {
                 return BadRequest();

@@ -23,6 +23,7 @@ const Resources = {
 const Booking = {
   addBooking: (booking: any) => requests.post(`Booking`, {}),
   removeBoooking: (id: number) => requests.delete(`Booking?${id}`),
+  list: () => requests.get("Booking"),
 };
 
 const agent = {

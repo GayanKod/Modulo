@@ -8,8 +8,6 @@ namespace API.Models
 
         public int User { get; set; }
 
-        [JsonIgnore]
-
         public ClassRoom ClassRoom { get; set; }
 
         public int ClassRoomId { get; set; }

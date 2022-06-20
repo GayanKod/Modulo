@@ -22,6 +22,8 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<ClassRoom>>> Get()
         {
+            
+            
             return Ok(await _context.ClassRooms
                 .Include(c => c.Bookings)
                 .Include(c => c.ClassRoom_Resources)

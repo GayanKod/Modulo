@@ -5,6 +5,10 @@ import PageTitle from "../components/PageTitle";
 
 import Filter from "../components/LecHallAllocation/HomePage/Filter";
 import Navbar2 from "../components/Navbar2";
+import ViewBookings from "../components/LecHallAllocation/HomePage/ViewBookings";
+import { isConstructorDeclaration } from "typescript";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function LecHomePage() {
   let options = [
@@ -26,8 +30,11 @@ export default function LecHomePage() {
             setSelected={setSelected}
             selected={selected}
           />
+          <Link to="/lec-hall-allocation/view-bookings">
+            <button>View My Bookings</button>
+          </Link>
 
-          <table className="hall-details">
+          <table className="details">
             <thead>
               <tr>
                 <th className="hidden"></th>

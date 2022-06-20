@@ -7,6 +7,7 @@ import DocumentUpload from "./pages/DocumentUpload";
 import DocumentDownload from "./pages/DocumentDownload";
 import LoginPage from "./pages/Login";
 import { BookingPovider } from "./context/BookingContext";
+import ViewBookings from "./components/LecHallAllocation/HomePage/ViewBookings";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
             <Route
               path="/lec-hall-allocation/booking/:selected/:id"
               element={<LecHallBooking />}
+            />
+            <Route
+              path="/lec-hall-allocation/view-bookings"
+              element={<ViewBookings />}
             />
 
             <Route path="/login" element={<LoginPage />} />
