@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
-import { ClassRooms } from "../Details";
-
 import { Item } from "../Models";
-
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 import Resources from "./Resources";
 import TimeTable from "./TimeTable";
+import agent from "../../../api/agent";
 
 interface Props {
   selected: number;
-  // open?: boolean;
   item?: Item;
 }
 
@@ -23,25 +19,43 @@ function TableDetails({ selected }: Props) {
   const isLab = (c: any) => c.classRoomType == 1;
 
   useEffect(() => {
-    axios
-      .get("https://localhost:7285/api/ClassRoom")
-      .then((response) => {
-        setClassRooms(response.data);
+    // axios
+    //   .get("https://localhost:7285/api/ClassRoom")
+    //   .then((response) => {
+    //     setClassRooms(response.data);
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => console.log(error))
+    //   .finally(() => setLoading(false));
+
+    agent.ClassRoomDetails.list()
+      .then((classes) => {
+        setClassRooms(classes);
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading)
+    return (
+      <tr>
+        <td style={{ textAlign: "center" }}>Loading...</td>
+      </tr>
+    );
 
-  if (classRooms == null) return <h3>No Items Yet.</h3>;
+  if (classRooms == null)
+    return (
+      <tr>
+        <td style={{ textAlign: "center" }}>No Items available yet.</td>
+      </tr>
+    );
 
   const lecHalls = classRooms
     .filter(isHall)
-    .map((item) => <Row item={item} selected={selected} />);
+    .map((item) => <Row key={item.id} item={item} selected={selected} />);
   const labs = classRooms
     .filter(isLab)
-    .map((item) => <Row item={item} selected={selected} />);
+    .map((item) => <Row key={item.id} item={item} selected={selected} />);
 
   switch (selected) {
     case 0:
@@ -55,7 +69,6 @@ function TableDetails({ selected }: Props) {
 }
 
 function Row({ item, selected }: Props) {
-  console.log("Row");
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState<number[]>([]);
 
@@ -84,13 +97,13 @@ function Row({ item, selected }: Props) {
 
   return (
     <>
-      <tr key={item.Id}>
-        <td className="hide">{item.Id}</td>
+      <tr>
+        <td className="hide">{item.id}</td>
         <td className="hidden">
           <button
             className="hidden expand-button"
             onClick={() => {
-              toggleShown(item.Id);
+              toggleShown(item.id);
               setOpen(!open);
             }}
           >
@@ -101,21 +114,21 @@ function Row({ item, selected }: Props) {
             )}
           </button>
         </td>
-        <td>{`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.Id}`}</td>
+        <td>{`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.id}`}</td>
         <td hidden={selected == 0}>{item.labType}</td>
         <td className="hide">{item.capacity}</td>
-        <td className="hide">{`Building: ${item.BuildingNumber}, Floor: ${item.FloorNumber}`}</td>
+        <td className="hide">{`Building: ${item.buildingNumber}, Floor: ${item.floorNumber}`}</td>
         <td>
-          <Resources id={item.Id} />
+          <Resources resourcesUsed={item.classRoom_Resources} />
         </td>
         <td>
-          <TimeTable selected={selected} id={item.Id} />
+          <TimeTable selected={selected} id={item.id} />
         </td>
         <td>
           <Link
             to={`/lec-hall-allocation/booking/${
               selected == 0 ? "Lecture-halls" : "Labs" //chnage to selected if needed
-            }/${item.Id}`}
+            }/${item.id}`}
           >
             <button className="book-button" style={{ height: "30px" }}>
               Book
@@ -124,7 +137,7 @@ function Row({ item, selected }: Props) {
         </td>
       </tr>
 
-      {shown.includes(item.Id) && (
+      {shown.includes(item.id) && (
         <tr className="hidden" style={{ backgroundColor: "#f8f8f8" }}>
           <td className="hidden" colSpan={12} style={{ paddingBottom: "20px" }}>
             <h3
@@ -136,7 +149,7 @@ function Row({ item, selected }: Props) {
                 backgroundColor: "#e8e8e8",
               }}
             >
-              {`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.Id}`}
+              {`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.id}`}
             </h3>
             <table className="details-table hidden" style={hiddenTable}>
               <div className="thead">
@@ -153,11 +166,11 @@ function Row({ item, selected }: Props) {
               <div className="tbody">
                 <tbody>
                   <tr>
-                    <td style={hiddenTable}>{item.Id}</td>
+                    <td style={hiddenTable}>{item.id}</td>
                     <td style={hiddenTable}>{item.capacity}</td>
                     <td
                       style={hiddenTable}
-                    >{`Building: ${item.BuildingNumber}, Floor: ${item.FloorNumber}`}</td>
+                    >{`Building- ${item.buildingNumber}, Floor- ${item.floorNumber}`}</td>
                   </tr>
                 </tbody>
               </div>

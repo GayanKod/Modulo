@@ -30,6 +30,21 @@ namespace API.Controllers
 
         }
 
+        /*[HttpGet("{user}")]
+
+        public async Task<ActionResult<List<BookingDetails>>> GetByUser(int user)
+        {
+            if (await _context.ClassRooms.FindAsync(user) == null) return NotFound();
+
+            var booking = await _context.BookingDetails.Where(b => b.User == user).ToListAsync();
+            if (booking == null)
+            {
+                return NotFound();
+            }
+            return Ok(booking);
+
+        }*/
+
 
         [HttpGet("{classRoom}")]
 
@@ -50,26 +65,34 @@ namespace API.Controllers
 
         [HttpPost]
 
-        public async Task<ActionResult<List<BookingDetails>>> AddLabBooking(BookingDTO request)
+        public async Task<ActionResult<List<BookingDetails>>> AddLabBooking(BookingDTO booking)
         {
-            var classRoom = await _context.ClassRooms.FindAsync(request.ClassRoomId);
+            var classRoom = await _context.ClassRooms.FindAsync(booking.ClassRoomId);
 
-            if (classRoom == null)   return NotFound();
+            if (classRoom == null) return NotFound();
 
-            var newBooking = new BookingDetails
-            {
-                User = request.User, 
-                ClassRoom = classRoom,
-                Date = request.Date,
-                StartTime = request.StartTime,
-
-            };
+            BookingDetails newBooking = MapBookingtoDTO(booking, classRoom);
 
             _context.BookingDetails.Add(newBooking);
 
-            await _context.SaveChangesAsync();
+            var result = await _context.SaveChangesAsync() > 0;
 
-            return await GetBookingbyClass(newBooking.ClassRoom.Id);
+            if (result) return StatusCode(201);
+
+            return BadRequest(new ProblemDetails { Title = "Problem adding booking" });
+
+        }
+
+        private static BookingDetails MapBookingtoDTO(BookingDTO booking, ClassRoom? classRoom)
+        {
+            return new BookingDetails
+            {
+                User = booking.User,
+                ClassRoom = classRoom,
+                Date = booking.Date,
+                StartTime = booking.StartTime,
+
+            };
         }
 
         [HttpDelete] 

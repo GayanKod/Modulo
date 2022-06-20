@@ -91,7 +91,7 @@ export default function TimeTable(props: TimeTableProps) {
                 <DateSelector />
                 <Schedule id="disable" />
               </DialogContentText>
-              <ColorCode />
+              <ColorCode hide={true} />
             </DialogContent>
             <DialogActions>
               <button className="book-button" onClick={handleClose}>

@@ -1,18 +1,34 @@
-import { Dispatch, SetStateAction } from "react";
-
 export interface Item {
-  Id: number;
-  FloorNumber: number;
-  BuildingNumber: number;
+  id: number;
+  floorNumber: number;
+  buildingNumber: number;
   capacity: number;
-  labType?: string;
-  resources?: {
-    Id: number;
-    ResourceName: string;
-    Quantity: number;
+  labType: string;
+  adminId: number;
+  classRoomType: 0;
+  bookings: {
+    id: number;
+    user: number;
+    classRoomId: number;
+    date: Date;
+    startTime: Date;
+    endTime: Date;
   }[];
+  classRoom_Resources: ClassRoomResource[];
+}
 
-  classRoomType: number;
+export interface ClassRoomResource {
+  id: number;
+  quantity: number;
+  classRoomId: number;
+  resourceId: number;
+}
+
+export interface Resource {
+  id: number;
+  name: string;
+  description: string;
+  classRoom_Resources: ClassRoomResource[];
 }
 
 export interface Options {
@@ -23,4 +39,13 @@ export interface Options {
 export interface TimeSlotCell {
   item: number;
   id: string;
+}
+
+export interface Booking {
+  id: number;
+  user: number;
+  classRoomId: number;
+  date: Date;
+  startTime: Date;
+  endTime: Date;
 }

@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "../styles/LecHomePage.scss";
 import TableDetails from "../components/LecHallAllocation/HomePage/TableDetails";
 import PageTitle from "../components/PageTitle";
-// import Filter from "../components/LecHallAllocation/Filter";
-import Select from "react-select";
+
 import Filter from "../components/LecHallAllocation/HomePage/Filter";
 import Navbar2 from "../components/Navbar2";
 
@@ -27,6 +26,7 @@ export default function LecHomePage() {
             setSelected={setSelected}
             selected={selected}
           />
+
           <table className="hall-details">
             <thead>
               <tr>

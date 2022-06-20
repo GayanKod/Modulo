@@ -1,25 +1,69 @@
 import { Grid } from "@mui/material";
+import axios from "axios";
 import { timeStamp } from "console";
+import React, { useRef, useState } from "react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { isPropertySignature } from "typescript";
+import agent from "../api/agent";
 import BookingDetails from "../components/LecHallAllocation/BookingPage/BookingDetails";
+import Confirmtion from "../components/LecHallAllocation/BookingPage/Confirmation";
 import ColorCode from "../components/LecHallAllocation/ColorCode";
-import DateSelector from "../components/LecHallAllocation/DateSelector";
+import DateSelector, {
+  dateValue,
+} from "../components/LecHallAllocation/DateSelector";
+import { Booking } from "../components/LecHallAllocation/Models";
 
 import Schedule from "../components/LecHallAllocation/Schedule";
 
 import Navbar2 from "../components/Navbar2";
 import PageTitle from "../components/PageTitle";
+import { useBookingContext } from "../context/BookingContext";
 import "../styles/LecHallBooking.scss";
 import "../styles/LecHomePage.scss";
 
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
   const { selected } = useParams<{ selected: string }>();
-  // const { selected } = useParams<{ selected: string }>();
-  // const defaultSelectValue = HallDetails.find(
-  //   (item) => item.id === parseInt(id as string)
-  // );
+  const [loading, setLoading] = useState(false);
+
+  const { bookings } = useBookingContext();
+  const { setBookings } = useBookingContext();
+
+  const makeBooking = () => {
+    const bookingSlots: Date[] = [];
+    const d = dateValue;
+    for (var i = 0; i < bookings.length; i++) {
+      const date = new Date(d);
+      date.setHours(bookings[i]);
+      bookingSlots.push(date);
+      const newBooking = {
+        user: 0,
+        classRoomId: parseInt(id as string),
+        date: bookingSlots[i].toJSON(),
+        startTime: bookingSlots[i].toJSON(),
+      };
+      addNewBooking(newBooking);
+    }
+    for (var i = 0; i < bookings.length; i++) {
+      console.log(bookingSlots[i].toJSON());
+    }
+  };
+
+  const addNewBooking = (newBooking: any) => {
+    agent.Booking.addBooking(newBooking)
+      .then(() => {
+        confirmation();
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const confirmation = () => <Confirmtion />;
 
   return (
     <>
@@ -44,13 +88,16 @@ function LecHallBooking() {
           <DateSelector />
           <Schedule id="" />
           <div className="colorcode">
-            <ColorCode />
+            <ColorCode hide={false} />
           </div>
         </div>
 
         <div className="booking-buttons">
           <Link to={"/lec-hall-allocation"}>
-            <button className="book-button change">
+            <button
+              className="book-button change"
+              onClick={() => setBookings([])}
+            >
               Select a Different Hall
             </button>
           </Link>
@@ -61,6 +108,7 @@ function LecHallBooking() {
               color: "white",
               cursor: "pointer",
             }}
+            onClick={makeBooking}
           >
             Confirm
           </button>

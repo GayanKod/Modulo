@@ -1,37 +1,59 @@
-import { traceDeprecation } from "process";
-import { useEffect, useState } from "react";
-import { isClassStaticBlockDeclaration } from "typescript";
+import { useContext, useEffect, useState } from "react";
 import "../../styles/LecHallBooking.scss";
 import "../../styles/LecHomePage.scss";
+// import { changed } from "./DateSelector";
 import { TimeSlotCell } from "./Models";
+
+// import { useHistory } from "react-router-dom";
+import { UNSAFE_NavigationContext } from "react-router-dom";
+import { useBookingContext } from "../../context/BookingContext";
+import { dateValue } from "./DateSelector";
 
 type ScheduleProps = {
   id: string;
 };
 
-export const bookings = [];
-
 function TimeSlot({ item, id }: TimeSlotCell) {
   const [selectedSlot, setSelectedSlot] = useState<number[]>([]);
   const [picked, setPicked] = useState(false);
 
-  useEffect(() => {
-    // Update the document title using the browser API
-  });
+  const { setDateChanged } = useBookingContext();
+  const { dateChanged } = useBookingContext();
+
+  const { setBookings } = useBookingContext();
+  const { bookings } = useBookingContext();
+
+  const items = [...bookings];
+
+  console.log("items: " + items);
+
+  if (dateChanged) {
+    console.log("date CHANGED");
+
+    items.splice(0, items.length);
+    console.log("after: " + items);
+  }
+
+  const d = new Date();
 
   return (
     <>
       <td
         className={id == "disable" ? "" : "cell"}
         key={item}
-        style={{ backgroundColor: picked ? "#7b2cbf" : "white" }}
+        style={{
+          backgroundColor: items.includes(item) ? "#7b2cbf" : "white",
+        }}
         onClick={() => {
           if (id != "disable") {
-            if (bookings.indexOf(item as never) < 0) {
-              bookings.push(item as never);
-            } else bookings.splice(bookings.indexOf(item as never), 1);
+            if (items.indexOf(item as never) < 0) {
+              items.push(item as never);
+              setDateChanged(false);
+            } else {
+              items.splice(bookings.indexOf(item as never), 1);
+            }
 
-            console.log(bookings);
+            setBookings(items);
 
             setPicked(!picked);
 
@@ -47,8 +69,6 @@ function TimeSlot({ item, id }: TimeSlotCell) {
               } else pickedState.push(item);
 
               setSelectedSlot(pickedState);
-
-              // console.log(selectedSlot);
             }
           }
         }}
