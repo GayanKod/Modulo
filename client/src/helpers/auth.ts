@@ -46,7 +46,7 @@ export const removeLocalStorage = (key:string) => {
 export const authenticate = (response:any, next:any) => {
     console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response);
     setCookie('modulo_jwt', response.data.token);
-    setLocalStorage('mo_user', response.data.admin);
+    setLocalStorage('mo_user', response.data.user);
     next();
 };
 
@@ -56,7 +56,6 @@ export const isAuth = () => {
         const cookieChecked = getCookie('modulo_jwt');
         if (cookieChecked) {
             if (localStorage.getItem('mo_user')) {
-                // return true;
                 return JSON.parse(localStorage.getItem('mo_user') || '{}');
             } else {
                 return false;

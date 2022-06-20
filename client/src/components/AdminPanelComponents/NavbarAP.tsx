@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,9 +12,22 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Modulo from "../../assets/img/LogoModulo.png"
 import "../../styles/NavbarAP.scss";
+import {isAuth, signout} from "../../helpers/auth";
 
 
 const NavbarAP = () => {
+
+  const navigate = useNavigate();
+
+  const [username, setUsername] = React.useState('User');
+  const [institute, setInstitute] = React.useState('Institute');
+
+  React.useEffect(()=>{
+    if(isAuth()){
+      setUsername(isAuth().firstName + " " + isAuth().lastName);
+      setInstitute(isAuth().institutes[0].instituteName);
+    }
+  })
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -50,7 +63,7 @@ const NavbarAP = () => {
               textDecoration: 'none',
             }}
           >
-            <span className="adminpanel-navbar-Iname">Faculty of IT, University of Moratuwa</span>
+            <span className="adminpanel-navbar-Iname">{institute}</span>
           </Typography>
           
             <Typography
@@ -69,7 +82,7 @@ const NavbarAP = () => {
                 textDecoration: 'none',
               }}
             >
-                <span className="adminpanel-navbar-Iname">Faculty of IT - University of Moratuwa</span> 
+                <span className="adminpanel-navbar-Iname">{institute}</span> 
               </Typography>
           
 
@@ -77,7 +90,7 @@ const NavbarAP = () => {
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               
-                <Avatar alt="User" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={username} src="/static/images/avatar/2.jpg" />
             
               </IconButton>
             </Tooltip>
@@ -98,13 +111,21 @@ const NavbarAP = () => {
               onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography className="AP-Userdropdown-Name" textAlign="center">Gayan Kodithuwakku</Typography>
+                  <Typography className="AP-Userdropdown-Name" textAlign="center">{username}</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography className="AP-Userdropdown-Item" textAlign="center">My Account</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography className="AP-Userdropdown-Item" textAlign="center">Log out</Typography>
+                  <Typography 
+                    className="AP-Userdropdown-Item" 
+                    textAlign="center"
+                    onClick={() => {
+                      signout(() => {
+                        navigate('/');
+                      })
+                    }}
+                    >Log out</Typography>
                 </MenuItem>
             </Menu>
           </Box>
