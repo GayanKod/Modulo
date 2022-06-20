@@ -112,6 +112,13 @@
             border-radius: 5px;
           }
         }
+        .SearchResult-table-downloadButton {
+          border: none;
+          background: none;
+          &:hover {
+            color: $O;
+          }
+        }
       }
     }
   }

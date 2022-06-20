@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Documents } from "./Documents";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PreviewIcon from "@mui/icons-material/Preview";
 import axios from "axios";
 
 interface RecentUploadProps {
@@ -10,13 +11,14 @@ interface RecentUploadProps {
 
 function RecentUpload(props: RecentUploadProps) {
   const [loading, setLoading] = useState(true);
+  const [file, setFile] = useState<File>();
   useEffect(() => {
     axios
       .get("https://localhost:5000/api/File/get-all")
       .then((response) => props.setDocs(response.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [props.docs]);
 
   if (loading) return <h2>Loading ...</h2>;
   if (props.docs == null) return <h2>No uploads yet</h2>;
@@ -32,6 +34,15 @@ function RecentUpload(props: RecentUploadProps) {
     }
   };
 
+  const viewHandler = (docname: string | undefined) => {
+    axios
+      .get("https://localhost:5000/api/File/view", {
+        params: { filename: docname },
+      })
+      .then((response) => setFile(response.data))
+      .catch((error) => console.log(error.response.data.errors));
+  };
+
   return (
     <div className="RecentUpload">
       <table className="RecentUpload-table">
@@ -40,9 +51,10 @@ function RecentUpload(props: RecentUploadProps) {
           <tr className="RecentUpload-table-headers">
             <th>Type</th>
             <th>Document Name</th>
-            <th>Document size</th>
+            <th>Size</th>
             <th>Date</th>
             <th>Description</th>
+            <th>View</th>
             <th>Delete</th>
           </tr>
         </thead>
@@ -54,6 +66,14 @@ function RecentUpload(props: RecentUploadProps) {
               <td>{item.documentSize}</td>
               <td>{item.date}</td>
               <td>{item.description}</td>
+              <td>
+                <button
+                  className="RecentUpload-table-viewButton"
+                  onClick={() => viewHandler(item.documentName)}
+                >
+                  <PreviewIcon />
+                </button>
+              </td>
               <td>
                 <button
                   className="RecentUpload-table-deleteButton"

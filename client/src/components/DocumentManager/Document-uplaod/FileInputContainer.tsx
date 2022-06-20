@@ -35,6 +35,14 @@ function FileInputContainer(props: FileInputContainerprops) {
               type="file"
               id="myfile"
               name="myfile"
+              accept="application/pdf,
+              application/vnd.ms-excel,.doc,.docx,
+              application/msword,
+              application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+              .pps,
+              application/vnd.ms-powerpoint,
+              application/vnd.openxmlformats-officedocument.presentationml.slideshow,
+              application/vnd.openxmlformats-officedocument.presentationml.presentation"
               onChange={handleChange}
             />
             <label

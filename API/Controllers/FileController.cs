@@ -45,11 +45,22 @@ namespace AzureBlobTest.Controllers
 
         public async Task<IActionResult> Download(string fileName)
         {
-            var doc = await _fileManagerLogic.Download(fileName);
+            var doc = await _fileManagerLogic.Read(fileName);
             return new FileContentResult(doc, "application/octect-stream")
             {
                 FileDownloadName = fileName
             };
+        }
+
+        [HttpGet]
+        [Route("view")]
+
+        public async Task<IActionResult> View(string fileName)
+        {
+            var file = await _fileManagerLogic.Read(fileName);
+            return new FileContentResult(file, "application/pdf");
+
+
         }
 
         [HttpDelete]

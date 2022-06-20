@@ -185,6 +185,13 @@
             color: $O;
           }
         }
+        .RecentUpload-table-viewButton {
+          border: none;
+          background: none;
+          &:hover {
+            color: $O;
+          }
+        }
       }
     }
   }

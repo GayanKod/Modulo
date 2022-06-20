@@ -8,7 +8,8 @@ namespace API.Logic
         Task Upload(FileModel model, Document document);
         Task<List<Document>> Get();
         Task<IEnumerable<string>> Allblobs();
-        Task<byte[]> Download(string fileName);
+        Task<byte[]> Read(string fileName);
+        Task<string> View(string fileName);
         Task Delete(string fileName);
        
     }

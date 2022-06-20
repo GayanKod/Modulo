@@ -59,8 +59,9 @@ namespace API.Logic
             }
             return files;
         }
+     
 
-        public async Task<byte[]> Download(string fileName)
+        public async Task<byte[]> Read(string fileName)
         {
             var blobClient = GetBlobClient(fileName);
 
@@ -72,6 +73,12 @@ namespace API.Logic
                 return stream.ToArray();
             }
 
+        }
+        public async Task<string> View(string fileName)
+        {
+            var blobClient = GetBlobClient(fileName);
+            string url =  blobClient.Uri.AbsoluteUri.ToString();
+            return url;
         }
         public async Task Delete(string fileName)
         {  
