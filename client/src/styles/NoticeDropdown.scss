@@ -24,7 +24,7 @@
     font-size: 15px;
   }
 //   /* Remove IE arrow */
-  notice-select::-ms-expand {
+  .notice-select::-ms-expand {
     display: none;
   }
 //   /* Custom Select wrapper */
@@ -49,15 +49,15 @@
     pointer-events: none;
   }
 //   /* Transition */
-//   .select:hover::after {
-//     color: purple;
-//   }
+  .notice-select:hover::after {
+    color: purple;
+  }
   
 //   /* Other styles*/
-//   body {
-//     // color: #fff;
-//     background: var(--background-gradient);
-//   }
+  .notice-select body {
+    color: #fff;
+    background: var(--background-gradient);
+  }
 //   h1 {
 //     margin: 0 0 0.25em;
 //   }

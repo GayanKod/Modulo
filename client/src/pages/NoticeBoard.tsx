@@ -19,7 +19,8 @@ function NoticeBoard(){
                    </div>
 
                    <div id='rightbox'>
-                   <p>Order by:</p><Dropdown/>
+                   <p>Order by:</p>
+                   <Dropdown/>
                    </div>
                         
                                   
