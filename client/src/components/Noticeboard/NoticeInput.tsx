@@ -4,8 +4,6 @@ import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
 
 
-
-
 const NoticeInput :FC = () => {
 
     const [notice, setNotice] =useState<string>("");
@@ -15,8 +13,6 @@ const NoticeInput :FC = () => {
     const [error, setError] = React.useState('');
     const [value, setValue] = useState({});
  
-
-
 
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
      
@@ -33,6 +29,12 @@ const NoticeInput :FC = () => {
     };
    
      const addNotice = (): void => {
+       
+         if((!notice || /^\s*$/.test(notice)) || (!description || /^\s*$/.test(notice))){
+            alert("You should enter both notice title and description!!");
+         return;
+       }
+
        const newNotice ={noticeTitle: notice, description: description };
         setNoticeList([...noticeList, newNotice]);
         setNotice("");
@@ -84,7 +86,7 @@ const NoticeInput :FC = () => {
             <input 
             type="text" 
             name="notice" 
-            // placeholder="Notice Title" required
+            placeholder="Notice title is required" required
             value={notice}
             onChange={handleChange}
            
@@ -101,7 +103,7 @@ const NoticeInput :FC = () => {
             <input 
             type="text" 
             name="description" 
-            // placeholder="Description" required
+            placeholder="Description is required" required
             value={description}
             onChange={handleChange}/>
        

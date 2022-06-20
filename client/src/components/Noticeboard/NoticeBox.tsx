@@ -1,6 +1,5 @@
 import "../../styles/NoticeInput.scss";
 import "../../styles/NoticeCard.scss";
-import "../../styles/NoticeboxStyles.scss";
 import NoticeData from './NoticeData';
 import NoticeItem from "./NoticeItem";
 
