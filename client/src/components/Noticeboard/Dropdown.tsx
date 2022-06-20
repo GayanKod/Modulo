@@ -10,8 +10,8 @@ const Dropdown: React.FunctionComponent = () => {
   };
 
   return(
-          <div className="select">
-              <select>
+          <div className="notice-select">
+              <select className="notice-select-options">
                       <option value="2">Recently Added</option>
                       <option value="3">All</option>
               </select>

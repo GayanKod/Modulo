@@ -1,11 +1,12 @@
-import React, {useState}  from 'react';
 import { render } from 'react-dom';
+import  React, { useState , useEffect } from 'react'
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
 import { Link } from "react-router-dom";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import { time } from 'console';
 
 interface Props {
 
@@ -17,7 +18,9 @@ interface Props {
 }
 
 const current = new Date();
-const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()} at ${current.getHours()}:${current.getMinutes()}`;
+
+
 
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
@@ -31,8 +34,9 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
             {notice.noticeTitle}
             &nbsp;&nbsp;
 
-            <p className='notice-published-date'>Published Date: {date}</p>
-          
+            <p className='notice-published-date'>Published Date and Time: {date}</p>
+            
+         
             </div>
 
           <hr></hr>
