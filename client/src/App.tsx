@@ -15,7 +15,6 @@ import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
 import NoticeForm from "./pages/NoticeEditForm";
 import RegistrationPage from "./pages/Registration";
-import UserDD from "./components/UserProfileDropdown";
 
 function App() {
   return (
@@ -46,7 +45,6 @@ function App() {
           <Route path="/admin-panel/admins" element={<AdminPanelAdmins/>} />
           <Route path="/admin-panel/admins/:userId" element={<AdminPanelAdmin/>} />
           <Route path="/admin-panel/admins/newadmin" element={<AdminPanelNewAdmin/>} />
-          <Route path="/ad" element={<UserDD />} />
         </Routes>
       </Router>
     </>
