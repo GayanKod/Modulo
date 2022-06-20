@@ -94,15 +94,21 @@ namespace API.Controllers
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest req)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            var user = await _context.Users
+                .Where(u => u.Email == req.Email)
+                .Include(u => u.Institutes).FirstOrDefaultAsync();
+
+
+
             if (user == null)
             {
                 return BadRequest("User not found!");
             }
 
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(req.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Password is incorrect!");
             }
@@ -115,7 +121,6 @@ namespace API.Controllers
 
             //return Ok($"Welcome Back, {user.Email}! :)");
             string token = CreateJWTToken(user);
-            //return Ok(token);
             return Ok(new { user = user, token = token });
         }
 
@@ -226,6 +231,14 @@ namespace API.Controllers
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
 
+        private async Task<ActionResult<List<User>>> GetInstitute(int id)
+        {
+            var user = await _context.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.Institutes).ToListAsync();
+
+            return user;
+        }
 
     }
 }
