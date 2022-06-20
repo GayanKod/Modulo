@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore;
 using API.Models.Timeline;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
