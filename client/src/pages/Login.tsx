@@ -45,7 +45,6 @@ const Login = () => {
                 isAuth()
                   ? navigate('/admin-panel')
                   : navigate('/login');
-                toast.success("Welcome back!");
               });
             })
             .catch(err => {
