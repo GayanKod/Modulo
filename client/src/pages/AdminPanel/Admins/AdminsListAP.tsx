@@ -15,7 +15,7 @@ export default function UserList() {
   //Get data from Backend
   useEffect(() => {
     function getAdmins(){
-        axios.get("https://localhost:5000/api/Admin/get-admins").then((res) => {
+        axios.get("https://localhost:5000/api/User/get-admins").then((res) => {
             setData(res.data);
         }).catch((err) => {
             console.log(err.message);
@@ -24,29 +24,29 @@ export default function UserList() {
     getAdmins();
   }, [])  
 
-  const handleDelete = (id:any) => {
+  const handleDelete = (id:number) => {
     setData(data.filter((item:any) => item.id !== id));
   };
   
   const columns = [
     { field: "id", headerName: "ID", width: 100},
     {
-      field: "adminName",
+      field: "firstName",
       headerName: "User",
       width: 200,
       renderCell: (params:any) => {
         return (
           <div className="userListUser">
-            <Avatar className="userListImg" src={params.row.avatar} alt={params.row.adminName} />
-            {params.row.adminName}
+            <Avatar className="userListImg" src={params.row.avatar} alt={params.row.firstName} />
+            {params.row.firstName} {params.row.lastName}
           </div>
         );
       },
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "adminType",
-      headerName: "Type",
+      field: "role",
+      headerName: "Role",
       width: 120,
     },
     {
