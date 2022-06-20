@@ -45,19 +45,19 @@ export const removeLocalStorage = (key:string) => {
 // Auth enticate user by passing data to cookie and localstorage during signin
 export const authenticate = (response:any, next:any) => {
     console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response);
-    setCookie('token', response.data.token);
-    setLocalStorage('user', response.data.user);
+    setCookie('modulo_jwt', response.data.token);
+    setLocalStorage('mo_user', response.data.admin);
     next();
 };
 
 // Access user info from localstorage
 export const isAuth = () => {
     if (String(window) !== 'undefined') {
-        const cookieChecked = getCookie('token');
+        const cookieChecked = getCookie('modulo_jwt');
         if (cookieChecked) {
-            if (localStorage.getItem('user')) {
-                return true;
-                // return JSON.parse(localStorage.getItem('user') || '{}');
+            if (localStorage.getItem('mo_user')) {
+                // return true;
+                return JSON.parse(localStorage.getItem('mo_user') || '{}');
             } else {
                 return false;
             }
@@ -66,17 +66,17 @@ export const isAuth = () => {
 };
 
 export const signout = (next:any) => {
-    removeCookie('token');
-    removeLocalStorage('user');
+    removeCookie('modulo_jwt');
+    removeLocalStorage('mo_user');
     next();
 };
 
 export const updateUser = (response:any, next:any) => {
     console.log('UPDATE USER IN LOCALSTORAGE HELPERS', response);
     if (typeof window !== 'undefined') {
-        let auth = JSON.parse(localStorage.getItem('user') || '{}');
+        let auth = JSON.parse(localStorage.getItem('mo_user') || '{}');
         auth = response.data;
-        localStorage.setItem('user', JSON.stringify(auth));
+        localStorage.setItem('mo_user', JSON.stringify(auth));
     }
     next();
 };
