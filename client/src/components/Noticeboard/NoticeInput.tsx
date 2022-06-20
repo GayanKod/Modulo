@@ -14,6 +14,7 @@ const NoticeInput :FC = () => {
     const [value, setValue] = useState({});
  
 
+
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
      
      if(event.target.name==="notice"){

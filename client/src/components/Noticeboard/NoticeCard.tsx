@@ -16,6 +16,8 @@ interface Props {
   sendSMS(noticeToSendSMS: string): void;
 }
 
+const current = new Date();
+const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
 
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
@@ -27,11 +29,9 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
       <div className="content">
           <div className="title">
             {notice.noticeTitle}
-            &nbsp;&nbsp;&nbsp;
-          {/* <div className="date">
-          
-            {notice.date}
-          </div> */}
+            &nbsp;&nbsp;
+
+            <p className='notice-published-date'>Published Date: {date}</p>
           
             </div>
 

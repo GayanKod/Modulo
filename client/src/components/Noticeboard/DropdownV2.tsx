@@ -10,9 +10,9 @@ const DropdownV2: React.FunctionComponent = () => {
   };
 
   return(
-          <div className="select">
+          <div className="notice-select">
            
-              <select>
+              <select className="notice-select-options">
                       <option value="2">Staff Notices</option>
                       <option value="3">Student Notices</option>
               </select>
