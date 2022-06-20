@@ -12,12 +12,12 @@ function Registration(){
     let time = new Date().getHours();
     
     const [formData, setFormData] = useState({
-        adminFName:'',
-        adminLName:'',
+        userFName:'',
+        userLName:'',
         email:'',
         dob:'',
         gender:'',
-        streetNo:'',
+        homeNo:'',
         street:'',
         town:'',
         mobileNumber:'',
@@ -28,12 +28,12 @@ function Registration(){
     });
 
     const {
-        adminFName, 
-        adminLName, 
+        userFName, 
+        userLName, 
         email, 
         dob, 
         gender, 
-        streetNo, 
+        homeNo, 
         street, 
         town, 
         mobileNumber, 
@@ -52,12 +52,12 @@ function Registration(){
 
           axios
             .post(`https://localhost:5000/api/Auth/register`, {
-                adminFName,
-                adminLName,
+                userFName,
+                userLName,
                 email,
                 dob,
                 gender,
-                streetNo,
+                homeNo,
                 street,
                 town,
                 mobileNumber,
@@ -70,12 +70,12 @@ function Registration(){
               toast.success("Registration Success!");
               setFormData({
                     ...formData,
-                    adminFName:'',
-                    adminLName:'',
+                    userFName:'',
+                    userLName:'',
                     email:'',
                     dob:'',
                     gender:'',
-                    streetNo:'',
+                    homeNo:'',
                     street:'',
                     town:'',
                     mobileNumber:'',
@@ -115,9 +115,9 @@ function Registration(){
                                             type="text"
                                             className="registration-input"
                                             onChange={
-                                                handleChange('adminFName')
+                                                handleChange('userFName')
                                             }
-                                            value={adminFName}
+                                            value={userFName}
                                         />
                                     </td>
                                     <td className="formblock-tbl-td">
@@ -126,9 +126,9 @@ function Registration(){
                                             type="text"
                                             className="registration-input"
                                             onChange={
-                                                handleChange('adminLName')
+                                                handleChange('userLName')
                                             }
-                                            value={adminLName}
+                                            value={userLName}
                                         />
                                     </td>
                                 </tr>
@@ -188,9 +188,9 @@ function Registration(){
                                             type="text"
                                             className="registration-input"
                                             onChange={
-                                                handleChange('streetNo')
+                                                handleChange('homeNo')
                                             }
-                                            value={streetNo}
+                                            value={homeNo}
                                         />
                                     </td>
                                     <td className="formblock-tbl-td">
