@@ -1,9 +1,11 @@
 import React, {FC, ChangeEvent, useState} from 'react';
-import NoticeInput from '../components/Noticeboard/NoticeInput';
+import NoticeInput from '../components/Noticeboard/NoticeInputV1';
 import Dropdown from '../components/Noticeboard/Dropdown';
 import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
 import Footer from '../components/Footer/Footer';
+import NoticeInputV2 from '../components/Noticeboard/NoticeInputV2';
+import NoticeInputV1 from '../components/Noticeboard/NoticeInputV1';
 
 function NoticeBoard(){
 
@@ -21,13 +23,12 @@ function NoticeBoard(){
                    <div id='rightbox'>
                    <p>Order by:</p>
                    <Dropdown/>
-                   </div>
-                        
+                   </div>                
                                   
                   </span>
                   <br></br>
                   <div>
-                  <NoticeInput />
+                  <NoticeInputV2 />
                   </div>  
                     
          </div>

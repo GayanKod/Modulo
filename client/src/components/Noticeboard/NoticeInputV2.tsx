@@ -3,7 +3,7 @@ import {INotice} from "./interface";
 import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
 
-const NoticeInput :FC = () => {
+const NoticeInputV2 :FC = () => {
 
     const [notice, setNotice] =useState<string>("");
     const [description, setDescription] =useState<string>("");
@@ -72,14 +72,14 @@ const NoticeInput :FC = () => {
             <br>
             </br>
             <div className="notice-InputTitle">
-            <p>New Notice</p>
+            <p className='notice-new-name'>New Notice</p>
             </div>
 
                 <hr></hr>
                 <br></br>
 
             <div>
-            <p>Notice Title:</p>
+            <p className ='notice-title-name'>Notice Title:</p>
             <div className="notice-inputContainer">
             <input 
             type="text" 
@@ -94,7 +94,7 @@ const NoticeInput :FC = () => {
         <br></br>
 
         <div>
-            <p>Description:</p>
+            <p className='notice-name-description'>Description:</p>
             <div className="notice-inputContainer">
             <input 
             type="text" 
@@ -104,6 +104,22 @@ const NoticeInput :FC = () => {
             onChange={handleChange}/>     
          </div>
         </div>
+        <br></br>
+
+
+        <div>
+            <div className='notice-radio-button-topic'>
+            <p className='notice-radio-buttons'>Select the notice category from below:</p><br></br>
+            </div>
+            
+            <div className="notice-radio-button-container">
+
+                  <input type="radio" value="Accouncements" name="gender" /> Accouncements
+                  <input type="radio" value="Accomplishments" name="gender" />Accomplishments
+    
+               
+                  </div>
+               </div>
         <br></br>
         
          <div className="AddButton">
@@ -120,4 +136,4 @@ const NoticeInput :FC = () => {
      );
    };
    
-export default NoticeInput;
+export default NoticeInputV2;
