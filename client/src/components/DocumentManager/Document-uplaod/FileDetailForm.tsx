@@ -12,11 +12,16 @@ interface FileDetailFormProps {
 function FileDetailForm(props: FileDetailFormProps) {
   const [description, setDescription] = useState<string>();
   const [isFileUploaded, setIsFileUploaded] = useState(false);
+  const [filename, setFilename] = useState<string>();
+
+  const fileNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilename(event.target.value);
+  };
 
   const uploadHandler = (event: React.SyntheticEvent) => {
     var formdata = new FormData();
     formdata.append("myfile", props.selectedFile!);
-    formdata.append("documentname", props.selectedFile?.name!);
+    formdata.append("documentname", filename!);
     formdata.append("description", description!);
 
     const config = {
@@ -52,11 +57,15 @@ function FileDetailForm(props: FileDetailFormProps) {
         <label className="fileDetailForm-fileNameText" htmlFor="filename">
           File Name:
         </label>
+        <label className="fileDetailForm-fileNameRule" htmlFor="rule">
+          *Append your index at the end*
+        </label>
         <input
           className="fileDetailForm-fileNameInput"
           id="filename"
           type="text"
-          value={isFileUploaded ? "" : props.selectedFile?.name}
+          defaultValue={props.selectedFile?.name}
+          onChange={fileNameHandler}
         />
 
         <label htmlFor="descriptionbox">Description:</label>

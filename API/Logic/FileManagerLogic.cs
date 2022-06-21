@@ -28,7 +28,7 @@ namespace API.Logic
        
         public async Task Upload(FileModel model, Document document)
         {
-            var blobClient = GetBlobClient(model.MyFile.FileName);
+            var blobClient = GetBlobClient(document.DocumentName);
             
             await blobClient.UploadAsync(model.MyFile.OpenReadStream(),false);
 

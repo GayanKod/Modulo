@@ -54,6 +54,7 @@ function DocumentSearch(props: DocumentSearchProps) {
         setDocs={props.setDocs}
         search={search}
         isEntered={isEntered}
+        setIsEntered={setIsEntered}
       />
     </div>
   );

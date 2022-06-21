@@ -39,7 +39,7 @@
       justify-content: center;
       background-color: rgb(157, 78, 221, 0.2);
 
-      .pdf-image {
+      .Fileselector-container-image {
         height: 100px;
         width: 75px;
       }
@@ -105,6 +105,10 @@
         &:active {
           border: 1px solid red;
         }
+      }
+      .fileDetailForm-fileNameRule {
+        color: $O;
+        font-size: small;
       }
       .fileDetailForm-buttons {
         display: flex;

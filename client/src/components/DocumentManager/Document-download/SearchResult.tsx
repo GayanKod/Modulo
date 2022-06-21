@@ -9,6 +9,7 @@ interface SearchResultProps {
   setDocs: Dispatch<SetStateAction<Documents[]>>;
   search: string;
   isEntered: boolean;
+  setIsEntered: Dispatch<SetStateAction<boolean>>;
 }
 function SearchResult(props: SearchResultProps) {
   const downloadHandler = (docname: string | undefined) => {
