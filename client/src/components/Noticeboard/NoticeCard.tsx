@@ -21,7 +21,6 @@ const current = new Date();
 const date = `On ${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()} at ${current.getHours()}:${current.getMinutes()}`;
 
 
-
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
    
@@ -33,10 +32,8 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
           <div className="title">
             {notice.noticeTitle}
             &nbsp;&nbsp;
-
             <p className='notice-published-date'>Published Date and Time: {date}</p>
-            
-         
+                     
             </div>
 
           <hr></hr>
@@ -45,7 +42,6 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
           <br></br>
 
           <div className="buttons">
-
                 <span className='btn1'>
                   <button onClick={() => {
                 deleteNotice(notice.noticeTitle);
@@ -56,7 +52,6 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                 </span>
                 
                 &nbsp;&nbsp;&nbsp;
-
                 <Link to ="/noticeboard-edit">
                 <span className='btn2'>
                         {/* <button onClick={() => {

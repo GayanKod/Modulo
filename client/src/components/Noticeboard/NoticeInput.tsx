@@ -3,7 +3,6 @@ import {INotice} from "./interface";
 import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
 
-
 const NoticeInput :FC = () => {
 
     const [notice, setNotice] =useState<string>("");
@@ -12,8 +11,6 @@ const NoticeInput :FC = () => {
     const [edit, setEdit] =useState<boolean>(false);
     const [error, setError] = React.useState('');
     const [value, setValue] = useState({});
- 
-
 
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
      
@@ -69,12 +66,12 @@ const NoticeInput :FC = () => {
   
    
      return  (
-       <div className="NoticeInput">
+       <div className="NoticeInput-container">
         
-            <div className="header">
+            <div className="notice-input-header">
             <br>
             </br>
-            <div className="InputTitle">
+            <div className="notice-InputTitle">
             <p>New Notice</p>
             </div>
 
@@ -83,16 +80,14 @@ const NoticeInput :FC = () => {
 
             <div>
             <p>Notice Title:</p>
-            <div className="inputContainer">
+            <div className="notice-inputContainer">
             <input 
             type="text" 
             name="notice" 
             placeholder="Notice title is required" required
             value={notice}
-            onChange={handleChange}
-           
-            />
-           
+            onChange={handleChange}         
+            />       
             </div>
             </div>
          
@@ -100,21 +95,18 @@ const NoticeInput :FC = () => {
 
         <div>
             <p>Description:</p>
-            <div className="inputContainer">
+            <div className="notice-inputContainer">
             <input 
             type="text" 
             name="description" 
             placeholder="Description is required" required
             value={description}
-            onChange={handleChange}/>
-       
+            onChange={handleChange}/>     
          </div>
         </div>
         <br></br>
         
-
          <div className="AddButton">
-            
               <button onClick={addNotice}>+ Add Notice</button>
          </div>
         

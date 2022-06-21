@@ -1,10 +1,10 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-.header .AddButton{
+.notice-input-header .AddButton{
   align-items: center;
 }
-.NoticeInput button{
+.NoticeInput-container button{
     background: $P3;
     color: #fff;
     border: none;
@@ -29,7 +29,7 @@
   }
 
 
-  .NoticeInput .header{
+  .NoticeInput-container .notice-input-header{
 
     border-color: purple;
     border:1px;
@@ -43,10 +43,8 @@
     width: auto;
     font-family: "Poppins", sans-serif;
 
-
-
   }
-  .header .inputContainer {
+  .notice-input-header .notice-inputContainer {
     font-weight: 500;
     color: white;
     cursor: pointer;
@@ -57,17 +55,16 @@
     display: flex;
     flex-direction: column;
    
-
   }
   
-  .header .InputTitle{
+  .notice-input-header .notice-InputTitle{
     padding: 5px;
     font-size: 18px;
     font-family: "Poppins", sans-serif;
     font-weight:500px;
   }
 
-  .header input{
+  .notice-input-header input{
 
     width: 700px;
     height: 50px;
@@ -83,7 +80,7 @@
   
   }
 
-  .header .hr{
+  .notice-input-header .hr{
     
       border: 0.3px solid #000000;
       transform: rotate(0deg);
