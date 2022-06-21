@@ -35,7 +35,7 @@ namespace API.Logic
             document.DocumentURL= blobClient.Uri.ToString();
             //document.DocumentType= blobClient.GetType().ToString();
             //document.DocumentName= blobClient.Name;
-           
+            document.DocumentSize = (int)model.MyFile.Length;
             _context.Documents.Add(document);
             await _context.SaveChangesAsync();
         }

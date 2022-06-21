@@ -12,7 +12,7 @@ interface FileDetailFormProps {
 function FileDetailForm(props: FileDetailFormProps) {
   const [description, setDescription] = useState<string>();
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [filename, setFilename] = useState<string>();
+  const [filename, setFilename] = useState<string>(props.selectedFile?.name!);
 
   const fileNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilename(event.target.value);

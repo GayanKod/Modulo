@@ -51,7 +51,7 @@ function RecentUpload(props: RecentUploadProps) {
           <tr className="RecentUpload-table-headers">
             <th>Type</th>
             <th>Document Name</th>
-            <th>Size</th>
+            <th>Size(MB)</th>
             <th>Date</th>
             <th>Description</th>
             <th>View</th>
@@ -63,8 +63,8 @@ function RecentUpload(props: RecentUploadProps) {
             <tr key={item.documentId}>
               <td>{item.documentName?.split(".").pop()}</td>
               <td>{item.documentName?.split(".")[0]}</td>
-              <td>{item.documentSize}</td>
-              <td>{item.date}</td>
+              <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
+              <td>{item.date?.toString().split("T")[0]}</td>
               <td>{item.description}</td>
               <td>
                 <button
