@@ -7,6 +7,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import { time } from 'console';
+import Editbox from '../Noticeboard/Editbox';
+
+const [visible, setVisible] = React.useState(false);
 
 interface Props {
 
@@ -16,6 +19,7 @@ interface Props {
   editNotice(noticeToEdit: string): void;
   sendSMS(noticeToSendSMS: string): void;
 }
+
 
 const current = new Date();
 const date = `On ${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()} at ${current.getHours()}:${current.getMinutes()}`;
@@ -52,25 +56,33 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                 </span>
                 
                 &nbsp;&nbsp;&nbsp;
-                <Link to ="/noticeboard-edit">
+                {/* <Link to ="/noticeboard-edit"> */}
                 <span className='btn2'>
-                        {/* <button onClick={() => {
-                      editNotice(notice.noticeTitle);
-                }}> */}
-                <button>
-                  <EditOutlinedIcon />       &nbsp;Edit Notice </button>
+                        {/* <button onClick={handleClick}> */}
+                        <button onClick={() => 
+                        setVisible(!visible)}>{visible ? 'Hide' : 'Show'}  
+                        <EditOutlinedIcon />       
+                        &nbsp;Edit Notice 
+                        </button>
+
+                        {visible && <div><Editbox notice={notice} editNotice={function (noticeToEdit: string): void {
+                throw new Error('Function not implemented.');
+              } }/></div>}
+           
+             
+                
                 </span>   
-                </Link>
+                {/* </Link> */}
 
                 &nbsp;&nbsp;&nbsp;
 
-                <Link to ="/Noticeboard/EditNotice">
-                <span className='btn3'>
+                {/* <Link to ="/Noticeboard/EditNotice">
+                <span className='btn3'> */}
                         {/* <button onClick={() => {
                       sendSMS(notice.noticeTitle);
                 }}> */}
-                  <button><MessageOutlinedIcon />       &nbsp;Send SMS </button> 
-                </span></Link>
+                  {/* <button><MessageOutlinedIcon />       &nbsp;Send SMS </button> 
+                </span></Link> */}
           </div>
       </div>     
     </div>

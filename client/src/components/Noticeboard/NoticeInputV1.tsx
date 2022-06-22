@@ -29,7 +29,7 @@ const NoticeInputV1 :FC = () => {
      const addNotice = (): void => {
        
          if((!notice || /^\s*$/.test(notice)) || (!description || /^\s*$/.test(notice))){
-            alert("You should enter both notice title and description!!");
+            alert("You should enter both notice title and description!");
          return;
        }
 
@@ -50,6 +50,7 @@ const NoticeInputV1 :FC = () => {
 
      const editNotice =(noticeToEdit: string): void =>
      {
+        
         setNoticeList(noticeList.filter((notice)=>{
          return notice.noticeTitle !== noticeToEdit;
   

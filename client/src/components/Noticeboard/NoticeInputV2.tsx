@@ -11,6 +11,7 @@ const NoticeInputV2 :FC = () => {
     const [noticeList, setNoticeList] =useState<INotice[]>([]);
     const [edit, setEdit] =useState<boolean>(false);
     const [error, setError] = React.useState('');
+   //  const [hideEditBox, setEditBox] =  useState(true);
     const [value, setValue] = useState({});
 
     const handleChange =(event:ChangeEvent<HTMLInputElement> ) : void => {
@@ -35,7 +36,7 @@ const NoticeInputV2 :FC = () => {
          return;
        }
 
-       const newNotice ={noticeTitle: notice, description: description };
+        const newNotice ={noticeTitle: notice, description: description };
         setNoticeList([...noticeList, newNotice]);
         setNotice("");
         setDescription(""); 

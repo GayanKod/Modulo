@@ -1,32 +1,43 @@
-import { Props } from "react";
 import "../../styles/NoticeCard.scss";
 import "../Noticeboard/NoticeCard.tsx";
 import {INotice} from "./interface";
+import React, {FC, ChangeEvent, useState} from 'react';
 
 interface Props {
 
-    notice: INotice;
-
+    notice: INotice;  
+    editNotice(noticeToEdit: string): void;
+   
   }
+  
 
-const Editbox = ({date, notice.noticeTitle, notice.description}: Props) => {
+//   const [notice, setNotice] =useState<string>("");
+//   const [description, setDescription] =useState<string>("");
+//   const [noticeList, setNoticeList] =useState<INotice[]>([]);
+
+//   const newNotice ={noticeTitle: notice, description: description };
+//   setNoticeList([...noticeList, newNotice]);
+//   setNotice("");
+//   setDescription(""); 
+
+const Editbox = ({notice, editNotice}: Props) => {
 
     return (
         <div className="notice">
             <div className="content">
 
                 <div className="title">
-                    {noticeTitle}
+                    {notice.noticeTitle}
                 </div>
 
                 <span className="date">
-                    {date}
+                    {Date}
                 </span>
                 <hr></hr>
                 <br></br>
 
                 <div className="description">
-                    {description}
+                    {notice.description}
                 </div>
             </div>
         </div>
