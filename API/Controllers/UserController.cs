@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 namespace API.Controllers
 {
@@ -29,15 +30,70 @@ namespace API.Controllers
             return Ok(user);
         }
 
+        private Institute GetInstitute(int id)
+        {
+            var inst = _context.Institutes.Find(id);
+            return inst;
+        }
+
+        //filter by Institute ID
+        [HttpGet("get-users/users/{inst_id}")]
+        public async Task<ActionResult<List<User>>> GetUserbyInstitute(int inst_id)
+        {
+            //var user = await _context.Users.FindAsync(inst_id);
+            var inst = GetInstitute(inst_id);
+            var user = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Include(u => u.Institutes).ToListAsync();
+
+            if (user == null)
+                return BadRequest("User Not Found!");
+            return Ok(user);
+        }
+
         [Route("add-user")]
         [HttpPost]
-        public async Task<ActionResult<List<User>>> AddUser(User user)
+        public async Task<ActionResult<List<User>>> AddUser(AddUserDTO request)
         {
+            if (_context.Users.Any(u => u.Email == request.Email))
+            {
+                return BadRequest("User already exists!");
+            }
+
+            CreatePasswordHash(request.Password,
+                out byte[] passwordHash,
+                out byte[] passwordSalt);
+
+            var user = new User
+            {
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                DOB = request.DOB,
+                Gender = request.Gender,
+                HomeNo = request.HomeNo,
+                Street = request.Street,
+                Town = request.Town,
+                MobileNumber = request.MobileNumber,
+                Role = request.Role,
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                VerificationToken = CreateRandomToken()
+            };
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.Users.ToListAsync());
+            var userInst = new UserInstituteDTO
+            {
+                UserId = await _context.Users.Where(a => a.Email == request.Email).Select(x => x.Id).FirstAsync(),
+                InstituteId = await _context.Institutes.Where(i => i.Id == request.InstituteId).Select(x => x.Id).FirstAsync()
+            };
+
+            await AddUserInstitute(userInst);
+            return Ok("User Successfully Added!");
         }
+
 
         [Route("update-user")]
         [HttpPut]
@@ -76,25 +132,85 @@ namespace API.Controllers
             return Ok(await _context.Users.ToListAsync());
         }
 
-        [Route("get-admins")]
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> GetAdmins()
+        [HttpGet("get-users/admins/{inst_id}")]
+        public async Task<ActionResult<List<User>>> GetAdminsbyInstitute(int inst_id)
         {
-            return Ok(await _context.Users.Where(u => u.Role == "Admin" || u.Role == "Super Admin").ToListAsync());
+
+            var inst = GetInstitute(inst_id);
+            var user = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Admin" || u.Role == "Super Admin")
+                .ToListAsync();
+
+            if (user == null)
+                return BadRequest("User Not Found!");
+            return Ok(user);
         }
 
-        [Route("get-editors")]
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> GetEditors()
+        [HttpGet("get-users/editors/{inst_id}")]
+        public async Task<ActionResult<List<User>>> GetEditorsbyInstitute(int inst_id)
         {
-            return Ok(await _context.Users.Where(u => u.Role == "Editor" || u.Role == "Super Editor").ToListAsync());
+
+            var inst = GetInstitute(inst_id);
+            var user = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Editor" || u.Role == "Super Editor")
+                .ToListAsync();
+
+            if (user == null)
+                return BadRequest("User Not Found!");
+            return Ok(user);
         }
 
-        [Route("get-subscribers")]
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> GetSubscribers()
+        [HttpGet("get-users/subscribers/{inst_id}")]
+        public async Task<ActionResult<List<User>>> GetSubscribersbyInstitute(int inst_id)
         {
-            return Ok(await _context.Users.Where(u => u.Role == "Subscriber").ToListAsync());
+
+            var inst = GetInstitute(inst_id);
+            var user = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Subscriber")
+                .ToListAsync();
+
+            if (user == null)
+                return BadRequest("User Not Found!");
+            return Ok(user);
+        }
+
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private string CreateRandomToken()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+        }
+
+        private async Task<ActionResult<User>> AddUserInstitute(UserInstituteDTO req)
+        {
+            var user = await _context.Users
+                .Where(a => a.Id == req.UserId)
+                .Include(a => a.Institutes)
+                .FirstOrDefaultAsync();
+            if (user == null)
+                return NotFound();
+
+
+            var institute = await _context.Institutes.FindAsync(req.InstituteId);
+            if (institute == null)
+                return NotFound();
+
+
+            user.Institutes.Add(institute);
+            await _context.SaveChangesAsync();
+
+            return user;
         }
 
     }
