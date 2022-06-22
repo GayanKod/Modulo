@@ -21,8 +21,7 @@ namespace API.Controllers
         [HttpGet]
 
         public async Task<ActionResult<List<ClassRoom>>> Get()
-        {
-            
+        {          
             
             return Ok(await _context.ClassRooms
                 .Include(c => c.Bookings)

@@ -303,6 +303,18 @@
   margin: 30px;
 }
 
+.view-bookings-row {
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:active {
+      filter: brightness(1.15);
+    }
+  }
+}
+
 @media only screen and (min-width: 950px) {
   .hidden {
     display: none !important;

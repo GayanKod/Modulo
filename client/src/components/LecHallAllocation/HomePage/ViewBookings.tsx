@@ -1,94 +1,102 @@
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import agent from "../../../api/agent";
-import { useBookingContext } from "../../../context/BookingContext";
+import Navbar2 from "../../Navbar2";
 import PageTitle from "../../PageTitle";
-import BookingDetails from "../BookingPage/BookingDetails";
-import { Booking, Item } from "../Models";
+import { Item } from "../Models";
+import { deleteBooking } from "./DeleteBooking";
+
+type ClassTypeProps = {
+  id: number;
+};
 
 function ViewBookings() {
-  const [myBookings, setMyBookings] = useState<Booking[]>([]);
+  const [classRooms, setClassRooms] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [classId, setClassId] = useState<number | null>(null);
+  // const [classId, setClassId] = useState<number | null>(null);
   const [classDeets, setClassDeets] = useState<Item>();
 
   useEffect(() => {
-    agent.Booking.list()
-      .then((b) => setMyBookings(b))
+    agent.ClassRoomDetails.list()
+      .then((c) => setClassRooms(c))
       .catch((e) => console.log(e))
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    agent.ClassRoomDetails.details(classId as number)
-      .then((c) => setClassDeets(c))
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
-  }, [classId]);
-
   if (loading) {
     return (
-      <TableRow>
-        <TableCell>Loading...</TableCell>
-      </TableRow>
+      <tr>
+        <td>Loading...</td>
+      </tr>
     );
   }
 
-  if (!myBookings) {
+  if (!classRooms) {
     return (
-      <TableRow>
-        <TableCell>No More Bookings.</TableCell>
-      </TableRow>
+      <tr>
+        <td>No More Bookings.</td>
+      </tr>
     );
   }
 
-  const classType = (id: number) => {
-    setClassId(id);
-    const t = classDeets?.classRoomType;
-    return t == 0 ? "Lecture Hall " : "Lab ";
-  };
+  const list = classRooms.map((c) =>
+    c.bookings.map((i) => {
+      console.log(i.date);
+      return (
+        <tr className="view-bookings-row">
+          <td>{i.id}</td>
+          <td>
+            {c.classRoomType == 0 ? `Lecture Hall ${c.id}` : `Lab ${c.id}`}
+          </td>
+          <td>{new Date(i.date).toDateString()}</td>
+          <td>{`${new Date(i.startTime).getHours()}.00 - ${new Date(
+            i.endTime
+          ).getHours()}.00`}</td>
 
-  const list = myBookings.map((i) => (
-    <tr>
-      <td>{i.id}</td>
-      <td>{classType(i.classRoomId)}</td>
-      <td>{i.date}</td>
-      <td>{`${i.startTime} - ${i.endTime}`}</td>
-      <td>
-        <i className="fas fa-edit"></i>
-      </td>
-      <td>
-        <i className="fas fa-trash"></i>
-      </td>
-    </tr>
-  ));
+          <td>
+            <button
+              style={{ color: "#db2525" }}
+              onClick={() => deleteBooking(i.id)}
+            >
+              <i className="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      );
+    })
+  );
 
   return (
-    <div className="lechall-container">
-      <PageTitle title="My Bookings" />
+    <>
+      <Navbar2 />
+      <div className="lechall-container">
+        <PageTitle title="My Bookings" />
 
-      <div className="table-container">
-        <table className="details">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Class Room</th>
-              <th>Date</th>
-              <th>Time Slot</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>{list}</tbody>
-        </table>
+        <div className="table-container">
+          <table className="details">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Class Room</th>
+                <th>Date</th>
+                <th>Time Slot</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>{list}</tbody>
+          </table>
+        </div>
+
+        <Link to={"/lec-hall-allocation"}>
+          <button
+            className="OK-button"
+            style={{ margin: "50px 200px 0px", float: "right" }}
+          >
+            Done
+          </button>
+        </Link>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -63,7 +63,7 @@ namespace API.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("post")]
 
         public async Task<ActionResult<List<BookingDetails>>> AddLabBooking(BookingDTO booking)
         {
@@ -77,7 +77,7 @@ namespace API.Controllers
 
             var result = await _context.SaveChangesAsync() > 0;
 
-            if (result) return StatusCode(201);
+            if (result) return Ok(await GetBookings());
 
             return BadRequest(new ProblemDetails { Title = "Problem adding booking" });
 
@@ -91,9 +91,9 @@ namespace API.Controllers
                 ClassRoom = classRoom,
                 Date = booking.Date,
                 StartTime = booking.StartTime,
-
             };
         }
+
 
         [HttpDelete] 
 
@@ -108,5 +108,20 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
             return Ok(await _context.BookingDetails.ToListAsync());
         }
+
+
+        private async Task<List<BookingDetails>> GetBookings()
+        {
+            var bookings = await _context.BookingDetails.Include(b => b.ClassRoom).ToListAsync();
+            if (bookings == null)
+            {
+                return null;
+            }
+            return bookings;
+
+        }
+
+
+
     }
 }

@@ -65,7 +65,7 @@ export default function Resources(props: ResourceProps) {
           </DialogTitle>
           <DialogContent>
             <DialogContentText style={{ textAlign: "center" }}>
-              <table className="hall-details">
+              <table className="details">
                 <thead>
                   <tr>
                     <th>Item Name</th>

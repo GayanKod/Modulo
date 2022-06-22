@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Item } from "../Models";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Resources from "./Resources";
 import TimeTable from "./TimeTable";
 import agent from "../../../api/agent";
@@ -11,6 +10,8 @@ interface Props {
   item?: Item;
 }
 
+export let classes: Item[];
+
 function TableDetails({ selected }: Props) {
   const [classRooms, setClassRooms] = useState<Item[] | null>(null);
   const [loading, setLoading] = useState(true);
@@ -19,15 +20,6 @@ function TableDetails({ selected }: Props) {
   const isLab = (c: any) => c.classRoomType == 1;
 
   useEffect(() => {
-    // axios
-    //   .get("https://localhost:7285/api/ClassRoom")
-    //   .then((response) => {
-    //     setClassRooms(response.data);
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => console.log(error))
-    //   .finally(() => setLoading(false));
-
     agent.ClassRoomDetails.list()
       .then((classes) => {
         setClassRooms(classes);
@@ -43,12 +35,16 @@ function TableDetails({ selected }: Props) {
       </tr>
     );
 
-  if (classRooms == null)
+  if (classRooms == null) {
     return (
       <tr>
         <td style={{ textAlign: "center" }}>No Items available yet.</td>
       </tr>
     );
+  }
+
+  const getTypebyId = (id: number) =>
+    classRooms.find((c) => c.id === id)?.classRoomType;
 
   const lecHalls = classRooms
     .filter(isHall)

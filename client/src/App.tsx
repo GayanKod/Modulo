@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
-import LecHallBooking from "./pages/LecHallBooking";
+import LecHallBooking from "./components/LecHallAllocation/BookingPage/LecHallBooking";
 import TimelinePage from "./pages/Timeline";
 import LecHomePage from "./pages/LecHomePage";
 import DocumentUpload from "./pages/DocumentUpload";

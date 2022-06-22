@@ -1,13 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import "../../styles/LecHallBooking.scss";
 import "../../styles/LecHomePage.scss";
-// import { changed } from "./DateSelector";
 import { TimeSlotCell } from "./Models";
-
-// import { useHistory } from "react-router-dom";
-import { UNSAFE_NavigationContext } from "react-router-dom";
 import { useBookingContext } from "../../context/BookingContext";
-import { dateValue } from "./DateSelector";
 
 type ScheduleProps = {
   id: string;
