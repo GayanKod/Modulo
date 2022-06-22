@@ -9,7 +9,7 @@ function OurTeamSection(){
     return(
         <>
         <LandingPgHeader title="Our Team"/>
-        <div className="teammember-card-container">
+        <div className="teammember-card-container" id="Our-Team">
 
             {OurTeamDetails.map((item, index) => {
                 return(

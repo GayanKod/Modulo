@@ -15,7 +15,7 @@ export const OurTeamDetails=[
         name:"Dinindu Gunathilaka",
         role:"ㅤ",
         desc:"",
-        image:"https://scontent.fcmb2-2.fna.fbcdn.net/v/t39.30808-6/260423959_1479796655738817_37976993528183828_n.jpg?_nc_cat=100&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=Gf5TH1ICrwAAX9cJr-U&_nc_ht=scontent.fcmb2-2.fna&oh=00_AT_vrYui-xmq6LJtmr2LczL_HxtE5zsUqXTOg5ocqbE-sA&oe=62280C00",
+        image:"https://drive.google.com/uc?export=view&id=1iNyk7LyxrPy9pIRVZUJu41WsGW4wYQ6a",
         tw:"",
         li:"",
         fb:"",
@@ -27,7 +27,7 @@ export const OurTeamDetails=[
         name:"Imalsha Liyanage",
         role:"ㅤ",
         desc:"",
-        image:"https://scontent.fcmb2-2.fna.fbcdn.net/v/t1.6435-9/199025212_122865076643707_2130965132714369127_n.jpg?_nc_cat=105&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=oKx9Dh-OlTMAX9OlH3G&_nc_ht=scontent.fcmb2-2.fna&oh=00_AT9MvyEz_rAAr6S_G-SU0iXZYheXiJjrVjaQC6a0WbFzrg&oe=62478D4F",
+        image:"https://drive.google.com/uc?export=view&id=1CKaAp_hfQffVwl18y_-01kMSYJL8eGc-",
         tw:"",
         li:"",
         fb:"",
@@ -39,7 +39,7 @@ export const OurTeamDetails=[
         name:"Uvini Ilangasinghe",
         role:"ㅤ",
         desc:"",
-        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfjhH9JE8PzTw1bAo66ZaAa9JVbj8gCfB2QA&usqp=CAU",
+        image:"https://drive.google.com/uc?export=view&id=1LL8sUnPOPZTycYkHayAuHStlboaUZCZk",
         tw:"",
         li:"",
         fb:"",
@@ -51,7 +51,7 @@ export const OurTeamDetails=[
         name:"Binuli Fernando",
         role:"ㅤ",
         desc:"",
-        image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfjhH9JE8PzTw1bAo66ZaAa9JVbj8gCfB2QA&usqp=CAU",
+        image:"https://drive.google.com/uc?export=view&id=1ZNK79w93iZd7wHivsAH4SWxwLoo17Lj0",
         tw:"",
         li:"",
         fb:"",
@@ -60,3 +60,5 @@ export const OurTeamDetails=[
         id:"t005"
     }
 ]
+
+

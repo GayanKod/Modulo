@@ -1,4 +1,4 @@
-﻿using API.Models;
+using API.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -24,5 +24,9 @@ namespace API.Data
         public DbSet<BookingDetails> BookingDetails { get; set; }
         public DbSet<Resource> Resources { get; set; }
         public DbSet<ClassRoom_Resource> ClassRooms_Resources { get; set; }
+
+        public DbSet<Notice> Notices { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Institute> Institutes { get; set; }
     }
 }

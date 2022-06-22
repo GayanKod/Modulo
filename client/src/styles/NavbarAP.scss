@@ -1,0 +1,30 @@
+@import "../styleVar/colorPalette.scss";
+
+
+  
+  .adminpanel-logo {
+    font-weight: bold;
+    font-size: 30px;
+    color: $P5;
+    cursor: pointer;
+  }
+
+  .adminpanel-topbar-logo{
+    width:140px;
+  }
+  
+  
+  .adminpanel-navbar-Iname{
+      display: table;
+      color: $O;
+      font-weight: 600;
+      margin:auto;
+  }
+
+  .admin-panel-navbar{
+    background-color:#fff;
+  }
+
+  .AP-Userdropdown-myprofile{
+    color: #212121;
+  }

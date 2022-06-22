@@ -22,7 +22,10 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 084d50ad6dd0b73e7f2b1477783621dababb8221
             modelBuilder.Entity("API.Models.Entities.Institute", b =>
                 {
                     b.Property<int>("Id")
