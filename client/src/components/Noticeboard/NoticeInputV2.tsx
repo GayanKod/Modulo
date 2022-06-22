@@ -30,7 +30,7 @@ const NoticeInputV2 :FC = () => {
      const addNotice = (): void => {
        
          if((!notice || /^\s*$/.test(notice)) || (!description || /^\s*$/.test(notice))){
-            // alert("You should enter both notice title and description!!");
+            alert("You should enter both notice title and description!!");
             toast.error('You should enter both notice title and description!');
          return;
        }
@@ -116,8 +116,8 @@ const NoticeInputV2 :FC = () => {
             
             <div className="notice-radio-button-container">
 
-                  <input type="radio" value="Accouncements" name="gender" /> Accouncements
-                  <input type="radio" value="Accomplishments" name="gender" />Accomplishments
+                  <input type="radio" value="Accouncements" name="category" /> Accouncements
+                  <input type="radio" value="Accomplishments" name="category" />Accomplishments
     
                
                   </div>
