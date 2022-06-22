@@ -2,6 +2,7 @@ import React, {FC, ChangeEvent, useState} from 'react';
 import {INotice} from "./interface";
 import "../../styles/NoticeInput.scss";
 import NoticeCard from './NoticeCard';
+import { ToastContainer, toast } from 'react-toastify';
 
 const NoticeInputV2 :FC = () => {
 
@@ -29,7 +30,8 @@ const NoticeInputV2 :FC = () => {
      const addNotice = (): void => {
        
          if((!notice || /^\s*$/.test(notice)) || (!description || /^\s*$/.test(notice))){
-            alert("You should enter both notice title and description!!");
+            // alert("You should enter both notice title and description!!");
+            toast.error('You should enter both notice title and description!');
          return;
        }
 

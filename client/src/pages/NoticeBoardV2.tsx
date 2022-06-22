@@ -5,9 +5,8 @@ import "../styles/NoticeBoard.scss";
 import Navbar2 from '../components/Navbar2';
 import Footer from '../components/Footer/Footer';
 import NoticeInputV2 from '../components/Noticeboard/NoticeInputV2';
-import NoticeInputV1 from '../components/Noticeboard/NoticeInputV1';
 
-function NoticeBoard(){
+function NoticeBoardV2(){
 
   return  (
      <div>  
@@ -44,5 +43,5 @@ function NoticeBoard(){
 
      
 
-export default NoticeBoard;
+export default NoticeBoardV2;
    

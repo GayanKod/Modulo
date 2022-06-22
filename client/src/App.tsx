@@ -3,7 +3,8 @@ import LandingPage from "./pages/Landing";
 import LecHallBooking from "./pages/LecHallBooking";
 import TimelinePage from "./pages/Timeline";
 import LecHomePage from "./pages/LecHomePage";
-import NoticeBoard from "./pages/NoticeBoard";
+import NoticeBoardV1 from "./pages/NoticeBoardV1";
+import NoticeBoardV2 from "./pages/NoticeBoardV2";
 import DocumentUpload from "./pages/DocumentUpload";
 import DocumentDownload from "./pages/DocumentDownload";
 import LoginPage from "./pages/Login";
@@ -34,7 +35,8 @@ function App() {
           <Route path="/document-download" element={<DocumentDownload />} />
           <Route  path="/timeline" element={<TimelinePage/>}/>
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
-          <Route path="/noticeboard" element={<NoticeBoard />} />
+          <Route path="/noticeboard1" element={<NoticeBoardV1 />} />
+          <Route path="/noticeboard2" element={<NoticeBoardV2 />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
           <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
           <Route path="/noticeboard-edit" element={<NoticeForm />} />
