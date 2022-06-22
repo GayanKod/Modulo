@@ -1,6 +1,7 @@
 import React from 'react'
+import {signout} from "../../helpers/auth"
 import "../../styles/SidebarAP.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     LineStyle,
     Timeline,
@@ -14,6 +15,9 @@ import FaceIcon from '@mui/icons-material/Face';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const SidebarAP = () => {
+  
+  let navigate = useNavigate();
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -26,10 +30,6 @@ const SidebarAP = () => {
               Home
             </li>
             </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Summary
-            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
@@ -39,12 +39,6 @@ const SidebarAP = () => {
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
                 Admins
-              </li>
-            </Link>
-            <Link to="/admin-panel/supereditors" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Super Editors
               </li>
             </Link>
             <Link to="/admin-panel/editors" className="link">
@@ -88,14 +82,23 @@ const SidebarAP = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">User Settings</h3>
           <ul className="sidebarList">
+          <Link to="/admin-panel/myprofile" className="link">
             <li className="sidebarListItem">
               <FaceIcon className="sidebarIcon" />
-              Your Profile
+              My Profile
             </li>
-            <li className="sidebarListItem">
-              <LogoutIcon className="sidebarIcon" />
-              Log out
-            </li>
+          </Link>
+              <li 
+                className="sidebarListItem"
+                onClick={() => {
+                  signout(() => {
+                    navigate('/');
+                  })
+                }}
+              >
+                <LogoutIcon className="sidebarIcon" />
+                Log out
+              </li>
           </ul>
         </div>
       </div>
