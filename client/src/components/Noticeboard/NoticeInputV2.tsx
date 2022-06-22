@@ -116,10 +116,14 @@ const NoticeInputV2 :FC = () => {
             
             <div className="notice-radio-button-container">
 
-                  <input type="radio" value="Accouncements" name="category" /> Accouncements
-                  <input type="radio" value="Accomplishments" name="category" />Accomplishments
-    
-               
+                 <div id='leftbox'>
+                 <input type="radio" value="Accouncements" name="category" /> Accouncements
+                 </div> 
+
+                 <div id='rightbox'>
+                 <input type="radio" value="Accomplishments" name="category" />Accomplishments
+                 </div>
+                       
                   </div>
                </div>
         <br></br>

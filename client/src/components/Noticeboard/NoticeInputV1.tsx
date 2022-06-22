@@ -113,8 +113,8 @@ const NoticeInputV1 :FC = () => {
             </div>
             
             <div className="notice-radio-button-container">
-            <div id='leftbox'><input type="radio" value="Student" name="category" /> Student</div>
-            <div id='rightbox'><input type="radio" value="Staff" name="category" /> Staff</div>      
+            <div id='leftbox'><input type="radio" value="Student" name="category" /> Student Notice</div>
+            <div id='rightbox'><input type="radio" value="Staff" name="category" /> Staff Notice</div>      
                
                   </div>
                </div>
