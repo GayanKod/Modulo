@@ -7,7 +7,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
 
-export default function UserList() {
+export default function AdminsList() {
 
   const [data, setData] = useState([]);
 
@@ -80,7 +80,7 @@ export default function UserList() {
 
   return (
     <>
-    <Link to="/admin-panel/admins/newadmin">
+    <Link to="/admin-panel/addadmineditor">
       <div className="APAddBtn-wrapper">
         <div className="APAddBtn text" id="APaddbtn-text">Add New Admins</div><AddCircleIcon fontSize="large" className="APAddBtn"/>
       </div>

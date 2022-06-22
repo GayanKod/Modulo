@@ -14,11 +14,14 @@ import {
   import MaleIcon from '@mui/icons-material/Male';
   import { Link, useParams } from "react-router-dom";
   import "../../../styles/User.scss";
+  import UploadIcon from '@mui/icons-material/Upload';
+  import AddCircleIcon from '@mui/icons-material/AddCircle';
 
   
   export default function User() {
 
     let params = useParams();
+    const [file, setFile] = useState<File>();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -31,36 +34,36 @@ import {
     const [adTown, setAdTown] = useState('');
     const [adMobile, setAdMobile] = useState('');
 
-    const [formData, setFormData] = useState({
-        userFName:'',
-        userLName:'',
-        email:'',
-        dob:'',
-        gender:'',
-        homeNo:'',
-        street:'',
-        town:'',
-        mobileNumber:'',
-        instituteName:'',
-        instituteContactNo:'',
-        password:'',
-        confirmPassword:''       
-    });
+    // const [formData, setFormData] = useState({
+    //     userFName:'',
+    //     userLName:'',
+    //     email:'',
+    //     dob:'',
+    //     gender:'',
+    //     homeNo:'',
+    //     street:'',
+    //     town:'',
+    //     mobileNumber:'',
+    //     instituteName:'',
+    //     instituteContactNo:'',
+    //     password:'',
+    //     confirmPassword:''       
+    // });
 
-    const {
-      userFName, 
-      userLName, 
-      email, 
-      dob, 
-      gender, 
-      homeNo, 
-      street, 
-      town, 
-      mobileNumber, 
-      instituteName, 
-      instituteContactNo, 
-      password, 
-      confirmPassword}  = formData;
+    // const {
+    //   userFName, 
+    //   userLName, 
+    //   email, 
+    //   dob, 
+    //   gender, 
+    //   homeNo, 
+    //   street, 
+    //   town, 
+    //   mobileNumber, 
+    //   instituteName, 
+    //   instituteContactNo, 
+    //   password, 
+    //   confirmPassword}  = formData;
 
     function GetAdminbyId(){
 
@@ -68,6 +71,7 @@ import {
         axios
             .get(`https://localhost:5000/api/User/get-users/${params.userId}`)
             .then(res => [
+               console.log(res),
                 setFirstName(res.data.firstName),
                 setLastName(res.data.lastName),
                 setAdEmail(res.data.email),
@@ -93,9 +97,11 @@ import {
       <div className="user">
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit Admin</h1>
-          <Link to="/admin-panel/admins/newadmin">
-            <button className="userAddButton">Add user</button>
-          </Link>
+          <Link to="/admin-panel/addadmineditor">
+            <div className="APAddBtn-wrapper">
+              <div className="APAddBtn text" id="APaddbtn-text">Add New Admins</div><AddCircleIcon fontSize="large" className="APAddBtn"/>
+            </div>
+          </Link> 
         </div>
         <div className="userContainer">
           <div className="userShow">
@@ -162,7 +168,7 @@ import {
                       </div>
                     </td>
                   </tr>
-                  {isAuth().role === 'Super Admin' ?
+                  {isAuth().role === 'Super Admin'?
                   <tr>
                     <td>
                         <div className="userUpdateItem">
@@ -173,11 +179,24 @@ import {
                               <option value="Admin">Admin</option>
                               <option value="Super Editor">Super Editor</option>
                               <option value="Editor">Editor</option>
-                              <option value="Subscriber">Subscriber</option>
                             </select>
                         </div>
                     </td> 
-                  </tr>: ""}
+                  </tr>: 
+                  <tr>
+                  <td>
+                      <div className="userUpdateItem">
+                        <label>Role</label>
+                          <select className="userUpdateInput">
+                            <option value="" disabled selected >--Select the role--</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Super Editor">Super Editor</option>
+                            <option value="Editor">Editor</option>
+                          </select>
+                      </div>
+                  </td> 
+                </tr>
+                }
                   <tr>
                     <td>
                       <div className="userUpdateItem">
@@ -252,13 +271,26 @@ import {
                 <div className="userUpdateUpload">
                   <img
                     className="userUpdateImg"
-                    src="https://pbs.twimg.com/profile_images/1463854908700909570/vgRLZy_R_400x400.jpg"
+                    src={
+                      file
+                          ? URL.createObjectURL(file)
+                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                    }
                     alt=""
                   />
-                  <label htmlFor="file">
-                    <Publish className="userUpdateIcon" />
+                   <label htmlFor="file">
+                      Image: <UploadIcon className="userUpdateUpload-icon" />
                   </label>
-                  <input type="file" id="file" style={{ display: "none" }} />
+                  <input
+                    type="file"
+                    id="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                      if (!event.target.files) return
+                      setFile(event.target.files[0])
+                    }}
+                  />
                 </div>
                 {isAuth().role === 'Admin' && role === "Super Admin" ? 
                 <button className="userUpdateButton-disabled" disabled>Update</button> :
