@@ -16,7 +16,7 @@ const DropdownV2: React.FunctionComponent = () => {
                       <option value="2">Staff Notices</option>
                       <option value="3">Student Notices</option>
               </select>
-</div>
+          </div>
   );
 };
 

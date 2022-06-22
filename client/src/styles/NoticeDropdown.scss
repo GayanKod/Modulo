@@ -16,7 +16,7 @@
     /* Personalize */
     flex: 1;
     padding: 0 1em;
-    color: #fff;
+    color: orangered;
     background-color: var(--color2);
     background-image: none;
     cursor: pointer;
@@ -28,14 +28,18 @@
     display: none;
   }
 //   /* Custom Select wrapper */
-  .notice-select-options {
+ .notice-select .notice-select-options {
     position: relative;
     display: flex;
     width: 20em;
     height: 3em;
     border-radius: .40em;
+    border-color: #ff5c55;
     overflow: hidden;
-   
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    background-color: #ff5c55 ;
+    color: white;
   }
 //   /* Arrow */
   .notice-select::after {

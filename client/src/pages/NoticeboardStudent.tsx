@@ -27,7 +27,7 @@ function NoticeboardStudent(){
                      <div id='leftbox'>
                      <div className='btn3'>
                      <button className='A1'>
-                        Accouncements
+                        Announcements
                      </button> 
                      </div>
                      </div>                  

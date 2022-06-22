@@ -15,7 +15,7 @@ const Dropdown: React.FunctionComponent = () => {
                       <option value="2">Recently Added</option>
                       <option value="3">All</option>
               </select>
-</div>
+          </div>
   );
 };
 
