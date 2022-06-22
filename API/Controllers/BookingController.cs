@@ -17,7 +17,7 @@ namespace API.Controllers
 
         }
 
-        [HttpGet()]
+        [HttpGet("all-bookings")]
 
         public async Task<ActionResult<List<BookingDetails>>> Get()
         {

@@ -32,7 +32,7 @@ function RecentUpload(props: RecentUploadProps) {
               <td>{item.description}</td>
               <td>
                 <button className="RecentUpload-table-deleteButton">
-                  {/* <DeleteIcon /> */}
+                  <DeleteIcon />
                 </button>
               </td>
             </tr>

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { Booking } from "../components/LecHallAllocation/Models";
 
-axios.defaults.baseURL = "https://localhost:7285/api/";
+axios.defaults.baseURL = "https://localhost:5000/api/";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
@@ -24,7 +24,7 @@ const Resources = {
 const Bookings = {
   addBooking: (booking: any) => requests.post("Booking/post/", { booking }),
   removeBoooking: (id: number) => requests.delete(`Booking?${id}`),
-  list: () => requests.get("Booking"),
+  list: () => requests.get("Booking/all-bookings"),
 };
 
 const agent = {

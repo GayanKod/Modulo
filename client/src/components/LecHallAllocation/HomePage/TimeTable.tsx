@@ -105,7 +105,6 @@ export default function TimeTable(props: TimeTableProps) {
                   style={{
                     backgroundColor: "#7b2cbf",
                     color: "white",
-
                     cursor: "pointer",
                   }}
                 >

@@ -1,18 +1,18 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
-::-webkit-scrollbar {
-  width: 7px;
-}
+// ::-webkit-scrollbar {
+//   width: 7px;
+// }
 
-::-webkit-scrollbar-track {
-  background: #59189a81;
-}
+// ::-webkit-scrollbar-track {
+//   background: #59189a81;
+// }
 
-::-webkit-scrollbar-thumb {
-  background: #59189a;
-  border-radius: 30px;
-}
+// ::-webkit-scrollbar-thumb {
+//   background: #59189a;
+//   border-radius: 30px;
+// }
 
 /* Handle on hover */
 // ::-webkit-scrollbar-thumb:hover {
@@ -49,7 +49,7 @@
   color: $O;
 }
 
-.filter {
+.filter1 {
   height: 80px;
   display: flex;
   justify-content: left;
@@ -77,6 +77,37 @@
   .css-qc6sy-singleValue {
     padding-left: 10px;
     color: $P6;
+  }
+}
+
+.filter2 {
+  // height: 80px;
+  // display: flex;
+  // justify-content: left;
+  // align-items: center;
+  // color: $P5;
+
+  // .select {
+  //   width: 200px;
+  //   font-weight: 600;
+  //   font-size: 14px;
+  // }
+
+  .css-1s2u09g-control,
+  .css-1pahdxg-control {
+    //   box-shadow: none;
+    border: solid $P5 1px;
+    border-radius: 10px;
+    &:hover {
+      border: solid $P6 2px;
+    }
+  }
+
+  .css-14el2xx-placeholder,
+  .css-tlfecz-indicatorContainer,
+  .css-qc6sy-singleValue {
+    padding-left: 10px;
+    // color: $P6;
   }
 }
 
@@ -181,6 +212,29 @@
   border-radius: 10px;
   color: $P5;
   font-weight: 600;
+
+  font-family: "Poppins", sans-serif;
+  &:active {
+    background-color: $P4;
+    color: white;
+  }
+}
+
+.book-button-table {
+  padding-top: 10px;
+  cursor: pointer;
+  margin: 10px;
+  height: 40px;
+  padding: 5px 20px 5px 20px;
+  background: none;
+  border: solid $P5 2px;
+  border-radius: 10px;
+  color: $P5;
+  font-weight: 600;
+
+  &:hover {
+    background-color: white;
+  }
 
   &:active {
     background-color: $P4;
@@ -308,6 +362,10 @@
     background: none;
     border: none;
     cursor: pointer;
+
+    &:hover {
+      background-color: white;
+    }
 
     &:active {
       filter: brightness(1.15);

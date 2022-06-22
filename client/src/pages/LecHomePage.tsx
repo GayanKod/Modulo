@@ -29,6 +29,7 @@ export default function LecHomePage() {
               options={options}
               setSelected={setSelected}
               selected={selected}
+              id="home"
             />
 
             <Link to="/lec-hall-allocation/view-bookings">

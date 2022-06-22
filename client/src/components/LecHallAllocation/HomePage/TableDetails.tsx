@@ -126,7 +126,10 @@ function Row({ item, selected }: Props) {
               selected == 0 ? "Lecture-halls" : "Labs" //chnage to selected if needed
             }/${item.id}`}
           >
-            <button className="book-button" style={{ height: "30px" }}>
+            <button
+              className="book-button book-button-table"
+              style={{ height: "30px" }}
+            >
               Book
             </button>
           </Link>
