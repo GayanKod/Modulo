@@ -1,48 +1,60 @@
 import { Grid } from "@mui/material";
+import axios from "axios";
+import { off } from "process";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import agent from "../../../api/agent";
 
 import Filter from "../HomePage/Filter";
-
-// const [newBooking, setNewBooking] = useState({
-//   user: 0,
-//   classRoomId: 0,
-//   date: "",
-//   startTime: "",
-// });
 
 type BookingFormProps = {
   classId: number;
 };
 
-const defaultValues = {
-  user: 0,
-  classRoomId: 0,
-  date: "",
-  startTime: "",
-  endTime: "",
-};
 const BookingForm = (props: BookingFormProps) => {
-  const [newBooking, setNewBooking] = useState(defaultValues);
+  const [newBooking, setNewBooking] = useState({
+    user: 0,
+    classRoomId: 0,
+    date: "",
+    startTime: "",
+    endTime: "",
+  });
+
+  const [loading, setLoading] = useState<boolean>();
+
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
+    // console.log(value);
     setBookingDate(value);
   };
 
-  const { user, classRoomId, date, startTime } = newBooking;
-
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
+
+    setLoading(true);
+
+    const d = new Date(bookingDate as string);
 
     setNewBooking({
       user: 0,
       classRoomId: props.classId,
       date: bookingDate as string,
-      startTime: new Date().setHours(from.value).toString(),
-      endTime: new Date().setHours(to.value).toString(),
+      startTime: new Date(d.setHours(from.value)).toJSON(),
+      endTime: new Date(d.setHours(to.value)).toJSON(),
     });
+    console.log(newBooking);
 
-    // agent.Bookings.addBooking().then;
+    axios
+      .post("https://localhost:5000/api/Booking/post", newBooking)
+      .then(() => {
+        console.log("booking added.");
+      })
+      .catch((e) => console.log(e))
+      .finally(() => setLoading(false));
+
+    if (loading) {
+      console.log("loading...");
+    }
   };
 
   let options = [

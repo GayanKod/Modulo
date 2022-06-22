@@ -24,6 +24,37 @@ function LecHallBooking() {
   const { bookings } = useBookingContext();
   const { setBookings } = useBookingContext();
 
+  // =================================================
+
+  //   let history = useHistory();
+  // const [submitted, setSubmitted] = useState(false);
+
+  // const handleSubmit = (e) => {
+
+  // e.preventDefault();
+
+  // fetch('http://localhost:8000/orders', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ cart: 1 }), //dummy data
+  // })
+  //   .then((response) => {
+  //     setSubmitted(true);
+  //     return response.json();
+  //   })
+  //   .then(() => {
+  //     if (submitted) {
+  //       return history.push('/thank-you-page');
+  //     }
+  //   });
+  // };
+  // ==========================================================================
+  //   return (
+  //   <form onSubmit={handleSubmit}> ... </form>
+  //   );
+
   // const [newBooking, setNewBooking] = useState({
   //   user: 0,
   //   classRoomId: 0,
@@ -34,7 +65,7 @@ function LecHallBooking() {
   // const { user, classRoomId, date, startTime } = newBooking;
 
   // const makeBooking = () => {
-  //   const bookingSlots: Date[] = [];
+  // //   const bookingSlots: Date[] = [];
   //   const d = dateValue;
   //   for (var i = 0; i < bookings.length; i++) {
   //     const date = new Date(d);
@@ -45,12 +76,12 @@ function LecHallBooking() {
   //       ...newBooking,
   //       user: 0,
   //       classRoomId: parseInt(id as string),
-  //       date: bookingSlots[i].toDateString(),
+  // date: bookingSlots[i].toDateString(),
   //       startTime: bookingSlots[i].toDateString(),
   //     });
 
   //     addNewBooking();
-  //   }
+  // }
   // };
 
   // const addNewBooking = () => {
