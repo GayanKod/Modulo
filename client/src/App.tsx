@@ -7,10 +7,18 @@ import NoticeBoard from "./pages/NoticeBoard";
 import DocumentUpload from "./pages/DocumentUpload";
 import DocumentDownload from "./pages/DocumentDownload";
 import LoginPage from "./pages/Login";
+
 import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
-import AdminPanelUsers from "./pages/AdminPanel/AdminPanelUsers";
-import AdminPanelUser from "./pages/AdminPanel/AdminPanelUser";
-import AdminPanelNewUser from "./pages/AdminPanel/AdminPanelNewUser";
+import APAdminsPage from "./pages/AdminPanel/Admins/APAdminsPage";
+import APEditAdminPage from "./pages/AdminPanel/Admins/APEditAdminPage";
+import APNewAdminEditorPage from "./pages/AdminPanel/Admins/APNewAdminEditorPage";
+import APEditorsPage from "./pages/AdminPanel/Editors/APEditorsPage";
+import APEditEditorPage from "./pages/AdminPanel/Editors/APEditEditorPage";
+import APSubscribersPage from "./pages/AdminPanel/Subscribers/APSubscribersPage";
+import APEditSubscriberPage from "./pages/AdminPanel/Subscribers/APEditSubscriberPage";
+import APNewSubscriberPage from "./pages/AdminPanel/Subscribers/APNewSubscriberPage";
+import MyProfileAP from "./pages/AdminPanel/MyProfileAP";
+
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
 import NoticeForm from "./pages/NoticeEditForm";
@@ -39,12 +47,25 @@ function App() {
             path="/lec-hall-allocation/booking/:selected/:id"
             element={<LecHallBooking />}
           />
+
+          {/* Admin Panel, Auth*/}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
+
           <Route path="/admin-panel" element={<AdminPanelHome/>} />
-          <Route path="/admin-panel/users" element={<AdminPanelUsers/>} />
-          <Route path="/admin-panel/users/:userId" element={<AdminPanelUser/>} />
-          <Route path="/admin-panel/users/newUser" element={<AdminPanelNewUser/>} />
+          <Route path="/admin-panel/admins" element={<APAdminsPage/>} />
+          <Route path="/admin-panel/admins/:userId" element={<APEditAdminPage/>} />
+          <Route path="/admin-panel/addadmineditor" element={<APNewAdminEditorPage/>} />
+
+          <Route path="/admin-panel/editors" element={<APEditorsPage/>} />
+          <Route path="/admin-panel/editors/:userId" element={<APEditEditorPage/>} />
+
+          <Route path="/admin-panel/subscribers" element={<APSubscribersPage/>} />
+          <Route path="/admin-panel/subscribers/:userId" element={<APEditSubscriberPage/>} />
+          <Route path="/admin-panel/addsubscriber" element={<APNewSubscriberPage/>} />
+
+          <Route path="/admin-panel/myprofile" element={<MyProfileAP/>} />
+
         </Routes>
       </Router>
     </>
