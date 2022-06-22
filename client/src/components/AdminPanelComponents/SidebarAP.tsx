@@ -1,6 +1,7 @@
 import React from 'react'
+import {signout} from "../../helpers/auth"
 import "../../styles/SidebarAP.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     LineStyle,
     Timeline,
@@ -8,15 +9,15 @@ import {
     PermIdentity,
     School,
     Science,
-    BarChart,
-    MailOutline,
-    DynamicFeed,
-    ChatBubbleOutline,
-    WorkOutline,
-    Report,
   } from "@mui/icons-material";
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import FaceIcon from '@mui/icons-material/Face';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const SidebarAP = () => {
+  
+  let navigate = useNavigate();
+
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
@@ -29,67 +30,77 @@ const SidebarAP = () => {
               Home
             </li>
             </Link>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Summary
-            </li>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/admin-panel/users" className="link">
+            <Link to="/admin-panel/admins" className="link">
               <li className="sidebarListItem">
                 <PermIdentity className="sidebarIcon" />
-                Users
+                Admins
               </li>
             </Link>
-            <Link to="/products" className="link">
+            <Link to="/admin-panel/editors" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Editors
+              </li>
+            </Link>
+            <Link to="/admin-panel/subscribers" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Subscribers
+              </li>
+            </Link>
+            <Link to="/admin-panel/degrees" className="link">
               <li className="sidebarListItem">
                 <School className="sidebarIcon" />
                 Degrees
               </li>
             </Link>
-            <li className="sidebarListItem">
-              <MenuBook className="sidebarIcon" />
-              Modules
-            </li>
-            <li className="sidebarListItem">
-              <Science className="sidebarIcon" />
-              Lecture Halls/Labs
-            </li>
+            <Link to="/admin-panel/batches" className="link">
+              <li className="sidebarListItem">
+                <PeopleOutlineIcon className="sidebarIcon" />
+                Batches
+              </li>
+            </Link>
+            <Link to="/admin-panel/modules" className="link">
+              <li className="sidebarListItem">
+                <MenuBook className="sidebarIcon" />
+                Modules
+              </li>
+            </Link>
+            <Link to="/admin-panel/lechallslabs" className="link">
+              <li className="sidebarListItem">
+                <Science className="sidebarIcon" />
+                Lecture Halls/Labs
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Notifications</h3>
+          <h3 className="sidebarTitle">User Settings</h3>
           <ul className="sidebarList">
+          <Link to="/admin-panel/myprofile" className="link">
             <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Feedback
+              <FaceIcon className="sidebarIcon" />
+              My Profile
             </li>
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Messages
-            </li>
+          </Link>
+              <li 
+                className="sidebarListItem"
+                onClick={() => {
+                  signout(() => {
+                    navigate('/');
+                  })
+                }}
+              >
+                <LogoutIcon className="sidebarIcon" />
+                Log out
+              </li>
           </ul>
         </div>
-        {/* <div className="sidebarMenu">
-          <h3 className="sidebarTitle">Staff</h3>
-          <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
-          </ul>
-        </div> */}
       </div>
     </div>
   )

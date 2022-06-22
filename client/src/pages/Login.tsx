@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 import "../styles/Login.scss"
@@ -7,48 +7,51 @@ import { authenticate, isAuth } from '../helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router'
 
 
-const Login = (history:any) => {
+const Login = () => {
 
     let time = new Date().getHours();
 
     const [formData, setFormData] = useState({
         email: '',
-        password1: ''
+        password: ''
       });
-      const { email, password1 } = formData;
-      const handleChange = (text:any) => (e:any) => {
-        setFormData({ ...formData, [text]: e.target.value });
+      const { email, password } = formData;
+      const handleChange = (text:string) => (e:SyntheticEvent) => {
+        const target = e.target as HTMLTextAreaElement;
+        setFormData({ ...formData, [text]: target.value });
       };
 
-      const handleSubmit = (e:any) => {
+      let navigate = useNavigate();
+
+      const handleSubmit = (e:SyntheticEvent) => {
         console.log('https://localhost:5000/api/Auth/login');
         e.preventDefault();
-        if (email && password1) {
+        if (email && password) {
           axios
             .post(`https://localhost:5000/api/Auth/login`, {
               email,
-              password: password1
+              password: password
             })
             .then(res => {
               authenticate(res, () => {
                 setFormData({
                   ...formData,
                   email: '',
-                  password1: ''
+                  password: ''
                 });
                 isAuth()
-                  ? history.push('/admin-panel')
-                  : history.push('/login');
-                toast.success("Welcome back!");
+                  ? navigate('/admin-panel')
+                  : navigate('/login');
               });
             })
             .catch(err => {
               setFormData({
                 ...formData,
                 email: '',
-                password1: ''
+                password: ''
               });
               console.log(err.response);
               toast.error(err.response.data);
@@ -88,8 +91,8 @@ const Login = (history:any) => {
                             <input 
                                 type="password" 
                                 className="login-password"
-                                onChange={handleChange('password1')}
-                                value={password1}
+                                onChange={handleChange('password')}
+                                value={password}
                             />
                         </div>
                         <div className="login-PagebtnWrapper">
