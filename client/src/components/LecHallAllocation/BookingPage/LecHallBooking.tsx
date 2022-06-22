@@ -11,8 +11,9 @@ import Schedule from "../Schedule";
 import Navbar2 from "../../Navbar2";
 import PageTitle from "../../PageTitle";
 import { useBookingContext } from "../../../context/BookingContext";
-import "../styles/LecHallBooking.scss";
-import "../styles/LecHomePage.scss";
+import "../../../styles/LecHallBooking.scss";
+import "../../../styles/LecHomePage.scss";
+import BookingForm from "./BookingForm";
 
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
@@ -80,49 +81,7 @@ function LecHallBooking() {
 
         <div className="booking-details">
           <BookingDetails selected={selected as string} id={id as string} />
-        </div>
-
-        {/* <hr
-          style={{
-            width: "80%",
-            margin: "30px auto 30px auto",
-          }}
-        ></hr>
-
-        <div className="schedule">
-          <h3 style={{ marginBottom: "40px" }}>Pick your time slot</h3>
-          <DateSelector />
-          <Schedule id="" />
-          <div className="colorcode">
-            <ColorCode hide={false} />
-          </div>
-        </div> */}
-
-        {/*-----------------------------------Form--------------------------------------------------------------------*/}
-
-        <div className="Lec-hall-Form"></div>
-
-        <div className="booking-buttons">
-          <Link to={"/lec-hall-allocation"}>
-            <button
-              className="book-button change"
-              onClick={() => setBookings([])}
-            >
-              Select a Different Hall
-            </button>
-          </Link>
-          <button
-            className="book-button confirm"
-            style={{
-              backgroundColor: "#7b2cbf",
-              color: "white",
-              cursor: "pointer",
-            }}
-            // onClick={makeBooking}
-            // onChange={makeBooking}
-          >
-            Confirm
-          </button>
+          <BookingForm />
         </div>
       </div>
     </>

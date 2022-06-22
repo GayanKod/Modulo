@@ -12,60 +12,61 @@ function DateSelector() {
   const { setBookings } = useBookingContext();
   const { bookings } = useBookingContext();
 
-  const addDate = () => {
-    if (bookings.length > 0) {
-      setDateChanged(true);
-    }
-    date.setDate(date.getDate() + 1);
+  // const addDate = () => {
+  //   if (bookings.length > 0) {
+  //     setDateChanged(true);
+  //   }
+  //   date.setDate(date.getDate() + 1);
 
-    setDate(date);
-    setCount(count + 1);
-  };
+  //   setDate(date);
+  //   setCount(count + 1);
+  // };
 
-  const subtractDate = () => {
-    if (count == 0) {
-      return;
-    }
+  // const subtractDate = () => {
+  //   if (count == 0) {
+  //     return;
+  //   }
 
-    if (bookings.length > 0) {
-      setDateChanged(true);
-    }
+  //   if (bookings.length > 0) {
+  //     setDateChanged(true);
+  //   }
 
-    date.setDate(date.getDate() - 1);
+  //   date.setDate(date.getDate() - 1);
 
-    setDate(date);
-    setCount(count - 1);
-  };
+  //   setDate(date);
+  //   setCount(count - 1);
+  // };
 
-  dateValue = date;
+  // dateValue = date;
 
   return (
-    <div className="date">
-      <button
-        disabled={count == 0 ? true : false}
-        className="date-arrow"
-        onClick={() => {
-          subtractDate();
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        <i className="fa fa-arrow-left" style={{ marginRight: "30px" }}></i>
-      </button>
+    //   <div className="date">
+    //     <button
+    //       disabled={count == 0 ? true : false}
+    //       className="date-arrow"
+    //       onClick={() => {
+    //         subtractDate();
+    //       }}
+    //       style={{ cursor: "pointer" }}
+    //     >
+    //       <i className="fa fa-arrow-left" style={{ marginRight: "30px" }}></i>
+    //     </button>
 
-      <p id="date" style={{ display: "inline", padding: "5px" }}>
-        {date.toDateString()}
-      </p>
+    //     <p id="date" style={{ display: "inline", padding: "5px" }}>
+    //       {date.toDateString()}
+    //     </p>
 
-      <button
-        className="date-arrow"
-        onClick={() => {
-          addDate();
-        }}
-        style={{ cursor: "pointer" }}
-      >
-        <i className="fa fa-arrow-right" style={{ marginLeft: "30px" }}></i>
-      </button>
-    </div>
+    //     <button
+    //       className="date-arrow"
+    //       onClick={() => {
+    //         addDate();
+    //       }}
+    //       style={{ cursor: "pointer" }}
+    //     >
+    //       <i className="fa fa-arrow-right" style={{ marginLeft: "30px" }}></i>
+    //     </button>
+    //   </div>
+    <></>
   );
 }
 

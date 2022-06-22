@@ -11,13 +11,16 @@ function BookingDetails(props: BookingProps) {
   );
   if (classRoom) {
     return (
-      <>
-        <h3>Booking Details</h3>
+      <div className="details">
+        <h3>Classroom Details</h3>
         <p>
-          <span>Hall ID</span> : {classRoom!.Id}
+          <span>Classroom ID</span> : {classRoom!.Id}
         </p>
         <p>
-          <span>Hall Name</span> : {`${props.selected} ${classRoom.Id}`}
+          <span>Classroom Name</span> :{" "}
+          {`${props.selected === "Lecture-halls" ? "Lecture Hall" : "Lab"} ${
+            classRoom.Id
+          }`}
         </p>
         <p>
           <span>Hall Capacity</span> : {classRoom.capacity}
@@ -26,7 +29,7 @@ function BookingDetails(props: BookingProps) {
           <span>Hall Location</span> :
           {` Building: ${classRoom.BuildingNumber}, Floor: ${classRoom.FloorNumber}`}
         </p>
-      </>
+      </div>
       // <div className="details">
 
       // </div>
