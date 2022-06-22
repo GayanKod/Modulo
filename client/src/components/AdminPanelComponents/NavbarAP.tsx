@@ -111,10 +111,10 @@ const NavbarAP = () => {
               onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography className="AP-Userdropdown-Name" textAlign="center">{username}</Typography>
+                  <Typography className="AP-Userdropdown-Name" textAlign="center" style={{ fontWeight: 700 }}>{username}</Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography className="AP-Userdropdown-Item" textAlign="center">My Account</Typography>
+                  <Link to="/admin-panel/myprofile" className="AP-Userdropdown-myprofile"><Typography className="AP-Userdropdown-Item" textAlign="center">My Profile</Typography></Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography 
