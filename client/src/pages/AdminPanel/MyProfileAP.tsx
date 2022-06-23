@@ -1,19 +1,20 @@
 import React from 'react'
 import "../../styles/AdminPanelHome.scss";
-import NavbarAP from '../../components/AdminPanelComponents/NavbarAP';
+import NavbarAP from "../../components/AdminPanelComponents/NavbarAP";
 import SidebarAP from '../../components/AdminPanelComponents/SidebarAP';
-import NewUserAP from './NewUserAP';
+import MyProfileDisplayEdit from "../../components/MyProfileDisplayEdit";
 
-const AdminPanelNewUser = () => {
+
+const MyProfileAP = () => {
   return (
     <>
         <NavbarAP />
         <div className="sidebarAP-container">
             <SidebarAP />
-            <NewUserAP  />
+            <MyProfileDisplayEdit  />
         </div>
     </>
   )
 }
 
-export default AdminPanelNewUser;
+export default MyProfileAP;

@@ -9,7 +9,7 @@ function Navbar(){
     const [clicked, isClicked] = useState(false);
 
     return(
-        <header>
+        <header className="navbar-landing-container">
             <nav className="NavbarItems">
                 <h1 className="navbar-logo">
                     <Link to="/"><img src={ModuloLogo} alt="logo" className="navbar-logo-modulo"/></Link>
