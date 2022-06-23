@@ -55,11 +55,14 @@ namespace AzureBlobTest.Controllers
         [HttpGet]
         [Route("view")]
 
-        public async Task<IActionResult> View(string fileName)
+        public async Task<ActionResult<string>> View(string fileName)
         {
-            var file = await _fileManagerLogic.Read(fileName);
-            return new FileContentResult(file, "application/pdf");
-
+            
+            //return new FileContentResult(file, "application/pdf");
+            //return file;
+            Byte[] bytes = await _fileManagerLogic.Read(fileName);
+            String file = Convert.ToBase64String(bytes);
+            return Ok(file);
 
         }
 

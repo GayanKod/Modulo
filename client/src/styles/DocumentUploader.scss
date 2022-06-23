@@ -1,6 +1,19 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #59189a81;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #59189a;
+  border-radius: 30px;
+}
+
 .DocumentUploader {
   display: flex;
   flex-direction: column;
@@ -155,8 +168,9 @@
       width: 75%;
       //background-color: darkorange;
       border-spacing: 15px;
-      margin: 0;
+      margin: auto;
       font-size: 15px;
+
       .RecentUpload-table-caption {
         font-size: large;
         text-align: left;
@@ -195,8 +209,14 @@
           &:hover {
             color: $O;
           }
+          &:disabled {
+            color: #746e6e;
+          }
         }
       }
+    }
+    .pdf-viewer {
+      height: 400px;
     }
   }
 }

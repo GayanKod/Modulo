@@ -77,7 +77,7 @@ namespace API.Logic
         public async Task<string> View(string fileName)
         {
             var blobClient = GetBlobClient(fileName);
-            string url =  blobClient.Uri.AbsoluteUri.ToString();
+            string url =   blobClient.Uri.AbsoluteUri;
             return url;
         }
         public async Task Delete(string fileName)

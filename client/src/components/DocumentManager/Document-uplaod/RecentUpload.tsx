@@ -3,6 +3,12 @@ import { Documents } from "./Documents";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PreviewIcon from "@mui/icons-material/Preview";
 import axios from "axios";
+import { Worker } from "@react-pdf-viewer/core";
+// Import the main component
+import { Viewer } from "@react-pdf-viewer/core";
+
+// Import the styles
+import "@react-pdf-viewer/core/lib/styles/index.css";
 
 interface RecentUploadProps {
   docs: Documents[];
@@ -11,7 +17,12 @@ interface RecentUploadProps {
 
 function RecentUpload(props: RecentUploadProps) {
   const [loading, setLoading] = useState(true);
-  const [file, setFile] = useState<File>();
+  const [file, setFile] = useState<string>();
+
+  const uploads = props.docs.sort((x, y) =>
+    x.documentId! > y.documentId! ? -1 : 1
+  );
+
   useEffect(() => {
     axios
       .get("https://localhost:5000/api/File/get-all")
@@ -59,7 +70,7 @@ function RecentUpload(props: RecentUploadProps) {
           </tr>
         </thead>
         <tbody>
-          {props.docs.map((item) => (
+          {uploads.map((item) => (
             <tr key={item.documentId}>
               <td>{item.documentName?.split(".").pop()}</td>
               <td>{item.documentName?.split(".")[0]}</td>
@@ -70,6 +81,9 @@ function RecentUpload(props: RecentUploadProps) {
                 <button
                   className="RecentUpload-table-viewButton"
                   onClick={() => viewHandler(item.documentName)}
+                  disabled={
+                    item.documentName?.split(".").pop() == "pdf" ? false : true
+                  }
                 >
                   <PreviewIcon />
                 </button>
@@ -86,6 +100,14 @@ function RecentUpload(props: RecentUploadProps) {
           ))}
         </tbody>
       </table>
+      {/* <div className="pdf-viewer">
+        {file && (
+          <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+            <Viewer fileUrl={file!} />
+          </Worker>
+        )}
+        {!file && <>No File</>}
+      </div> */}
     </div>
   );
 }
