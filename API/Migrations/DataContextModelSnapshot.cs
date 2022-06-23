@@ -22,22 +22,7 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AdminInstitute", b =>
-                {
-                    b.Property<int>("AdminsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InstitutesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AdminsId", "InstitutesId");
-
-                    b.HasIndex("InstitutesId");
-
-                    b.ToTable("AdminInstitute");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Admin", b =>
+            modelBuilder.Entity("API.Models.Entities.Institute", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,13 +30,57 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AdminName")
+                    b.Property<string>("ContactNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AdminType")
+                    b.Property<string>("InstituteName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Institutes");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.Notice", b =>
+                {
+                    b.Property<int>("NoticeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoticeID"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoticeTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoticeType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PublishedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("NoticeID");
+
+                    b.ToTable("Notices");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
@@ -60,7 +89,18 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HomeNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -82,10 +122,11 @@ namespace API.Migrations
                     b.Property<DateTime?>("ResetTokenExpires")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Street")
+                    b.Property<string>("Role")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StreetNo")
+                    b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Town")
@@ -99,7 +140,37 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("InstituteUser", b =>
+                {
+                    b.Property<int>("InstitutesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InstitutesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("InstituteUser");
+                });
+
+            modelBuilder.Entity("InstituteUser", b =>
+                {
+                    b.HasOne("API.Models.Entities.Institute", null)
+                        .WithMany()
+                        .HasForeignKey("InstitutesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Models.Entities.Degree", b =>
@@ -124,30 +195,6 @@ namespace API.Migrations
                     b.ToTable("Degrees");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Institute", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ContactNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InstituteName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Passcode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Institutes");
-                });
 
             modelBuilder.Entity("API.Models.Timeline.TimelineEvent", b =>
                 {
@@ -187,21 +234,7 @@ namespace API.Migrations
 
                     b.ToTable("TimelineEvents");
                 });
-
-            modelBuilder.Entity("AdminInstitute", b =>
-                {
-                    b.HasOne("API.Models.Entities.Admin", null)
-                        .WithMany()
-                        .HasForeignKey("AdminsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Entities.Institute", null)
-                        .WithMany()
-                        .HasForeignKey("InstitutesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                
 #pragma warning restore 612, 618
         }
     }
