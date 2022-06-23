@@ -9,7 +9,6 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import { time } from 'console';
 import Editbox from '../Noticeboard/Editbox';
 
-const [visible, setVisible] = React.useState(false);
 
 interface Props {
 
@@ -21,27 +20,50 @@ interface Props {
 }
 
 
+
 const current = new Date();
 const date = `On ${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()} at ${current.getHours()}:${current.getMinutes()}`;
 
 
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
-   
+   const [clicked, setClicked] = useState(false);
+
     return (
     
     <div className="notice">
 
       <div className="content">
+        {clicked?
+        <div className="title"> 
+          <input 
+            type="text"
+            className="title"
+            placeholder={notice.noticeTitle}
+          />
+          
+          &nbsp;&nbsp;
+          </div>
+          :
           <div className="title">
-            {notice.noticeTitle}
-            &nbsp;&nbsp;
-            <p className='notice-published-date'>Published Date and Time: {date}</p>
-                     
-            </div>
+          {notice.noticeTitle}
+          &nbsp;&nbsp;
+          <p className='notice-published-date'>Published Date and Time: {date}</p>
+                   
+          </div>
+
+}
 
           <hr></hr>
-          <p> {notice.description}</p>
+          {clicked? 
+          <input
+              type='text'
+              className='notice-description-input'
+              placeholder={notice.description}
+          /> : 
+            <p> {notice.description}</p>
+          }
+          
           
           <br></br>
 
@@ -58,19 +80,25 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
                 &nbsp;&nbsp;&nbsp;
                 {/* <Link to ="/noticeboard-edit"> */}
                 <span className='btn2'>
-                        {/* <button onClick={handleClick}> */}
-                        <button onClick={() => 
-                        setVisible(!visible)}>{visible ? 'Hide' : 'Show'}  
-                        <EditOutlinedIcon />       
-                        &nbsp;Edit Notice 
-                        </button>
-
-                        {visible && <div><Editbox notice={notice} editNotice={function (noticeToEdit: string): void {
-                throw new Error('Function not implemented.');
-              } }/></div>}
-           
-             
+                        {/* <button onClick={() => setEditBox(false)}> */}
                 
+                {clicked?
+                
+                <button onClick={()=>
+                  setClicked(!clicked)
+                  }>
+                  <EditOutlinedIcon /> 
+                  &nbsp;Save </button>
+
+                  :
+                  
+                  <button onClick={()=>
+                    setClicked(!clicked)
+                    }>
+                    <EditOutlinedIcon /> 
+                    &nbsp;Edit Notice </button>
+
+                }
                 </span>   
                 {/* </Link> */}
 

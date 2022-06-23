@@ -1,40 +1,48 @@
 import { useState } from "react";
 import {FC} from 'react';
 import { Link } from "react-router-dom";
+import {INotice} from "../components/Noticeboard/interface";
+
 // import "../../styles/NoticeCard.scss";
 
 
-const defaultFormData = {
-  title: "string",
-  description: "string",
-};
+// const defaultFormData = {
+//   title: {notice.noticeTitle},
+//   description: {notice.description},
+// };
 
 export default function App() {
-  const [formData, setFormData] = useState(defaultFormData);
-  const { title, description } = formData;
+  // const [formData, setFormData] = useState(defaultFormData);
+  // const { title, description } = formData;
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }));
-  };
+  // const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData((prevState) => ({
+  //     ...prevState,
+  //     [e.target.id]: e.target.value,
+  //   }));
+  // };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(formData);
+  // const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   console.log(formData);
 
-    setFormData(defaultFormData);
-  };
+  //   setFormData(defaultFormData);
+  // };
 
   return (
     <>
-      <h1>Edit the Notice</h1>
+      {/* <h1>Edit the Notice</h1>
       <p>Re-enter the title and description</p>
 
       <form onSubmit={onSubmit}>
+        <div className="NoticeInput-container">
+        <div className="notice-input-header">
+        <div className="notice-input-title">
         <label htmlFor="title">Notice Title:</label>
+        </div>
+        
         <br />
+
         <input type="text" id="title" value={title} onChange={onChange} />
         <br />
         <br />
@@ -46,8 +54,9 @@ export default function App() {
         <Link to ="/noticeboard">
         <button type="submit">Update Notice</button>
         </Link>
-        
-      </form>
+        </div>
+        </div>
+      </form> */}
     </>
   );
 }
