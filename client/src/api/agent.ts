@@ -23,7 +23,7 @@ const Resources = {
 
 const Bookings = {
   addBooking: (booking: any) => requests.post("Booking/post/", { booking }),
-  removeBoooking: (id: number) => requests.delete(`Booking?${id}`),
+  removeBoooking: (id: number) => requests.delete(`ooking/delete?${id}`),
   list: () => requests.get("Booking/all-bookings"),
 };
 

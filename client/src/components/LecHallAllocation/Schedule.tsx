@@ -15,6 +15,9 @@ function TimeSlot({ item, id }: TimeSlotCell) {
   const { setDateChanged } = useBookingContext();
   const { dateChanged } = useBookingContext();
 
+  const { dateBooking } = useBookingContext();
+  const { setDateBooking } = useBookingContext();
+
   const { setBookings } = useBookingContext();
   const { bookings } = useBookingContext();
 
@@ -37,18 +40,15 @@ function TimeSlot({ item, id }: TimeSlotCell) {
         className={id == "disable" ? "" : "cell"}
         key={item}
         style={{
-          backgroundColor: items.includes(item) ? "#7b2cbf" : "white",
+          backgroundColor: items.includes(item) ? "grey" : "white",
         }}
         onClick={() => {
           if (id != "disable") {
             if (items.indexOf(item as never) < 0) {
               items.push(item as never);
-              setDateChanged(false);
             } else {
               items.splice(bookings.indexOf(item as never), 1);
             }
-
-            setBookings(items);
 
             setPicked(!picked);
 

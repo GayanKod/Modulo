@@ -1,17 +1,22 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import { off } from "process";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import agent from "../../../api/agent";
-
+import { useBookingContext } from "../../../context/BookingContext";
 import Filter from "../HomePage/Filter";
+import { Booking } from "../Models";
 
 type BookingFormProps = {
   classId: number;
 };
 
 const BookingForm = (props: BookingFormProps) => {
+  const { bookingList } = useBookingContext();
+  const { setBookingList } = useBookingContext();
+
+  const { setDateChanged } = useBookingContext();
+  const { dateChanged } = useBookingContext();
+
   const [newBooking, setNewBooking] = useState({
     user: 0,
     classRoomId: 0,
@@ -19,6 +24,18 @@ const BookingForm = (props: BookingFormProps) => {
     startTime: "",
     endTime: "",
   });
+
+  useEffect(() => {
+    axios
+      .post("https://localhost:5000/api/Booking/post", newBooking)
+      .then(function (response) {
+        if (response.status === 200) {
+          // confirm(true); //confirm function call
+          console.log("added");
+        }
+      })
+      .catch((e) => console.log(e));
+  }, [newBooking]);
 
   const [loading, setLoading] = useState<boolean>();
 
@@ -39,23 +56,30 @@ const BookingForm = (props: BookingFormProps) => {
       user: 0,
       classRoomId: props.classId,
       date: bookingDate as string,
-      startTime: new Date(d.setHours(from.value)).toJSON(),
-      endTime: new Date(d.setHours(to.value)).toJSON(),
+      // startTime: new Date(d.setHours(from.value)).toJSON(),
+      startTime: new Date(d.setHours(from.value + 5)).toJSON(),
+      endTime: new Date(d.setHours(to.value + 5)).toJSON(),
     });
+
     console.log(newBooking);
 
-    axios
-      .post("https://localhost:5000/api/Booking/post", newBooking)
-      .then(() => {
-        console.log("booking added.");
-      })
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
+    // axios
+    //   .post("https://localhost:5000/api/Booking/post", newBooking)
+    //   .then(function (response) {
+    //     if (response.status === 200) {
+    //       // confirm(true); //confirm function call
+    //       console.log("added");
+    //     }
+    //   })
+    //   .catch((e) => console.log(e));
 
-    if (loading) {
-      console.log("loading...");
-    }
+    // if (loading) {
+    //   console.log("loading...");
+    // }
   };
+  // =================================================================================================
+
+  // const confirm = (added: boolean) => <Confirmation added={added} />;
 
   let options = [
     {

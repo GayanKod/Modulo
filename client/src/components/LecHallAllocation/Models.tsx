@@ -42,10 +42,10 @@ export interface TimeSlotCell {
 }
 
 export interface Booking {
-  id: number;
+  id?: number;
   user: number;
   classRoomId: number;
-  date: Date;
-  startTime: Date;
-  endTime: Date;
+  date: string;
+  startTime: string;
+  endTime: string;
 }

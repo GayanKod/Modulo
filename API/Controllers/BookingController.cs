@@ -96,11 +96,11 @@ namespace API.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("delete")]
 
         public async Task<ActionResult> DeleteBooking(int id)
         {
-            var booking = await _context.BookingDetails.FirstOrDefaultAsync(x => x.Id == id);
+            var booking = await _context.BookingDetails.FindAsync(id);
             if (booking == null)
             {
                 return NotFound();

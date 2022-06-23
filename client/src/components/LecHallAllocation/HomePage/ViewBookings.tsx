@@ -13,15 +13,14 @@ type ClassTypeProps = {
 function ViewBookings() {
   const [classRooms, setClassRooms] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  // const [classId, setClassId] = useState<number | null>(null);
-  const [classDeets, setClassDeets] = useState<Item>();
+  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     agent.ClassRoomDetails.list()
       .then((c) => setClassRooms(c))
       .catch((e) => console.log(e))
       .finally(() => setLoading(false));
-  }, []);
+  }, [classRooms]);
 
   if (loading) {
     return (
@@ -56,7 +55,16 @@ function ViewBookings() {
           <td>
             <button
               style={{ color: "#db2525" }}
-              onClick={() => deleteBooking(i.id)}
+              onClick={() =>
+                // (<DeleteBooking
+                //   id={i.id}
+                //   setDeleted={setDeleted}
+                //   deleted={deleted}
+                // />)
+                {
+                  deleteBooking(i.id);
+                }
+              }
             >
               <i className="fas fa-trash"></i>
             </button>

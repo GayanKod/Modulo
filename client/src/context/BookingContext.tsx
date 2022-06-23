@@ -2,13 +2,16 @@ import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { Booking } from "../components/LecHallAllocation/Models";
 
 interface BookingContextValue {
-  bookingList: Booking[] | null;
+  bookingList: Booking[];
   setBookingList: (bookings: Booking[]) => void;
   deleteBooking: (id: number) => void;
-  dateChanged: boolean;
-  setDateChanged: (change: boolean) => void;
+  dateChanged: string;
+  setDateChanged: (changed: string) => void;
   bookings: number[];
   setBookings: (booking: number[]) => void;
+
+  dateBooking: { from: string; to: string }[];
+  setDateBooking: ([]: { from: string; to: string }[]) => void;
 }
 
 export const BookingContext = createContext<BookingContextValue | undefined>(
@@ -34,9 +37,12 @@ export function BookingPovider({ children }: PropsWithChildren<any>) {
     items.splice(id, 1);
   }
 
-  const [dateChanged, setDateChanged] = useState<boolean>(false);
+  const [dateChanged, setDateChanged] = useState<string>("");
 
   const [bookings, setBookings] = useState<number[]>([]);
+  const [dateBooking, setDateBooking] = useState<
+    { from: string; to: string }[]
+  >([]);
   return (
     <BookingContext.Provider
       value={{
@@ -47,6 +53,9 @@ export function BookingPovider({ children }: PropsWithChildren<any>) {
         setDateChanged,
         bookings,
         setBookings,
+
+        dateBooking,
+        setDateBooking,
       }}
     >
       {children}
