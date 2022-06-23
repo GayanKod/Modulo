@@ -13,5 +13,6 @@ namespace API.Data
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<TimelineEvent> TimelineEvents {get;set;}
         public DbSet<Degree> Degrees {get;set;}
+        public DbSet<Batch> Batches {get;set;}
     }
 }

@@ -29,6 +29,10 @@ namespace API.Models.Entities
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
         public List<Institute> Institutes { get; set; }
+        public Degree Degrees { get; set; }
+        public int DegreeId { get; set; }
+        public Batch Batch { get; set; }
+        public int BatchId { get; set; }
 
     }
 }

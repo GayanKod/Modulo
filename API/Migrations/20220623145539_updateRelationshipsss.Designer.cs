@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220623145539_updateRelationshipsss")]
+    partial class updateRelationshipsss
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,6 +251,21 @@ namespace API.Migrations
                     b.ToTable("TimelineEvents");
                 });
 
+            modelBuilder.Entity("BatchDegree", b =>
+                {
+                    b.Property<int>("BatchesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DegreesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BatchesId", "DegreesId");
+
+                    b.HasIndex("DegreesId");
+
+                    b.ToTable("BatchDegree");
+                });
+
             modelBuilder.Entity("InstituteUser", b =>
                 {
                     b.Property<int>("InstitutesId")
@@ -314,6 +331,21 @@ namespace API.Migrations
                         .IsRequired();
 
                     b.Navigation("Batch");
+                });
+
+            modelBuilder.Entity("BatchDegree", b =>
+                {
+                    b.HasOne("API.Models.Entities.Batch", null)
+                        .WithMany()
+                        .HasForeignKey("BatchesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Entities.Degree", null)
+                        .WithMany()
+                        .HasForeignKey("DegreesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("InstituteUser", b =>

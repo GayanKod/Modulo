@@ -51,7 +51,7 @@ namespace API.Controllers
                 return BadRequest("Admin Not Found!");
             
             timelineevent.Id = req.Id;
-            timelineevent.Batch=req.Batch;
+            //timelineevent.Batch=req.Batch;
             timelineevent.Semester=req.Semester;
             timelineevent.EventTitle=req.EventTitle;
             timelineevent.Description=req.Description;
