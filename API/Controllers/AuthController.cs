@@ -96,7 +96,6 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest req)
         {
-
             var user = await _context.Users
                 .Where(u => u.Email == req.Email)
                 .Include(u => u.Institutes).FirstOrDefaultAsync();
@@ -239,6 +238,8 @@ namespace API.Controllers
 
             return user;
         }
+
+        
 
     }
 }
