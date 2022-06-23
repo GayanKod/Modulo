@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("all")]
 
         public async Task<ActionResult<List<ClassRoom>>> Get()
         {          
@@ -43,7 +43,7 @@ namespace API.Controllers
             return Ok(classRoom);
         }
 
-        [HttpPost]
+        [HttpPost("post")]
 
         public async Task<ActionResult<List<ClassRoom>>> AddClassRoom(ClassRoom classRoom)
         {

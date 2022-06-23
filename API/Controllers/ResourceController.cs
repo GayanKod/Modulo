@@ -15,14 +15,14 @@ namespace API.Controllers
             _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
 
         public async Task<ActionResult<List<Resource>>> Get()
         {
             return await _context.Resources.Include(r => r.ClassRoom_Resources).ToListAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
 
         public async Task<ActionResult<List<Resource>>> GetResourcebyId(int id)
         {
@@ -34,9 +34,9 @@ namespace API.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("post")]
 
-        public async Task<ActionResult<List<Resource>>> Post(Resource resource)
+        public async Task<ActionResult<List<Resource>>> PostResource(Resource resource)
         {
             _context.Resources.Add(resource);
 
@@ -47,7 +47,7 @@ namespace API.Controllers
        
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("update/{id}")]
 
         public async Task<ActionResult<List<Resource>>> Update(Resource request)
         {
@@ -63,7 +63,7 @@ namespace API.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("delete/{id}")]
 
         public async Task<ActionResult<List<Resource>>> Delete(int id)
         {

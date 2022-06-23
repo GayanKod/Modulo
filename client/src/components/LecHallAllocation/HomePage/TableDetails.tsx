@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Resources from "./Resources";
 import TimeTable from "./TimeTable";
 import agent from "../../../api/agent";
+import axios from "axios";
 
 interface Props {
   selected: number;
@@ -21,6 +22,8 @@ function TableDetails({ selected }: Props) {
 
   useEffect(() => {
     agent.ClassRoomDetails.list()
+      // axios
+      // .get("https://localhost:5000/api/ClassRoom/all")
       .then((classes) => {
         setClassRooms(classes);
       })

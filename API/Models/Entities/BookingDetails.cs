@@ -6,11 +6,18 @@ namespace API.Models
     {
         public int Id { get; set; }
 
-        public int User { get; set; }
+        public int? UserId { get; set; }
+
+        [JsonIgnore]
+        public User User { get; set; }
+
+
+
+
+        public int ClassRoomId { get; set; }
         [JsonIgnore]
         public ClassRoom ClassRoom { get; set; }
 
-        public int ClassRoomId { get; set; }
 
         public DateTime Date { get; set; }
 

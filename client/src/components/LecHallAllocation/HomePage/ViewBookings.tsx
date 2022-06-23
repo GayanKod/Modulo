@@ -62,7 +62,7 @@ function ViewBookings() {
                 //   deleted={deleted}
                 // />)
                 {
-                  deleteBooking(i.id);
+                  deleteBooking(i.id as number);
                 }
               }
             >

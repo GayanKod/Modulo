@@ -53,7 +53,6 @@ export function BookingPovider({ children }: PropsWithChildren<any>) {
         setDateChanged,
         bookings,
         setBookings,
-
         dateBooking,
         setDateBooking,
       }}

@@ -4,16 +4,16 @@ export interface Item {
   buildingNumber: number;
   capacity: number;
   labType: string;
-  adminId: number;
-  classRoomType: 0;
-  bookings: {
-    id: number;
-    user: number;
-    classRoomId: number;
-    date: Date;
-    startTime: Date;
-    endTime: Date;
-  }[];
+  classRoomType: number;
+  institute: {
+    id: 0;
+    instituteName: string;
+    contactNumber: string;
+    classrooms: [string];
+  };
+  instituteId: number;
+  bookings: Booking[];
+
   classRoom_Resources: ClassRoomResource[];
 }
 

@@ -3,7 +3,7 @@
     public class BookingDTO
     {
 
-        public int User { get; set; } = 1;
+
 
         public int ClassRoomId { get; set; } = 3;
 

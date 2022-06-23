@@ -24,29 +24,29 @@ namespace API.Controllers
             var bookings = await _context.BookingDetails.ToListAsync();
             if (bookings == null)
             {
-                return BadRequest();
+                return NotFound();
             }
             return Ok(bookings);
 
         }
 
-        /*[HttpGet("{user}")]
+        [HttpGet("user/{user}")]
 
         public async Task<ActionResult<List<BookingDetails>>> GetByUser(int user)
         {
-            if (await _context.ClassRooms.FindAsync(user) == null) return NotFound();
+            if (await _context.BookingDetails.FindAsync(user) == null) return NotFound();
 
-            var booking = await _context.BookingDetails.Where(b => b.User == user).ToListAsync();
+            var booking = await _context.BookingDetails.Where(b => b.UserId == user).ToListAsync();
             if (booking == null)
             {
                 return NotFound();
             }
             return Ok(booking);
 
-        }*/
+        }
 
 
-        [HttpGet("{classRoom}")]
+        [HttpGet("class/{classRoom}")]
 
         public async Task<ActionResult<List<BookingDetails>>> GetBookingbyClass(int classRoom)
 
@@ -66,10 +66,9 @@ namespace API.Controllers
         [HttpPost("post")]
 
         public async Task<ActionResult<List<BookingDetails>>> AddLabBooking(BookingDTO booking)
-        {
-            var classRoom = await _context.ClassRooms.FindAsync(booking.ClassRoomId);
+        {var classRoom = await _context.ClassRooms.FindAsync(booking.ClassRoomId);
 
-            if (classRoom == null) return NotFound();
+     if (classRoom == null) return NotFound();
 
             BookingDetails newBooking = MapBookingtoDTO(booking);
 
@@ -83,22 +82,11 @@ namespace API.Controllers
 
         }
 
-        private static BookingDetails MapBookingtoDTO(BookingDTO booking)
-        {
-            return new BookingDetails
-            {
-                User = booking.User,
-                ClassRoomId = booking.ClassRoomId,
-                Date = booking.Date,
-                StartTime = booking.StartTime,
-                EndTime = booking.EndTime,
-            };
-        }
 
 
         [HttpDelete("delete")]
 
-        public async Task<ActionResult> DeleteBooking(int id)
+        public async Task<ActionResult<List<BookingDetails>>> DeleteBooking(int id)
         {
             var booking = await _context.BookingDetails.FindAsync(id);
             if (booking == null)
@@ -108,6 +96,18 @@ namespace API.Controllers
             _context.BookingDetails.Remove(booking);
             await _context.SaveChangesAsync();
             return Ok(await _context.BookingDetails.ToListAsync());
+        }
+
+
+        private static BookingDetails MapBookingtoDTO(BookingDTO booking)
+        {
+            return new BookingDetails
+            {
+                ClassRoomId = booking.ClassRoomId,
+                Date = booking.Date,
+                StartTime = booking.StartTime,
+                EndTime = booking.EndTime,
+            };
         }
 
 

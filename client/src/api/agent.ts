@@ -13,17 +13,17 @@ const requests = {
 };
 
 const ClassRoomDetails = {
-  list: () => requests.get("ClassRoom"),
+  list: () => requests.get("ClassRoom/all"),
   details: (id: number) => requests.get(`ClassRoom/${id}`),
 };
 
 const Resources = {
-  details: (id: number) => requests.get(`Resource/${id}`),
+  details: (id: number) => requests.get(`Resource/id/${id}`),
 };
 
 const Bookings = {
   addBooking: (booking: any) => requests.post("Booking/post/", { booking }),
-  removeBoooking: (id: number) => requests.delete(`ooking/delete?${id}`),
+  removeBoooking: (id: number) => requests.delete(`Booking/delete?${id}`),
   list: () => requests.get("Booking/all-bookings"),
 };
 
