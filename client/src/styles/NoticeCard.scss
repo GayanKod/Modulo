@@ -106,28 +106,46 @@ button:hover {
 
 }
 
-.notice-edit .content-edit .title-edit{
-   width: 500px;
-    height: 50px;
-    border: 40px;
-    // background-color: #eed0ff;
+.notice-description-input{
     padding-top: 5px;
     padding-left: 10px;
+    width: 660px;
+    height: 50px;
+    border: 40px;
+    border-color: grey;
     font-size: 17px;
     font-family: "Poppins", sans-serif;
-    border: 1px solid #eed0ff;
+    border: 0.3px solid grey;
     align-items: center;
+    
 }
 
-.notice-edit .content-edit .description-edit{
-      width: 500px;
-      height: 50px;
-      border: 40px;
-      background-color: #eed0ff;
-      padding-top: 5px;
-      padding-left: 10px;
-      font-size: 17px;
-      font-family: "Poppins", sans-serif;
-      border: 1px solid #eed0ff;
-      align-items: center;
-}
+// .notice .content .title{
+//     width: 600px;
+//     height: 50px;
+// }
+// .notice-edit .content-edit .title-edit{
+//    width: 500px;
+//     height: 50px;
+//     border: 40px;
+//     // background-color: #eed0ff;
+//     padding-top: 5px;
+//     padding-left: 10px;
+//     font-size: 17px;
+//     font-family: "Poppins", sans-serif;
+//     border: 1px solid #eed0ff;
+//     align-items: center;
+// }
+
+// .notice-edit .content-edit .description-edit{
+//       width: 500px;
+//       height: 50px;
+//       border: 40px;
+//       background-color: #eed0ff;
+//       padding-top: 5px;
+//       padding-left: 10px;
+//       font-size: 17px;
+//       font-family: "Poppins", sans-serif;
+//       border: 1px solid #eed0ff;
+//       align-items: center;
+// }
