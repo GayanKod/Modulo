@@ -23,7 +23,7 @@ namespace API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            if (_context.Admins.Any(u => u.Email == request.Email))
+            if (_context.Users.Any(u => u.Email == request.Email))
             {
                 return BadRequest("User already exists!");
             }
@@ -32,17 +32,18 @@ namespace API.Controllers
                 out byte[] passwordHash,
                 out byte[] passwordSalt);
 
-            var admin = new Admin
+            var user = new User
             {
                 Email = request.Email,
-                AdminName = request.AdminFName + " " + request.AdminLName,
+                FirstName = request.UserFName, 
+                LastName = request.UserLName,
                 DOB = request.DOB,
                 Gender = request.Gender,
-                StreetNo = request.StreetNo,
+                HomeNo = request.HomeNo,
                 Street = request.Street,
                 Town = request.Town,
                 MobileNumber = request.MobileNumber,
-                AdminType = "Super Admin",
+                Role = "Super Admin",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 VerificationToken = CreateRandomToken()
@@ -52,31 +53,30 @@ namespace API.Controllers
             {
                 InstituteName = request.InstituteName,
                 ContactNumber = request.InstituteContactNo,
-                Passcode = CreateRandomPasscode()
             };
 
-            _context.Admins.Add(admin);
+            _context.Users.Add(user);
             _context.Institutes.Add(institute);
             await _context.SaveChangesAsync();
 
-            var adminInst = new AdminInstituteDTO
+            var userInst = new UserInstituteDTO
             {
-                AdminId =  await _context.Admins.Where(a => a.Email == request.Email).Select(x => x.Id).FirstAsync(),
+                UserId =  await _context.Users.Where(a => a.Email == request.Email).Select(x => x.Id).FirstAsync(),
                 InstituteId = await _context.Institutes.Where(i => i.ContactNumber == request.InstituteContactNo).Select(x => x.Id).FirstAsync()
             };
 
-            await AddAdminInstitute(adminInst);
+            await AddUserInstitute(userInst);
             return Ok("Institute successfully Registered!");
         }
 
-        [HttpPost("AddAdminInstitute")]
-        public async Task<ActionResult<Admin>> AddAdminInstitute(AdminInstituteDTO req)
+        [HttpPost("AddUserInstitute")]
+        public async Task<ActionResult<User>> AddUserInstitute(UserInstituteDTO req)
         {
-            var admin = await _context.Admins
-                .Where(a => a.Id == req.AdminId)
+            var user = await _context.Users
+                .Where(a => a.Id == req.UserId)
                 .Include(a => a.Institutes)
                 .FirstOrDefaultAsync();
-            if (admin == null)
+            if (user == null)
                 return NotFound();
             
 
@@ -85,44 +85,51 @@ namespace API.Controllers
                 return NotFound();
 
 
-            admin.Institutes.Add(institute);
+            user.Institutes.Add(institute);
             await _context.SaveChangesAsync();
 
-            return admin;
+            return user;
         }
 
 
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest req)
         {
-            var admin = await _context.Admins.FirstOrDefaultAsync(u => u.Email == request.Email);
-            if (admin == null)
+
+            var user = await _context.Users
+                .Where(u => u.Email == req.Email)
+                .Include(u => u.Institutes).FirstOrDefaultAsync();
+
+
+
+            if (user == null)
             {
                 return BadRequest("User not found!");
             }
 
-            if (!VerifyPasswordHash(request.Password, admin.PasswordHash, admin.PasswordSalt))
+            if (!VerifyPasswordHash(req.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Password is incorrect!");
             }
 
-            if (admin.VerifiedAt == null)
+            if (user.VerifiedAt == null)
             {
                 return BadRequest("Not verified!");
             }
 
 
             //return Ok($"Welcome Back, {user.Email}! :)");
-            string token = CreateJWTToken(admin);
-            return Ok(token);
+            string token = CreateJWTToken(user);
+            return Ok(new { user = user, token = token });
         }
 
-        private string CreateJWTToken(Admin user)
+        private string CreateJWTToken(User user)
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
@@ -131,7 +138,7 @@ namespace API.Controllers
 
             var token = new JwtSecurityToken(
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(15),
+                    expires: DateTime.Now.AddDays(1),
                     signingCredentials: creds
                 );
 
@@ -144,13 +151,13 @@ namespace API.Controllers
         [HttpPost("verify")]
         public async Task<IActionResult> Verify(string token)
         {
-            var admin = await _context.Admins.FirstOrDefaultAsync(u => u.VerificationToken == token);
-            if (admin == null)
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
+            if (user == null)
             {
                 return BadRequest("Invalid Token!");
             }
 
-            admin.VerifiedAt = DateTime.Now;
+            user.VerifiedAt = DateTime.Now;
             await _context.SaveChangesAsync();
 
 
@@ -161,7 +168,7 @@ namespace API.Controllers
         [HttpPost("forgot-password")]
         public async Task<IActionResult> ForgotPassword(string email)
         {
-            var admin = await _context.Admins.FirstOrDefaultAsync(u => u.Email == email);
+            var admin = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (admin == null)
             {
                 return BadRequest("User not found!");
@@ -179,18 +186,18 @@ namespace API.Controllers
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPWRequest request)
         {
-            var admin = await _context.Admins.FirstOrDefaultAsync(u => u.PasswordResetToken == request.Token);
-            if (admin == null || admin.ResetTokenExpires < DateTime.Now)
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.PasswordResetToken == request.Token);
+            if (user == null || user.ResetTokenExpires < DateTime.Now)
             {
                 return BadRequest("Invalid Token!");
             }
 
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            admin.PasswordHash = passwordHash;
-            admin.PasswordSalt = passwordSalt;
-            admin.PasswordResetToken = null;
-            admin.ResetTokenExpires = null;
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            user.PasswordResetToken = null;
+            user.ResetTokenExpires = null;
             await _context.SaveChangesAsync();
 
 
@@ -224,9 +231,13 @@ namespace API.Controllers
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
         }
 
-        private string CreateRandomPasscode()
+        private async Task<ActionResult<List<User>>> GetInstitute(int id)
         {
-            return Convert.ToHexString(RandomNumberGenerator.GetBytes(12));
+            var user = await _context.Users
+                .Where(u => u.Id == id)
+                .Include(u => u.Institutes).ToListAsync();
+
+            return user;
         }
 
     }

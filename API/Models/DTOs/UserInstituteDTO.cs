@@ -1,8 +1,8 @@
 ﻿namespace API.Models.DTOs
 {
-    public class AdminInstituteDTO
+    public class UserInstituteDTO
     {
-        public int AdminId { get; set; }
+        public int UserId { get; set; }
         public int InstituteId { get; set; }
     }
 }

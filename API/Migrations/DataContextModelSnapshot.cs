@@ -148,37 +148,6 @@ namespace API.Migrations
                     b.Property<int>("InstitutesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("InstitutesId", "UsersId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("InstituteUser");
-                });
-
-            modelBuilder.Entity("InstituteUser", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", null)
-                        .WithMany()
-                        .HasForeignKey("InstitutesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Degree", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("DegreeName")
@@ -233,8 +202,31 @@ namespace API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimelineEvents");
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("InstitutesId", "UsersId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("InstituteUser");
                 });
-                
+
+            modelBuilder.Entity("InstituteUser", b =>
+                {
+                    b.HasOne("API.Models.Entities.Institute", null)
+                        .WithMany()
+                        .HasForeignKey("InstitutesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
 #pragma warning restore 612, 618
         }
     }

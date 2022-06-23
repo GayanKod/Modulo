@@ -1,6 +1,35 @@
+@import "../styleVar/colorPalette.scss";
+
 .userList {
     flex: 4;
+    margin: 20px;
+    margin-top:80px;
   }
+
+.APAddBtn{
+    position: absolute;
+    color: $P3;
+    top:90px;
+    right: 50px;
+}
+
+.APAddBtn.text{
+  top:95px;
+  right: 90px;
+  color: $O;
+}
+
+#APaddbtn-text{
+  display:none;
+}
+
+.APAddBtn-wrapper:hover #APaddbtn-text{
+  display: block;
+}
+
+.APAddBtn:hover{
+  color:$O;
+}
   
   .userListUser {
     display: flex;

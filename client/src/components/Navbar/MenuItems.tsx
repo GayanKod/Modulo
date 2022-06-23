@@ -23,7 +23,7 @@ export const MenuItems = [
     },
     {
         title : 'Register your Institute!',
-        url : '#',
+        url : '/registration',
         cName : 'nav-links',
         id:'Register'
     }
