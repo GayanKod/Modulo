@@ -177,6 +177,61 @@ namespace API.Controllers
             return Ok(user);
         }
 
+        [HttpGet("get-superadmins-count/{inst_id}")]
+        public async Task<ActionResult<int>> GetSuperAdminsCount(int inst_id)
+        {
+            var inst = GetInstitute(inst_id);
+            var count = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Super Admin")
+                .CountAsync();
+            return count;
+        }
+
+        [HttpGet("get-admins-count/{inst_id}")]
+        public async Task<ActionResult<int>> GetAdminsCount(int inst_id)
+        {
+            var inst = GetInstitute(inst_id);
+            var count = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Admin")
+                .CountAsync();
+            return count;
+        }
+
+        [HttpGet("get-supereditors-count/{inst_id}")]
+        public async Task<ActionResult<int>> GetSuperEditorsCount(int inst_id)
+        {
+            var inst = GetInstitute(inst_id);
+            var count = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Super Editor")
+                .CountAsync();
+            return count;
+        }
+
+        [HttpGet("get-editors-count/{inst_id}")]
+        public async Task<ActionResult<int>> GetEditorsCount(int inst_id)
+        {
+            var inst = GetInstitute(inst_id);
+            var count = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Editor")
+                .CountAsync();
+            return count;
+        }
+
+        [HttpGet("get-subscribers-count/{inst_id}")]
+        public async Task<ActionResult<int>> GetSubscribersCount(int inst_id)
+        {
+            var inst = GetInstitute(inst_id);
+            var count = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Subscriber")
+                .CountAsync();
+            return count;
+        }
+
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
