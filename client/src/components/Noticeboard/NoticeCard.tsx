@@ -19,11 +19,8 @@ interface Props {
   sendSMS(noticeToSendSMS: string): void;
 }
 
-
-
 const current = new Date();
 const date = `On ${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()} at ${current.getHours()}:${current.getMinutes()}`;
-
 
 const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 {
@@ -55,14 +52,18 @@ const NoticeCard = ({notice, deleteNotice, editNotice, sendSMS}: Props)=>
 }
 
           <hr></hr>
+          <div className='content'>  
           {clicked? 
+          <div className='description'>
           <input
               type='text'
               className='notice-description-input'
               placeholder={notice.description}
-          /> : 
+          /></div> : 
             <p> {notice.description}</p>
           }
+          
+          </div>
           
           
           <br></br>

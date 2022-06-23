@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-
-
 namespace API.Controllers
 {
 
@@ -20,7 +18,7 @@ namespace API.Controllers
            _context = context;
         }
 
-       
+        [Route("get-notices")]
         [HttpGet]
         public async Task<ActionResult<List<Notice>>> Get()
         {
@@ -39,6 +37,7 @@ namespace API.Controllers
            return Ok(notice);
         }
         
+        [Route("post-notices")]
         [HttpPost]
 
         public async Task<ActionResult<List<Notice>>> Add(Notice notice)
@@ -47,7 +46,8 @@ namespace API.Controllers
           await _context.SaveChangesAsync();
           return Ok(await _context.Notices.ToListAsync());
         }
-
+        
+        [Route("update-notices")]
         [HttpPut]
 
          public async Task<ActionResult<List<Notice>>> Update(Notice request)
@@ -64,7 +64,7 @@ namespace API.Controllers
           return Ok(await _context.Notices.ToListAsync());
         }
 
-
+        [Route("delete-notices")]
         [HttpDelete("{id}")]
 
         public async Task<ActionResult<List<Notice>>>Delete(int id)
