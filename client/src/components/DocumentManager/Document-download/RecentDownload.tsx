@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { isAuth } from "../../../helpers/auth";
+import { Documents } from "../Document-uplaod/Documents";
 
 function RecentDownload() {
-  const [documents, setDocuments] = useState([
-    {
-      name: "Hypothesis_Testing",
-      size: "15MB",
-      type: "pdf",
-      date: "1/19/2021",
-      description: "Questions from Hypothesis testing",
-    },
-    {
-      name: "Boolean_Algebra",
-      size: "9MB",
-      type: "pdf",
-      date: "10/11/2021",
-      description: "Student note",
-    },
-  ]);
+  const [docs, setDocs] = useState<Documents[]>([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios
+      .get("https://localhost:5000/api/File/get", {
+        params: { userid: isAuth().id },
+      })
+      .then((response) => setDocs(response.data))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }, [docs]);
   return (
     <div className="RecentDownload">
       <table className="RecentDownload-table">
@@ -33,11 +31,11 @@ function RecentDownload() {
           </tr>
         </thead>
         <tbody>
-          {documents.map((item, index) => (
-            <tr>
-              <td>{item.type}</td>
-              <td key={index}>{item.name}</td>
-              <td>{item.size}</td>
+          {docs.map((item) => (
+            <tr key={item.documentId}>
+              <td>{item.documentType}</td>
+              <td>{item.documentName}</td>
+              <td>{item.documentSize}</td>
               <td>{item.date}</td>
               <td>{item.description}</td>
             </tr>

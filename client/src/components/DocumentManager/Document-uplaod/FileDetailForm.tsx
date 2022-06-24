@@ -26,7 +26,8 @@ function FileDetailForm(props: FileDetailFormProps) {
     formdata.append("myfile", props.selectedFile!);
     formdata.append("documentname", filename!);
     formdata.append("description", description!);
-    //formdata.append("userid", 45);
+    formdata.append("userid", isAuth().id);
+    formdata.append("instituteid", isAuth().institute[0].id);
 
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -34,12 +35,6 @@ function FileDetailForm(props: FileDetailFormProps) {
 
     event.preventDefault();
     if (props.selectedFile != null) {
-      // const data = {
-      //   myfile: props.selectedFile!,
-      //   documentname: filename!,
-      //   description: description!,
-
-      // };
       axios
         .post("https://localhost:5000/api/File/upload", formdata, config)
         .then((response) => console.log(response))
@@ -71,7 +66,7 @@ function FileDetailForm(props: FileDetailFormProps) {
           *Append your index at the end*
         </label>
         <input
-          className="fileDetailForm-fileNameInput"
+          className="fileDetailForm-Input"
           id="filename"
           type="text"
           defaultValue={props.selectedFile?.name}
@@ -80,6 +75,7 @@ function FileDetailForm(props: FileDetailFormProps) {
 
         <label htmlFor="descriptionbox">Description:</label>
         <input
+          className="fileDetailForm-Input"
           type="text"
           id="descriptionbox"
           onChange={descriptionHandler}

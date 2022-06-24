@@ -8,7 +8,8 @@ import { Worker } from "@react-pdf-viewer/core";
 import { Viewer } from "@react-pdf-viewer/core";
 
 // Import the styles
-import "@react-pdf-viewer/core/lib/styles/index.css";
+//import "@react-pdf-viewer/core/lib/styles/index.css";
+import { isAuth } from "../../../helpers/auth";
 
 interface RecentUploadProps {
   docs: Documents[];
@@ -26,7 +27,9 @@ function RecentUpload(props: RecentUploadProps) {
 
   useEffect(() => {
     axios
-      .get("https://localhost:5000/api/File/get-all")
+      .get("https://localhost:5000/api/File/get", {
+        params: { userid: isAuth().id },
+      })
       .then((response) => props.setDocs(response.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
@@ -116,6 +119,3 @@ function RecentUpload(props: RecentUploadProps) {
   );
 }
 export default RecentUpload;
-function base64toBlob(file: string | undefined) {
-  throw new Error("Function not implemented.");
-}

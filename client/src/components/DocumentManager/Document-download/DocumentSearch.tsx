@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { isAuth } from "../../../helpers/auth";
 import { Documents } from "../Document-uplaod/Documents";
 import { Files } from "./Files";
 import SearchResult from "./SearchResult";
@@ -16,7 +17,9 @@ function DocumentSearch(props: DocumentSearchProps) {
 
   useEffect(() => {
     axios
-      .get("https://localhost:5000/api/File/get-all")
+      .get("https://localhost:5000/api/File/get-all", {
+        params: { userid: isAuth().institute[0].id },
+      })
       .then((response) => props.setDocs(response.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));

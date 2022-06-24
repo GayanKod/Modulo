@@ -33,10 +33,17 @@ namespace AzureBlobTest.Controllers
         }
 
         [HttpGet]
-        [Route("get-all")]
-        public async Task<ActionResult<List<Document>>> GetFiles()
+        [Route("get")]
+        public async Task<ActionResult<List<Document>>> GetFiles(int userid)
         {
-             var docs = await _fileManagerLogic.Get();
+             var docs = await _fileManagerLogic.Get(userid);
+            return Ok(docs);
+        }
+        [HttpGet]
+        [Route("get-all")]
+        public async Task<ActionResult<List<Document>>> GetAll(int instituteid)
+        {
+            var docs = await _fileManagerLogic.GetAll(instituteid);
             return Ok(docs);
         }
 
@@ -81,7 +88,7 @@ namespace AzureBlobTest.Controllers
         [HttpPost]
         [Route("addDownload")]
 
-        public async Task<IActionResult> AddDownload(Document_UserDTO doc_user)
+        public async Task<IActionResult> AddDownload(DocumentDowloadDTO doc_user)
         {
             await _fileManagerLogic.PostDownload(doc_user);
             return Ok();

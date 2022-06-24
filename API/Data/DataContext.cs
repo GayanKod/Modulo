@@ -27,8 +27,9 @@ namespace API.Data
          public DbSet<Notice> Notices{ get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Institute> Institutes { get; set; }
+        public DbSet<DocumentDownload> DocumentDownloads { get; set; }
 
-        //public DbSet<Document_User> Document_Users { get; set; }
+        
 
         
     }
