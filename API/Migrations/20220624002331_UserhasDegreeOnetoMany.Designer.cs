@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220623145539_updateRelationshipsss")]
-    partial class updateRelationshipsss
+    [Migration("20220624002331_UserhasDegreeOnetoMany")]
+    partial class UserhasDegreeOnetoMany
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,15 +39,10 @@ namespace API.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
 
                     b.ToTable("Batches");
                 });
@@ -70,12 +65,7 @@ namespace API.Migrations
                     b.Property<int>("DurationInYears")
                         .HasColumnType("int");
 
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
 
                     b.ToTable("Degrees");
                 });
@@ -140,13 +130,13 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BatchId")
+                    b.Property<int?>("BatchId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DegreeId")
+                    b.Property<int?>("DegreeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -219,9 +209,6 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -246,24 +233,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BatchId");
-
                     b.ToTable("TimelineEvents");
-                });
-
-            modelBuilder.Entity("BatchDegree", b =>
-                {
-                    b.Property<int>("BatchesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DegreesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BatchesId", "DegreesId");
-
-                    b.HasIndex("DegreesId");
-
-                    b.ToTable("BatchDegree");
                 });
 
             modelBuilder.Entity("InstituteUser", b =>
@@ -281,71 +251,19 @@ namespace API.Migrations
                     b.ToTable("InstituteUser");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Batch", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("Batches")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Institute");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Degree", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("Degrees")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Institute");
-                });
-
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
                     b.HasOne("API.Models.Entities.Batch", "Batch")
                         .WithMany("Users")
-                        .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BatchId");
 
-                    b.HasOne("API.Models.Entities.Degree", "Degrees")
+                    b.HasOne("API.Models.Entities.Degree", "Degree")
                         .WithMany("Users")
-                        .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DegreeId");
 
                     b.Navigation("Batch");
 
-                    b.Navigation("Degrees");
-                });
-
-            modelBuilder.Entity("API.Models.Timeline.TimelineEvent", b =>
-                {
-                    b.HasOne("API.Models.Entities.Batch", "Batch")
-                        .WithMany()
-                        .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Batch");
-                });
-
-            modelBuilder.Entity("BatchDegree", b =>
-                {
-                    b.HasOne("API.Models.Entities.Batch", null)
-                        .WithMany()
-                        .HasForeignKey("BatchesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Entities.Degree", null)
-                        .WithMany()
-                        .HasForeignKey("DegreesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Degree");
                 });
 
             modelBuilder.Entity("InstituteUser", b =>
@@ -371,13 +289,6 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Entities.Degree", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Institute", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Degrees");
                 });
 #pragma warning restore 612, 618
         }

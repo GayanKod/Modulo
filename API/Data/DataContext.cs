@@ -1,5 +1,4 @@
 ﻿using API.Models.Entities;
-using API.Models.Timeline;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data

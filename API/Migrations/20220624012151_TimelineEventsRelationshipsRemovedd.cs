@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class updateRelationshipsss : Migration
+    public partial class TimelineEventsRelationshipsRemovedd : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,24 @@ namespace API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Notices", x => x.NoticeID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TimelineEvents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Level = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Semester = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EventTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimelineEvents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,55 +103,6 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TimelineEvents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Level = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Semester = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EventTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TimelineEvents", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TimelineEvents_Batches_BatchId",
-                        column: x => x.BatchId,
-                        principalTable: "Batches",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BatchDegree",
-                columns: table => new
-                {
-                    BatchesId = table.Column<int>(type: "int", nullable: false),
-                    DegreesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BatchDegree", x => new { x.BatchesId, x.DegreesId });
-                    table.ForeignKey(
-                        name: "FK_BatchDegree_Batches_BatchesId",
-                        column: x => x.BatchesId,
-                        principalTable: "Batches",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BatchDegree_Degrees_DegreesId",
-                        column: x => x.DegreesId,
-                        principalTable: "Degrees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -155,8 +124,8 @@ namespace API.Migrations
                     VerifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PasswordResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResetTokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DegreeId = table.Column<int>(type: "int", nullable: false),
-                    BatchId = table.Column<int>(type: "int", nullable: false)
+                    BatchId = table.Column<int>(type: "int", nullable: true),
+                    DegreeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -165,14 +134,12 @@ namespace API.Migrations
                         name: "FK_Users_Batches_BatchId",
                         column: x => x.BatchId,
                         principalTable: "Batches",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Users_Degrees_DegreeId",
                         column: x => x.DegreeId,
                         principalTable: "Degrees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -200,11 +167,6 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BatchDegree_DegreesId",
-                table: "BatchDegree",
-                column: "DegreesId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Batches_InstituteId",
                 table: "Batches",
                 column: "InstituteId");
@@ -220,11 +182,6 @@ namespace API.Migrations
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TimelineEvents_BatchId",
-                table: "TimelineEvents",
-                column: "BatchId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_BatchId",
                 table: "Users",
                 column: "BatchId");
@@ -237,9 +194,6 @@ namespace API.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "BatchDegree");
-
             migrationBuilder.DropTable(
                 name: "InstituteUser");
 

@@ -7,7 +7,7 @@ namespace API.Models.Entities
     {
         public int Id { get; set; }
 
-       [Required]
+        [Required]
         public string InstituteName { get; set; } = string.Empty;
 
         [Required,DataType(DataType.PhoneNumber)]
@@ -15,10 +15,9 @@ namespace API.Models.Entities
 
         [JsonIgnore]
         public List<User> Users { get; set; }
-        // public int UserId { get; set; }
-        public List<Degree> Degrees { get; set; }
-        // public int DegreeId { get; set; }
-        public List<Batch> Batches { get; set; }
-        // public int BatchId { get; set; }
+        public List<Batch>? Batches { get; set; }
+
+        public List<Degree>? Degrees { get; set; }
+
     }
 }

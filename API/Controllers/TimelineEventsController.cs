@@ -1,4 +1,3 @@
-using API.Models.Timeline;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 

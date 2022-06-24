@@ -11,10 +11,9 @@ namespace API.Models.Entities
         public string BatchName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Institute Institute { get; set; }
-
-        public int InstituteId { get; set; }
-        
         public List<User> Users { get; set; }
+        public Institute Institute { get; set; }
+        public int InstituteId { get; set; }
+
     }
 }

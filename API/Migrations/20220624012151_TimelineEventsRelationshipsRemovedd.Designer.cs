@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220623171518_UpdateDegreeBatch")]
-    partial class UpdateDegreeBatch
+    [Migration("20220624012151_TimelineEventsRelationshipsRemovedd")]
+    partial class TimelineEventsRelationshipsRemovedd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,6 +132,41 @@ namespace API.Migrations
                     b.ToTable("Notices");
                 });
 
+            modelBuilder.Entity("API.Models.Entities.TimelineEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EventTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Semester")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TimelineEvents");
+                });
+
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -140,13 +175,13 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BatchId")
+                    b.Property<int?>("BatchId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DegreeId")
+                    b.Property<int?>("DegreeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -211,46 +246,6 @@ namespace API.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("API.Models.Timeline.TimelineEvent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BatchId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EventTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Semester")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BatchId");
-
-                    b.ToTable("TimelineEvents");
-                });
-
             modelBuilder.Entity("InstituteUser", b =>
                 {
                     b.Property<int>("InstitutesId")
@@ -292,30 +287,15 @@ namespace API.Migrations
                 {
                     b.HasOne("API.Models.Entities.Batch", "Batch")
                         .WithMany("Users")
-                        .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BatchId");
 
-                    b.HasOne("API.Models.Entities.Degree", "Degrees")
+                    b.HasOne("API.Models.Entities.Degree", "Degree")
                         .WithMany("Users")
-                        .HasForeignKey("DegreeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DegreeId");
 
                     b.Navigation("Batch");
 
-                    b.Navigation("Degrees");
-                });
-
-            modelBuilder.Entity("API.Models.Timeline.TimelineEvent", b =>
-                {
-                    b.HasOne("API.Models.Entities.Batch", "Batch")
-                        .WithMany()
-                        .HasForeignKey("BatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Batch");
+                    b.Navigation("Degree");
                 });
 
             modelBuilder.Entity("InstituteUser", b =>
