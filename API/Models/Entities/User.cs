@@ -30,5 +30,8 @@ namespace API.Models.Entities
         public DateTime? ResetTokenExpires { get; set; }
         public List<Institute> Institutes { get; set; }
 
+        public List<Document> Documents { get; set; }
+        public List<Document_User> Document_Users { get; set; }
+
     }
 }

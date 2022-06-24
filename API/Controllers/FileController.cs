@@ -21,11 +21,11 @@ namespace AzureBlobTest.Controllers
         }
         [HttpPost]
         [Route("upload")]
-        public async Task<IActionResult> Upload([FromForm]FileModel model, [FromForm] Document document)
+        public async Task<IActionResult> Upload([FromForm] DocumentDTO document)
         {
-            if(model.MyFile != null)
+            if(document.MyFile != null)
             {
-                await _fileManagerLogic.Upload(model,document);
+                await _fileManagerLogic.Upload(document);
                 
             }
           
@@ -57,10 +57,11 @@ namespace AzureBlobTest.Controllers
 
         public async Task<ActionResult<string>> View(string fileName)
         {
-            
-            //return new FileContentResult(file, "application/pdf");
+            //var doc = await _fileManagerLogic.Read(fileName);
+            //return Ok(doc);
+            //return new FileContentResult(doc, "application/pdf");
             //return file;
-            Byte[] bytes = await _fileManagerLogic.Read(fileName);
+            byte[] bytes = await _fileManagerLogic.Read(fileName);
             String file = Convert.ToBase64String(bytes);
             return Ok(file);
 
@@ -75,6 +76,15 @@ namespace AzureBlobTest.Controllers
 
             return Ok("Document deleted succesfully");
             
+        }
+
+        [HttpPost]
+        [Route("addDownload")]
+
+        public async Task<IActionResult> AddDownload(Document_User doc_user)
+        {
+            await _fileManagerLogic.PostDownload(doc_user);
+            return Ok();
         }
     }
 }

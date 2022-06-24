@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch, SetStateAction, useState } from "react";
+import { isAuth } from "../../../helpers/auth";
 import { Documents } from "./Documents";
 
 interface FileDetailFormProps {
@@ -15,6 +16,8 @@ function FileDetailForm(props: FileDetailFormProps) {
   const [filename, setFilename] = useState<string>(props.selectedFile?.name!);
 
   const fileNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // const now = new Date().toLocaleString.toString();
+    // const name = event.target.value.concat(now);
     setFilename(event.target.value);
   };
 
@@ -23,6 +26,7 @@ function FileDetailForm(props: FileDetailFormProps) {
     formdata.append("myfile", props.selectedFile!);
     formdata.append("documentname", filename!);
     formdata.append("description", description!);
+    //formdata.append("userid", 45);
 
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -30,6 +34,12 @@ function FileDetailForm(props: FileDetailFormProps) {
 
     event.preventDefault();
     if (props.selectedFile != null) {
+      // const data = {
+      //   myfile: props.selectedFile!,
+      //   documentname: filename!,
+      //   description: description!,
+
+      // };
       axios
         .post("https://localhost:5000/api/File/upload", formdata, config)
         .then((response) => console.log(response))

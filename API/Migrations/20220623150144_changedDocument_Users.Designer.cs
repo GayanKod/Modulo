@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220623150144_changedDocument_Users")]
+    partial class changedDocument_Users
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,8 +54,6 @@ namespace API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("DocumentId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Documents");
                 });
@@ -220,29 +220,18 @@ namespace API.Migrations
                     b.ToTable("InstituteUser");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document", b =>
-                {
-                    b.HasOne("API.Models.Entities.User", "User")
-                        .WithMany("Documents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("API.Models.Entities.Document_User", b =>
                 {
                     b.HasOne("API.Models.Entities.Document", "Document")
-                        .WithMany("Document_User")
+                        .WithMany("Document_Users")
                         .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("API.Models.Entities.User", "User")
                         .WithMany("Document_Users")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Document");
@@ -267,14 +256,12 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
-                    b.Navigation("Document_User");
+                    b.Navigation("Document_Users");
                 });
 
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
                     b.Navigation("Document_Users");
-
-                    b.Navigation("Documents");
                 });
 #pragma warning restore 612, 618
         }

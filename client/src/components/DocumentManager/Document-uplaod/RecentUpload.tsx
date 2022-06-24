@@ -18,6 +18,7 @@ interface RecentUploadProps {
 function RecentUpload(props: RecentUploadProps) {
   const [loading, setLoading] = useState(true);
   const [file, setFile] = useState<string>();
+  //const [url, setUrl] = useState<string>();
 
   const uploads = props.docs.sort((x, y) =>
     x.documentId! > y.documentId! ? -1 : 1
@@ -52,6 +53,9 @@ function RecentUpload(props: RecentUploadProps) {
       })
       .then((response) => setFile(response.data))
       .catch((error) => console.log(error.response.data.errors));
+
+    // const blob = base64toBlob(file);
+    // setUrl(URL.createObjectURL(blob!));
   };
 
   return (
@@ -112,3 +116,6 @@ function RecentUpload(props: RecentUploadProps) {
   );
 }
 export default RecentUpload;
+function base64toBlob(file: string | undefined) {
+  throw new Error("Function not implemented.");
+}

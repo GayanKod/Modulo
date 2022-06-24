@@ -25,18 +25,22 @@ namespace API.Logic
             return blobContainer.GetBlobClient(fileName);
         }
 
-       
-        public async Task Upload(FileModel model, Document document)
+
+        public async Task Upload( DocumentDTO document)
         {
             var blobClient = GetBlobClient(document.DocumentName);
-            
-            await blobClient.UploadAsync(model.MyFile.OpenReadStream(),false);
 
-            document.DocumentURL= blobClient.Uri.ToString();
-            //document.DocumentType= blobClient.GetType().ToString();
-            //document.DocumentName= blobClient.Name;
-            document.DocumentSize = (int)model.MyFile.Length;
-            _context.Documents.Add(document);
+            await blobClient.UploadAsync(document.MyFile.OpenReadStream(), false);
+
+            var doc = new Document
+            {
+                DocumentName = document.DocumentName,
+                Description = document.Description,
+                DocumentSize = (int)document.MyFile.Length,
+                DocumentURL = blobClient.Uri.ToString(),
+        };
+
+            _context.Documents.Add(doc);
             await _context.SaveChangesAsync();
         }
 
@@ -96,5 +100,19 @@ namespace API.Logic
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task PostDownload(Document_UserDTO doc_user)
+        {
+            var newDocUser = new Document_User
+            {
+                UserId = doc_user.UserId,
+                DocumentId = doc_user.DocumentId,
+
+            };
+            _context.Document_Users.Add(newDocUser);
+            await _context.SaveChangesAsync();
+        }
+        
+
     }
 }

@@ -217,6 +217,11 @@
     }
     .pdf-viewer {
       height: 400px;
+      width: 100vw;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
