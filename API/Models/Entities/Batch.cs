@@ -14,6 +14,7 @@ namespace API.Models.Entities
         public List<User> Users { get; set; }
         public Institute Institute { get; set; }
         public int InstituteId { get; set; }
+        public List<TimelineEvent>? TimelineEvents { get; set; }
 
     }
 }

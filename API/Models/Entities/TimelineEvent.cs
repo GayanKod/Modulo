@@ -15,5 +15,11 @@ namespace API.Models.Entities
         public string Description {get;set;}
         public DateTime StartDate {get;set;}
         public DateTime EndDate {get;set;}
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
+        public Degree? Degree { get; set; }
+        public int? DegreeId { get; set; }
+        public Institute Institute { get; set; }
+        public int InstituteId { get; set; }
     }
 }
