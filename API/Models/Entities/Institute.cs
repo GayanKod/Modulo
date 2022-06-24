@@ -15,5 +15,6 @@ namespace API.Models.Entities
 
         [JsonIgnore]
         public List<User> Users { get; set; }
+        public List<Document>? DocumentDownloads { get; set; }
     }
 }
