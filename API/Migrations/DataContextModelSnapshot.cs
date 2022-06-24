@@ -58,7 +58,7 @@ namespace API.Migrations
                     b.ToTable("Documents");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document_User", b =>
+            modelBuilder.Entity("API.Models.Entities.DocumentDownload", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,22 +66,17 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DownloadDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DocumentId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("Document_Users");
+                    b.ToTable("DocumentDownload");
                 });
 
             modelBuilder.Entity("API.Models.Entities.Institute", b =>
@@ -231,21 +226,13 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document_User", b =>
+            modelBuilder.Entity("API.Models.Entities.DocumentDownload", b =>
                 {
-                    b.HasOne("API.Models.Entities.Document", "Document")
-                        .WithMany("Document_User")
-                        .HasForeignKey("DocumentId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("API.Models.Entities.User", "User")
-                        .WithMany("Document_Users")
+                        .WithMany("DocumentDownloads")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Document");
 
                     b.Navigation("User");
                 });
@@ -265,14 +252,9 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document", b =>
-                {
-                    b.Navigation("Document_User");
-                });
-
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
-                    b.Navigation("Document_Users");
+                    b.Navigation("DocumentDownloads");
 
                     b.Navigation("Documents");
                 });

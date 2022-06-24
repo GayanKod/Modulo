@@ -10,11 +10,10 @@ namespace API.Models.Entities
         public int DocumentSize { get; set; }
         public DateTime Date { get; set; } = DateTime.Today;
         public string DocumentURL { get; set; } = string.Empty ;
-        [JsonIgnore]
         public User User { get; set; }
-        public int UserId { get; set; } 
-        
-        public List<Document_User> Document_User{ get; set; }
-        
+        public int UserId { get; set; }
+       //public List<DocumentDownload>? DocumentDownloads { get; set; }
+
+
     }
 }

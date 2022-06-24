@@ -81,7 +81,7 @@ namespace AzureBlobTest.Controllers
         [HttpPost]
         [Route("addDownload")]
 
-        public async Task<IActionResult> AddDownload(Document_User doc_user)
+        public async Task<IActionResult> AddDownload(Document_UserDTO doc_user)
         {
             await _fileManagerLogic.PostDownload(doc_user);
             return Ok();

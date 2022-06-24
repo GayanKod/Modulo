@@ -103,16 +103,23 @@ namespace API.Logic
 
         public async Task PostDownload(Document_UserDTO doc_user)
         {
-            var newDocUser = new Document_User
-            {
-                UserId = doc_user.UserId,
-                DocumentId = doc_user.DocumentId,
+            //var newDocUser = new Document_User
+            //{
+            //    UserId = doc_user.UserId,
+            //    DocumentId = doc_user.DocumentId,
 
-            };
-            _context.Document_Users.Add(newDocUser);
-            await _context.SaveChangesAsync();
+            //};
+            //_context.Document_Users.Add(newDocUser);
+            //await _context.SaveChangesAsync();
         }
-        
 
+        //public async Task<List<Document>> GetDownload(int userId)
+        //{
+          //  var x = await _context.Document_Users.FirstOrDefaultAsync(doc=> doc.UserId == userId);
+         //   if(downloads != null)
+         //   {
+         //       return downloads;
+         //   }
+       // }
     }
 }
