@@ -1,19 +1,26 @@
 import axios from "axios";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { isAuth } from "../../../helpers/auth";
 import { Documents } from "./Documents";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface FileDetailFormProps {
   selectedFile: File | undefined;
   docs: Documents[];
   setDocs: Dispatch<SetStateAction<Documents[]>>;
+  isFilePicked: boolean;
   setIsFilePicked: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function FileDetailForm(props: FileDetailFormProps) {
   const [description, setDescription] = useState<string>();
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [filename, setFilename] = useState(props.selectedFile?.name);
+  const [filename, setFilename] = useState<string>();
+
+  useEffect(() => {
+    setFilename(props.selectedFile?.name);
+  }, [props.isFilePicked]);
 
   const fileNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilename(event.target.value);
@@ -40,10 +47,10 @@ function FileDetailForm(props: FileDetailFormProps) {
 
       setIsFileUploaded(true);
       props.setIsFilePicked(false);
-      alert("File has been successfully uploaded!");
+      toast.success("File has been successfully uploaded!");
       window.location.reload();
     } else {
-      alert("Please select a file to upload");
+      toast.error("Please select a file to upload");
     }
   };
 
@@ -56,6 +63,7 @@ function FileDetailForm(props: FileDetailFormProps) {
   };
   return (
     <div className="fileDetailForm">
+      <ToastContainer />
       <form>
         <label className="fileDetailForm-fileNameText" htmlFor="filename">
           File Name:
@@ -67,7 +75,7 @@ function FileDetailForm(props: FileDetailFormProps) {
           className="fileDetailForm-Input"
           id="filename"
           type="text"
-          value={filename}
+          value={props.isFilePicked ? filename : ""}
           onChange={fileNameHandler}
         />
 

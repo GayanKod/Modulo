@@ -2,7 +2,8 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Documents } from "./Documents";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { isAuth } from "../../../helpers/auth";
 
 interface RecentUploadProps {

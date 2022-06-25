@@ -25,6 +25,7 @@ function FileSelector(props: FileSelectorProps): JSX.Element {
         selectedFile={selectedFile}
         docs={props.docs}
         setDocs={props.setDocs}
+        isFilePicked={isFilePicked}
         setIsFilePicked={setIsFilePicked}
       />
     </div>
