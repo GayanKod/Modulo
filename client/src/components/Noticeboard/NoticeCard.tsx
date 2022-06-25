@@ -2,12 +2,8 @@ import { render } from 'react-dom';
 import  React, { useState , useEffect } from 'react'
 import "../../styles/NoticeCard.scss";
 import {INotice} from "./interface";
-import { Link } from "react-router-dom";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
-import { time } from 'console';
-import Editbox from '../Noticeboard/Editbox';
 
 
 interface Props {
