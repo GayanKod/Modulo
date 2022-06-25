@@ -21,11 +21,11 @@ var configuration = provider.GetRequiredService<IConfiguration>();
 //Connection to frontend
 builder.Services.AddCors(options => {
 
-    var clientURL = configuration.GetValue<String>("Client_URL");
+    var clientURL = configuration.GetValue<String>("http://localhost:3000");
 
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins(clientURL).AllowAnyMethod().AllowAnyHeader();
+        builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader();
     }
     );
 });

@@ -22,13 +22,33 @@ namespace API.Controllers
             return await _context.TimelineEvents.ToListAsync();
         }
 
-        [HttpGet("get-timeline-events/{Batch}")]
-        public async Task<ActionResult<TimelineEvent>> GetBatchTimelineEvents(string Batch)
+        [HttpPost("add-timeline-events")]
+        public async Task<ActionResult<TimelineEvent>> AddBatchTimelineEvents(TimelineConstructionDTO req)
         {
-            var BatchTimelineEvents = await _context.TimelineEvents.FindAsync(Batch);
-            if (BatchTimelineEvents == null)
-                return BadRequest("Events for the"+ Batch +" Not Found!");
-            return Ok(BatchTimelineEvents);
+            if (_context.TimelineEvents.Any(t => t.EventTitle == req.EventTitle))
+            {
+                return BadRequest("Timeline Event already exist!");
+            }
+
+            if(!(_context.Batches.Any(b => b.BatchName == req.Batch)))
+            {
+                 return BadRequest("Batch does not exist!");
+            }
+
+            var timelineEvent = new TimelineEvent{
+                Level = req.Level,
+                Semester = req.Semester,
+                EventTitle = req.EventTitle,
+                Description = req.Description,
+                StartDate = req.StartDate,
+                EndDate = req.EndDate,
+                BatchId = await _context.Batches.Where(b => b.BatchName == req.Batch).Select(x => x.Id).FirstAsync(),
+                DegreeId = await _context.Degrees.Where(d => d.DegreeName == req.Degree).Select(x => x.Id).FirstAsync(),
+                InstituteId = req.InstituteId
+            };
+
+            return Ok(timelineEvent);
+
         }
 
         [Route("add-timeline-event")]

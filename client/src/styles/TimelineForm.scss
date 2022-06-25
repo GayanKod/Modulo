@@ -12,6 +12,41 @@
 
     .wrapper {
         width: 40%;
+
+        label {
+            font-size: 15px;
+            color: $P4;
+        
+        }
+        
+        input {
+            padding: 3px;
+            background-color: $P8;
+            border-style: none;
+            border-radius: 5px;
+            width: 100%;
+        
+        
+        }
+        
+        input:focus {
+            background-color: rgb(255, 122, 120);
+        }
+        
+        button {
+            border: none;
+            color: white;
+            background-color: $P4;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+            box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
+            font-weight: bold;
+        }
+        
+        button:focus {
+            background-color: rgb(255, 122, 120);
+        }
     }
 
     .img {
@@ -21,37 +56,3 @@
     }
 }
 
-label {
-    font-size: 15px;
-    color: $P4;
-
-}
-
-input {
-    padding: 3px;
-    background-color: $P8;
-    border-style: none;
-    border-radius: 5px;
-    width: 100%;
-
-
-}
-
-input:focus {
-    background-color: rgb(255, 122, 120);
-}
-
-button {
-    border: none;
-    color: white;
-    background-color: $P4;
-    border-radius: 5px;
-    padding: 5px;
-    width: 100%;
-    box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.3);
-    font-weight: bold;
-}
-
-button:focus {
-    background-color: rgb(255, 122, 120);
-}
