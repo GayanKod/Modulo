@@ -13,6 +13,7 @@ type BookingFormProps = {
 };
 
 const BookingForm = (props: BookingFormProps) => {
+  const [clicked, setClicked] = useState(false);
   const [newBooking, setNewBooking] = useState({
     user: 0,
     classRoomId: 0,
@@ -100,11 +101,13 @@ const BookingForm = (props: BookingFormProps) => {
 
     const d = new Date(bookingDate as string);
 
+    console.log("user: " + isAuth().id);
+
     setNewBooking({
-      user: 0,
+      // user: 0,
+      user: isAuth().id,
       classRoomId: props.classId,
       date: bookingDate as string,
-      // startTime: new Date(d.setHours(from.value)).toJSON(),
       startTime: new Date(d.setHours(from.value + 5)).toJSON(),
       endTime: new Date(d.setHours(to.value + 5)).toJSON(),
     });
@@ -162,6 +165,7 @@ const BookingForm = (props: BookingFormProps) => {
           </Grid>
           <Grid item xs={6} sx={{ paddingTop: "5%" }}>
             <div className="booking-buttons">
+              {/* <Link to={"/lec-hall-allocation"}> */}
               <button
                 type="submit"
                 form="form1"
@@ -171,9 +175,17 @@ const BookingForm = (props: BookingFormProps) => {
                   color: "white",
                   cursor: "pointer",
                 }}
+                hidden={clicked}
+                onClick={() => setClicked(true)}
               >
                 Confirm
               </button>
+              {/* </Link> */}
+              <Link to={"/lec-hall-allocation/view-bookings"}>
+                <button hidden={!clicked} className="book-button change">
+                  View my bookings
+                </button>
+              </Link>
             </div>
           </Grid>
         </Grid>

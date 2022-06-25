@@ -29,6 +29,18 @@ namespace API.Controllers
                 .ToListAsync());
         }
 
+
+        [HttpGet("institute/{institute}")]
+
+        public async Task<ActionResult<List<ClassRoom>>> GetClassroomsByInstitute(int institute)
+        {
+
+            return Ok(await _context.ClassRooms.Where(c => c.InstituteId == institute)
+                .Include(c => c.Bookings)
+                .Include(c => c.ClassRoom_Resources)
+                .ToListAsync());
+        }
+
         [HttpGet("{id}")]
 
         public async Task<ActionResult<ClassRoom>> Get(int id)

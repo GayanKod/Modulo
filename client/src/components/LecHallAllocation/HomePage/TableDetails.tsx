@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Resources from "./Resources";
 import TimeTable from "./TimeTable";
 import agent from "../../../api/agent";
+
+import { isAuth } from "../../../helpers/auth";
 import axios from "axios";
 
 interface Props {
@@ -21,12 +23,18 @@ function TableDetails({ selected }: Props) {
   const isLab = (c: any) => c.classRoomType == 1;
 
   useEffect(() => {
-    agent.ClassRoomDetails.list()
+    axios
+      .get(
+        `https://localhost:5000/api/ClassRoom/institute/${
+          isAuth().institute[0].id
+        }`
+      )
 
-      .then((classes) => {
-        setClassRooms(classes);
+      .then((classes) => setClassRooms(classes.data))
+      .catch((error) => {
+        console.log(error);
+        console.log(isAuth().institute[0].id);
       })
-      .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, []);
 
@@ -45,8 +53,8 @@ function TableDetails({ selected }: Props) {
     );
   }
 
-  const getTypebyId = (id: number) =>
-    classRooms.find((c) => c.id === id)?.classRoomType;
+  // const getTypebyId = (id: number) =>
+  //   classRooms.find((c) => c.id === id)?.classRoomType;
 
   const lecHalls = classRooms
     .filter(isHall)

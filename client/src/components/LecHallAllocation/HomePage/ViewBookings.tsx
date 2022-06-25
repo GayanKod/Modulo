@@ -1,7 +1,14 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+} from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../../../api/agent";
 import { useBookingContext } from "../../../context/BookingContext";
+import { isAuth } from "../../../helpers/auth";
 import Navbar2 from "../../Navbar2";
 import PageTitle from "../../PageTitle";
 import { Item } from "../Models";
@@ -12,6 +19,11 @@ type ClassTypeProps = {
 };
 
 function ViewBookings() {
+  // const [open, setOpen] = useState(false);
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
   const [classRooms, setClassRooms] = useState<Item[]>([]);
 
   useEffect(() => {
@@ -30,6 +42,7 @@ function ViewBookings() {
 
   const list = classRooms.map((c) =>
     c.bookings.map((i) => {
+      if (i.userId != isAuth().id) return <></>;
       return (
         <tr className="view-bookings-row">
           <td>{i.id}</td>
@@ -55,8 +68,6 @@ function ViewBookings() {
       );
     })
   );
-
-  // setBookingList(items);
 
   return (
     <>

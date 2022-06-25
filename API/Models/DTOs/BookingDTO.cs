@@ -2,8 +2,7 @@
 {
     public class BookingDTO
     {
-
-
+        public int UserId { get; set; } = 0;
 
         public int ClassRoomId { get; set; } = 3;
 

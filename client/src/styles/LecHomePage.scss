@@ -27,7 +27,7 @@
 
   input {
     padding: 10px;
-    width: 338px;
+    width: 400px;
     display: flex;
     border: solid $P5 1px;
     border-radius: 10px;
@@ -88,7 +88,7 @@
   .css-1pahdxg-control {
     box-shadow: none;
     border: solid $P6 2px;
-    border-radius: 30px;
+    border-radius: 10px;
     &:hover {
       border: solid $P6 2px;
     }
@@ -379,6 +379,10 @@
   font-family: "Poppins", sans-serif;
   margin: 30px;
   @include inputs;
+
+  p {
+    font-family: "Poppins", sans-serif;
+  }
 }
 
 .view-bookings-row {

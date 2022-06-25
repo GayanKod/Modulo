@@ -50,6 +50,8 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<BookingDetails>>> GetByUser(DateTime date)
         {
+
+            if (await _context.BookingDetails.FindAsync(date) == null) return NotFound();
             var booking = await _context.BookingDetails.Where(b => b.Date == date).ToListAsync();
             if (booking == null)
             {
@@ -117,6 +119,7 @@ namespace API.Controllers
         {
             return new BookingDetails
             {
+                UserId = booking.UserId,
                 ClassRoomId = booking.ClassRoomId,
                 Date = booking.Date,
                 StartTime = booking.StartTime,

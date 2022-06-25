@@ -96,7 +96,7 @@ export default function TimeTable(props: TimeTableProps) {
                     <Grid item xs={8}>
                       <input
                         type="date"
-                        style={{ borderRadius: "10px" }}
+                        style={{ borderRadius: "10px", width: "440px" }}
                         onChange={handleInputChange}
                       />
                     </Grid>
