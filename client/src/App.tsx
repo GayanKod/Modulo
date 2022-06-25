@@ -22,7 +22,6 @@ import MyProfileAP from "./pages/AdminPanel/MyProfileAP";
 
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
-import NoticeForm from "./pages/NoticeEditForm";
 import RegistrationPage from "./pages/Registration";
 
 function App() {
@@ -39,7 +38,7 @@ function App() {
           <Route path="/noticeboard2" element={<NoticeBoardV2 />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
           <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
-          <Route path="/noticeboard-edit" element={<NoticeForm />} />
+       
           
           <Route
             path="/lec-hall-allocation/booking"
