@@ -81,8 +81,11 @@ namespace API.Controllers
                 VerificationToken = CreateRandomToken()
             };
 
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
+
+            await Verify(await _context.Users.Where(a => a.Email == request.Email).Select(x => x.VerificationToken).FirstAsync());
 
             var userInst = new UserInstituteDTO
             {
@@ -97,13 +100,30 @@ namespace API.Controllers
 
         [Route("update-user")]
         [HttpPut]
-        public async Task<ActionResult<List<User>>> UpdateUser(User req)
+        public async Task<ActionResult<List<User>>> UpdateUser(UpdateUserDTO req)
         {
-            var dbuser = await _context.Users.FindAsync(req.Id);
+            var dbuser = await _context.Users.FindAsync(req.UserId);
+
+            var currentUserRole = await _context.Users.Where(u=> u.Id == req.UserId).Select(x=> x.Role).FirstAsync();
+            var reqRoleToChange = req.Role;
+
+            var inst = await _context.Institutes
+                .Where(u => u.Users.Contains(dbuser))
+                .Include(u => u.Users).FirstAsync();
+
+            var Ucount = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .CountAsync();
+
+            if (Ucount == 1 && reqRoleToChange != "Super Admin" && currentUserRole == "Super Admin") {
+                return BadRequest("Institute should have atleast one Super Admin!");
+            }
+
+
             if (dbuser == null)
                 return BadRequest("User Not Found!");
             
-            dbuser.Id = req.Id;
+            dbuser.Id = req.UserId;
             dbuser.FirstName = req.FirstName;
             dbuser.LastName = req.LastName;
             dbuser.Gender = req.Gender;
@@ -122,7 +142,24 @@ namespace API.Controllers
         [HttpDelete("delete-user/{id}")]
         public async Task<ActionResult<List<User>>> DeleteUser(int id)
         {
+            // var inst = GetInstitute(id);
             var dbuser = await _context.Users.FindAsync(id);
+
+            var currentUserRoleOfreqId = await _context.Users.Where(u => u.Id == id).Select(x => x.Role).FirstAsync();
+
+            var inst = await _context.Institutes
+                .Where(u => u.Users.Contains(dbuser))
+                .Include(u => u.Users).FirstAsync();
+
+            var SAcount = await _context.Users
+                .Where(u => u.Institutes.Contains(inst))
+                .Where(u => u.Role == "Super Admin")
+                .CountAsync();
+
+
+            if (SAcount <= 1 && currentUserRoleOfreqId == "Super Admin")
+                return BadRequest("You cannot delete this user!");
+
             if (dbuser == null)
                 return BadRequest("User Not Found!");
 
@@ -177,61 +214,6 @@ namespace API.Controllers
             return Ok(user);
         }
 
-        [HttpGet("get-superadmins-count/{inst_id}")]
-        public async Task<ActionResult<int>> GetSuperAdminsCount(int inst_id)
-        {
-            var inst = GetInstitute(inst_id);
-            var count = await _context.Users
-                .Where(u => u.Institutes.Contains(inst))
-                .Where(u => u.Role == "Super Admin")
-                .CountAsync();
-            return count;
-        }
-
-        [HttpGet("get-admins-count/{inst_id}")]
-        public async Task<ActionResult<int>> GetAdminsCount(int inst_id)
-        {
-            var inst = GetInstitute(inst_id);
-            var count = await _context.Users
-                .Where(u => u.Institutes.Contains(inst))
-                .Where(u => u.Role == "Admin")
-                .CountAsync();
-            return count;
-        }
-
-        [HttpGet("get-supereditors-count/{inst_id}")]
-        public async Task<ActionResult<int>> GetSuperEditorsCount(int inst_id)
-        {
-            var inst = GetInstitute(inst_id);
-            var count = await _context.Users
-                .Where(u => u.Institutes.Contains(inst))
-                .Where(u => u.Role == "Super Editor")
-                .CountAsync();
-            return count;
-        }
-
-        [HttpGet("get-editors-count/{inst_id}")]
-        public async Task<ActionResult<int>> GetEditorsCount(int inst_id)
-        {
-            var inst = GetInstitute(inst_id);
-            var count = await _context.Users
-                .Where(u => u.Institutes.Contains(inst))
-                .Where(u => u.Role == "Editor")
-                .CountAsync();
-            return count;
-        }
-
-        [HttpGet("get-subscribers-count/{inst_id}")]
-        public async Task<ActionResult<int>> GetSubscribersCount(int inst_id)
-        {
-            var inst = GetInstitute(inst_id);
-            var count = await _context.Users
-                .Where(u => u.Institutes.Contains(inst))
-                .Where(u => u.Role == "Subscriber")
-                .CountAsync();
-            return count;
-        }
-
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
@@ -266,6 +248,15 @@ namespace API.Controllers
             await _context.SaveChangesAsync();
 
             return user;
+        }
+
+        private async Task<ActionResult> Verify(string token)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.VerificationToken == token);
+
+            user.VerifiedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+            return Ok();
         }
 
     }
