@@ -1,14 +1,18 @@
 import { DataGrid} from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "../../../styles/UserListAP.scss";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
-import {isAuth} from '../../../helpers/auth';
+import {isAuth, signout} from '../../../helpers/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function AdminsList() {
+
+  let navigate = useNavigate();
 
   const [data, setData] = useState([]);
 
@@ -24,8 +28,34 @@ export default function AdminsList() {
     getAdmins();
   }, [])  
 
-  const handleDelete = (id:number) => {
-    setData(data.filter((item:any) => item.id !== id));
+  const handleDelete = (id:number, role:string) => {
+
+      if(!(isAuth().role === "Admin" && role === "Super Admin")){
+        if (isAuth().id === id){
+          axios.delete(`https://localhost:5000/api/User/delete-user/${id}`).then((res) => {
+            signout(() => {
+              navigate('/');
+            })
+          }).catch((err) => {
+              console.log(err.response.data);
+              toast.error(err.response.data);
+          })
+        }else{
+          axios.delete(`https://localhost:5000/api/User/delete-user/${id}`).then((res) => {
+              toast.error("User deleted!");
+          }).catch((err) => {
+              console.log(err.response.data);
+              toast.error(err.response.data);
+          })
+        }  
+      }else{
+        toast.error("You cannot delete this user");
+      }
+
+    
+    
+
+    //setData(data.filter((item:any) => item.id !== id));
   };
   
   const columns = [
@@ -71,7 +101,7 @@ export default function AdminsList() {
             </Link>
             <DeleteOutline
               className="userListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.id, params.row.role)}
             />
           </>
         );
@@ -81,6 +111,7 @@ export default function AdminsList() {
 
   return (
     <>
+    <ToastContainer />
     <Link to="/admin-panel/addadmineditor">
       <div className="APAddBtn-wrapper">
         <div className="APAddBtn text" id="APaddbtn-text">Add New Admins</div><AddCircleIcon fontSize="large" className="APAddBtn"/>
