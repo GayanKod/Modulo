@@ -13,12 +13,6 @@ type BookingFormProps = {
 };
 
 const BookingForm = (props: BookingFormProps) => {
-  const { bookingList } = useBookingContext();
-  const { setBookingList } = useBookingContext();
-
-  const { setDateChanged } = useBookingContext();
-  const { dateChanged } = useBookingContext();
-
   const [newBooking, setNewBooking] = useState({
     user: 0,
     classRoomId: 0,
@@ -26,62 +20,6 @@ const BookingForm = (props: BookingFormProps) => {
     startTime: "",
     endTime: "",
   });
-
-  useEffect(() => {
-    axios
-      .post("https://localhost:5000/api/Booking/post", newBooking)
-      .then(function (response) {
-        if (response.status === 200) {
-          // confirm(true); //confirm function call
-          console.log("added");
-        }
-      })
-      .catch((e) => console.log(e));
-  }, [newBooking]);
-
-  const [loading, setLoading] = useState<boolean>();
-
-  const handleInputChange = (e: { target: { name: any; value: any } }) => {
-    const { name, value } = e.target;
-    // console.log(value);
-    setBookingDate(value);
-  };
-
-  const handleSubmit = (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-
-    setLoading(true);
-
-    const d = new Date(bookingDate as string);
-
-    setNewBooking({
-      user: 0,
-      classRoomId: props.classId,
-      date: bookingDate as string,
-      // startTime: new Date(d.setHours(from.value)).toJSON(),
-      startTime: new Date(d.setHours(from.value + 5)).toJSON(),
-      endTime: new Date(d.setHours(to.value + 5)).toJSON(),
-    });
-
-    console.log(newBooking);
-
-    // axios
-    //   .post("https://localhost:5000/api/Booking/post", newBooking)
-    //   .then(function (response) {
-    //     if (response.status === 200) {
-    //       // confirm(true); //confirm function call
-    //       console.log("added");
-    //     }
-    //   })
-    //   .catch((e) => console.log(e));
-
-    // if (loading) {
-    //   console.log("loading...");
-    // }
-  };
-  // =================================================================================================
-
-  // const confirm = (added: boolean) => <Confirmation added={added} />;
 
   let options = [
     {
@@ -133,6 +71,46 @@ const BookingForm = (props: BookingFormProps) => {
   const [from, setFrom] = useState(options[0]);
   const [to, setTo] = useState(options[0]);
   const [bookingDate, setBookingDate] = useState<string | null>();
+
+  useEffect(() => {
+    axios
+      .post("https://localhost:5000/api/Booking/post", newBooking)
+      .then(function (response) {
+        if (response.status === 200) {
+          // confirm(true); //confirm function call
+          console.log("added");
+        }
+      })
+      .catch((e) => console.log(e));
+  }, [newBooking]);
+
+  const [loading, setLoading] = useState<boolean>();
+
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    console.log(value);
+    setBookingDate(value);
+    console.log(bookingDate);
+  };
+
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+
+    setLoading(true);
+
+    const d = new Date(bookingDate as string);
+
+    setNewBooking({
+      user: 0,
+      classRoomId: props.classId,
+      date: bookingDate as string,
+      // startTime: new Date(d.setHours(from.value)).toJSON(),
+      startTime: new Date(d.setHours(from.value + 5)).toJSON(),
+      endTime: new Date(d.setHours(to.value + 5)).toJSON(),
+    });
+
+    console.log(newBooking);
+  };
 
   return (
     <div className="booking-form">

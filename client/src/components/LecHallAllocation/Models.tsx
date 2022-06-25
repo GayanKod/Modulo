@@ -1,3 +1,5 @@
+import { BooleanLiteral } from "typescript";
+
 export interface Item {
   id: number;
   floorNumber: number;
@@ -37,13 +39,12 @@ export interface Options {
 }
 
 export interface TimeSlotCell {
-  item: number;
-  id: string;
+  isBooked: boolean;
 }
 
 export interface Booking {
   id?: number;
-  user: number;
+  userId?: number;
   classRoomId: number;
   date: string;
   startTime: string;

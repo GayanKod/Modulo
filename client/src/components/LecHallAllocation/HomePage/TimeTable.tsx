@@ -1,15 +1,18 @@
 // import { Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import axios from "axios";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useBookingContext } from "../../../context/BookingContext";
 
 import ColorCode from "../ColorCode";
-import DateSelector from "../DateSelector";
+import { Booking } from "../Models";
 
 import Schedule from "../Schedule";
 
@@ -22,55 +25,42 @@ export default function TimeTable(props: TimeTableProps) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+  const { bookings } = useBookingContext();
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const [selectedDate, setSelectedDate] = useState<string | null>();
+  const [bookingList, setBookingList] = useState<Booking[]>([]);
 
-  const nth = () => {
-    switch (date / 10) {
-      case 1:
-        return "st";
-      case 2:
-        return "nd";
-      case 3:
-        return "rd";
-      default:
-        return "th";
-    }
+  useEffect(() => {
+    axios
+      .get(`https://localhost:5000/api/Booking/date/${selectedDate}`)
+      .then((c) => {
+        bookings.splice(0, bookings.length);
+
+        setBookingList(c.data);
+      })
+      .catch((e) => console.log(e));
+  }, [selectedDate]);
+
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    console.log(value);
+    // console.log("value: " + value);
+
+    setSelectedDate(value);
+
+    // console.log("selectedDate: " + selectedDate);
   };
-
-  const [count, setCount] = useState(0);
-
-  let day = new Date();
-  const [date, setDate] = useState(day.getDate());
-  const [month, setMonth] = useState(day.getMonth() + 1);
-  const [year, setYear] = useState(day.getFullYear());
 
   if (props.id) {
     return (
       <>
-        <button className="info-button" onClick={() => setOpen(true)}>
+        <button
+          className="info-button"
+          onClick={() => {
+            setOpen(true);
+            bookings.splice(0, bookings.length);
+          }}
+        >
           <i className="fa fa-info-circle"></i>
         </button>
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
@@ -78,18 +68,41 @@ export default function TimeTable(props: TimeTableProps) {
             <DialogTitle
               className="page-title"
               style={{
-                marginBottom: "20px",
+                // marginBottom: "20px",
                 color: "#ff5c55",
                 fontSize: "26px",
                 fontWeight: "bold",
+                paddingBottom: "0",
               }}
             >
               Available Time Slots
             </DialogTitle>
             <DialogContent>
               <DialogContentText style={{ textAlign: "center" }}>
-                <DateSelector />
-                <Schedule id="disable" />
+                <div style={{ padding: "6%" }}>
+                  <Grid container spacing={2}>
+                    <Grid
+                      item
+                      xs={4}
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        color: "black",
+                      }}
+                    >
+                      <label htmlFor="date">Select a date:</label>
+                    </Grid>
+
+                    <Grid item xs={8}>
+                      <input
+                        type="date"
+                        style={{ borderRadius: "10px" }}
+                        onChange={handleInputChange}
+                      />
+                    </Grid>
+                  </Grid>
+                </div>
+                <Schedule bookingList={bookingList} />
               </DialogContentText>
               <ColorCode hide={true} />
             </DialogContent>

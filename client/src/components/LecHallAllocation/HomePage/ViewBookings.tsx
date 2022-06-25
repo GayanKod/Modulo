@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import agent from "../../../api/agent";
+import { useBookingContext } from "../../../context/BookingContext";
 import Navbar2 from "../../Navbar2";
 import PageTitle from "../../PageTitle";
 import { Item } from "../Models";
@@ -12,23 +13,12 @@ type ClassTypeProps = {
 
 function ViewBookings() {
   const [classRooms, setClassRooms] = useState<Item[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [deleted, setDeleted] = useState(false);
 
   useEffect(() => {
     agent.ClassRoomDetails.list()
       .then((c) => setClassRooms(c))
-      .catch((e) => console.log(e))
-      .finally(() => setLoading(false));
+      .catch((e) => console.log(e));
   }, [classRooms]);
-
-  if (loading) {
-    return (
-      <tr>
-        <td>Loading...</td>
-      </tr>
-    );
-  }
 
   if (!classRooms) {
     return (
@@ -40,7 +30,6 @@ function ViewBookings() {
 
   const list = classRooms.map((c) =>
     c.bookings.map((i) => {
-      console.log(i.date);
       return (
         <tr className="view-bookings-row">
           <td>{i.id}</td>
@@ -55,16 +44,9 @@ function ViewBookings() {
           <td>
             <button
               style={{ color: "#db2525" }}
-              onClick={() =>
-                // (<DeleteBooking
-                //   id={i.id}
-                //   setDeleted={setDeleted}
-                //   deleted={deleted}
-                // />)
-                {
-                  deleteBooking(i.id as number);
-                }
-              }
+              onClick={() => {
+                deleteBooking(i.id as number);
+              }}
             >
               <i className="fas fa-trash"></i>
             </button>
@@ -73,6 +55,8 @@ function ViewBookings() {
       );
     })
   );
+
+  // setBookingList(items);
 
   return (
     <>

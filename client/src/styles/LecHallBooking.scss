@@ -1,4 +1,5 @@
 @import "../styleVar/colorPalette.scss";
+@import "./LecHomePage.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 // body {
 //   background-color: rgb(246, 246, 246);
@@ -49,25 +50,7 @@
     background-color: rgba(241, 241, 241, 0.414);
     box-shadow: 5px 5px 5px 0px rgba(190, 190, 190, 0.407);
 
-    label {
-      // width: 50%;
-      padding: 0 8px 0 8px;
-    }
-
-    input {
-      padding: 10px;
-      width: 338px;
-      display: flex;
-      border: solid $P5 1px;
-      border-radius: 10px;
-      font-family: "Poppins", sans-serif;
-      padding-left: 18px;
-      font-size: 14px;
-      color: grey;
-      &:hover {
-        border: solid $P6 2px;
-      }
-    }
+    @include inputs;
   }
 }
 

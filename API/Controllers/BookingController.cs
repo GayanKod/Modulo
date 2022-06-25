@@ -46,6 +46,20 @@ namespace API.Controllers
         }
 
 
+        [HttpGet("date/{date}")]
+
+        public async Task<ActionResult<List<BookingDetails>>> GetByUser(DateTime date)
+        {
+            var booking = await _context.BookingDetails.Where(b => b.Date == date).ToListAsync();
+            if (booking == null)
+            {
+                return NotFound();
+            }
+            return Ok(booking);
+
+        }
+
+
         [HttpGet("class/{classRoom}")]
 
         public async Task<ActionResult<List<BookingDetails>>> GetBookingbyClass(int classRoom)
