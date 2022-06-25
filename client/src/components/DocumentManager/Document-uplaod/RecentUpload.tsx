@@ -1,14 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Documents } from "./Documents";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PreviewIcon from "@mui/icons-material/Preview";
 import axios from "axios";
-import { Worker } from "@react-pdf-viewer/core";
-// Import the main component
-import { Viewer } from "@react-pdf-viewer/core";
 
-// Import the styles
-//import "@react-pdf-viewer/core/lib/styles/index.css";
 import { isAuth } from "../../../helpers/auth";
 
 interface RecentUploadProps {
@@ -18,8 +12,7 @@ interface RecentUploadProps {
 
 function RecentUpload(props: RecentUploadProps) {
   const [loading, setLoading] = useState(true);
-  const [file, setFile] = useState<string>();
-  //const [url, setUrl] = useState<string>();
+  const [isall, setIsall] = useState(false);
 
   const uploads = props.docs.sort((x, y) =>
     x.documentId! > y.documentId! ? -1 : 1
@@ -49,16 +42,8 @@ function RecentUpload(props: RecentUploadProps) {
     }
   };
 
-  const viewHandler = (docname: string | undefined) => {
-    axios
-      .get("https://localhost:5000/api/File/view", {
-        params: { filename: docname },
-      })
-      .then((response) => setFile(response.data))
-      .catch((error) => console.log(error.response.data.errors));
-
-    // const blob = base64toBlob(file);
-    // setUrl(URL.createObjectURL(blob!));
+  const showAllorLess = () => {
+    setIsall(!isall);
   };
 
   return (
@@ -72,49 +57,53 @@ function RecentUpload(props: RecentUploadProps) {
             <th>Size(MB)</th>
             <th>Date</th>
             <th>Description</th>
-            <th>View</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {uploads.map((item) => (
-            <tr key={item.documentId}>
-              <td>{item.documentName?.split(".").pop()}</td>
-              <td>{item.documentName?.split(".")[0]}</td>
-              <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
-              <td>{item.date?.toString().split("T")[0]}</td>
-              <td>{item.description}</td>
-              <td>
-                <button
-                  className="RecentUpload-table-viewButton"
-                  onClick={() => viewHandler(item.documentName)}
-                  disabled={
-                    item.documentName?.split(".").pop() == "pdf" ? false : true
-                  }
-                >
-                  <PreviewIcon />
-                </button>
-              </td>
-              <td>
-                <button
-                  className="RecentUpload-table-deleteButton"
-                  onClick={() => deleteHandler(item.documentName)}
-                >
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-          ))}
+          {isall
+            ? uploads.map((item) => (
+                <tr key={item.documentId}>
+                  <td>{item.documentName?.split(".").pop()}</td>
+                  <td>{item.documentName?.split(".")[0]}</td>
+                  <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
+                  <td>{item.date?.toString().split("T")[0]}</td>
+                  <td>{item.description}</td>
+
+                  <td>
+                    <button
+                      className="RecentUpload-table-deleteButton"
+                      onClick={() => deleteHandler(item.documentName)}
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            : uploads.slice(0, 3).map((item) => (
+                <tr key={item.documentId}>
+                  <td>{item.documentName?.split(".").pop()}</td>
+                  <td>{item.documentName?.split(".")[0]}</td>
+                  <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
+                  <td>{item.date?.toString().split("T")[0]}</td>
+                  <td>{item.description}</td>
+
+                  <td>
+                    <button
+                      className="RecentUpload-table-deleteButton"
+                      onClick={() => deleteHandler(item.documentName)}
+                    >
+                      <DeleteIcon />
+                    </button>
+                  </td>
+                </tr>
+              ))}
         </tbody>
       </table>
-      {/* <div className="pdf-viewer">
-        {file && (
-          <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-            <Viewer fileUrl={file!} />
-          </Worker>
-        )}
-        {!file && <>No File</>}
-      </div> */}
+
+      <button className="RecentUpload-showall-less" onClick={showAllorLess}>
+        {isall ? "Show Less" : "Show all"}
+      </button>
     </div>
   );
 }

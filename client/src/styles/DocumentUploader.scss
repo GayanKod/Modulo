@@ -204,25 +204,33 @@
             color: $O;
           }
         }
-        .RecentUpload-table-viewButton {
-          border: none;
-          background: none;
-          &:hover {
-            color: $O;
-          }
-          &:disabled {
-            color: #746e6e;
-          }
-        }
       }
     }
-    .pdf-viewer {
-      height: 400px;
-      width: 100vw;
-      overflow-y: auto;
+    .RecentUpload-showall-less {
+      width: 10%;
+      height: 40px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: none;
+      background-color: $P6;
+      color: white;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: poppins;
+      font-size: 15px;
+      border-radius: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $P4;
+      }
+      &:active {
+        transform: translateY(4px);
+      }
     }
   }
 }

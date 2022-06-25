@@ -18,7 +18,7 @@ function DocumentSearch(props: DocumentSearchProps) {
   useEffect(() => {
     axios
       .get("https://localhost:5000/api/File/get-all", {
-        params: { userid: isAuth().institute[0].id },
+        params: { instituteid: isAuth().institutes[0].id },
       })
       .then((response) => props.setDocs(response.data))
       .catch((error) => console.log(error))

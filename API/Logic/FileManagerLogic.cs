@@ -38,6 +38,8 @@ namespace API.Logic
                 Description = document.Description,
                 DocumentSize = (int)document.MyFile.Length,
                 DocumentURL = blobClient.Uri.ToString(),
+                UserId = document.UserId,
+                InstituteId = document.InstituteId,
         };
 
             _context.Documents.Add(doc);
@@ -59,20 +61,7 @@ namespace API.Logic
             return docs;
         }
 
-        public async Task<IEnumerable<string>> Allblobs()
-        {
-            var blobContainer = _blobServiceClient.GetBlobContainerClient(containerName);
-
-            var files = new List<string>();
-
-            var blobs = blobContainer.GetBlobsAsync();
-
-            await foreach (var blob in blobs)
-            {
-                files.Add(blob.Name);
-            }
-            return files;
-        }
+        
      
 
         public async Task<byte[]> Read(string fileName)
@@ -88,12 +77,7 @@ namespace API.Logic
             }
 
         }
-        public async Task<string> View(string fileName)
-        {
-            var blobClient = GetBlobClient(fileName);
-            string url =   blobClient.Uri.AbsoluteUri;
-            return url;
-        }
+       
         public async Task Delete(string fileName)
         {  
             
@@ -119,19 +103,20 @@ namespace API.Logic
                 DocumentId = doc.DocumentId,
 
             };
-            _context.DocumentDownloads.Add(newDoc);
+            _context.DocumentDownload.Add(newDoc);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<DocumentDownload>> getdownload(int userid)
-        {
-            var downloads = await _context.DocumentDownloads.Where(d=> d.UserId == userid).Include(d=>d.Document).ToListAsync();
-            //var downloads = await _context.Documents.Include(d=>d.DocumentId==)
-            if (downloads != null)
-            {
-                return downloads;
-            }
-            return null;    
-        }
+        //public async Task<List<Document>> GetDownload(int userid)
+        //{
+        //    List<DocumentDownload> docdown = await _context.DocumentDownload.Where(d=>d.UserId==userid).ToListAsync();
+        //    //List<Document> downloads = await _context.Documents.Where(x=> x.DocumentId==docdown.Do)
+        //    //var downloads = await _context.Documents.Include(d=>d.DocumentId==)
+        //    //if (downloads != null)
+        //    //{
+        //    //    return downloads;
+        //    //}
+        //    //return null;    
+        //}
     }
 }

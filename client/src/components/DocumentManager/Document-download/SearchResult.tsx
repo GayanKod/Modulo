@@ -3,6 +3,7 @@ import { Documents } from "../Document-uplaod/Documents";
 import girlImage from "../../../assets/img/SearchbarGirl.png";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import axios from "axios";
+import { isAuth } from "../../../helpers/auth";
 
 interface SearchResultProps {
   docs: Documents[];
@@ -12,7 +13,7 @@ interface SearchResultProps {
   setIsEntered: Dispatch<SetStateAction<boolean>>;
 }
 function SearchResult(props: SearchResultProps) {
-  const downloadHandler = (docname: string | undefined) => {
+  const downloadHandler = (docname: string | undefined, docid: number) => {
     axios
       .get("https://localhost:5000/api/File/download", {
         params: { filename: docname },
@@ -27,6 +28,14 @@ function SearchResult(props: SearchResultProps) {
         link.click();
       })
       .catch((error) => console.log(error));
+
+    axios
+      .post("https://localhost:5000/api/File/addDownload", {
+        userid: isAuth().id,
+        documentid: docid,
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error.response.data.errors));
   };
 
   switch (props.isEntered) {
@@ -54,16 +63,18 @@ function SearchResult(props: SearchResultProps) {
                       ?.toLowerCase()
                       .includes(props.search.toLowerCase())
                   )
-                  .map((item, index) => (
-                    <tr>
+                  .map((item) => (
+                    <tr key={item.documentId}>
                       <td>{item.documentName?.split(".").pop()}</td>
-                      <td key={index}>{item.documentName}</td>
-                      <td>{item.documentSize}</td>
+                      <td>{item.documentName}</td>
+                      <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
                       <td>{item.description}</td>
                       <td>
                         <button
                           className="SearchResult-table-downloadButton"
-                          onClick={() => downloadHandler(item.documentName)}
+                          onClick={() =>
+                            downloadHandler(item.documentName, item.documentId!)
+                          }
                         >
                           <FileDownloadIcon />
                         </button>

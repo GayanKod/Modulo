@@ -59,20 +59,7 @@ namespace AzureBlobTest.Controllers
             };
         }
 
-        [HttpGet]
-        [Route("view")]
-
-        public async Task<ActionResult<string>> View(string fileName)
-        {
-            //var doc = await _fileManagerLogic.Read(fileName);
-            //return Ok(doc);
-            //return new FileContentResult(doc, "application/pdf");
-            //return file;
-            byte[] bytes = await _fileManagerLogic.Read(fileName);
-            String file = Convert.ToBase64String(bytes);
-            return Ok(file);
-
-        }
+       
 
         [HttpDelete]
         [Route("delete")]

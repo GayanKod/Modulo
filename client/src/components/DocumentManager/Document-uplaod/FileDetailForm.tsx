@@ -13,11 +13,9 @@ interface FileDetailFormProps {
 function FileDetailForm(props: FileDetailFormProps) {
   const [description, setDescription] = useState<string>();
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [filename, setFilename] = useState<string>(props.selectedFile?.name!);
+  const [filename, setFilename] = useState(props.selectedFile?.name);
 
   const fileNameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // const now = new Date().toLocaleString.toString();
-    // const name = event.target.value.concat(now);
     setFilename(event.target.value);
   };
 
@@ -27,7 +25,7 @@ function FileDetailForm(props: FileDetailFormProps) {
     formdata.append("documentname", filename!);
     formdata.append("description", description!);
     formdata.append("userid", isAuth().id);
-    formdata.append("instituteid", isAuth().institute[0].id);
+    formdata.append("instituteid", isAuth().institutes[0].id);
 
     const config = {
       headers: { "content-type": "multipart/form-data" },
@@ -69,7 +67,7 @@ function FileDetailForm(props: FileDetailFormProps) {
           className="fileDetailForm-Input"
           id="filename"
           type="text"
-          defaultValue={props.selectedFile?.name}
+          value={filename}
           onChange={fileNameHandler}
         />
 
