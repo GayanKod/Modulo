@@ -52,7 +52,7 @@ namespace API.Controllers
 
          public async Task<ActionResult<List<Notice>>> Update(Notice request)
         {
-          var notice = await _context.Notices.FindAsync(request.NoticeID);
+          var notice = await _context.Notices.FindAsync(request.Id);
           if(notice==null)
           return BadRequest("Notice Not Found!");
 
@@ -64,8 +64,7 @@ namespace API.Controllers
           return Ok(await _context.Notices.ToListAsync());
         }
 
-        [Route("delete-notices")]
-        [HttpDelete("{id}")]
+        [HttpDelete("delete-notices/{id}")]
 
         public async Task<ActionResult<List<Notice>>>Delete(int id)
         {

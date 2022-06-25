@@ -7,9 +7,7 @@ namespace API.Models.Entities
 {
     public class Notice
     {
-        public int UserID { get; set; }
-
-        public int NoticeID { get; set; }
+        public int Id { get; set; }
 
         public string NoticeTitle { get; set; } = string.Empty;
 
@@ -18,5 +16,9 @@ namespace API.Models.Entities
         public string NoticeType { get; set; } = string.Empty;
 
         public DateTime PublishedDate { get; set; } = DateTime.Now;
+
+        public User User { get; set; }
+
+        public Institute Institute { get; set; }
     }
 }

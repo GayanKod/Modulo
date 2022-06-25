@@ -15,5 +15,7 @@ namespace API.Models.Entities
 
         [JsonIgnore]
         public List<User> Users { get; set; }
+
+        public List<Notice> Notices { get; set; }
     }
 }
