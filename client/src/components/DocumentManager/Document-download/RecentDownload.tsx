@@ -9,7 +9,7 @@ function RecentDownload() {
   const [isall, setIsall] = useState(false);
   useEffect(() => {
     axios
-      .get("https://localhost:5000/api/File/get", {
+      .get("https://localhost:5000/api/File/getDownload", {
         params: { userid: isAuth().id },
       })
       .then((response) => setDocs(response.data))

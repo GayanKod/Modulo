@@ -11,6 +11,6 @@ namespace API.Logic
         Task<byte[]> Read(string fileName);
         Task Delete(string fileName);
         Task PostDownload(DocumentDowloadDTO doc_user);
-        //Task<List<DocumentDownload>> getdownload(int userid);
+        Task<List<Document>> GetDownload(int userid);
     }
 }

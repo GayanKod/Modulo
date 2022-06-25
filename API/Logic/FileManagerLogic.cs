@@ -107,16 +107,17 @@ namespace API.Logic
             await _context.SaveChangesAsync();
         }
 
-        //public async Task<List<Document>> GetDownload(int userid)
-        //{
-        //    List<DocumentDownload> docdown = await _context.DocumentDownload.Where(d=>d.UserId==userid).ToListAsync();
-        //    //List<Document> downloads = await _context.Documents.Where(x=> x.DocumentId==docdown.Do)
-        //    //var downloads = await _context.Documents.Include(d=>d.DocumentId==)
-        //    //if (downloads != null)
-        //    //{
-        //    //    return downloads;
-        //    //}
-        //    //return null;    
-        //}
+        public async Task<List<Document>> GetDownload(int userid)
+        {
+            
+            var x= await _context.DocumentDownload
+                .Include(d => d.Document)
+                .Where(d=>d.UserId==userid)
+                .Select(d=>d.Document)
+                .ToListAsync();
+            return x;
+        }
+
+        
     }
 }

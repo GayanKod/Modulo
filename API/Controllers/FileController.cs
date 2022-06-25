@@ -80,5 +80,15 @@ namespace AzureBlobTest.Controllers
             await _fileManagerLogic.PostDownload(doc_user);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("getDownload")]
+
+        public async Task<ActionResult<List<Document>>> GetDownload(int userid)
+        {
+            var downloads = await _fileManagerLogic.GetDownload(userid);
+            return Ok(downloads);
+        }
+
     }
 }
