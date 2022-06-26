@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import agent from "../../../api/agent";
 import { useBookingContext } from "../../../context/BookingContext";
 import { isAuth } from "../../../helpers/auth";
+import Footer from "../../Footer/Footer";
 import Navbar2 from "../../Navbar2";
 import PageTitle from "../../PageTitle";
 import { Item } from "../Models";
@@ -99,6 +100,7 @@ function ViewBookings() {
           </button>
         </Link>
       </div>
+      <Footer />
     </>
   );
 }

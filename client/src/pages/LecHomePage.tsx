@@ -5,6 +5,7 @@ import PageTitle from "../components/PageTitle";
 import Filter from "../components/LecHallAllocation/HomePage/Filter";
 import Navbar2 from "../components/Navbar2";
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer/Footer";
 
 export default function LecHomePage() {
   let options = [
@@ -62,6 +63,7 @@ export default function LecHomePage() {
           </table>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

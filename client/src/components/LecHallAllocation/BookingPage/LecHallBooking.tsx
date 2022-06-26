@@ -13,6 +13,7 @@ import "../../../styles/LecHallBooking.scss";
 import "../../../styles/LecHomePage.scss";
 import BookingForm from "./BookingForm";
 import { Grid } from "@mui/material";
+import Footer from "../../Footer/Footer";
 
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +41,7 @@ function LecHallBooking() {
           </Grid>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
