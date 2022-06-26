@@ -20,6 +20,7 @@ import APSubscribersPage from "./pages/AdminPanel/Subscribers/APSubscribersPage"
 import APEditSubscriberPage from "./pages/AdminPanel/Subscribers/APEditSubscriberPage";
 import APNewSubscriberPage from "./pages/AdminPanel/Subscribers/APNewSubscriberPage";
 import MyProfileAP from "./pages/AdminPanel/MyProfileAP";
+import VerifyEmail from "./pages/UserVerification";
 
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
@@ -74,6 +75,7 @@ function App() {
           <Route path="/admin-panel/addsubscriber" element={<APNewSubscriberPage/>} />
 
           <Route path="/admin-panel/myprofile" element={<MyProfileAP/>} />
+          <Route path="/login/email-verification" element={<VerifyEmail/>} />
 
         </Routes>
       </Router>
