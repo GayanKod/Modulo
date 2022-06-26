@@ -11,7 +11,9 @@ namespace API
         public int capacity { get; set; }
         public String? LabType { get; set; }
         public int ClassRoomType { get; set; }
-       
+
+        public string HallNo { get; set; }
+
         public Institute Institute { get; set; }
         public int InstituteId { get; set; }
 
