@@ -2,6 +2,7 @@ global using API.Data;
 global using Microsoft.EntityFrameworkCore;
 global using API.Models.Entities;
 global using API.Models.DTOs;
+global using API.Services.EmailServices;
 // var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
@@ -36,6 +37,7 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 
 // builder.Services.AddCors(options =>

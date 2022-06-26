@@ -16,11 +16,13 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
-        public AuthController(DataContext context, IConfiguration configuration)
+        public AuthController(DataContext context, IConfiguration configuration, IEmailService emailService)
         {
             _context = context;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -72,10 +74,20 @@ namespace API.Controllers
 
             var VerificationToken = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.VerificationToken).FirstAsync();
             var email = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.Email).FirstAsync();
-            SendEmail(VerificationToken, email);
+
+            var confirmMail = new EmailDTO
+            {
+                To = request.Email,
+                Body = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.VerificationToken).FirstAsync(),
+                Subject = "Modulo - Email Verification Token"
+            };
+
+            SendEmail(confirmMail);
 
             return Ok("Institute successfully Registered!");
         }
+
+
 
         [HttpPost("AddUserInstitute")]
         public async Task<ActionResult<User>> AddUserInstitute(UserInstituteDTO req)
@@ -172,20 +184,9 @@ namespace API.Controllers
         }
 
         [HttpPost("email")]
-        public IActionResult SendEmail(string body, string toEmail)
+        public IActionResult SendEmail(EmailDTO req)
         {
-            var email = new MimeMessage();
-            email.From.Add(MailboxAddress.Parse("no-reply@modulo.com"));
-            email.To.Add(MailboxAddress.Parse(toEmail));
-            email.Subject = "Modulo - Email Verification Token";
-            email.Body = new TextPart(TextFormat.Plain) { Text = body };
-
-            using var smtp = new SmtpClient();
-            smtp.Connect("smtp.mailgun.org", 587, MailKit.Security.SecureSocketOptions.StartTls);
-            smtp.Authenticate("postmaster@sandbox8112f2b2f5a14b6a9b647304a0d1fdf3.mailgun.org", "cad75e7707b14459d8bbc4978d01d8d4-ea44b6dc-eba67d25");
-            smtp.Send(email);
-            smtp.Disconnect(true);
-
+            _emailService.SendEmail(req);
             return Ok();
         }
 
