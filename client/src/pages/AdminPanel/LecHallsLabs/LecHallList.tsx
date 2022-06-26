@@ -6,6 +6,8 @@ import "../../../styles/UserListAP.scss";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import axios from 'axios';
 import {isAuth} from '../../../helpers/auth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function LecHallList() {
 
@@ -24,7 +26,13 @@ export default function LecHallList() {
   }, [])  
 
   const handleDelete = (id:number) => {
-    setData(data.filter((item:any) => item.id !== id));
+    axios.delete(`https://localhost:5000/api/ClassRoom/${id}`).then((res) => {
+            toast.error("Lec Hall deleted!")
+            window.location.reload();
+          }).catch((err) => {
+            console.log(err.response.data);
+            toast.error(err.response.data);
+          })
   };
   
   const columns = [
@@ -72,6 +80,7 @@ export default function LecHallList() {
 
   return (
     <>
+    <ToastContainer/>
     <Link to="/admin-panel/addlechallslabs">
       <div className="APAddBtn-wrapper">
         <div className="APAddBtn text" id="APaddbtn-text">Add New Lecture Halls/ Labs</div><AddCircleIcon fontSize="large" className="APAddBtn"/>
