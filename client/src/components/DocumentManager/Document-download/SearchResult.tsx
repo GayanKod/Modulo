@@ -66,7 +66,7 @@ function SearchResult(props: SearchResultProps) {
                   .map((item) => (
                     <tr key={item.documentId}>
                       <td>{item.documentName?.split(".").pop()}</td>
-                      <td>{item.documentName}</td>
+                      <td>{item.documentName?.split(".")[0]}</td>
                       <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
                       <td>{item.description}</td>
                       <td>

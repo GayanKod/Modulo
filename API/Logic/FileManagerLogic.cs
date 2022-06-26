@@ -20,7 +20,7 @@ namespace API.Logic
 
         public BlobClient GetBlobClient(string fileName)
         {
-           
+          
             var blobContainer = _blobServiceClient.GetBlobContainerClient(containerName);
             return blobContainer.GetBlobClient(fileName);
         }
@@ -28,13 +28,16 @@ namespace API.Logic
 
         public async Task Upload( DocumentDTO document)
         {
-            var blobClient = GetBlobClient(document.DocumentName);
+           var name = string.Concat(Path.GetFileNameWithoutExtension(document.DocumentName)+".",
+            document.UserId,
+            Path.GetExtension(document.DocumentName));
+            var blobClient = GetBlobClient(name);
 
             await blobClient.UploadAsync(document.MyFile.OpenReadStream(), false);
 
             var doc = new Document
             {
-                DocumentName = document.DocumentName,
+                DocumentName = name,
                 Description = document.Description,
                 DocumentSize = (int)document.MyFile.Length,
                 DocumentURL = blobClient.Uri.ToString(),

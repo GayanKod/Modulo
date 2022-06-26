@@ -61,15 +61,13 @@ function FileDetailForm(props: FileDetailFormProps) {
   const cancelSelection = () => {
     window.location.reload();
   };
+
   return (
     <div className="fileDetailForm">
       <ToastContainer />
       <form>
         <label className="fileDetailForm-fileNameText" htmlFor="filename">
           File Name:
-        </label>
-        <label className="fileDetailForm-fileNameRule" htmlFor="rule">
-          *Append your index at the end*
         </label>
         <input
           className="fileDetailForm-Input"
