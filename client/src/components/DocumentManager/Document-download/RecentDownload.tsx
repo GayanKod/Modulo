@@ -18,6 +18,7 @@ function RecentDownload() {
   }, [docs]);
 
   const uploads = docs.sort((x, y) => (x.documentId! > y.documentId! ? -1 : 1));
+
   const showAllorLess = () => {
     setIsall(!isall);
   };
@@ -48,7 +49,7 @@ function RecentDownload() {
                   <td>{item.description}</td>
                 </tr>
               ))
-            : uploads.slice(0, 3).map((item) => (
+            : uploads.slice(0, 2).map((item) => (
                 <tr key={item.documentId}>
                   <td>{item.documentName?.split(".").pop()}</td>
                   <td>{item.documentName?.split(".")[0]}</td>

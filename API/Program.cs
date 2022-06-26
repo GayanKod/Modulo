@@ -5,7 +5,6 @@ global using API.Models.DTOs;
 using API.Logic;
 using Azure.Storage.Blobs;
 
-
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddDbContext<DataContext>
 // (x =>x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
+
 //adding datacontexet
 builder.Services.AddDbContext<DataContext>(options =>
 {

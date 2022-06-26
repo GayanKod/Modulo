@@ -1,4 +1,3 @@
-import { Grid } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar2 from "../components/Navbar2";
@@ -25,7 +24,7 @@ function DocumentManagerHome() {
               alt="upload-img"
               style={{ height: "200px", width: "200px" }}
             />
-            <h2>
+            <h2 className="DocumentManagerHome-sections-title">
               Document Upload <div> Section</div>
             </h2>
           </div>
@@ -37,7 +36,9 @@ function DocumentManagerHome() {
               alt="download-img"
               style={{ height: "200px", width: "200px" }}
             />
-            <h2>Document Download Section</h2>
+            <h2 className="DocumentManagerHome-sections-title">
+              Document Download Section
+            </h2>
           </div>
         </Link>
       </div>

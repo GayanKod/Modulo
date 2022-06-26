@@ -53,6 +53,7 @@ function SearchResult(props: SearchResultProps) {
                   <th>Document Name</th>
                   <th>Size</th>
                   <th>Description</th>
+
                   <th>Download</th>
                 </tr>
               </thead>
@@ -69,6 +70,7 @@ function SearchResult(props: SearchResultProps) {
                       <td>{item.documentName?.split(".")[0]}</td>
                       <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
                       <td>{item.description}</td>
+
                       <td>
                         <button
                           className="SearchResult-table-downloadButton"

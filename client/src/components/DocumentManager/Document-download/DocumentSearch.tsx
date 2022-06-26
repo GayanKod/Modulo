@@ -2,7 +2,7 @@ import axios from "axios";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { isAuth } from "../../../helpers/auth";
 import { Documents } from "../Document-uplaod/Documents";
-import { Files } from "./Files";
+
 import SearchResult from "./SearchResult";
 
 interface DocumentSearchProps {

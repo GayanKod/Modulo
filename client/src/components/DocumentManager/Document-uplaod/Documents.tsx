@@ -3,7 +3,6 @@ export interface Documents {
   documentName?: string;
   documentType?: string;
   description?: string;
-  totalPages?: number;
   documentSize?: number;
   date?: Date;
   documentURL?: string;

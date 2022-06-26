@@ -113,14 +113,19 @@ namespace API.Logic
         public async Task<List<Document>> GetDownload(int userid)
         {
             
+            
             var x= await _context.DocumentDownload
                 .Include(d => d.Document)
                 .Where(d=>d.UserId==userid)
                 .Select(d=>d.Document)
                 .ToListAsync();
-            return x;
-        }
 
+           
+            return x;
+
+            
+        }
         
+
     }
 }
