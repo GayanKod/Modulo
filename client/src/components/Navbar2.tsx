@@ -11,7 +11,7 @@ export default function Navbar2() {
       </div>
 
       <div>
-        <h2>Hi! Welcome to {/* {isAuth().institutes[0].} */}institutename</h2>
+        <h2>Hi! Welcome to {isAuth().institutes[0].instituteName}</h2>
       </div>
 
       <div>

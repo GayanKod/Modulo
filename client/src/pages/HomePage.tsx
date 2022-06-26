@@ -6,14 +6,19 @@ import NoticeHome from "../assets/img/NoticeHome.png";
 import activityHome from "../assets/img/activityHome.png";
 import "../styles/HomePage.scss";
 import FeatureCard from "../components/HomePage/FeatureCard";
+import Footer from "../components/Footer/Footer";
 
 function HomePage() {
   return (
-    <>
+    <div style={{ backgroundColor: " #f5e9fc" }}>
       <Navbar2 />
-      {/* <SideBarHome /> */}
-      <div className="home-container">
-        <Grid container spacing={4}>
+
+      <div style={{ padding: "10%" }}>
+        <Grid
+          container
+          spacing={4}
+          sx={{ filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))" }}
+        >
           <FeatureCard
             name={"Document Manager"}
             image={docManagerHome}
@@ -40,7 +45,9 @@ function HomePage() {
           />
         </Grid>
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 }
 
