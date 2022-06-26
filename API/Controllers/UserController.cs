@@ -51,6 +51,20 @@ namespace API.Controllers
             return Ok(user);
         }
 
+        [HttpGet("get-users/usersRecent/{inst_id}")]
+        public async Task<ActionResult<List<User>>> GetLastAddedUsersbyInstitute(int inst_id)
+        {
+            //var user = await _context.Users.FindAsync(inst_id);
+            var inst = GetInstitute(inst_id);
+            var user = await _context.Users.OrderByDescending(u => u.VerifiedAt)
+                .Where(u => u.Institutes.Contains(inst))
+                .Include(u => u.Institutes).ToListAsync();
+
+            if (user == null)
+                return BadRequest("User Not Found!");
+            return Ok(user);
+        }
+
         [Route("add-user")]
         [HttpPost]
         public async Task<ActionResult<List<User>>> AddUser(AddUserDTO request)
