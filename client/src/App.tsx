@@ -21,6 +21,9 @@ import APEditSubscriberPage from "./pages/AdminPanel/Subscribers/APEditSubscribe
 import APNewSubscriberPage from "./pages/AdminPanel/Subscribers/APNewSubscriberPage";
 import MyProfileAP from "./pages/AdminPanel/MyProfileAP";
 import VerifyEmail from "./pages/UserVerification";
+import APLecHallsPage from "./pages/AdminPanel/LecHallsLabs/APLecHallsPage";
+import ApEditLecHallPage from "./pages/AdminPanel/LecHallsLabs/APEditLecHallPage";
+import APNewLecHall from "./pages/AdminPanel/LecHallsLabs/APNewLecHall";
 
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
@@ -73,6 +76,10 @@ function App() {
           <Route path="/admin-panel/subscribers" element={<APSubscribersPage/>} />
           <Route path="/admin-panel/subscribers/:userId" element={<APEditSubscriberPage/>} />
           <Route path="/admin-panel/addsubscriber" element={<APNewSubscriberPage/>} />
+
+          <Route path="/admin-panel/lechallslabs" element={<APLecHallsPage />} />
+          <Route path="/admin-panel/lechallslabs/:lecHallId" element={<ApEditLecHallPage/>} />
+          <Route path="/admin-panel/addlechallslabs" element={<APNewLecHall/>} />
 
           <Route path="/admin-panel/myprofile" element={<MyProfileAP/>} />
           <Route path="/login/email-verification" element={<VerifyEmail/>} />
