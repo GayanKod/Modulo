@@ -1,12 +1,9 @@
 import { Grid } from "@mui/material";
 import axios from "axios";
-import { userInfo } from "os";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useBookingContext } from "../../../context/BookingContext";
 import { isAuth } from "../../../helpers/auth";
 import Filter from "../HomePage/Filter";
-import { Booking } from "../Models";
 
 type BookingFormProps = {
   classId: number;
@@ -78,8 +75,8 @@ const BookingForm = (props: BookingFormProps) => {
       .post("https://localhost:5000/api/Booking/post", newBooking)
       .then(function (response) {
         if (response.status === 200) {
-          // confirm(true); //confirm function call
           console.log("added");
+          setClicked(true);
         }
       })
       .catch((e) => console.log(e));
@@ -104,7 +101,6 @@ const BookingForm = (props: BookingFormProps) => {
     console.log("user: " + isAuth().id);
 
     setNewBooking({
-      // user: 0,
       user: isAuth().id,
       classRoomId: props.classId,
       date: bookingDate as string,
@@ -165,7 +161,6 @@ const BookingForm = (props: BookingFormProps) => {
           </Grid>
           <Grid item xs={6} sx={{ paddingTop: "5%" }}>
             <div className="booking-buttons">
-              {/* <Link to={"/lec-hall-allocation"}> */}
               <button
                 type="submit"
                 form="form1"
@@ -176,11 +171,10 @@ const BookingForm = (props: BookingFormProps) => {
                   cursor: "pointer",
                 }}
                 hidden={clicked}
-                onClick={() => setClicked(true)}
               >
                 Confirm
               </button>
-              {/* </Link> */}
+
               <Link to={"/lec-hall-allocation/view-bookings"}>
                 <button hidden={!clicked} className="book-button change">
                   View my bookings

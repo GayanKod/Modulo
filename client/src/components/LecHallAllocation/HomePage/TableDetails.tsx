@@ -26,7 +26,7 @@ function TableDetails({ selected }: Props) {
     axios
       .get(
         `https://localhost:5000/api/ClassRoom/institute/${
-          isAuth().institute[0].id
+          isAuth().institutes[0].id
         }`
       )
 
