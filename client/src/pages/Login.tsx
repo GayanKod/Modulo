@@ -42,9 +42,10 @@ const Login = () => {
                   email: '',
                   password: ''
                 });
-                isAuth()
+                toast.success("Login Successfully!");
+                setTimeout(() => {isAuth()
                   ? navigate('/admin-panel')
-                  : navigate('/login');
+                  : navigate('/login');},1000) 
               });
             })
             .catch(err => {
