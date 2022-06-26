@@ -69,6 +69,7 @@ function Registration(){
             })
             .then(res => {
               toast.success("Registration Success!");
+              
               setFormData({
                     ...formData,
                     userFName:'',
@@ -85,7 +86,7 @@ function Registration(){
                     password:'',
                     confirmPassword:''
               });
-              navigate('/login');
+              setTimeout(() => {navigate('/login/email-verification');},1000) 
             })
             .catch(err => {
               console.log(err.response);
