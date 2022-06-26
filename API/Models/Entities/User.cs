@@ -31,7 +31,6 @@ namespace API.Models.Entities
 
 
         public List<Institute> Institutes { get; set; }
-        public List<User> Users { get; set; }
 
     }
 }
