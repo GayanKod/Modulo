@@ -1,8 +1,12 @@
-import { ClassRooms } from "../Details";
+// import { ClassRooms } from "../Details";
 import LecHallBooking from "./LecHallBooking";
 import lechall from "../../../assets/img/lechall.png";
 import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Item } from "../Models";
+import axios from "axios";
+import TimeTable from "../HomePage/TimeTable";
 
 type BookingProps = {
   id: string;
@@ -10,10 +14,19 @@ type BookingProps = {
 };
 
 function BookingDetails(props: BookingProps) {
-  const classRoom = ClassRooms.find(
-    (item) => item.Id === parseInt(props.id as string)
-  );
-  if (classRoom) {
+  const [classroom, setClassroom] = useState<Item | null>(null);
+
+  useEffect(() => {
+    axios
+      .get(`https://localhost:5000/api/ClassRoom/id/${props.id}`)
+
+      .then((classes) => setClassroom(classes.data))
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  if (classroom) {
     return (
       <>
         <Grid container sx={{ padding: "5% 0 0 10%" }}>
@@ -24,7 +37,7 @@ function BookingDetails(props: BookingProps) {
             Classroom ID
           </Grid>
           <Grid item xs={8}>
-            : {classRoom!.Id}
+            : {classroom!.id}
           </Grid>
           <Grid item xs={4}>
             Classroom Name
@@ -32,19 +45,26 @@ function BookingDetails(props: BookingProps) {
           <Grid item xs={8}>
             {`: ${
               props.selected === "Lecture-halls" ? "Lecture Hall" : "Lab"
-            } ${classRoom.Id}`}
+            } ${classroom.id}`}
           </Grid>
           <Grid item xs={4}>
             Hall Capacity
           </Grid>
           <Grid item xs={8}>
-            : {classRoom.capacity}
+            : {classroom.capacity}
           </Grid>
           <Grid item xs={4}>
             Hall Location
           </Grid>
           <Grid item xs={8}>
-            {`:  Building - ${classRoom.BuildingNumber}, Floor - ${classRoom.FloorNumber}`}
+            {`:  Building - ${classroom.buildingNumber}, Floor - ${classroom.floorNumber}`}
+          </Grid>
+          <Grid item>
+            <TimeTable
+              selected={parseInt(props.selected)}
+              id={parseInt(props.id)}
+              page={1}
+            />
           </Grid>
         </Grid>
       </>

@@ -128,7 +128,7 @@ function Row({ item, selected }: Props) {
           <Resources resourcesUsed={item.classRoom_Resources} />
         </td>
         <td>
-          <TimeTable selected={selected} id={item.id} />
+          <TimeTable selected={selected} id={item.id} page={0} />
         </td>
         <td>
           <Link

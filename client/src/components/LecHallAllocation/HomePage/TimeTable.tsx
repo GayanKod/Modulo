@@ -19,6 +19,7 @@ import Schedule from "../Schedule";
 type TimeTableProps = {
   selected: number;
   id: number;
+  page: number;
 };
 
 export default function TimeTable(props: TimeTableProps) {
@@ -54,15 +55,21 @@ export default function TimeTable(props: TimeTableProps) {
   if (props.id) {
     return (
       <>
-        <button
-          className="info-button"
-          onClick={() => {
-            setOpen(true);
-            bookings.splice(0, bookings.length);
-          }}
-        >
-          <i className="fa fa-info-circle"></i>
-        </button>
+        {props.page == 0 ? (
+          <button
+            className="info-button"
+            onClick={() => {
+              setOpen(true);
+              bookings.splice(0, bookings.length);
+            }}
+          >
+            <i className="fa fa-info-circle" />
+          </button>
+        ) : (
+          <button className="book-button" onClick={handleClose}>
+            Select a different hall
+          </button>
+        )}
         <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
           <div className="popup">
             <DialogTitle
