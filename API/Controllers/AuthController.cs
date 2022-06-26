@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
+using MimeKit.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -46,7 +49,7 @@ namespace API.Controllers
                 Role = "Super Admin",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                VerificationToken = CreateRandomToken()
+                VerificationToken = CreateRandomToken(),
             };
 
             var institute = new Institute
@@ -66,6 +69,11 @@ namespace API.Controllers
             };
 
             await AddUserInstitute(userInst);
+
+            var VerificationToken = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.VerificationToken).FirstAsync();
+            var email = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.Email).FirstAsync();
+            SendEmail(VerificationToken, email);
+
             return Ok("Institute successfully Registered!");
         }
 
@@ -161,6 +169,24 @@ namespace API.Controllers
 
 
             return Ok("User Verified");
+        }
+
+        [HttpPost("email")]
+        public IActionResult SendEmail(string body, string toEmail)
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("no-reply@modulo.com"));
+            email.To.Add(MailboxAddress.Parse(toEmail));
+            email.Subject = "Modulo - Email Verification Token";
+            email.Body = new TextPart(TextFormat.Plain) { Text = body };
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.mailgun.org", 587, MailKit.Security.SecureSocketOptions.StartTls);
+            smtp.Authenticate("postmaster@sandbox8112f2b2f5a14b6a9b647304a0d1fdf3.mailgun.org", "cad75e7707b14459d8bbc4978d01d8d4-ea44b6dc-eba67d25");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return Ok();
         }
 
 
