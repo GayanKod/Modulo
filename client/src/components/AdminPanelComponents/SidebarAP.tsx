@@ -65,12 +65,6 @@ const SidebarAP = () => {
                 Batches
               </li>
             </Link>
-            <Link to="/admin-panel/modules" className="link">
-              <li className="sidebarListItem">
-                <MenuBook className="sidebarIcon" />
-                Modules
-              </li>
-            </Link>
             <Link to="/admin-panel/lechallslabs" className="link">
               <li className="sidebarListItem">
                 <Science className="sidebarIcon" />
