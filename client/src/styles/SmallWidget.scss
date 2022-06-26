@@ -3,7 +3,12 @@
     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
     padding: 20px;
-    margin-right: 20px;
+    // margin-right: 20px;
+}
+
+.widgetSm-table{
+    width: 100%;
+    margin: 20px;
 }
 
 .widgetSmTitle{
@@ -27,7 +32,7 @@
 .widgetSmListItem{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 20px 0px;
 }
 

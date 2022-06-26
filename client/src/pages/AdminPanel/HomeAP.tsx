@@ -10,7 +10,7 @@ const HomeAP = () => {
         <FeaturedInfo />
         <div className="home-widgets">
             <SmallWidget />
-            <LargeWidget />
+            {/* <LargeWidget /> */}
         </div>
     </div>
   )
