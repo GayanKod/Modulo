@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Documents } from "./Documents";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface RecentUploadProps {
   docs: Documents[];

@@ -1,21 +1,20 @@
-import React from 'react'
-import {signout} from "../../helpers/auth"
+import React from "react";
+import { signout } from "../../helpers/auth";
 import "../../styles/SidebarAP.scss";
 import { Link, useNavigate } from "react-router-dom";
 import {
-    LineStyle,
-    Timeline,
-    MenuBook,
-    PermIdentity,
-    School,
-    Science,
-  } from "@mui/icons-material";
-import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
-import FaceIcon from '@mui/icons-material/Face';
-import LogoutIcon from '@mui/icons-material/Logout';
+  LineStyle,
+  Timeline,
+  MenuBook,
+  PermIdentity,
+  School,
+  Science,
+} from "@mui/icons-material";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import FaceIcon from "@mui/icons-material/Face";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const SidebarAP = () => {
-  
   let navigate = useNavigate();
 
   return (
@@ -25,10 +24,10 @@ const SidebarAP = () => {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/admin-panel" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Home
-            </li>
+              <li className="sidebarListItem active">
+                <LineStyle className="sidebarIcon" />
+                Home
+              </li>
             </Link>
           </ul>
         </div>
@@ -76,28 +75,28 @@ const SidebarAP = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">User Settings</h3>
           <ul className="sidebarList">
-          <Link to="/admin-panel/myprofile" className="link">
-            <li className="sidebarListItem">
-              <FaceIcon className="sidebarIcon" />
-              My Profile
-            </li>
-          </Link>
-              <li 
-                className="sidebarListItem"
-                onClick={() => {
-                  signout(() => {
-                    navigate('/');
-                  })
-                }}
-              >
-                <LogoutIcon className="sidebarIcon" />
-                Log out
+            <Link to="/admin-panel/myprofile" className="link">
+              <li className="sidebarListItem">
+                <FaceIcon className="sidebarIcon" />
+                My Profile
               </li>
+            </Link>
+            <li
+              className="sidebarListItem"
+              onClick={() => {
+                signout(() => {
+                  navigate("/");
+                });
+              }}
+            >
+              <LogoutIcon className="sidebarIcon" />
+              Log out
+            </li>
           </ul>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SidebarAP
+export default SidebarAP;
