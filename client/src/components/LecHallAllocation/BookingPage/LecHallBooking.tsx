@@ -18,10 +18,6 @@ import Footer from "../../Footer/Footer";
 function LecHallBooking() {
   const { id } = useParams<{ id: string }>();
   const { selected } = useParams<{ selected: string }>();
-  const [loading, setLoading] = useState(false);
-
-  const { bookings } = useBookingContext();
-  const { setBookings } = useBookingContext();
 
   return (
     <>

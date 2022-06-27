@@ -12,7 +12,7 @@ type BookingFormProps = {
 const BookingForm = (props: BookingFormProps) => {
   const [clicked, setClicked] = useState(false);
   const [newBooking, setNewBooking] = useState({
-    user: 0,
+    userId: 0,
     classRoomId: 0,
     date: "",
     startTime: "",
@@ -100,7 +100,7 @@ const BookingForm = (props: BookingFormProps) => {
     console.log("user: " + isAuth().id);
 
     setNewBooking({
-      user: isAuth().id as number,
+      userId: isAuth().id as number,
       classRoomId: props.classId,
       date: bookingDate as string,
       startTime: new Date(d.setHours(from.value + 5)).toJSON(),
