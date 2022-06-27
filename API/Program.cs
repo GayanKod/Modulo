@@ -4,6 +4,7 @@ global using API.Models.Entities;
 global using API.Models.DTOs;
 using API.Logic;
 using Azure.Storage.Blobs;
+using System.Text.Json.Serialization;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
@@ -14,7 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 // builder.Services.AddDbContext<DataContext>
 // (x =>x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddControllers();
-
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 //adding datacontexet
 builder.Services.AddDbContext<DataContext>(options =>
 {

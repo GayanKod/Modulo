@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { isAuth } from "../../../helpers/auth";
 import { Documents } from "../Document-uplaod/Documents";
+import { Download } from "./Download";
 
 function RecentDownload() {
-  const [docs, setDocs] = useState<Documents[]>([]);
+  const [docs, setDocs] = useState<Download[]>([]);
   const [loading, setLoading] = useState(true);
   const [isall, setIsall] = useState(false);
   useEffect(() => {
@@ -17,7 +18,7 @@ function RecentDownload() {
       .finally(() => setLoading(false));
   }, [docs]);
 
-  const uploads = docs.sort((x, y) => (x.documentId! > y.documentId! ? -1 : 1));
+  const uploads = docs.sort((x, y) => (x.id! > y.id! ? -1 : 1));
 
   const showAllorLess = () => {
     setIsall(!isall);
@@ -41,21 +42,25 @@ function RecentDownload() {
         <tbody>
           {isall
             ? uploads.map((item) => (
-                <tr key={item.documentId}>
-                  <td>{item.documentName?.split(".").pop()}</td>
-                  <td>{item.documentName?.split(".")[0]}</td>
-                  <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
-                  <td>{item.date?.toString().split("T")[0]}</td>
-                  <td>{item.description}</td>
+                <tr key={item.id}>
+                  <td>{item.document.documentName?.split(".").pop()}</td>
+                  <td>{item.document.documentName?.split(".")[0]}</td>
+                  <td>
+                    {Math.round(item.document.documentSize! / (1024 * 1024))}
+                  </td>
+                  <td>{item.document.date?.toString().split("T")[0]}</td>
+                  <td>{item.document.description}</td>
                 </tr>
               ))
             : uploads.slice(0, 2).map((item) => (
-                <tr key={item.documentId}>
-                  <td>{item.documentName?.split(".").pop()}</td>
-                  <td>{item.documentName?.split(".")[0]}</td>
-                  <td>{Math.round(item.documentSize! / (1024 * 1024))}</td>
-                  <td>{item.date?.toString().split("T")[0]}</td>
-                  <td>{item.description}</td>
+                <tr key={item.id}>
+                  <td>{item.document.documentName?.split(".").pop()}</td>
+                  <td>{item.document.documentName?.split(".")[0]}</td>
+                  <td>
+                    {Math.round(item.document.documentSize! / (1024 * 1024))}
+                  </td>
+                  <td>{item.document.date?.toString().split("T")[0]}</td>
+                  <td>{item.document.description}</td>
                 </tr>
               ))}
         </tbody>

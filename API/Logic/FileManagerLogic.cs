@@ -110,14 +110,13 @@ namespace API.Logic
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Document>> GetDownload(int userid)
+        public async Task<List<DocumentDownload>> GetDownload(int userid)
         {
             
             
             var x= await _context.DocumentDownload
                 .Include(d => d.Document)
                 .Where(d=>d.UserId==userid)
-                .Select(d=>d.Document)
                 .ToListAsync();
 
            
