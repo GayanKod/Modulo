@@ -9,7 +9,7 @@ import axios from "axios";
 import TimeTable from "../HomePage/TimeTable";
 
 type BookingProps = {
-  id: string;
+  id: number;
   selected: string;
 };
 
@@ -17,10 +17,12 @@ function BookingDetails(props: BookingProps) {
   const [classroom, setClassroom] = useState<Item | null>(null);
 
   useEffect(() => {
+    console.log(props.id);
     axios
-      .get(`https://localhost:5000/api/ClassRoom/id/${props.id}`)
-
-      .then((classes) => setClassroom(classes.data))
+      .get(`https://localhost:5000/api/ClassRoom/${props.id}`)
+      .then((classes) => {
+        setClassroom(classes.data);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -43,9 +45,7 @@ function BookingDetails(props: BookingProps) {
             Classroom Name
           </Grid>
           <Grid item xs={8}>
-            {`: ${
-              props.selected === "Lecture-halls" ? "Lecture Hall" : "Lab"
-            } ${classroom.id}`}
+            : {classroom.hallNo}
           </Grid>
           <Grid item xs={4}>
             Hall Capacity
@@ -60,11 +60,11 @@ function BookingDetails(props: BookingProps) {
             {`:  Building - ${classroom.buildingNumber}, Floor - ${classroom.floorNumber}`}
           </Grid>
           <Grid item>
-            <TimeTable
+            {/* <TimeTable
               selected={parseInt(props.selected)}
-              id={parseInt(props.id)}
+              id={props.id}
               page={1}
-            />
+            /> */}
           </Grid>
         </Grid>
       </>

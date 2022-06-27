@@ -86,9 +86,8 @@ const BookingForm = (props: BookingFormProps) => {
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    console.log(value);
+
     setBookingDate(value);
-    console.log(bookingDate);
   };
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -101,7 +100,7 @@ const BookingForm = (props: BookingFormProps) => {
     console.log("user: " + isAuth().id);
 
     setNewBooking({
-      user: isAuth().id,
+      user: isAuth().id as number,
       classRoomId: props.classId,
       date: bookingDate as string,
       startTime: new Date(d.setHours(from.value + 5)).toJSON(),

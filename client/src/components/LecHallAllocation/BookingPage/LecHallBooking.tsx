@@ -33,7 +33,10 @@ function LecHallBooking() {
         <div className="booking-details">
           <Grid container>
             <Grid item xs={5}>
-              <BookingDetails selected={selected as string} id={id as string} />
+              <BookingDetails
+                selected={selected as string}
+                id={parseInt(id as string)}
+              />
             </Grid>
             <Grid item xs={7}>
               <BookingForm classId={parseInt(id as string)} />

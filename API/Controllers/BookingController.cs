@@ -34,7 +34,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<List<BookingDetails>>> GetByUser(int user)
         {
-            if (await _context.BookingDetails.FindAsync(user) == null) return NotFound();
+            if (await _context.Users.FindAsync(user) == null) return NotFound();
 
             var booking = await _context.BookingDetails.Where(b => b.UserId == user).ToListAsync();
             if (booking == null)

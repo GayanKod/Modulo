@@ -2,6 +2,7 @@ import { BooleanLiteral } from "typescript";
 
 export interface Item {
   id: number;
+  hallNo: string;
   floorNumber: number;
   buildingNumber: number;
   capacity: number;

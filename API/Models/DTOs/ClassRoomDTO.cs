@@ -3,6 +3,7 @@
     public class ClassRoomDTO
     {
         public int Id { get; set; } = 0;
+        public string HallNo { get; set; } = "";
         public int FloorNumber { get; set; } = 0;
         public int BuildingNumber { get; set; } = 0;
         public int capacity { get; set; } = 0;

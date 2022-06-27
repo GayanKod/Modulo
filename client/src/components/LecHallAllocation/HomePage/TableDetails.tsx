@@ -33,7 +33,7 @@ function TableDetails({ selected }: Props) {
       .then((classes) => setClassRooms(classes.data))
       .catch((error) => {
         console.log(error);
-        console.log(isAuth().institute[0].id);
+        // console.log(isAuth().institute[0].id);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -120,7 +120,7 @@ function Row({ item, selected }: Props) {
             )}
           </button>
         </td>
-        <td>{`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.id}`}</td>
+        <td>{item.hallNo}</td>
         <td hidden={selected == 0}>{item.labType}</td>
         <td className="hide">{item.capacity}</td>
         <td className="hide">{`Building: ${item.buildingNumber}, Floor: ${item.floorNumber}`}</td>

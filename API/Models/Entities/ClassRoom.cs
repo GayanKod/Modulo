@@ -6,6 +6,7 @@ namespace API
     public class ClassRoom
     {
         public int Id { get; set; }
+        public string HallNo { get; set; }
         public int FloorNumber { get; set; }
         public int BuildingNumber { get; set; }
         public int capacity { get; set; }

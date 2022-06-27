@@ -45,9 +45,9 @@ namespace API.Controllers
 
         public async Task<ActionResult<ClassRoom>> Get(int id)
         {
-            var classRoom = await _context.ClassRooms.Where(c => c.Id == id)
-                                .Include(c => c.Bookings)
-                                .Include(c => c.ClassRoom_Resources).ToListAsync();
+            var classRoom = await _context.ClassRooms.FindAsync(id);
+                           //     .Include(c => c.Bookings)
+                            //    .Include(c => c.ClassRoom_Resources);
 
             if (classRoom == null)
                 return BadRequest("Not Found");
