@@ -60,11 +60,11 @@ function BookingDetails(props: BookingProps) {
             {`:  Building - ${classroom.buildingNumber}, Floor - ${classroom.floorNumber}`}
           </Grid>
           <Grid item>
-            {/* <TimeTable
+            <TimeTable
               selected={parseInt(props.selected)}
               id={props.id}
               page={1}
-            /> */}
+            />
           </Grid>
         </Grid>
       </>
