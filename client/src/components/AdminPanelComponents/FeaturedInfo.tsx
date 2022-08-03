@@ -11,6 +11,8 @@ const FeaturedInfo = () => {
   const [eCount, setECount] = useState();
   const [sCount, setSCount] = useState();
   const [uCount, setUCount] = useState();
+  const [dCount, setDCount] = useState();
+  const [bCount, setBCount] = useState();
 
   useEffect(() => {
     function getAdmins(){
@@ -20,6 +22,8 @@ const FeaturedInfo = () => {
             setSeCount(res.data.superEditorsCount);
             setECount(res.data.editorsCount);
             setSCount(res.data.subscribersCount);
+            setDCount(res.data.degreesCount);
+            setBCount(res.data.batchesCount);
             setUCount(res.data.adminsCount+res.data.superAdminsCount+res.data.superEditorsCount+res.data.editorsCount + res.data.subscribersCount + res.data.subscribersCount)
         }).catch((err) => {
             console.log(err.message);
@@ -69,13 +73,6 @@ const FeaturedInfo = () => {
         <span className="featuredAP-Des">Total no. of registered Subscribers</span>
       </div>
       <div className="featuredAP-Item">
-        <span className="featuredAP-Title">Degrees</span>
-        <div className="featuredAP-CountContainer">
-          <span className="featuredAP-Count">Degreee</span>
-        </div>
-        <span className="featuredAP-Des">Total no. of Degrees offer</span>
-      </div>
-      <div className="featuredAP-Item">
         <span className="featuredAP-Title">Users</span>
         <div className="featuredAP-CountContainer">
           <span className="featuredAP-Count">{uCount}</span>
@@ -83,11 +80,18 @@ const FeaturedInfo = () => {
         <span className="featuredAP-Des">Total no. of registered users</span>
       </div>
       <div className="featuredAP-Item">
-        <span className="featuredAP-Title">Editors</span>
+        <span className="featuredAP-Title">Degrees</span>
         <div className="featuredAP-CountContainer">
-          <span className="featuredAP-Count">2,225</span>
+          <span className="featuredAP-Count">{dCount}</span>
         </div>
-        <span className="featuredAP-Des">Total no. of registered Editors</span>
+        <span className="featuredAP-Des">Total no. of Degrees offer</span>
+      </div>
+      <div className="featuredAP-Item">
+        <span className="featuredAP-Title">Batches</span>
+        <div className="featuredAP-CountContainer">
+          <span className="featuredAP-Count">{bCount}</span>
+        </div>
+        <span className="featuredAP-Des">Total no. of Batches</span>
       </div>
     </div>
   </>
