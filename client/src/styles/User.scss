@@ -155,8 +155,19 @@
       background-color: $P3;
       color: white;
       font-weight: 600;
-      width: 80%;
+      width: 150px;
   }
+  .userUpdateButton-disabled{
+      border-radius: 5px;
+      border: none;
+      padding: 15px;
+      cursor: pointer;
+      background-color: $P3;
+      color: white;
+      font-weight: 600;
+      width: 150px;
+  }
+
 
   .userUpdateButton:hover{
       background-color: $O;

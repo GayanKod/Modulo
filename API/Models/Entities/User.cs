@@ -10,7 +10,7 @@ namespace API.Models.Entities
         public string FirstName { get; set; } = string.Empty;
         [Required]
         public string LastName { get; set; } = string.Empty;
-        [Required]
+        [Required, EmailAddress]
         public string Email { get; set; } = string.Empty;
         public DateTime DOB { get; set; }
         public string Gender { get; set; } = string.Empty;
@@ -31,7 +31,11 @@ namespace API.Models.Entities
 
 
         public List<Institute> Institutes { get; set; }
-        public List<User> Users { get; set; }
+
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
+        public Degree? Degree { get; set; }
+        public int? DegreeId { get; set; }
 
         public List<Document>? Documents { get; set; }
        public List<DocumentDownload>? DocumentDownloads { get; set; }

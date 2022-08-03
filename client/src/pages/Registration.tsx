@@ -2,6 +2,7 @@ import React, { useState }  from 'react';
 import axios from "axios";
 import Navbar from "../components/Navbar/Navbar";
 import RegImg from '../assets/img/registration.png';
+import {useNavigate} from "react-router";
 import "../styles/Registration.scss";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Registration(){
 
+    let navigate = useNavigate();
     let time = new Date().getHours();
     
     const [formData, setFormData] = useState({
@@ -47,7 +49,6 @@ function Registration(){
     };
 
     const handleSubmit = (e:any) => {
-        console.log('https://localhost:5000/api/Auth/register');
         e.preventDefault();
 
           axios
@@ -68,6 +69,7 @@ function Registration(){
             })
             .then(res => {
               toast.success("Registration Success!");
+              
               setFormData({
                     ...formData,
                     userFName:'',
@@ -84,6 +86,7 @@ function Registration(){
                     password:'',
                     confirmPassword:''
               });
+              setTimeout(() => {navigate('/login/email-verification');},1000) 
             })
             .catch(err => {
               console.log(err.response);

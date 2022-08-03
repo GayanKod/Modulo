@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
+using MimeKit.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -13,11 +16,13 @@ namespace API.Controllers
     {
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IEmailService _emailService;
 
-        public AuthController(DataContext context, IConfiguration configuration)
+        public AuthController(DataContext context, IConfiguration configuration, IEmailService emailService)
         {
             _context = context;
             _configuration = configuration;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -46,7 +51,7 @@ namespace API.Controllers
                 Role = "Super Admin",
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                VerificationToken = CreateRandomToken()
+                VerificationToken = CreateRandomToken(),
             };
 
             var institute = new Institute
@@ -66,8 +71,23 @@ namespace API.Controllers
             };
 
             await AddUserInstitute(userInst);
+
+            var VerificationToken = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.VerificationToken).FirstAsync();
+            var email = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.Email).FirstAsync();
+
+            var confirmMail = new EmailDTO
+            {
+                To = request.Email,
+                Body = await _context.Users.Where(u => u.Email == request.Email).Select(x => x.VerificationToken).FirstAsync(),
+                Subject = "Modulo - Email Verification Token"
+            };
+
+            SendEmail(confirmMail);
+
             return Ok("Institute successfully Registered!");
         }
+
+
 
         [HttpPost("AddUserInstitute")]
         public async Task<ActionResult<User>> AddUserInstitute(UserInstituteDTO req)
@@ -96,7 +116,6 @@ namespace API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest req)
         {
-
             var user = await _context.Users
                 .Where(u => u.Email == req.Email)
                 .Include(u => u.Institutes).FirstOrDefaultAsync();
@@ -162,6 +181,13 @@ namespace API.Controllers
 
 
             return Ok("User Verified");
+        }
+
+        [HttpPost("email")]
+        public IActionResult SendEmail(EmailDTO req)
+        {
+            _emailService.SendEmail(req);
+            return Ok();
         }
 
 
@@ -239,6 +265,8 @@ namespace API.Controllers
 
             return user;
         }
+
+        
 
     }
 }

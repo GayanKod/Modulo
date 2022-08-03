@@ -11,11 +11,14 @@ namespace API
         public int capacity { get; set; }
         public String? LabType { get; set; }
         public int ClassRoomType { get; set; }
-       
+
+        public string HallNo { get; set; }
+        [JsonIgnore]
         public Institute Institute { get; set; }
         public int InstituteId { get; set; }
-
+        [JsonIgnore]
         public List<BookingDetails> Bookings { get; set; }
+        [JsonIgnore]
         public List<ClassRoom_Resource> ClassRoom_Resources { get; set; }
 
 

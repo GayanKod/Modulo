@@ -5,9 +5,7 @@ import {
     CalendarToday,
     LocationSearching,
     MailOutline,
-    PermIdentity,
-    PhoneAndroid,
-    Publish
+    PhoneAndroid
   } from "@mui/icons-material";
   import Avatar from '@mui/material/Avatar';
   import FemaleIcon from '@mui/icons-material/Female';
@@ -16,16 +14,18 @@ import {
   import "../../../styles/User.scss";
   import UploadIcon from '@mui/icons-material/Upload';
   import AddCircleIcon from '@mui/icons-material/AddCircle';
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
   
-  export default function EditEditor() {
+  export default function User() {
 
     let params = useParams();
     const [file, setFile] = useState<File>();
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [role, setRole] = useState('');
+    const [adfirstName, setFirstName] = useState('');
+    const [adlastName, setLastName] = useState('');
+    const [adRole, setRole] = useState('');
     const [adEmail, setAdEmail] = useState('');
     const [adDob, setAdDob] = useState('');
     const [adGender, setAdGender] = useState('');
@@ -34,36 +34,32 @@ import {
     const [adTown, setAdTown] = useState('');
     const [adMobile, setAdMobile] = useState('');
 
-    // const [formData, setFormData] = useState({
-    //     userFName:'',
-    //     userLName:'',
-    //     email:'',
-    //     dob:'',
-    //     gender:'',
-    //     homeNo:'',
-    //     street:'',
-    //     town:'',
-    //     mobileNumber:'',
-    //     instituteName:'',
-    //     instituteContactNo:'',
-    //     password:'',
-    //     confirmPassword:''       
-    // });
+    const [formData, setFormData] = useState({
+        userId: params.userId,
+        firstName:'',
+        lastName:'',
+        dob:'',
+        gender:'',
+        email:'',
+        role:'',
+        mobileNumber:'',
+        homeNo:'',
+        street:'',
+        town:'',      
+    });
 
-    // const {
-    //   userFName, 
-    //   userLName, 
-    //   email, 
-    //   dob, 
-    //   gender, 
-    //   homeNo, 
-    //   street, 
-    //   town, 
-    //   mobileNumber, 
-    //   instituteName, 
-    //   instituteContactNo, 
-    //   password, 
-    //   confirmPassword}  = formData;
+    const {
+      userId,
+      firstName, 
+      lastName,
+      dob, 
+      gender, 
+      email, 
+      role, 
+      mobileNumber, 
+      homeNo, 
+      street, 
+      town}  = formData;
 
     function GetAdminbyId(){
 
@@ -71,7 +67,6 @@ import {
         axios
             .get(`https://localhost:5000/api/User/get-users/${params.userId}`)
             .then(res => [
-               console.log(res),
                 setFirstName(res.data.firstName),
                 setLastName(res.data.lastName),
                 setAdEmail(res.data.email),
@@ -84,17 +79,51 @@ import {
                 setRole(res.data.role)
                 
             ] ).catch(error => {
-              console.log("sddad")
               console.log(error)
             });
 
       }, []);
     }
 
+    const handleChange = (text:string) => (e:any) => {
+      setFormData({ ...formData, [text]: e.target.value });
+    };
+
+    function updateAdmin(e:any){
+
+      e.preventDefault();
+
+        axios
+            .put(`https://localhost:5000/api/User/update-user`, {
+                userId,
+                firstName, 
+                lastName,
+                dob, 
+                gender, 
+                email, 
+                role, 
+                mobileNumber, 
+                homeNo, 
+                street, 
+                town 
+            })
+            .then(res => {
+              toast.success("User updated successfully!");
+              window.location.reload();
+            })
+            .catch(err => {
+              console.log(err.response);
+              toast.error(err.response.data);
+              toast.error(err.response.data.title);
+            });
+
+    }
+
     GetAdminbyId();
 
     return (
       <div className="user">
+        <ToastContainer />
         <div className="userTitleContainer">
           <h1 className="userTitle">Edit Editor</h1>
           <Link to="/admin-panel/addadmineditor">
@@ -112,8 +141,8 @@ import {
                 className="userShowImg"
               />
               <div className="userShowTopTitle">
-                <span className="userShowUsername">{firstName} {lastName}</span>
-                <span className="userShowUserTitle">{role}</span>
+                <span className="userShowUsername">{adfirstName} {adlastName}</span>
+                <span className="userShowUserTitle">{adRole}</span>
               </div>
             </div>
             <div className="userShowBottom">
@@ -123,7 +152,7 @@ import {
                 <span className="userShowInfoTitle">{adDob}</span>
               </div>
               <div className="userShowInfo">
-                {adGender === "male" ? <MaleIcon className="userShowIcon"/> : <FemaleIcon className="userShowIcon"/>}
+                {adGender === "Male" ? <MaleIcon className="userShowIcon"/> : <FemaleIcon className="userShowIcon"/>}
                 <span className="userShowInfoTitle">{adGender}</span>
               </div>
               <span className="userShowTitle">Contact Details</span>
@@ -143,7 +172,7 @@ import {
           </div>
           <div className="userUpdate">
             <span className="userUpdateTitle">Edit</span>
-            <form className="userUpdateForm">
+            <form className="userUpdateForm" onSubmit={updateAdmin}>
               <div className="userUpdateLeft">
                 <table>
                   <tr>
@@ -152,8 +181,9 @@ import {
                       <label>First Name</label>
                       <input
                         type="text"
-                        placeholder={firstName}
+                        placeholder={adfirstName}
                         className="userUpdateInput"
+                        onChange = {handleChange('firstName')}
                       />
                     </div>
                     </td>
@@ -162,8 +192,9 @@ import {
                         <label>Last Name</label>
                         <input
                           type="text"
-                          placeholder={lastName}
+                          placeholder={adlastName}
                           className="userUpdateInput"
+                          onChange = {handleChange('lastName')}
                         />
                       </div>
                     </td>
@@ -173,7 +204,10 @@ import {
                     <td>
                         <div className="userUpdateItem">
                           <label>Role</label>
-                            <select className="userUpdateInput">
+                            <select 
+                              className="userUpdateInput"
+                              onChange = {handleChange('role')}
+                            >
                               <option value="" disabled selected >--Select the role--</option>
                               <option value="Super Admin">Super Admin</option>
                               <option value="Admin">Admin</option>
@@ -187,7 +221,10 @@ import {
                   <td>
                       <div className="userUpdateItem">
                         <label>Role</label>
-                          <select className="userUpdateInput">
+                          <select 
+                            className="userUpdateInput"
+                            onChange = {handleChange('role')}
+                          >
                             <option value="" disabled selected >--Select the role--</option>
                             <option value="Admin">Admin</option>
                             <option value="Super Editor">Super Editor</option>
@@ -205,16 +242,20 @@ import {
                             type="date"
                             placeholder={adDob}
                             className="userUpdateInput"
+                            onChange = {handleChange('dob')}
                           />
                       </div>
                     </td>
                     <td>
                       <div className="userUpdateItem">
                         <label>Gender</label>
-                        <select className="userUpdateInput">
+                        <select 
+                          className="userUpdateInput"
+                          onChange = {handleChange('gender')}
+                        >
                           <option value="" disabled selected >--Select the gender--</option>
-                          <option value="Super Admin">Male</option>
-                          <option value="Admin">Female</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
                         </select>
                        </div>
                     </td>
@@ -227,6 +268,7 @@ import {
                             type="text"
                             placeholder={adEmail}
                             className="userUpdateInput"
+                            onChange = {handleChange('email')}
                           />
                       </div>
                     </td>
@@ -237,6 +279,7 @@ import {
                               type="text"
                               placeholder={adMobile}
                               className="userUpdateInput"
+                              onChange = {handleChange('mobileNumber')}
                             />
                         </div>
                     </td>
@@ -249,16 +292,19 @@ import {
                             type="text"
                             placeholder={adHomeNo}
                             className="userUpdateInput"
+                            onChange = {handleChange('homeNo')}
                           />
                           <input
                             type="text"
                             placeholder={adStreet}
                             className="userUpdateInput"
+                            onChange = {handleChange('street')}
                           />
                           <input
                             type="text"
                             placeholder={adTown}
                             className="userUpdateInput"
+                            onChange = {handleChange('town')}
                           />
                         </div>
                       </td>
@@ -268,8 +314,8 @@ import {
 
 
               <div className="userUpdateRight">
-                <div className="userUpdateUpload">
-                  <img
+               <div className="userUpdateUpload">
+                  {/* <img
                     className="userUpdateImg"
                     src={
                       file
@@ -290,8 +336,8 @@ import {
                       if (!event.target.files) return
                       setFile(event.target.files[0])
                     }}
-                  />
-                </div>
+                  /> */}
+                </div> 
                 {isAuth().role === 'Admin' && role === "Super Admin" ? 
                 <button className="userUpdateButton-disabled" disabled>Update</button> :
                 <button className="userUpdateButton">Update</button>}

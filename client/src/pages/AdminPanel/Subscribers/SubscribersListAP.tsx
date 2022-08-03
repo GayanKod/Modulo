@@ -6,6 +6,7 @@ import "../../../styles/UserListAP.scss";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Avatar from '@mui/material/Avatar';
 import axios from 'axios';
+import {isAuth} from '../../../helpers/auth'
 
 export default function SubscribersList() {
 
@@ -14,7 +15,7 @@ export default function SubscribersList() {
   //Get data from Backend
   useEffect(() => {
     function getAdmins(){
-        axios.get("https://localhost:5000/api/User/get-admins").then((res) => {
+        axios.get(`https://localhost:5000/api/User/get-users/subscribers/${isAuth().institutes[0].id}`).then((res) => {
             setData(res.data);
         }).catch((err) => {
             console.log(err.message);
@@ -44,7 +45,7 @@ export default function SubscribersList() {
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "role",
+      field: "degree",
       headerName: "Degree",
       width: 220,
     },
@@ -54,7 +55,7 @@ export default function SubscribersList() {
       width: 160,
     },
     {
-      field: "verifiedAt",
+      field: "batch",
       headerName: "Batch",
       width: 160,
     },

@@ -47,7 +47,7 @@ namespace API.Controllers
         {
             var classRoom = await _context.ClassRooms.Where(c => c.Id == id)
                                 .Include(c => c.Bookings)
-                                .Include(c => c.ClassRoom_Resources).ToListAsync();
+                                .Include(c => c.ClassRoom_Resources).FirstAsync();
 
             if (classRoom == null)
                 return BadRequest("Not Found");
@@ -55,29 +55,51 @@ namespace API.Controllers
             return Ok(classRoom);
         }
 
-        [HttpPost("post")]
+       
 
-        public async Task<ActionResult<List<ClassRoom>>> AddClassRoom(ClassRoom classRoom)
+        [HttpPost("AddClassRoom")]
+        public async Task<ActionResult<List<ClassRoom>>> AddClassRoom(AddClassRoomDTO req)
         {
+            if (_context.ClassRooms.Any(u => u.HallNo == req.HallNo))
+            {
+                return BadRequest("Hall already exists!");
+            }
+
+
+            var classRoom = new ClassRoom
+            {
+                FloorNumber = req.FloorNumber,
+                BuildingNumber = req.BuildingNumber,
+                capacity = req.capacity,
+                LabType = req.LabType,
+                ClassRoomType = req.ClassRoomType,
+                HallNo = req.HallNo,
+                InstituteId = req.InstituteId
+            };
+
+
             _context.ClassRooms.Add(classRoom);
             await _context.SaveChangesAsync();
-            return Ok(await _context.ClassRooms.Include(c => c.ClassRoom_Resources).Include(c => c.Bookings).ToListAsync());
+
+            return Ok("Lecture Hall/ Lab Successfully Added!");
         }
 
-        [HttpPut]
 
-        public async Task<ActionResult<List<ClassRoom>>> UpdateClassRoom(ClassRoomDTO request)
+        [HttpPut("update-lec-hall-lab")]
+        public async Task<ActionResult<List<ClassRoom>>> UpdateClassRoom(ClassRoomDTO req)
         {
-            var classRoom = await _context.ClassRooms.FindAsync(request.Id);
+            var classRoom = await _context.ClassRooms.FindAsync(req.Id);
 
             if (classRoom == null)
-                return BadRequest("Not Found");
+                return BadRequest("Lecture Hall/Lab Not Found");
 
-            classRoom.Id = request.Id;
-            classRoom.BuildingNumber = request.BuildingNumber;
-            classRoom.FloorNumber = request.FloorNumber;
-            classRoom.capacity = request.capacity;
-            classRoom.LabType = request.LabType;
+            classRoom.Id = req.Id;
+            classRoom.BuildingNumber = req.BuildingNumber;
+            classRoom.FloorNumber = req.FloorNumber;
+            classRoom.capacity = req.capacity;
+            classRoom.LabType = req.LabType;
+            classRoom.ClassRoomType = req.ClassRoomType;
+            classRoom.HallNo = req.HallNo;
 
             await _context.SaveChangesAsync();
 

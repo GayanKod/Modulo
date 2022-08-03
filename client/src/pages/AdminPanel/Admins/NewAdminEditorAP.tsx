@@ -1,69 +1,108 @@
 import React,{useState, useEffect} from "react";
-import {isAuth} from "../../../helpers/auth";
 import axios from "axios";
-import {
-    CalendarToday,
-    LocationSearching,
-    MailOutline,
-    PermIdentity,
-    PhoneAndroid,
-    Publish
-  } from "@mui/icons-material";
-  import Avatar from '@mui/material/Avatar';
-  import FemaleIcon from '@mui/icons-material/Female';
-  import MaleIcon from '@mui/icons-material/Male';
-  import { Link, useParams } from "react-router-dom";
-  import "../../../styles/User.scss";
-  import UploadIcon from '@mui/icons-material/Upload';
-  import AddCircleIcon from '@mui/icons-material/AddCircle';
+import {isAuth} from "../../../helpers/auth";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import "../../../styles/User.scss";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
   
   export default function User() {
 
-    let params = useParams();
-    const [file, setFile] = useState<File>();
+    let navigate = useNavigate();
+
+    //const [file, setFile] = useState<File>();
 
     const [formData, setFormData] = useState({
-        userFName:'',
-        userLName:'',
-        email:'',
+        firstName:'',
+        lastName:'',
         dob:'',
         gender:'',
+        email:'',
+        role:'',
+        mobileNumber:'',
         homeNo:'',
         street:'',
         town:'',
-        mobileNumber:'',
-        instituteName:'',
-        instituteContactNo:'',
         password:'',
-        confirmPassword:''       
+        confirmPassword:'',
+        instituteId:isAuth().institutes[0].id       
     });
 
-    const {
-      userFName, 
-      userLName, 
-      email, 
-      dob, 
-      gender, 
-      homeNo, 
-      street, 
-      town, 
-      mobileNumber, 
-      instituteName, 
-      instituteContactNo, 
-      password, 
-      confirmPassword}  = formData;
+    const handleChange = (text:string) => (e:any) => {
+      setFormData({ ...formData, [text]: e.target.value });
+    };
 
+    const {
+        firstName,
+        lastName,
+        dob,
+        gender,
+        email,
+        role,
+        mobileNumber,
+        homeNo,
+        street,
+        town,
+        password,
+        confirmPassword,
+        instituteId}  = formData;
+
+    function AddUser(e:any){
+
+      e.preventDefault();
+
+      axios
+      .post(`https://localhost:5000/api/User/add-user`, {
+              firstName,
+              lastName,
+              dob,
+              gender,
+              email,
+              role,
+              mobileNumber,
+              homeNo,
+              street,
+              town,
+              password,
+              confirmPassword,
+              instituteId
+            })
+            .then(res => {
+              toast.success("User Added Successfully!");
+              setFormData({
+                    ...formData,
+                    firstName:'',
+                    lastName:'',
+                    dob:'',
+                    gender:'',
+                    email:'',
+                    role:'',
+                    mobileNumber:'',
+                    homeNo:'',
+                    street:'',
+                    town:'',
+                    password:'',
+                    confirmPassword:''
+              });
+            })
+            .catch(err => {
+              console.log(err.response);
+              toast.error(err.response.data);
+              toast.error(err.response.data.title);
+            });
+    }
 
     return (
       <div className="user">
+        <ToastContainer />
         <div className="userTitleContainer">
           <h1 className="userTitle">Add New Admins/Editors</h1>
         </div>
         <div className="userContainer">
           <div className="userUpdate">
             <span className="userUpdateTitle">Fill all fields</span>
-            <form className="userUpdateForm">
+            <form className="userUpdateForm" onSubmit={AddUser}>
               <div className="userUpdateLeft">
                 <table>
                   <tr>
@@ -74,6 +113,8 @@ import {
                         type="text"
                         placeholder=""
                         className="userUpdateInput"
+                        value={firstName}
+                        onChange = {handleChange('firstName')}
                       />
                     </div>
                     </td>
@@ -83,7 +124,9 @@ import {
                         <input
                           type="text"
                           placeholder=""
+                          value={lastName}
                           className="userUpdateInput"
+                          onChange = {handleChange('lastName')}
                         />
                       </div>
                     </td>
@@ -93,7 +136,10 @@ import {
                     <td>
                         <div className="userUpdateItem">
                           <label>Role</label>
-                            <select className="userUpdateInput">
+                            <select className="userUpdateInput"
+                              onChange = {handleChange('role')}
+                              value={role}
+                            >
                               <option value="" disabled selected >--Select the role--</option>
                               <option value="Super Admin">Super Admin</option>
                               <option value="Admin">Admin</option>
@@ -107,7 +153,10 @@ import {
                   <td>
                       <div className="userUpdateItem">
                         <label>Role</label>
-                          <select className="userUpdateInput">
+                          <select className="userUpdateInput"
+                            onChange = {handleChange('role')}
+                            value = {role}
+                          >
                             <option value="" disabled selected >--Select the role--</option>
                             <option value="Admin">Admin</option>
                             <option value="Super Editor">Super Editor</option>
@@ -125,16 +174,21 @@ import {
                             type="date"
                             placeholder=""
                             className="userUpdateInput"
+                            onChange = {handleChange('dob')}
+                            value = {dob}
                           />
                       </div>
                     </td>
                     <td>
                       <div className="userUpdateItem">
                         <label>Gender</label>
-                        <select className="userUpdateInput">
+                        <select className="userUpdateInput"
+                          onChange = {handleChange('gender')}
+                          value = {gender}
+                        >
                           <option value="" disabled selected >--Select the gender--</option>
-                          <option value="Super Admin">Male</option>
-                          <option value="Admin">Female</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
                         </select>
                        </div>
                     </td>
@@ -147,6 +201,8 @@ import {
                             type="text"
                             placeholder=""
                             className="userUpdateInput"
+                            onChange = {handleChange('email')}
+                            value = {email}
                           />
                       </div>
                     </td>
@@ -157,6 +213,8 @@ import {
                               type="text"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('mobileNumber')}
+                              value = {mobileNumber}
                             />
                         </div>
                     </td>
@@ -169,34 +227,44 @@ import {
                             type="text"
                             placeholder="Home No."
                             className="userUpdateInput"
+                            onChange = {handleChange('homeNo')}
+                            value = {homeNo}
                           />
                           <input
                             type="text"
                             placeholder="Street"
                             className="userUpdateInput"
+                            onChange = {handleChange('street')}
+                            value = {street}
                           />
                           <input
                             type="text"
                             placeholder="Town"
                             className="userUpdateInput"
+                            onChange = {handleChange('town')}
+                            value = {town}
                           />
                         </div>
                       </td>
                       <td>
                         <div className="userUpdateItem">
-                          <label>Default Password</label>
+                          <label>Password</label>
                             <input
                               type="password"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('password')}
+                              value ={password}
                             />
                         </div>
                         <div className="userUpdateItem">
-                          <label>Confirm Default Password</label>
+                          <label>Confirm Password</label>
                             <input
                               type="password"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('confirmPassword')}
+                              value = {confirmPassword}
                             />
                         </div>
                       </td>
@@ -207,7 +275,7 @@ import {
 
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
-                  <img
+                  {/* <img
                     className="userUpdateImg"
                     src={
                       file
@@ -228,7 +296,7 @@ import {
                       if (!event.target.files) return
                       setFile(event.target.files[0])
                     }}
-                  />
+                  /> */}
                 </div>
                 <button className="userUpdateButton">Add</button>
               </div>

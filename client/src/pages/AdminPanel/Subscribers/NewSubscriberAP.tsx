@@ -16,54 +16,133 @@ import {
   import "../../../styles/User.scss";
   import UploadIcon from '@mui/icons-material/Upload';
   import AddCircleIcon from '@mui/icons-material/AddCircle';
+  import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
   
   export default function Subscriber() {
 
     let params = useParams();
-    const [file, setFile] = useState<File>();
+
+    // to store all the batches
+    const [batches, setBatches] = useState<any[]>([]);
+    const [degrees, setDegrees] = useState<any[]>([]);
+
+    // to store selected batches
+    const [selectedBatch, setSelectedBatch] = useState('');
+    const [selectedDegree, setSelectedDegree] = useState('');
+
+    useEffect(() => {
+      fetch(`https://localhost:5000/api/Batch/get-batches/inst/${isAuth().institutes[0].id}`)
+        .then(res => res.json())
+        .then(data => {
+          setBatches(data);
+        });
+    }, []);
+
+    useEffect(() => {
+      fetch(`https://localhost:5000/api/Degree/get-degrees/inst/${isAuth().institutes[0].id}`)
+        .then(res => res.json())
+        .then(data => {
+          setDegrees(data);
+        });
+    }, []);
 
     const [formData, setFormData] = useState({
-        userFName:'',
-        userLName:'',
-        email:'',
-        dob:'',
-        gender:'',
-        homeNo:'',
-        street:'',
-        town:'',
-        mobileNumber:'',
-        instituteName:'',
-        instituteContactNo:'',
-        password:'',
-        confirmPassword:''       
-    });
+      firstName: "",
+      lastName: "",
+      degree: selectedDegree,
+      batch: selectedBatch,
+      dob: "",
+      gender: "",
+      email: "",
+      mobileNumber: "",
+      homeNo: "",
+      street: "",
+      town: "",
+      password: "",
+      confirmPassword:"",
+      instituteId:isAuth().institutes[0].id       
+  });
 
-    const {
-      userFName, 
-      userLName, 
-      email, 
-      dob, 
-      gender, 
-      homeNo, 
-      street, 
-      town, 
-      mobileNumber, 
-      instituteName, 
-      instituteContactNo, 
-      password, 
-      confirmPassword}  = formData;
+  const handleChange = (text:string) => (e:any) => {
+    setFormData({ ...formData, [text]: e.target.value });
+  };
+
+  const {
+    firstName,
+    lastName,
+    degree,
+    batch,
+    dob,
+    gender,
+    email,
+    mobileNumber,
+    homeNo,
+    street,
+    town,
+    password,
+    confirmPassword,
+    instituteId}  = formData;
+
+  function AddUser(e:any){
+
+    e.preventDefault();
+
+    axios
+    .post(`https://localhost:5000/api/User/add-subscriber`, {
+            firstName,
+            lastName,
+            degree,
+            batch,
+            dob,
+            gender,
+            email,
+            mobileNumber,
+            homeNo,
+            street,
+            town,
+            password,
+            confirmPassword,
+            instituteId
+          })
+          .then(res => {
+            toast.success("User Added Successfully!");
+            setFormData({
+                  ...formData,
+                  firstName: "",
+                  lastName: "",
+                  degree: "",
+                  batch: "",
+                  dob: "",
+                  gender: "",
+                  email: "",
+                  mobileNumber: "",
+                  homeNo: "",
+                  street: "",
+                  town: "",
+                  password: "",
+                  confirmPassword:""
+            });
+          })
+          .catch(err => {
+            console.log(err.response);
+            toast.error(err.response.data);
+            toast.error(err.response.data.title);
+          });
+  }
 
 
     return (
       <div className="user">
+        <ToastContainer/>
         <div className="userTitleContainer">
           <h1 className="userTitle">Add New Subscribers</h1>
         </div>
         <div className="userContainer">
           <div className="userUpdate">
             <span className="userUpdateTitle">Fill all fields</span>
-            <form className="userUpdateForm">
+            <form className="userUpdateForm" onSubmit={AddUser}>
               <div className="userUpdateLeft">
                 <table>
                   <tr>
@@ -74,6 +153,8 @@ import {
                         type="text"
                         placeholder=""
                         className="userUpdateInput"
+                        onChange = {handleChange('firstName')}
+                        value = {firstName}
                       />
                     </div>
                     </td>
@@ -84,6 +165,8 @@ import {
                           type="text"
                           placeholder=""
                           className="userUpdateInput"
+                          onChange = {handleChange('lastName')}
+                          value = {lastName}
                         />
                       </div>
                     </td>
@@ -93,24 +176,24 @@ import {
                     <td>
                         <div className="userUpdateItem">
                           <label>Degree</label>
-                            <select className="userUpdateInput">
-                              <option value="" disabled selected >--Select the degree--</option>
-                              <option value="Super Admin">Super Admin</option>
-                              <option value="Admin">Admin</option>
-                              <option value="Super Editor">Super Editor</option>
-                              <option value="Editor">Editor</option>
+                            <div style={{fontSize:"12px"}}>Selected Degree: {selectedDegree}</div>
+                            <select className="userUpdateInput" onChange={handleChange('degree')}>
+                              <option value="">--Select the Degree--</option>
+                              {degrees.map(degree => (
+                                <option value={degree.degreeName} key={degree.id}>{degree.degreeName}</option>
+                              ))}
                             </select>
                         </div>
                     </td>
                     <td>
                         <div className="userUpdateItem">
                           <label>Batch</label>
-                            <select className="userUpdateInput">
-                              <option value="" disabled selected >--Select the batch--</option>
-                              <option value="Super Admin">Super Admin</option>
-                              <option value="Admin">Admin</option>
-                              <option value="Super Editor">Super Editor</option>
-                              <option value="Editor">Editor</option>
+                          <div style={{fontSize:"12px"}}>Selected Batch: {selectedBatch}</div>
+                            <select className="userUpdateInput" onChange={handleChange('batch')}>
+                              <option value="">--Select the batch--</option>
+                              {batches.map(batch => (
+                                <option value={batch.batchName} key={batch.id}>{batch.batchName}</option>
+                              ))}
                             </select>
                         </div>
                     </td> 
@@ -123,16 +206,18 @@ import {
                             type="date"
                             placeholder=""
                             className="userUpdateInput"
+                            onChange = {handleChange('dob')}
+                            value = {dob}
                           />
                       </div>
                     </td>
                     <td>
                       <div className="userUpdateItem">
                         <label>Gender</label>
-                        <select className="userUpdateInput">
+                        <select className="userUpdateInput" onChange = {handleChange('gender')}>
                           <option value="" disabled selected >--Select the gender--</option>
-                          <option value="Super Admin">Male</option>
-                          <option value="Admin">Female</option>
+                          <option value="Male">Male</option>
+                          <option value="Female">Female</option>
                         </select>
                        </div>
                     </td>
@@ -145,6 +230,8 @@ import {
                             type="text"
                             placeholder=""
                             className="userUpdateInput"
+                            onChange = {handleChange('email')}
+                            value = {email}
                           />
                       </div>
                     </td>
@@ -155,6 +242,8 @@ import {
                               type="text"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('mobileNumber')}
+                              value={mobileNumber}
                             />
                         </div>
                     </td>
@@ -167,16 +256,22 @@ import {
                             type="text"
                             placeholder="Home No."
                             className="userUpdateInput"
+                            onChange = {handleChange('homeNo')}
+                            value={homeNo}
                           />
                           <input
                             type="text"
                             placeholder="Street"
                             className="userUpdateInput"
+                            onChange = {handleChange('street')}
+                            value={street}
                           />
                           <input
                             type="text"
                             placeholder="Town"
                             className="userUpdateInput"
+                            onChange = {handleChange('town')}
+                            value={town}
                           />
                         </div>
                       </td>
@@ -187,6 +282,8 @@ import {
                               type="password"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('password')}
+                              value={password}
                             />
                         </div>
                         <div className="userUpdateItem">
@@ -195,6 +292,8 @@ import {
                               type="password"
                               placeholder=""
                               className="userUpdateInput"
+                              onChange = {handleChange('confirmPassword')}
+                              value={confirmPassword}
                             />
                         </div>
                       </td>
@@ -205,7 +304,7 @@ import {
 
               <div className="userUpdateRight">
                 <div className="userUpdateUpload">
-                  <img
+                  {/* <img
                     className="userUpdateImg"
                     src={
                       file
@@ -226,7 +325,7 @@ import {
                       if (!event.target.files) return
                       setFile(event.target.files[0])
                     }}
-                  />
+                  /> */}
                 </div>
                 <button className="userUpdateButton">Add</button>
               </div>

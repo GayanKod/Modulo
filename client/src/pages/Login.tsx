@@ -42,10 +42,15 @@ const Login = () => {
                   email: '',
                   password: ''
                 });
-                isAuth()
+                toast.success("Login Successfully!");
+                setTimeout(() => {isAuth().role === 'Admin' || isAuth().role === 'Super Admin'
                   ? navigate('/admin-panel')
-                  : navigate('/login');
+                  : navigate('/login');},1000) 
+                setTimeout(() => {isAuth().role === 'Editor' || isAuth().role === 'Super Editor' || isAuth().role === 'Subscriber'
+                  ? navigate('/home')
+                  : navigate('/login');},1000) 
               });
+              
             })
             .catch(err => {
               setFormData({
