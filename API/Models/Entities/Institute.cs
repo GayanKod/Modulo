@@ -16,6 +16,8 @@ namespace API.Models.Entities
         [JsonIgnore]
         public List<User> Users { get; set; }
         [JsonIgnore]
+        public List<Document>? DocumentDownloads { get; set; }
+        [JsonIgnore]
         public List<ClassRoom> Classrooms { get; set; }
         [JsonIgnore]
         public List<Batch>? Batches { get; set; }

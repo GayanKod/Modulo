@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220624065613_AddDocumentInstituteRelation")]
+    partial class AddDocumentInstituteRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,155 +24,6 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("API.ClassRoom", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BuildingNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ClassRoomType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FloorNumber")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HallNo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LabType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("capacity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
-
-                    b.ToTable("ClassRooms");
-                });
-
-            modelBuilder.Entity("API.Models.BookingDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ClassRoomId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassRoomId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BookingDetails");
-                });
-
-            modelBuilder.Entity("API.Models.ClassRoom_Resource", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ClassRoomId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ResourceId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassRoomId");
-
-                    b.HasIndex("ResourceId");
-
-                    b.ToTable("ClassRooms_Resources");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Batch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("BatchName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
-
-                    b.ToTable("Batches");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Degree", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("DegreeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DurationInYears")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InstituteId");
-
-                    b.ToTable("Degrees");
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
                     b.Property<int>("DocumentId")
@@ -298,14 +151,8 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("BatchId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("DegreeId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -362,32 +209,7 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BatchId");
-
-                    b.HasIndex("DegreeId");
-
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("API.Models.Resource", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Resources");
                 });
 
             modelBuilder.Entity("InstituteUser", b =>
@@ -405,59 +227,6 @@ namespace API.Migrations
                     b.ToTable("InstituteUser");
                 });
 
-            modelBuilder.Entity("API.ClassRoom", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("Classrooms")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Institute");
-                });
-
-            modelBuilder.Entity("API.Models.BookingDetails", b =>
-                {
-                    b.HasOne("API.ClassRoom", "ClassRoom")
-                        .WithMany("Bookings")
-                        .HasForeignKey("ClassRoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClassRoom");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("API.Models.ClassRoom_Resource", b =>
-                {
-                    b.HasOne("API.ClassRoom", "ClassRoom")
-                        .WithMany("ClassRoom_Resources")
-                        .HasForeignKey("ClassRoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Models.Resource", "Resource")
-                        .WithMany("ClassRoom_Resources")
-                        .HasForeignKey("ResourceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ClassRoom");
-
-                    b.Navigation("Resource");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Batch", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("Batches")
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
                     b.HasOne("API.Models.Entities.Institute", "Institute")
@@ -466,14 +235,6 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Institute");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Degree", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("Degrees")
-                        .HasForeignKey("InstituteId")
                     b.HasOne("API.Models.Entities.User", "User")
                         .WithMany("Documents")
                         .HasForeignKey("UserId")
@@ -502,21 +263,6 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.User", b =>
-                {
-                    b.HasOne("API.Models.Entities.Batch", "Batch")
-                        .WithMany("Users")
-                        .HasForeignKey("BatchId");
-
-                    b.HasOne("API.Models.Entities.Degree", "Degree")
-                        .WithMany("Users")
-                        .HasForeignKey("DegreeId");
-
-                    b.Navigation("Batch");
-
-                    b.Navigation("Degree");
-                });
-
             modelBuilder.Entity("InstituteUser", b =>
                 {
                     b.HasOne("API.Models.Entities.Institute", null)
@@ -532,14 +278,6 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API.ClassRoom", b =>
-                {
-                    b.Navigation("Bookings");
-
-                    b.Navigation("ClassRoom_Resources");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Batch", b =>
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
                     b.Navigation("DocumentDownloads");
@@ -547,8 +285,6 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.Institute", b =>
                 {
-                    b.Navigation("Classrooms");
-
                     b.Navigation("DocumentDownloads");
                 });
 
@@ -557,27 +293,6 @@ namespace API.Migrations
                     b.Navigation("DocumentDownloads");
 
                     b.Navigation("Documents");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Degree", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.Institute", b =>
-                {
-                    b.Navigation("Batches");
-
-                    b.Navigation("Classrooms");
-
-                    b.Navigation("Degrees");
-                });
-
-            modelBuilder.Entity("API.Models.Resource", b =>
-                {
-                    b.Navigation("ClassRoom_Resources");
                 });
 #pragma warning restore 612, 618
         }

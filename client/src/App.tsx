@@ -4,8 +4,9 @@ import LecHallBooking from "./components/LecHallAllocation/BookingPage/LecHallBo
 import TimelinePage from "./pages/Timeline";
 import LecHomePage from "./pages/LecHomePage";
 import NoticeBoard from "./pages/NoticeBoard";
-import DocumentUpload from "./pages/DocumentUpload";
-import DocumentDownload from "./pages/DocumentDownload";
+import DocumentManagerHome from "./pages/DocumentManagerHome";
+import DocumentUpload from "./components/DocumentManager/Document-uplaod/DocumentUpload";
+import DocumentDownload from "./components/DocumentManager/Document-download/DocumentDownload";
 import LoginPage from "./pages/Login";
 import { BookingPovider } from "./context/BookingContext";
 import ViewBookings from "./components/LecHallAllocation/HomePage/ViewBookings";
@@ -45,13 +46,14 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/document-upload" element={<DocumentUpload />} />
           <Route path="/document-download" element={<DocumentDownload />} />
-          <Route  path="/timeline" element={<TimelinePage/>}/>
+          <Route path="/document-manager" element={<DocumentManagerHome />} />
+          <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/lec-hall-allocation" element={<LecHomePage />} />
           <Route path="/noticeboard" element={<NoticeBoard />} />
           <Route path="/noticeboard-student" element={<NoticeboardStudent />} />
           <Route path="/noticeboard-staff" element={<NoticeboardStaff />} />
           <Route path="/noticeboard-edit" element={<NoticeForm />} />
-          
+
           <Route
             path="/lec-hall-allocation/booking"
             element={<LecHallBooking />}
@@ -71,13 +73,22 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/registration" element={<RegistrationPage />} />
 
-          <Route path="/admin-panel" element={<AdminPanelHome/>} />
-          <Route path="/admin-panel/admins" element={<APAdminsPage/>} />
-          <Route path="/admin-panel/admins/:userId" element={<APEditAdminPage/>} />
-          <Route path="/admin-panel/addadmineditor" element={<APNewAdminEditorPage/>} />
+          <Route path="/admin-panel" element={<AdminPanelHome />} />
+          <Route path="/admin-panel/admins" element={<APAdminsPage />} />
+          <Route
+            path="/admin-panel/admins/:userId"
+            element={<APEditAdminPage />}
+          />
+          <Route
+            path="/admin-panel/addadmineditor"
+            element={<APNewAdminEditorPage />}
+          />
 
-          <Route path="/admin-panel/editors" element={<APEditorsPage/>} />
-          <Route path="/admin-panel/editors/:userId" element={<APEditEditorPage/>} />
+          <Route path="/admin-panel/editors" element={<APEditorsPage />} />
+          <Route
+            path="/admin-panel/editors/:userId"
+            element={<APEditEditorPage />}
+          />
 
           <Route path="/admin-panel/subscribers" element={<APSubscribersPage/>} />
           <Route path="/admin-panel/subscribers/:userId" element={<APEditSubscriberPage/>} />
@@ -98,6 +109,7 @@ function App() {
           <Route path="/admin-panel/myprofile" element={<MyProfileAP/>} />
           <Route path="/login/email-verification" element={<VerifyEmail/>} />
 
+          <Route path="/admin-panel/myprofile" element={<MyProfileAP />} />
         </Routes>
       </Router>
 

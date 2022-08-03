@@ -37,5 +37,8 @@ namespace API.Models.Entities
         public Degree? Degree { get; set; }
         public int? DegreeId { get; set; }
 
+        public List<Document>? Documents { get; set; }
+       public List<DocumentDownload>? DocumentDownloads { get; set; }
+
     }
 }

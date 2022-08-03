@@ -1,7 +1,10 @@
 export interface Documents {
-  name: string;
-  size: string;
-  type: string;
-  date: string;
-  description: string;
+  documentId?: number;
+  documentName?: string;
+  documentType?: string;
+  description?: string;
+  documentSize?: number;
+  date?: Date;
+  documentURL?: string;
+  userId?: number;
 }

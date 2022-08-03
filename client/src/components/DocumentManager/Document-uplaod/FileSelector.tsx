@@ -1,7 +1,5 @@
-import { type } from "os";
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
-import { setSyntheticLeadingComments } from "typescript";
-import { domainToASCII } from "url";
+import React, { Dispatch, SetStateAction, useState } from "react";
+
 import { Documents } from "./Documents";
 import FileDetailForm from "./FileDetailForm";
 import FileInputContainer from "./FileInputContainer";
@@ -27,6 +25,7 @@ function FileSelector(props: FileSelectorProps): JSX.Element {
         selectedFile={selectedFile}
         docs={props.docs}
         setDocs={props.setDocs}
+        isFilePicked={isFilePicked}
         setIsFilePicked={setIsFilePicked}
       />
     </div>

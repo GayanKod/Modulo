@@ -1,0 +1,57 @@
+@import "../styleVar/colorPalette.scss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+.DocumentManagerHome {
+  .DocumentManager-title {
+    text-align: center;
+    margin-top: 20px;
+
+    .DocumentManager-title-main {
+      color: $O;
+    }
+    .DocumentManager-title-sub {
+      color: $P6;
+    }
+    h1,
+    h2 {
+      display: inline;
+    }
+  }
+  .DocumentManagerHome-sections {
+    //background-color: aqua;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .DocumentManagerHome-sections-buttons {
+      height: 250px;
+      width: 400px;
+      height: 400px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: none;
+      background-image: linear-gradient($P6, $P4);
+      color: white;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: poppins;
+      font-size: 15px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        background-image: linear-gradient($P4, $P6);
+      }
+      &:active {
+        transform: translateY(4px);
+      }
+    }
+    .DocumentManagerHome-sections-title {
+      margin-left: 5%;
+    }
+  }
+}
