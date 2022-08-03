@@ -1,6 +1,10 @@
 import "../../styles/LecHallBooking.scss";
 
-function ColorCode() {
+type ColorcodeProps = {
+  hide: boolean;
+};
+
+function ColorCode(props: ColorcodeProps) {
   return (
     <div
       className="colorcode"
@@ -30,7 +34,7 @@ function ColorCode() {
           AVAILABLE
         </span>
       </p>
-      <p>
+      <p hidden={props.hide}>
         <i className="fas fa-square" style={{ color: "#7b2cbf" }}></i>
         <span
           style={{

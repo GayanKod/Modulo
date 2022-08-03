@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/Landing";
-import LecHallBooking from "./pages/LecHallBooking";
+import LecHallBooking from "./components/LecHallAllocation/BookingPage/LecHallBooking";
 import TimelinePage from "./pages/Timeline";
 import LecHomePage from "./pages/LecHomePage";
 import NoticeBoard from "./pages/NoticeBoard";
@@ -8,6 +8,8 @@ import DocumentManagerHome from "./pages/DocumentManagerHome";
 import DocumentUpload from "./components/DocumentManager/Document-uplaod/DocumentUpload";
 import DocumentDownload from "./components/DocumentManager/Document-download/DocumentDownload";
 import LoginPage from "./pages/Login";
+import { BookingPovider } from "./context/BookingContext";
+import ViewBookings from "./components/LecHallAllocation/HomePage/ViewBookings";
 
 import AdminPanelHome from "./pages/AdminPanel/AdminPanelHome";
 import APAdminsPage from "./pages/AdminPanel/Admins/APAdminsPage";
@@ -28,6 +30,7 @@ import RegistrationPage from "./pages/Registration";
 function App() {
   return (
     <>
+      <BookingPovider>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -49,6 +52,12 @@ function App() {
             path="/lec-hall-allocation/booking/:selected/:id"
             element={<LecHallBooking />}
           />
+
+          <Route
+              path="/lec-hall-allocation/view-bookings"
+              element={<ViewBookings />}
+            />
+
 
           {/* Admin Panel, Auth*/}
           <Route path="/login" element={<LoginPage />} />
@@ -87,6 +96,9 @@ function App() {
           <Route path="/admin-panel/myprofile" element={<MyProfileAP />} />
         </Routes>
       </Router>
+
+      </BookingPovider>
+    
     </>
   );
 }

@@ -4,6 +4,7 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220623200918_madeUsernullableinbooking")]
+    partial class madeUsernullableinbooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,48 +24,6 @@ namespace API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("API.Models.Entities.Document", b =>
-                {
-                    b.Property<int>("DocumentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DocumentId"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DocumentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DocumentSize")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DocumentURL")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("InstituteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("DocumentId");
-
-                    b.HasIndex("InstituteId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Documents");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.DocumentDownload", b =>
             modelBuilder.Entity("API.ClassRoom", b =>
                 {
                     b.Property<int>("Id")
@@ -72,10 +32,6 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DocumentId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DownloadDate")
                     b.Property<int>("BuildingNumber")
                         .HasColumnType("int");
 
@@ -126,11 +82,6 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DocumentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("DocumentDownload");
                     b.HasIndex("ClassRoomId");
 
                     b.HasIndex("UserId");
@@ -326,10 +277,6 @@ namespace API.Migrations
                     b.ToTable("InstituteUser");
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document", b =>
-                {
-                    b.HasOne("API.Models.Entities.Institute", "Institute")
-                        .WithMany("DocumentDownloads")
             modelBuilder.Entity("API.ClassRoom", b =>
                 {
                     b.HasOne("API.Models.Entities.Institute", "Institute")
@@ -338,22 +285,6 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Models.Entities.User", "User")
-                        .WithMany("Documents")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Institute");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("API.Models.Entities.DocumentDownload", b =>
-                {
-                    b.HasOne("API.Models.Entities.Document", "Document")
-                        .WithMany("DocumentDownloads")
-                        .HasForeignKey("DocumentId")
                     b.Navigation("Institute");
                 });
 
@@ -366,10 +297,6 @@ namespace API.Migrations
                         .IsRequired();
 
                     b.HasOne("API.Models.Entities.User", "User")
-                        .WithMany("DocumentDownloads")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Document");
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -419,9 +346,6 @@ namespace API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("API.Models.Entities.Document", b =>
-                {
-                    b.Navigation("DocumentDownloads");
             modelBuilder.Entity("API.ClassRoom", b =>
                 {
                     b.Navigation("Bookings");
@@ -431,15 +355,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.Institute", b =>
                 {
-                    b.Navigation("DocumentDownloads");
                     b.Navigation("Classrooms");
                 });
 
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
-                    b.Navigation("DocumentDownloads");
-
-                    b.Navigation("Documents");
                     b.Navigation("Users");
                 });
 

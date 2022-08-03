@@ -7,13 +7,15 @@ using Azure.Storage.Blobs;
 using System.Text.Json.Serialization;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+// var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// builder.Services.AddDbContext<DataContext>
-// (x =>x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
 builder.Services.AddControllers();
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -26,6 +28,23 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddScoped(options =>
 {
     return new BlobServiceClient(builder.Configuration.GetConnectionString("AzureConnection"));
+});
+
+
+var provider = builder.Services.BuildServiceProvider();
+var configuration = provider.GetRequiredService<IConfiguration>();
+
+// Connection to frontend
+builder.Services.AddCors(options =>
+{
+
+    var clientURL = configuration.GetValue<String>("Client_URL");
+
+    options.AddDefaultPolicy(builder =>
+      {
+          builder.WithOrigins(clientURL).AllowAnyMethod().AllowAnyHeader();
+      }
+      );
 });
 builder.Services.AddScoped<IFileManagerLogic, FileManagerLogic>();
 //Adding CORS
@@ -59,6 +78,21 @@ builder.Services.AddCors(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy(name: MyAllowSpecificOrigins,
+//                       policy =>
+//                       {
+//                           policy.WithOrigins("http://localhost:3000")
+//                           .AllowAnyHeader()
+//                                 .AllowAnyMethod();
+//                       });
+// });
+
+
+
 
 var app = builder.Build();
 

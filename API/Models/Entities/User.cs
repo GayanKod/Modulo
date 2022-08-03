@@ -28,7 +28,10 @@ namespace API.Models.Entities
         public DateTime? VerifiedAt { get; set; }
         public string? PasswordResetToken { get; set; }
         public DateTime? ResetTokenExpires { get; set; }
+
+
         public List<Institute> Institutes { get; set; }
+        public List<User> Users { get; set; }
 
         public List<Document>? Documents { get; set; }
        public List<DocumentDownload>? DocumentDownloads { get; set; }
