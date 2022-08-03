@@ -45,7 +45,7 @@ export default function SubscribersList() {
     },
     { field: "email", headerName: "Email", width: 200 },
     {
-      field: "role",
+      field: "degree",
       headerName: "Degree",
       width: 220,
     },
@@ -55,7 +55,7 @@ export default function SubscribersList() {
       width: 160,
     },
     {
-      field: "verifiedAt",
+      field: "batch",
       headerName: "Batch",
       width: 160,
     },
