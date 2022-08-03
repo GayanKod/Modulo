@@ -16,6 +16,7 @@ import {
   import AddCircleIcon from '@mui/icons-material/AddCircle';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import CircleIcon from '@mui/icons-material/Circle';
 
   
   export default function User() {
@@ -123,19 +124,19 @@ import {
             <div className="userShowBottom">
               <span className="userShowTitle">Lecture Hall/ Lab Details</span>
               <div className="userShowInfo">
-                <CalendarToday className="userShowIcon" />
+                <CircleIcon className="userShowIcon" />
                 <span className="userShowInfoTitle">Floor Number : {thisfloorNumber}</span>
               </div>
               <div className="userShowInfo">
-                <PhoneAndroid className="userShowIcon" />
+                <CircleIcon className="userShowIcon" />
                 <span className="userShowInfoTitle">Buildiing Number : {thisBuildingNumber}</span>
               </div>
               <div className="userShowInfo">
-                <MailOutline className="userShowIcon" />
+                <CircleIcon className="userShowIcon" />
                 <span className="userShowInfoTitle">Capacity : {thisCapacity}</span>
               </div>
               <div className="userShowInfo">
-                <LocationSearching className="userShowIcon" />
+                <CircleIcon className="userShowIcon" />
                 <span className="userShowInfoTitle">Lab Type : {thisLabType}</span>
               </div>
             </div>
