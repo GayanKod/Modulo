@@ -32,5 +32,10 @@ namespace API.Models.Entities
 
         public List<Institute> Institutes { get; set; }
 
+        public Batch? Batch { get; set; }
+        public int? BatchId { get; set; }
+        public Degree? Degree { get; set; }
+        public int? DegreeId { get; set; }
+
     }
 }
