@@ -24,6 +24,12 @@ import VerifyEmail from "./pages/UserVerification";
 import APLecHallsPage from "./pages/AdminPanel/LecHallsLabs/APLecHallsPage";
 import ApEditLecHallPage from "./pages/AdminPanel/LecHallsLabs/APEditLecHallPage";
 import APNewLecHall from "./pages/AdminPanel/LecHallsLabs/APNewLecHall";
+import APBatchesPage from "./pages/AdminPanel/Batches/APBatchesPage";
+import APEditBatchesPage from "./pages/AdminPanel/Batches/APEditBatchesPage";
+import APNewBatch from "./pages/AdminPanel/Batches/APNewBatch";
+import APDegreesPage from "./pages/AdminPanel/Degrees/APDegreesPage";
+import APEditDegreePage from "./pages/AdminPanel/Degrees/APEditDegreePage";
+import APNewDegree from "./pages/AdminPanel/Degrees/APNewDegree";
 
 import NoticeboardStudent from "./pages/NoticeboardStudent";
 import NoticeboardStaff from "./pages/NoticeboardStaff";
@@ -80,6 +86,14 @@ function App() {
           <Route path="/admin-panel/lechallslabs" element={<APLecHallsPage />} />
           <Route path="/admin-panel/lechallslabs/:lecHallId" element={<ApEditLecHallPage/>} />
           <Route path="/admin-panel/addlechallslabs" element={<APNewLecHall/>} />
+
+          <Route path="/admin-panel/batches" element={<APBatchesPage />} />
+          <Route path="/admin-panel/batches/:batchId" element={<APEditBatchesPage/>} />
+          <Route path="/admin-panel/addbatches" element={<APNewBatch/>} />
+
+          <Route path="/admin-panel/degrees" element={<APDegreesPage />} />
+          <Route path="/admin-panel/degrees/:degreeId" element={<APEditDegreePage/>} />
+          <Route path="/admin-panel/adddegrees" element={<APNewDegree/>} />
 
           <Route path="/admin-panel/myprofile" element={<MyProfileAP/>} />
           <Route path="/login/email-verification" element={<VerifyEmail/>} />
