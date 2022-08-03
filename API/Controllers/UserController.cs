@@ -44,7 +44,10 @@ namespace API.Controllers
             var inst = GetInstitute(inst_id);
             var user = await _context.Users
                 .Where(u => u.Institutes.Contains(inst))
-                .Include(u => u.Institutes).ToListAsync();
+                .Include(u => u.Institutes)
+                .Include(u => u.Batch)
+                .Include(u => u.Degree)
+                .ToListAsync();
 
             if (user == null)
                 return BadRequest("User Not Found!");
@@ -58,7 +61,8 @@ namespace API.Controllers
             var inst = GetInstitute(inst_id);
             var user = await _context.Users.OrderByDescending(u => u.VerifiedAt)
                 .Where(u => u.Institutes.Contains(inst))
-                .Include(u => u.Institutes).ToListAsync();
+                .Include(u => u.Institutes)
+                .ToListAsync();
 
             if (user == null)
                 return BadRequest("User Not Found!");
@@ -93,6 +97,54 @@ namespace API.Controllers
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 VerificationToken = CreateRandomToken()
+            };
+
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            await Verify(await _context.Users.Where(a => a.Email == request.Email).Select(x => x.VerificationToken).FirstAsync());
+
+            var userInst = new UserInstituteDTO
+            {
+                UserId = await _context.Users.Where(a => a.Email == request.Email).Select(x => x.Id).FirstAsync(),
+                InstituteId = await _context.Institutes.Where(i => i.Id == request.InstituteId).Select(x => x.Id).FirstAsync()
+            };
+
+            await AddUserInstitute(userInst);
+            return Ok("User Successfully Added!");
+        }
+
+        [Route("add-subscriber")]
+        [HttpPost]
+        public async Task<ActionResult<List<User>>> AddSubscriber(AddSubscriberDTO request)
+        {
+            if (_context.Users.Any(u => u.Email == request.Email))
+            {
+                return BadRequest("User already exists!");
+            }
+
+            CreatePasswordHash(request.Password,
+                out byte[] passwordHash,
+                out byte[] passwordSalt);
+
+            var user = new User
+            {
+                Email = request.Email,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                DOB = request.DOB,
+                Gender = request.Gender,
+                HomeNo = request.HomeNo,
+                Street = request.Street,
+                Town = request.Town,
+                MobileNumber = request.MobileNumber,
+                Role = "Subscriber",
+                PasswordHash = passwordHash,
+                PasswordSalt = passwordSalt,
+                VerificationToken = CreateRandomToken(),
+                BatchId = await _context.Batches.Where(b => b.BatchName == request.Batch).Select(x => x.Id).FirstAsync(),
+                DegreeId = await _context.Degrees.Where(b => b.DegreeName == request.Degree).Select(x => x.Id).FirstAsync()
             };
 
 
