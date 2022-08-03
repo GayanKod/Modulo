@@ -1,6 +1,19 @@
 @import "../styleVar/colorPalette.scss";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #59189a81;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #59189a;
+  border-radius: 30px;
+}
+
 .DocumentUploader {
   display: flex;
   flex-direction: column;
@@ -39,7 +52,7 @@
       justify-content: center;
       background-color: rgb(157, 78, 221, 0.2);
 
-      .pdf-image {
+      .Fileselector-container-image {
         height: 100px;
         width: 75px;
       }
@@ -91,7 +104,7 @@
       justify-content: center;
       font-size: 15px;
       // background-color: aquamarine;
-      input[type="text"] {
+      .fileDetailForm-Input {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -106,6 +119,7 @@
           border: 1px solid red;
         }
       }
+
       .fileDetailForm-buttons {
         display: flex;
         //background-color: burlywood;
@@ -151,8 +165,9 @@
       width: 75%;
       //background-color: darkorange;
       border-spacing: 15px;
-      margin: 0;
+      margin: auto;
       font-size: 15px;
+
       .RecentUpload-table-caption {
         font-size: large;
         text-align: left;
@@ -185,6 +200,32 @@
             color: $O;
           }
         }
+      }
+    }
+    .RecentUpload-showall-less {
+      width: 10%;
+      height: 40px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: none;
+      background-color: $P6;
+      color: white;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: poppins;
+      font-size: 15px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $P4;
+      }
+      &:active {
+        transform: translateY(4px);
       }
     }
   }

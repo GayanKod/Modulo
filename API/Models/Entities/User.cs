@@ -33,5 +33,8 @@ namespace API.Models.Entities
         public List<Institute> Institutes { get; set; }
         public List<User> Users { get; set; }
 
+        public List<Document>? Documents { get; set; }
+       public List<DocumentDownload>? DocumentDownloads { get; set; }
+
     }
 }
