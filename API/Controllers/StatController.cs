@@ -44,13 +44,23 @@ namespace API.Controllers
                 .Where(u => u.Role == "Subscriber")
                 .CountAsync();
 
+            var Dcount = await _context.Degrees
+                .Where(u => u.Institute.Equals(inst))
+                .CountAsync();
+
+            var BatchC = await _context.Batches
+                .Where(u => u.Institute.Equals(inst))
+                .CountAsync();
+
             var stat = new StatDTO
             {
                 SuperAdminsCount = SAcount,
                 AdminsCount = Acount,
                 SuperEditorsCount = SEcount,
                 EditorsCount = Ecount,
-                SubscribersCount = Scount
+                SubscribersCount = Scount,
+                DegreesCount = Dcount,
+                BatchesCount = BatchC
             };
 
             return Ok(stat);
