@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class updaterelationships : Migration
+    public partial class initialMigrationafterIntegrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +55,102 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Batches",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BatchName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    InstituteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Batches", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Batches_Institutes_InstituteId",
+                        column: x => x.InstituteId,
+                        principalTable: "Institutes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClassRooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FloorNumber = table.Column<int>(type: "int", nullable: false),
+                    BuildingNumber = table.Column<int>(type: "int", nullable: false),
+                    capacity = table.Column<int>(type: "int", nullable: false),
+                    LabType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClassRoomType = table.Column<int>(type: "int", nullable: false),
+                    HallNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InstituteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassRooms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClassRooms_Institutes_InstituteId",
+                        column: x => x.InstituteId,
+                        principalTable: "Institutes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Degrees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DegreeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DurationInYears = table.Column<int>(type: "int", nullable: false),
+                    InstituteId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Degrees", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Degrees_Institutes_InstituteId",
+                        column: x => x.InstituteId,
+                        principalTable: "Institutes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ClassRooms_Resources",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassRoomId = table.Column<int>(type: "int", nullable: false),
+                    ResourceId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClassRooms_Resources", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClassRooms_Resources_ClassRooms_ClassRoomId",
+                        column: x => x.ClassRoomId,
+                        principalTable: "ClassRooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClassRooms_Resources_Resources_ResourceId",
+                        column: x => x.ResourceId,
+                        principalTable: "Resources",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -76,38 +172,49 @@ namespace API.Migrations
                     VerifiedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PasswordResetToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResetTokenExpires = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    BatchId = table.Column<int>(type: "int", nullable: true),
+                    DegreeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Users_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Users_Batches_BatchId",
+                        column: x => x.BatchId,
+                        principalTable: "Batches",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Users_Degrees_DegreeId",
+                        column: x => x.DegreeId,
+                        principalTable: "Degrees",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "ClassRooms",
+                name: "BookingDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FloorNumber = table.Column<int>(type: "int", nullable: false),
-                    BuildingNumber = table.Column<int>(type: "int", nullable: false),
-                    capacity = table.Column<int>(type: "int", nullable: false),
-                    LabType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClassRoomType = table.Column<int>(type: "int", nullable: false),
-                    InstituteId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ClassRoomId = table.Column<int>(type: "int", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ClassRooms", x => x.Id);
+                    table.PrimaryKey("PK_BookingDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ClassRooms_Institutes_InstituteId",
-                        column: x => x.InstituteId,
-                        principalTable: "Institutes",
+                        name: "FK_BookingDetails_ClassRooms_ClassRoomId",
+                        column: x => x.ClassRoomId,
+                        principalTable: "ClassRooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookingDetails_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -168,62 +275,6 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BookingDetails",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ClassRoomId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BookingDetails", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BookingDetails_ClassRooms_ClassRoomId",
-                        column: x => x.ClassRoomId,
-                        principalTable: "ClassRooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BookingDetails_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ClassRooms_Resources",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClassRoomId = table.Column<int>(type: "int", nullable: false),
-                    ResourceId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ClassRooms_Resources", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ClassRooms_Resources_ClassRooms_ClassRoomId",
-                        column: x => x.ClassRoomId,
-                        principalTable: "ClassRooms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ClassRooms_Resources_Resources_ResourceId",
-                        column: x => x.ResourceId,
-                        principalTable: "Resources",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "DocumentDownload",
                 columns: table => new
                 {
@@ -248,6 +299,11 @@ namespace API.Migrations
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Batches_InstituteId",
+                table: "Batches",
+                column: "InstituteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BookingDetails_ClassRoomId",
@@ -275,6 +331,11 @@ namespace API.Migrations
                 column: "ResourceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Degrees_InstituteId",
+                table: "Degrees",
+                column: "InstituteId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DocumentDownload_DocumentId",
                 table: "DocumentDownload",
                 column: "DocumentId");
@@ -300,9 +361,14 @@ namespace API.Migrations
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_UserId",
+                name: "IX_Users_BatchId",
                 table: "Users",
-                column: "UserId");
+                column: "BatchId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_DegreeId",
+                table: "Users",
+                column: "DegreeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -332,10 +398,16 @@ namespace API.Migrations
                 name: "Documents");
 
             migrationBuilder.DropTable(
-                name: "Institutes");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Batches");
+
+            migrationBuilder.DropTable(
+                name: "Degrees");
+
+            migrationBuilder.DropTable(
+                name: "Institutes");
         }
     }
 }

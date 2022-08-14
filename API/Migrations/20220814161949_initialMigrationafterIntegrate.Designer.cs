@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220803194848_updaterelationships")]
-    partial class updaterelationships
+    [Migration("20220814161949_initialMigrationafterIntegrate")]
+    partial class initialMigrationafterIntegrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,6 +40,10 @@ namespace API.Migrations
 
                     b.Property<int>("FloorNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("HallNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("InstituteId")
                         .HasColumnType("int");
@@ -113,6 +117,62 @@ namespace API.Migrations
                     b.HasIndex("ResourceId");
 
                     b.ToTable("ClassRooms_Resources");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.Batch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("BatchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InstituteId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstituteId");
+
+                    b.ToTable("Batches");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.Degree", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("DegreeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DurationInYears")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstituteId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstituteId");
+
+                    b.ToTable("Degrees");
                 });
 
             modelBuilder.Entity("API.Models.Entities.Document", b =>
@@ -242,8 +302,14 @@ namespace API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("BatchId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DegreeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -292,9 +358,6 @@ namespace API.Migrations
                     b.Property<string>("Town")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("VerificationToken")
                         .HasColumnType("nvarchar(max)");
 
@@ -303,7 +366,9 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("BatchId");
+
+                    b.HasIndex("DegreeId");
 
                     b.ToTable("Users");
                 });
@@ -393,6 +458,28 @@ namespace API.Migrations
                     b.Navigation("Resource");
                 });
 
+            modelBuilder.Entity("API.Models.Entities.Batch", b =>
+                {
+                    b.HasOne("API.Models.Entities.Institute", "Institute")
+                        .WithMany("Batches")
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Institute");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.Degree", b =>
+                {
+                    b.HasOne("API.Models.Entities.Institute", "Institute")
+                        .WithMany("Degrees")
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Institute");
+                });
+
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
                     b.HasOne("API.Models.Entities.Institute", "Institute")
@@ -431,9 +518,17 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.User", b =>
                 {
-                    b.HasOne("API.Models.Entities.User", null)
+                    b.HasOne("API.Models.Entities.Batch", "Batch")
                         .WithMany("Users")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("BatchId");
+
+                    b.HasOne("API.Models.Entities.Degree", "Degree")
+                        .WithMany("Users")
+                        .HasForeignKey("DegreeId");
+
+                    b.Navigation("Batch");
+
+                    b.Navigation("Degree");
                 });
 
             modelBuilder.Entity("InstituteUser", b =>
@@ -458,6 +553,16 @@ namespace API.Migrations
                     b.Navigation("ClassRoom_Resources");
                 });
 
+            modelBuilder.Entity("API.Models.Entities.Batch", b =>
+                {
+                    b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("API.Models.Entities.Degree", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("API.Models.Entities.Document", b =>
                 {
                     b.Navigation("DocumentDownloads");
@@ -465,7 +570,11 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Models.Entities.Institute", b =>
                 {
+                    b.Navigation("Batches");
+
                     b.Navigation("Classrooms");
+
+                    b.Navigation("Degrees");
 
                     b.Navigation("DocumentDownloads");
                 });
@@ -475,8 +584,6 @@ namespace API.Migrations
                     b.Navigation("DocumentDownloads");
 
                     b.Navigation("Documents");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("API.Models.Resource", b =>
