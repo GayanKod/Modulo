@@ -1,18 +1,8 @@
 import React,{useState, useEffect} from "react";
-import {isAuth} from "../../../helpers/auth";
 import axios from "axios";
-import {
-    CalendarToday,
-    LocationSearching,
-    MailOutline,
-    PhoneAndroid
-  } from "@mui/icons-material";
-  import Avatar from '@mui/material/Avatar';
-  import FemaleIcon from '@mui/icons-material/Female';
-  import MaleIcon from '@mui/icons-material/Male';
+
   import { Link, useParams } from "react-router-dom";
   import "../../../styles/User.scss";
-  import UploadIcon from '@mui/icons-material/Upload';
   import AddCircleIcon from '@mui/icons-material/AddCircle';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';

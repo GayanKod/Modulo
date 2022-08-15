@@ -1,7 +1,7 @@
-import React,{useState, useEffect} from "react";
+import React,{useState} from "react";
 import axios from "axios";
 import {isAuth} from "../../../helpers/auth";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../../styles/User.scss";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
   
   export default function NewLecHallAP() {
 
-    let navigate = useNavigate();
 
     //const [file, setFile] = useState<File>();
 

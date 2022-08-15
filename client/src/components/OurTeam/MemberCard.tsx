@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../styles/MemberCard.scss";
-import Gayan from "../../assets/img/imgOurTeam/Gayan.jpeg";
 
 //Reference to use React FC in TS "https://www.pluralsight.com/guides/defining-props-in-react-function-component-with-typescript"
 
