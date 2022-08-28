@@ -21,9 +21,9 @@ const SmallWidget = () => {
             setRow3(res.data[2]);
             setRow4(res.data[3]);
             setRow5(res.data[4]);
-            console.log(res.data);
+            
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getRecenetUsers();

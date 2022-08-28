@@ -89,7 +89,7 @@ function Registration(){
               setTimeout(() => {navigate('/login/email-verification');},1000) 
             })
             .catch(err => {
-              console.log(err.response);
+              
               toast.error(err.response.data);
               toast.error(err.response.data.title);
             });

@@ -20,7 +20,7 @@ function FileInputContainer(props: FileInputContainerprops) {
     props.setSelectedFile(event.target.files[0]!);
 
     var ext = event.target.files[0].type;
-    console.log(ext);
+    
     if (ext === "application/pdf") {
       setImg(PDFImg);
     } else if (

@@ -22,7 +22,7 @@ const UserVerification = () => {
       let navigate = useNavigate();
 
       const handleSubmit = (e:SyntheticEvent) => {
-        console.log('https://localhost:5000/api/Auth/verify');
+        
         e.preventDefault();
         if (token) {
           axios
@@ -33,7 +33,7 @@ const UserVerification = () => {
                 setTimeout(() => {navigate('/login');},1000)
             })
             .catch(err => {
-                console.log(err.response);
+                
                 toast.error(err.response.data);
                 toast.error(err.response.data.title);
             });

@@ -26,7 +26,7 @@ const FeaturedInfo = () => {
             setBCount(res.data.batchesCount);
             setUCount(res.data.adminsCount+res.data.superAdminsCount+res.data.superEditorsCount+res.data.editorsCount + res.data.subscribersCount + res.data.subscribersCount)
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getAdmins();

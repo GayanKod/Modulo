@@ -19,7 +19,7 @@ export default function BatchesList() {
         axios.get(`https://localhost:5000/api/Batch/get-batches/inst/${isAuth().institutes[0].id}`).then((res) => {
             setData(res.data);
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getBatches();
@@ -30,7 +30,7 @@ export default function BatchesList() {
             toast.error("Batch deleted!")
             window.location.reload();
           }).catch((err) => {
-            console.log(err.response.data);
+            
             toast.error(err.response.data);
           })
   };

@@ -38,7 +38,7 @@ function ResourceDetails(props: ResourceDetailsProps) {
   // }
 
   if (item) {
-    console.log(item[0].name);
+    
     return (
       <tr>
         <td>{item[0].name}</td>

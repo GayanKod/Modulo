@@ -18,7 +18,7 @@ export default function SubscribersList() {
         axios.get(`https://localhost:5000/api/User/get-users/subscribers/${isAuth().institutes[0].id}`).then((res) => {
             setData(res.data);
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getAdmins();

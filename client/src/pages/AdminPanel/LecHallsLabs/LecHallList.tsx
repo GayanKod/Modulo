@@ -19,7 +19,7 @@ export default function LecHallList() {
         axios.get(`https://localhost:5000/api/ClassRoom/institute/${isAuth().institutes[0].id}`).then((res) => {
             setData(res.data);
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getLecHalls();
@@ -30,7 +30,7 @@ export default function LecHallList() {
             toast.error("Lec Hall deleted!")
             window.location.reload();
           }).catch((err) => {
-            console.log(err.response.data);
+            
             toast.error(err.response.data);
           })
   };

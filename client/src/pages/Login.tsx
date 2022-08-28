@@ -27,7 +27,7 @@ const Login = () => {
       let navigate = useNavigate();
 
       const handleSubmit = (e:SyntheticEvent) => {
-        console.log('https://localhost:5000/api/Auth/login');
+        
         e.preventDefault();
         if (email && password) {
           axios
@@ -58,7 +58,7 @@ const Login = () => {
                 email: '',
                 password: ''
               });
-              console.log(err.response);
+              
               toast.error(err.response.data);
               toast.error(err.response.data.title);
             });

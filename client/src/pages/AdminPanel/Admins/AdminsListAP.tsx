@@ -22,7 +22,7 @@ export default function AdminsList() {
         axios.get(`https://localhost:5000/api/User/get-users/admins/${isAuth().institutes[0].id}`).then((res) => {
             setData(res.data);
         }).catch((err) => {
-            console.log(err.message);
+            
         })
     }
     getAdmins();
@@ -37,14 +37,14 @@ export default function AdminsList() {
               navigate('/');
             })
           }).catch((err) => {
-              console.log(err.response.data);
+              
               toast.error(err.response.data);
           })
         }else{
           axios.delete(`https://localhost:5000/api/User/delete-user/${id}`).then((res) => {
               toast.error("User deleted!");
           }).catch((err) => {
-              console.log(err.response.data);
+              
               toast.error(err.response.data);
           })
         }  

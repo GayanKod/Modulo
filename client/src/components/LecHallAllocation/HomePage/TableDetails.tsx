@@ -32,8 +32,7 @@ function TableDetails({ selected }: Props) {
 
       .then((classes) => setClassRooms(classes.data))
       .catch((error) => {
-        console.log(error);
-        console.log(isAuth().institute[0].id);
+
       })
       .finally(() => setLoading(false));
   }, []);

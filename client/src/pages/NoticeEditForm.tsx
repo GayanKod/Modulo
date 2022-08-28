@@ -21,7 +21,7 @@ export default function App() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);
+    
 
     setFormData(defaultFormData);
   };

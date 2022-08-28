@@ -15,7 +15,7 @@ function Confirmation(props: ConfirmationProps) {
   const handleClose = () => {
     setOpen(false);
   };
-  console.log("confirmed.");
+  
   return (
     <>
       <button

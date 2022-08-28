@@ -79,7 +79,7 @@ const BookingForm = (props: BookingFormProps) => {
       .then(function (response) {
         if (response.status === 200) {
           // confirm(true); //confirm function call
-          console.log("added");
+          
         }
       })
       .catch((e) => console.log(e));
@@ -89,9 +89,9 @@ const BookingForm = (props: BookingFormProps) => {
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
-    console.log(value);
+    
     setBookingDate(value);
-    console.log(bookingDate);
+    
   };
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -101,7 +101,6 @@ const BookingForm = (props: BookingFormProps) => {
 
     const d = new Date(bookingDate as string);
 
-    console.log("user: " + isAuth().id);
 
     setNewBooking({
       // user: 0,
@@ -112,7 +111,7 @@ const BookingForm = (props: BookingFormProps) => {
       endTime: new Date(d.setHours(to.value + 5)).toJSON(),
     });
 
-    console.log(newBooking);
+    
   };
 
   return (

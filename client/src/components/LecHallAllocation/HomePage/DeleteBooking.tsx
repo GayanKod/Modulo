@@ -16,7 +16,7 @@ export function deleteBooking(id: number) {
       },
     })
     .then(() => {
-      console.log("deleted.");
+      
     })
     .catch((e) => console.log(e));
 }
