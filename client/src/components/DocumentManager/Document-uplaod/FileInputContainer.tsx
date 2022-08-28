@@ -21,20 +21,20 @@ function FileInputContainer(props: FileInputContainerprops) {
 
     var ext = event.target.files[0].type;
     console.log(ext);
-    if (ext == "application/pdf") {
+    if (ext === "application/pdf") {
       setImg(PDFImg);
     } else if (
-      ext ==
+      ext ===
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     ) {
       setImg(WordImg);
     } else if (
-      ext ==
+      ext ===
       "application/vnd.openxmlformats-officedocument.presentationml.presentation"
     ) {
       setImg(PowerPointImg);
     } else if (
-      ext == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ext === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     ) {
       setImg(ExcelImg);
     }

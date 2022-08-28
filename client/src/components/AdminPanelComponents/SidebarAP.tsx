@@ -1,11 +1,8 @@
-import React from "react";
 import { signout } from "../../helpers/auth";
 import "../../styles/SidebarAP.scss";
 import { Link, useNavigate } from "react-router-dom";
 import {
   LineStyle,
-  Timeline,
-  MenuBook,
   PermIdentity,
   School,
   Science,

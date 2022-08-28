@@ -23,7 +23,7 @@ const NoticeInput :FC = () => {
      if(event.target.name==="notice"){
        setNotice(event.target.value);
      }
-     else if (event.target.value=="null"){
+     else if (event.target.value==="null"){
         setError('Title is required');
      }
      else {

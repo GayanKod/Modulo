@@ -48,7 +48,7 @@ export default function LecHomePage() {
                 <th className="hidden"></th>
                 <th className="hide">Hall ID</th>
                 <th>Hall Name</th>
-                <th hidden={selected.value == 0}>Lab Type</th>
+                <th hidden={selected.value === 0}>Lab Type</th>
                 <th className="hide">Hall capacity</th>
                 <th className="hide">Hall Location</th>
                 <th>Resources</th>

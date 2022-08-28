@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {isAuth} from "../../../helpers/auth";
 import axios from "axios";
 import {
@@ -12,7 +12,8 @@ import {
   import MaleIcon from '@mui/icons-material/Male';
   import { Link, useParams } from "react-router-dom";
   import "../../../styles/User.scss";
-  import UploadIcon from '@mui/icons-material/Upload';
+  // import UploadIcon from '@mui/icons-material/Upload';
+  // Need for future improvemnet
   import AddCircleIcon from '@mui/icons-material/AddCircle';
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
@@ -21,7 +22,8 @@ import {
   export default function User() {
 
     let params = useParams();
-    const [file, setFile] = useState<File>();
+    // const [file, setFile] = useState<File>();
+    // Need for future improvemnet
 
     const [adfirstName, setFirstName] = useState('');
     const [adlastName, setLastName] = useState('');
@@ -337,6 +339,7 @@ import {
                       setFile(event.target.files[0])
                     }}
                   /> */}
+                  {/* Need for future improvemnet */}
                 </div> 
                 {isAuth().role === 'Admin' && role === "Super Admin" ? 
                 <button className="userUpdateButton-disabled" disabled>Update</button> :

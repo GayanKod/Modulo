@@ -1,4 +1,3 @@
-import React from 'react';
 import LandingPgHeader from '../LandingPgHeader';
 import Card from "../Card";
 import {FeaturesDetails} from "../AppFeatures/FeaturesDetails";

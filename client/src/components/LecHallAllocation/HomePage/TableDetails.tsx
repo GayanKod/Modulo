@@ -19,8 +19,8 @@ function TableDetails({ selected }: Props) {
   const [classRooms, setClassRooms] = useState<Item[] | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const isHall = (c: any) => c.classRoomType == 0;
-  const isLab = (c: any) => c.classRoomType == 1;
+  const isHall = (c: any) => c.classRoomType === 0;
+  const isLab = (c: any) => c.classRoomType === 1;
 
   useEffect(() => {
     axios
@@ -45,7 +45,7 @@ function TableDetails({ selected }: Props) {
       </tr>
     );
 
-  if (classRooms == null) {
+  if (classRooms === null) {
     return (
       <tr>
         <td style={{ textAlign: "center" }}>No Items available yet.</td>
@@ -120,8 +120,8 @@ function Row({ item, selected }: Props) {
             )}
           </button>
         </td>
-        <td>{`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.id}`}</td>
-        <td hidden={selected == 0}>{item.labType}</td>
+        <td>{`${selected === 0 ? "Lecture Hall" : "Lab"} ${item.id}`}</td>
+        <td hidden={selected === 0}>{item.labType}</td>
         <td className="hide">{item.capacity}</td>
         <td className="hide">{`Building: ${item.buildingNumber}, Floor: ${item.floorNumber}`}</td>
         <td>
@@ -133,7 +133,7 @@ function Row({ item, selected }: Props) {
         <td>
           <Link
             to={`/lec-hall-allocation/booking/${
-              selected == 0 ? "Lecture-halls" : "Labs" //chnage to selected if needed
+              selected === 0 ? "Lecture-halls" : "Labs" //chnage to selected if needed
             }/${item.id}`}
           >
             <button
@@ -158,7 +158,7 @@ function Row({ item, selected }: Props) {
                 backgroundColor: "#e8e8e8",
               }}
             >
-              {`${selected == 0 ? "Lecture Hall" : "Lab"} ${item.id}`}
+              {`${selected === 0 ? "Lecture Hall" : "Lab"} ${item.id}`}
             </h3>
             <table className="details-table hidden" style={hiddenTable}>
               <div className="thead">

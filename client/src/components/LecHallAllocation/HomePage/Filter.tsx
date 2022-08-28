@@ -27,7 +27,7 @@ function Filter(props: FilterProps) {
   };
 
   return (
-    <div className={props.id == "home" ? "filter1" : "filter2"}>
+    <div className={props.id === "home" ? "filter1" : "filter2"}>
       <Select
         className="select"
         options={props.options}
@@ -37,7 +37,7 @@ function Filter(props: FilterProps) {
             props.setSelected(e);
           }
         }}
-        styles={props.id == "home" ? customStyles1 : customStyles2}
+        styles={props.id === "home" ? customStyles1 : customStyles2}
       />
     </div>
   );

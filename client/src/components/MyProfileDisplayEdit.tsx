@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {isAuth} from "../helpers/auth";
 import axios from "axios";
 import {
@@ -10,18 +10,19 @@ import {
   import Avatar from '@mui/material/Avatar';
   import FemaleIcon from '@mui/icons-material/Female';
   import MaleIcon from '@mui/icons-material/Male';
-  import { Link, useParams } from "react-router-dom";
   import "../styles/User.scss";
-  import UploadIcon from '@mui/icons-material/Upload';
-  import AddCircleIcon from '@mui/icons-material/AddCircle';
+  // import UploadIcon from '@mui/icons-material/Upload';
+  // import AddCircleIcon from '@mui/icons-material/AddCircle';
+  //Commented, cause need these for future improvemnet. 
   import { ToastContainer, toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
   
   export default function MyProfileDisplayEdit() {
 
-    let params = useParams();
-    const [file, setFile] = useState<File>();
+    // let params = useParams();
+    // const [file, setFile] = useState<File>();
+    //Need for future improvemnet
 
     const [adfirstName, setFirstName] = useState('');
     const [adlastName, setLastName] = useState('');
@@ -323,7 +324,8 @@ import {
                       if (!event.target.files) return
                       setFile(event.target.files[0])
                     }}
-                  /> */}
+                  /> */} 
+                  {/* Need for future improvemnet */}
                 </div> 
                 {isAuth().role === 'Admin' && role === "Super Admin" ? 
                 <button className="userUpdateButton-disabled" disabled>Update</button> :

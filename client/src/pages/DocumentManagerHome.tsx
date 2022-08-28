@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import Navbar2 from "../components/Navbar2";
 import "../styles/DocumentManagerHome.scss";

@@ -18,7 +18,7 @@ export default function Resources(props: ResourceProps) {
   const handleClose = () => setOpen(false);
 
   const resourceList = () => {
-    if (props.resourcesUsed.length == 0) {
+    if (props.resourcesUsed.length === 0) {
       return (
         <tbody>
           <tr>

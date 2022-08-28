@@ -1,4 +1,3 @@
-import React from 'react';
 import LandingPgHeader from "../LandingPgHeader";
 import MemberCard from "./MemberCard";
 import {OurTeamDetails} from "./OurTeamDetails";

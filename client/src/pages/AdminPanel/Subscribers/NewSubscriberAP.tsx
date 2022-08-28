@@ -1,36 +1,20 @@
-import React,{useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import {isAuth} from "../../../helpers/auth";
 import axios from "axios";
-import {
-    CalendarToday,
-    LocationSearching,
-    MailOutline,
-    PermIdentity,
-    PhoneAndroid,
-    Publish
-  } from "@mui/icons-material";
-  import Avatar from '@mui/material/Avatar';
-  import FemaleIcon from '@mui/icons-material/Female';
-  import MaleIcon from '@mui/icons-material/Male';
-  import { Link, useParams } from "react-router-dom";
-  import "../../../styles/User.scss";
-  import UploadIcon from '@mui/icons-material/Upload';
-  import AddCircleIcon from '@mui/icons-material/AddCircle';
-  import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import "../../../styles/User.scss";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
   
   export default function Subscriber() {
-
-    let params = useParams();
 
     // to store all the batches
     const [batches, setBatches] = useState<any[]>([]);
     const [degrees, setDegrees] = useState<any[]>([]);
 
     // to store selected batches
-    const [selectedBatch, setSelectedBatch] = useState('');
-    const [selectedDegree, setSelectedDegree] = useState('');
+    const [selectedBatch] = useState('');
+    const [selectedDegree] = useState('');
 
     useEffect(() => {
       fetch(`https://localhost:5000/api/Batch/get-batches/inst/${isAuth().institutes[0].id}`)
@@ -326,6 +310,7 @@ import {
                       setFile(event.target.files[0])
                     }}
                   /> */}
+                  {/* Need for future improvemnet */}
                 </div>
                 <button className="userUpdateButton">Add</button>
               </div>

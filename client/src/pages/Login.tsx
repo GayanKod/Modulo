@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 import "../styles/Login.scss"

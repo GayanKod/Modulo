@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
   import { Link, useParams } from "react-router-dom";
   import "../../../styles/User.scss";
@@ -11,7 +11,8 @@ import axios from "axios";
   export default function User() {
 
     let params = useParams();
-    const [file, setFile] = useState<File>();
+    // const [file, setFile] = useState<File>();
+    // Need for future improvemnet
 
     const [thisfloorNumber, setThisfloorNumber] = useState('');
     const [thisBuildingNumber, setThisBuildingNumber] = useState('');
@@ -241,6 +242,7 @@ import axios from "axios";
                       setFile(event.target.files[0])
                     }}
                   /> */}
+                  {/* Need for future improvemnet */}
                 </div>
                 <button className="userUpdateButton">Update</button>
               </div>

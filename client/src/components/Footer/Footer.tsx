@@ -1,4 +1,3 @@
-import React from 'react'
 import "../../styles/Footer.scss"
 import LogoLight from "../../assets/img/LogoModulo Light.png"
 import logo99xLight from "../../assets/img/logo99xLight.png"

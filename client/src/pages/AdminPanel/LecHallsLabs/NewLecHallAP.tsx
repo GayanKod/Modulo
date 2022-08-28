@@ -1,7 +1,6 @@
-import React,{useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {isAuth} from "../../../helpers/auth";
-import {  useNavigate } from "react-router-dom";
 import "../../../styles/User.scss";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,9 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
   
   export default function NewLecHallAP() {
 
-    let navigate = useNavigate();
-
     //const [file, setFile] = useState<File>();
+    // Need for future improvemnet
 
     const [formData, setFormData] = useState({
       floorNumber: "",
@@ -187,6 +185,7 @@ import 'react-toastify/dist/ReactToastify.css';
                       setFile(event.target.files[0])
                     }}
                   /> */}
+                  {/* Need for future improvemnet */}
                 </div>
                 <button className="userUpdateButton">Add</button>
               </div>

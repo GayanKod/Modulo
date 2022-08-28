@@ -1,19 +1,16 @@
-import React, { useState, SyntheticEvent } from 'react';
+import { useState, SyntheticEvent } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar/Navbar';
 import "../styles/Verify.scss"
 import loginImg from '../assets/img/login.png'
-import { authenticate, isAuth } from '../helpers/auth';
+import { isAuth } from '../helpers/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router'
-import { Token } from '@mui/icons-material';
 
 
 const UserVerification = () => {
-
-    let time = new Date().getHours();
 
     const [token, setToken] = useState<string>();
 

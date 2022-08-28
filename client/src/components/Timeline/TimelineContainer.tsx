@@ -1,6 +1,5 @@
 import timelineData from './data';
 import TimelineItem from './TimelineItem';
-import React from 'react';
 
 function TimelineContainer(){
     return<>{

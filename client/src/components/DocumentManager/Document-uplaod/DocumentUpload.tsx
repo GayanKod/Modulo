@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../../../styles/DocumentUploader.scss";
 import FileSelector from "./FileSelector";
 import RecentUpload from "./RecentUpload";

@@ -42,12 +42,12 @@ function ViewBookings() {
 
   const list = classRooms.map((c) =>
     c.bookings.map((i) => {
-      if (i.userId != isAuth().id) return <></>;
+      if (i.userId !== isAuth().id) return <></>;
       return (
         <tr className="view-bookings-row">
           <td>{i.id}</td>
           <td>
-            {c.classRoomType == 0 ? `Lecture Hall ${c.id}` : `Lab ${c.id}`}
+            {c.classRoomType === 0 ? `Lecture Hall ${c.id}` : `Lab ${c.id}`}
           </td>
           <td>{new Date(i.date).toDateString()}</td>
           <td>{`${new Date(i.startTime).getHours()}.00 - ${new Date(

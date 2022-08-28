@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { isAuth } from "../../../helpers/auth";
-import { Documents } from "../Document-uplaod/Documents";
+// import { Documents } from "../Document-uplaod/Documents";
 import { Download } from "./Download";
 
 function RecentDownload() {
